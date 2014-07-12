@@ -1,0 +1,237 @@
+<!--**************** Naming Convention **********-->
+<!--qn : Question Name-->
+<!--resp : Response prefix-->
+<!--strt : Start Time-->
+<!--stp : Stop Time-->
+<!--isspp : is self paced polling-->
+<!--isap : is Anonymous polling-->
+<!--qType : Question Type-->
+<!--sig : Significiant Characters-->
+<!--idx : Question Index (SrNo)-->
+<!--cans : Correct answer-->
+<!--ssn : Session tag-->
+<!--v : Voting-->
+<!--ans : Final Response recorded-->
+<!--fans : first response-->
+<!--id : Clicker ID-->
+<!--scr : Score-->
+<!--fanst : Final answer time-->
+<!--att : Number of attempts-->
+<!--tm : Time-->
+<!--lto : Loaned clicker to-->
+<!--p : Polling tag name-->
+<!--part : Participation Points-->
+<!--perf : performance points-->
+<!--minrep : Minimum reply-->
+<!--ssnn : Session Name-->
+<!--anspt : Correct answer points-->
+<!--tscr : total score across polling questions for the student-->
+<!--isDel : flag to indicate whether the quesiton is deleted-->
+<!--MinPart_S : store the Participation Requirement setting as it was selected in i>clicker -> Scoring tab-->
+<!--anypt : this tag will be used to store response any choice points-->
+<!--File naming convention : for example if the file name is 'L1309231102.xml'-->
+<!--L - Indication that this is a session log file the deleted session files will prefix with x-->
+<!--13 - Year-->
+<!--09 - Month-->
+<!--23 - Day-->
+<!--11 - Hour-->
+<!--02 - Minute-->
+<!--******************************************-->
+<ssn ssnn="Session 2" MinPart_S="at least 75% of the questions" perf="-1" minrep="21" part="0.2">
+ <p qn="Question 1" strt="07:48:38" cans="" idx="1" stp="07:48:51" resp_a="2,0.10" isap="N" isDel="N" resp_b="1,0.10" qType="MC" resp_c="1,0.10" resp_d="1,0.10" isspp="N" resp_e="0,0.00" anspt="0.3" sig="16" anypt="0.1">
+  <v scr="0.10" fans="D" lto="" tm="7.20" tscr="2.5" fanst="7.20" id="#0C0F181B" ans="D" att="1"/>
+  <v scr="0.10" fans="B" lto="" tm="8.01" tscr="2.6" fanst="8.01" id="#86A3D8FD" ans="B" att="1"/>
+  <v scr="0.10" fans="A" lto="" tm="7.63" tscr="2.8" fanst="7.63" id="#86A56B48" ans="A" att="1"/>
+  <v scr="0.10" fans="C" lto="" tm="8.46" tscr="2.4" fanst="8.46" id="#86A90F20" ans="C" att="1"/>
+  <v scr="0.10" fans="A" lto="" tm="6.64" tscr="1.6" fanst="6.64" id="#8D615BB7" ans="A" att="1"/>
+ </p>
+ <p qn="Question 2" strt="07:49:11" cans="B" idx="2" stp="07:49:16" resp_a="0,0.00" isap="N" isDel="N" resp_b="3,0.40" qType="MC" resp_c="0,0.00" resp_d="1,0.10" isspp="N" resp_e="1,0.10" anspt="0.3" sig="16" anypt="0.1">
+  <v scr="0.10" fans="E" lto="" tm="2.11" tscr="2.5" fanst="2.11" id="#0C0F181B" ans="E" att="1"/>
+  <v scr="0.10" fans="B" lto="" tm="2.90" tscr="2.6" fanst="2.90" id="#86A3D8FD" ans="B" att="1"/>
+  <v scr="0.10" fans="B" lto="" tm="2.51" tscr="2.8" fanst="2.51" id="#86A56B48" ans="B" att="1"/>
+  <v scr="0.10" fans="D" lto="" tm="3.25" tscr="2.4" fanst="3.25" id="#86A90F20" ans="D" att="1"/>
+  <v scr="0.10" fans="B" lto="" tm="1.75" tscr="1.6" fanst="1.75" id="#8D615BB7" ans="B" att="1"/>
+ </p>
+ <p qn="Question 3" strt="07:49:19" cans="" idx="3" stp="07:49:23" resp_a="1,0.10" isap="N" isDel="N" resp_b="3,0.10" qType="MC" resp_c="0,0.00" resp_d="1,0.10" isspp="N" resp_e="0,0.00" anspt="0.3" sig="16" anypt="0.1">
+  <v scr="0.10" fans="D" lto="" tm="1.44" tscr="2.5" fanst="1.44" id="#0C0F181B" ans="D" att="1"/>
+  <v scr="0.10" fans="B" lto="" tm="2.14" tscr="2.6" fanst="2.14" id="#86A3D8FD" ans="B" att="1"/>
+  <v scr="0.10" fans="B" lto="" tm="1.79" tscr="2.8" fanst="1.79" id="#86A56B48" ans="B" att="1"/>
+  <v scr="0.10" fans="A" lto="" tm="2.57" tscr="2.4" fanst="2.57" id="#86A90F20" ans="A" att="1"/>
+  <v scr="0.10" fans="B" lto="" tm="1.04" tscr="1.6" fanst="1.04" id="#8D615BB7" ans="B" att="1"/>
+ </p>
+ <p qn="Question 4" strt="07:49:48" cans="" idx="4" stp="07:49:50" resp_a="0,0.00" isap="N" isDel="N" resp_b="1,0.10" qType="MC" resp_c="0,0.00" resp_d="0,0.00" isspp="N" resp_e="1,0.10" anspt="0.3" sig="16" anypt="0.1">
+  <v scr="0.10" fans="E" lto="" tm="0.89" tscr="2.5" fanst="0.89" id="#0C0F181B" ans="E" att="1"/>
+  <v scr="" fans="" lto="" tm="" tscr="2.6" fanst="" id="#86A3D8FD" ans="" att=""/>
+  <v scr="" fans="" lto="" tm="" tscr="2.8" fanst="" id="#86A56B48" ans="" att=""/>
+  <v scr="" fans="" lto="" tm="" tscr="2.4" fanst="" id="#86A90F20" ans="" att=""/>
+  <v scr="0.10" fans="B" lto="" tm="0.48" tscr="1.6" fanst="0.48" id="#8D615BB7" ans="B" att="1"/>
+ </p>
+ <p qn="Question 5" strt="07:49:53" cans="C" idx="5" stp="07:49:56" resp_a="2,0.10" isap="N" isDel="N" resp_b="1,0.10" qType="MC" resp_c="1,0.40" resp_d="1,0.10" isspp="N" resp_e="0,0.00" anspt="0.3" sig="16" anypt="0.1">
+  <v scr="0.10" fans="D" lto="" tm="1.86" tscr="2.5" fanst="1.86" id="#0C0F181B" ans="D" att="1"/>
+  <v scr="0.10" fans="A" lto="" tm="0.96" tscr="2.6" fanst="0.96" id="#86A3D8FD" ans="A" att="1"/>
+  <v scr="0.10" fans="B" lto="" tm="0.57" tscr="2.8" fanst="0.57" id="#86A56B48" ans="B" att="1"/>
+  <v scr="0.10" fans="C" lto="" tm="1.35" tscr="2.4" fanst="1.35" id="#86A90F20" ans="C" att="1"/>
+  <v scr="0.10" fans="A" lto="" tm="2.37" tscr="1.6" fanst="2.37" id="#8D615BB7" ans="A" att="1"/>
+ </p>
+ <p qn="Question 6" strt="07:49:59" cans="" idx="6" stp="07:50:03" resp_a="2,0.10" isap="N" isDel="N" resp_b="1,0.10" qType="MC" resp_c="0,0.00" resp_d="2,0.10" isspp="N" resp_e="0,0.00" anspt="0.3" sig="16" anypt="0.1">
+  <v scr="0.10" fans="D" lto="" tm="1.36" tscr="2.5" fanst="1.36" id="#0C0F181B" ans="D" att="1"/>
+  <v scr="0.10" fans="B" lto="" tm="2.26" tscr="2.6" fanst="2.26" id="#86A3D8FD" ans="B" att="1"/>
+  <v scr="0.10" fans="A" lto="" tm="1.85" tscr="2.8" fanst="1.85" id="#86A56B48" ans="A" att="1"/>
+  <v scr="0.10" fans="D" lto="" tm="2.65" tscr="2.4" fanst="2.65" id="#86A90F20" ans="D" att="1"/>
+  <v scr="0.10" fans="A" lto="" tm="0.90" tscr="1.6" fanst="0.90" id="#8D615BB7" ans="A" att="1"/>
+ </p>
+ <p qn="Question 7" strt="07:50:06" cans="B" idx="7" stp="07:50:10" resp_a="1,0.10" isap="N" isDel="N" resp_b="2,0.40" qType="MC" resp_c="0,0.00" resp_d="1,0.10" isspp="N" resp_e="1,0.10" anspt="0.3" sig="16" anypt="0.1">
+  <v scr="0.10" fans="E" lto="" tm="1.41" tscr="2.5" fanst="1.41" id="#0C0F181B" ans="E" att="1"/>
+  <v scr="0.10" fans="A" lto="" tm="2.28" tscr="2.6" fanst="2.28" id="#86A3D8FD" ans="A" att="1"/>
+  <v scr="0.10" fans="B" lto="" tm="1.86" tscr="2.8" fanst="1.86" id="#86A56B48" ans="B" att="1"/>
+  <v scr="0.10" fans="D" lto="" tm="2.74" tscr="2.4" fanst="2.74" id="#86A90F20" ans="D" att="1"/>
+  <v scr="0.10" fans="B" lto="" tm="0.98" tscr="1.6" fanst="0.98" id="#8D615BB7" ans="B" att="1"/>
+ </p>
+ <p qn="Question 8" strt="07:50:16" cans="" idx="8" stp="07:50:19" resp_a="1,0.10" isap="N" isDel="N" resp_b="2,0.10" qType="MC" resp_c="1,0.10" resp_d="0,0.00" isspp="N" resp_e="1,0.10" anspt="0.3" sig="16" anypt="0.1">
+  <v scr="0.10" fans="E" lto="" tm="0.76" tscr="2.5" fanst="0.77" id="#0C0F181B" ans="E" att="2"/>
+  <v scr="0.10" fans="A" lto="" tm="1.62" tscr="2.6" fanst="1.62" id="#86A3D8FD" ans="A" att="1"/>
+  <v scr="0.10" fans="B" lto="" tm="1.26" tscr="2.8" fanst="1.26" id="#86A56B48" ans="B" att="1"/>
+  <v scr="0.10" fans="C" lto="" tm="2.10" tscr="2.4" fanst="2.10" id="#86A90F20" ans="C" att="1"/>
+  <v scr="0.10" fans="B" lto="" tm="0.25" tscr="1.6" fanst="0.25" id="#8D615BB7" ans="B" att="1"/>
+ </p>
+ <p qn="Question 9" strt="07:50:25" cans="" idx="9" stp="07:50:32" resp_a="2,0.10" isap="N" isDel="N" resp_b="2,0.10" qType="MC" resp_c="0,0.00" resp_d="1,0.10" isspp="N" resp_e="0,0.00" anspt="0.3" sig="16" anypt="0.1">
+  <v scr="0.10" fans="D" lto="" tm="0.85" tscr="2.5" fanst="0.85" id="#0C0F181B" ans="D" att="1"/>
+  <v scr="0.10" fans="B" lto="" tm="1.84" tscr="2.6" fanst="1.84" id="#86A3D8FD" ans="B" att="1"/>
+  <v scr="0.10" fans="A" lto="" tm="1.43" tscr="2.8" fanst="1.43" id="#86A56B48" ans="A" att="1"/>
+  <v scr="0.10" fans="B" lto="" tm="2.28" tscr="2.4" fanst="2.28" id="#86A90F20" ans="B" att="1"/>
+  <v scr="0.10" fans="A" lto="" tm="0.47" tscr="1.6" fanst="0.47" id="#8D615BB7" ans="A" att="1"/>
+ </p>
+ <p qn="Question 10" strt="07:50:34" cans="A" idx="10" stp="07:50:37" resp_a="2,0.40" isap="N" isDel="N" resp_b="1,0.10" qType="MC" resp_c="0,0.00" resp_d="2,0.10" isspp="N" resp_e="0,0.00" anspt="0.3" sig="16" anypt="0.1">
+  <v scr="0.10" fans="D" lto="" tm="1.20" tscr="2.5" fanst="1.20" id="#0C0F181B" ans="D" att="1"/>
+  <v scr="0.10" fans="B" lto="" tm="2.02" tscr="2.6" fanst="2.02" id="#86A3D8FD" ans="B" att="1"/>
+  <v scr="0.10" fans="A" lto="" tm="1.62" tscr="2.8" fanst="1.62" id="#86A56B48" ans="A" att="1"/>
+  <v scr="0.10" fans="D" lto="" tm="2.48" tscr="2.4" fanst="2.48" id="#86A90F20" ans="D" att="1"/>
+  <v scr="0.10" fans="A" lto="" tm="0.71" tscr="1.6" fanst="0.71" id="#8D615BB7" ans="A" att="1"/>
+ </p>
+ <p qn="Question 11" strt="07:50:42" cans="" idx="11" stp="07:50:45" resp_a="2,0.10" isap="N" isDel="N" resp_b="1,0.10" qType="MC" resp_c="0,0.00" resp_d="0,0.00" isspp="N" resp_e="1,0.10" anspt="0.3" sig="16" anypt="0.1">
+  <v scr="0.10" fans="E" lto="" tm="1.47" tscr="2.5" fanst="1.47" id="#0C0F181B" ans="E" att="1"/>
+  <v scr="0.10" fans="A" lto="" tm="2.39" tscr="2.6" fanst="2.39" id="#86A3D8FD" ans="A" att="1"/>
+  <v scr="0.10" fans="B" lto="" tm="1.93" tscr="2.8" fanst="1.93" id="#86A56B48" ans="B" att="1"/>
+  <v scr="" fans="" lto="" tm="" tscr="2.4" fanst="" id="#86A90F20" ans="" att=""/>
+  <v scr="0.10" fans="A" lto="" tm="1.02" tscr="1.6" fanst="1.02" id="#8D615BB7" ans="A" att="1"/>
+ </p>
+ <p qn="Question 12" strt="07:50:49" cans="" idx="12" stp="07:50:51" resp_a="0,0.00" isap="N" isDel="N" resp_b="1,0.10" qType="MC" resp_c="1,0.10" resp_d="0,0.00" isspp="N" resp_e="1,0.10" anspt="0.3" sig="16" anypt="0.1">
+  <v scr="0.10" fans="E" lto="" tm="1.21" tscr="2.5" fanst="1.21" id="#0C0F181B" ans="E" att="1"/>
+  <v scr="" fans="" lto="" tm="" tscr="2.6" fanst="" id="#86A3D8FD" ans="" att=""/>
+  <v scr="0.10" fans="B" lto="" tm="1.65" tscr="2.8" fanst="1.65" id="#86A56B48" ans="B" att="1"/>
+  <v scr="" fans="" lto="" tm="" tscr="2.4" fanst="" id="#86A90F20" ans="" att=""/>
+  <v scr="0.10" fans="C" lto="" tm="0.71" tscr="1.6" fanst="0.71" id="#8D615BB7" ans="C" att="1"/>
+ </p>
+ <p qn="Question 13" strt="07:50:54" cans="B" idx="13" stp="07:50:57" resp_a="0,0.00" isap="N" isDel="N" resp_b="3,0.40" qType="MC" resp_c="0,0.00" resp_d="2,0.10" isspp="N" resp_e="0,0.00" anspt="0.3" sig="16" anypt="0.1">
+  <v scr="0.10" fans="D" lto="" tm="0.85" tscr="2.5" fanst="0.85" id="#0C0F181B" ans="D" att="1"/>
+  <v scr="0.10" fans="B" lto="" tm="1.61" tscr="2.6" fanst="1.61" id="#86A3D8FD" ans="B" att="1"/>
+  <v scr="0.10" fans="B" lto="" tm="1.21" tscr="2.8" fanst="1.21" id="#86A56B48" ans="B" att="1"/>
+  <v scr="0.10" fans="D" lto="" tm="1.99" tscr="2.4" fanst="1.99" id="#86A90F20" ans="D" att="1"/>
+  <v scr="0.10" fans="B" lto="" tm="0.45" tscr="1.6" fanst="0.45" id="#8D615BB7" ans="B" att="1"/>
+ </p>
+ <p qn="Question 14" strt="07:51:00" cans="" idx="14" stp="07:51:02" resp_a="1,0.10" isap="N" isDel="N" resp_b="1,0.10" qType="MC" resp_c="0,0.00" resp_d="1,0.10" isspp="N" resp_e="0,0.00" anspt="0.3" sig="16" anypt="0.1">
+  <v scr="0.10" fans="D" lto="" tm="0.87" tscr="2.5" fanst="0.87" id="#0C0F181B" ans="D" att="1"/>
+  <v scr="" fans="" lto="" tm="" tscr="2.6" fanst="" id="#86A3D8FD" ans="" att=""/>
+  <v scr="0.10" fans="B" lto="" tm="1.23" tscr="2.8" fanst="1.23" id="#86A56B48" ans="B" att="1"/>
+  <v scr="" fans="" lto="" tm="" tscr="2.4" fanst="" id="#86A90F20" ans="" att=""/>
+  <v scr="0.10" fans="A" lto="" tm="0.47" tscr="1.6" fanst="0.47" id="#8D615BB7" ans="A" att="1"/>
+ </p>
+ <p qn="Question 15" strt="07:51:05" cans="C" idx="15" stp="07:51:07" resp_a="0,0.00" isap="N" isDel="N" resp_b="1,0.10" qType="MC" resp_c="2,0.40" resp_d="0,0.00" isspp="N" resp_e="0,0.00" anspt="0.3" sig="16" anypt="0.1">
+  <v scr="" fans="" lto="" tm="" tscr="2.5" fanst="" id="#0C0F181B" ans="" att=""/>
+  <v scr="0.10" fans="B" lto="" tm="1.11" tscr="2.6" fanst="1.11" id="#86A3D8FD" ans="B" att="1"/>
+  <v scr="0.10" fans="C" lto="" tm="0.69" tscr="2.8" fanst="0.69" id="#86A56B48" ans="C" att="1"/>
+  <v scr="0.10" fans="C" lto="" tm="1.58" tscr="2.4" fanst="1.58" id="#86A90F20" ans="C" att="1"/>
+  <v scr="" fans="" lto="" tm="" tscr="1.6" fanst="" id="#8D615BB7" ans="" att=""/>
+ </p>
+ <p qn="Question 16" strt="07:51:11" cans="" idx="16" stp="07:51:13" resp_a="2,0.10" isap="N" isDel="N" resp_b="0,0.00" qType="MC" resp_c="1,0.10" resp_d="0,0.00" isspp="N" resp_e="0,0.00" anspt="0.3" sig="16" anypt="0.1">
+  <v scr="0.10" fans="C" lto="" tm="1.00" tscr="2.5" fanst="1.00" id="#0C0F181B" ans="C" att="1"/>
+  <v scr="" fans="" lto="" tm="" tscr="2.6" fanst="" id="#86A3D8FD" ans="" att=""/>
+  <v scr="0.10" fans="A" lto="" tm="1.40" tscr="2.8" fanst="1.40" id="#86A56B48" ans="A" att="1"/>
+  <v scr="" fans="" lto="" tm="" tscr="2.4" fanst="" id="#86A90F20" ans="" att=""/>
+  <v scr="0.10" fans="A" lto="" tm="0.55" tscr="1.6" fanst="0.55" id="#8D615BB7" ans="A" att="1"/>
+ </p>
+ <p qn="Question 17" strt="07:51:16" cans="" idx="17" stp="07:51:19" resp_a="0,0.00" isap="N" isDel="N" resp_b="1,0.10" qType="MC" resp_c="1,0.10" resp_d="1,0.10" isspp="N" resp_e="0,0.00" anspt="0.3" sig="16" anypt="0.1">
+  <v scr="0.10" fans="D" lto="" tm="0.51" tscr="2.5" fanst="0.51" id="#0C0F181B" ans="D" att="1"/>
+  <v scr="0.10" fans="B" lto="" tm="1.43" tscr="2.6" fanst="1.43" id="#86A3D8FD" ans="B" att="1"/>
+  <v scr="0.10" fans="C" lto="" tm="1.01" tscr="2.8" fanst="1.01" id="#86A56B48" ans="C" att="1"/>
+  <v scr="" fans="" lto="" tm="" tscr="2.4" fanst="" id="#86A90F20" ans="" att=""/>
+  <v scr="" fans="" lto="" tm="" tscr="1.6" fanst="" id="#8D615BB7" ans="" att=""/>
+ </p>
+ <p qn="Question 18" strt="07:51:21" cans="" idx="18" stp="07:51:26" resp_a="1,0.10" isap="N" isDel="N" resp_b="1,0.10" qType="MC" resp_c="2,0.10" resp_d="0,0.00" isspp="N" resp_e="0,0.00" anspt="0.3" sig="16" anypt="0.1">
+  <v scr="0.10" fans="C" lto="" tm="3.47" tscr="2.5" fanst="3.47" id="#0C0F181B" ans="C" att="1"/>
+  <v scr="0.10" fans="B" lto="" tm="2.30" tscr="2.6" fanst="2.30" id="#86A3D8FD" ans="B" att="1"/>
+  <v scr="0.10" fans="A" lto="" tm="2.76" tscr="2.8" fanst="2.76" id="#86A56B48" ans="A" att="1"/>
+  <v scr="0.10" fans="C" lto="" tm="1.79" tscr="2.4" fanst="1.79" id="#86A90F20" ans="C" att="1"/>
+  <v scr="" fans="" lto="" tm="" tscr="1.6" fanst="" id="#8D615BB7" ans="" att=""/>
+ </p>
+ <p qn="Question 19" strt="07:51:28" cans="" idx="19" stp="07:51:31" resp_a="0,0.00" isap="N" isDel="N" resp_b="1,0.10" qType="MC" resp_c="2,0.10" resp_d="1,0.10" isspp="N" resp_e="0,0.00" anspt="0.3" sig="16" anypt="0.1">
+  <v scr="0.10" fans="C" lto="" tm="2.39" tscr="2.5" fanst="2.39" id="#0C0F181B" ans="C" att="1"/>
+  <v scr="0.10" fans="C" lto="" tm="1.07" tscr="2.6" fanst="1.07" id="#86A3D8FD" ans="C" att="1"/>
+  <v scr="0.10" fans="B" lto="" tm="0.67" tscr="2.8" fanst="0.67" id="#86A56B48" ans="B" att="1"/>
+  <v scr="0.10" fans="D" lto="" tm="1.45" tscr="2.4" fanst="1.45" id="#86A90F20" ans="D" att="1"/>
+  <v scr="" fans="" lto="" tm="" tscr="1.6" fanst="" id="#8D615BB7" ans="" att=""/>
+ </p>
+ <p qn="Question 20" strt="07:51:35" cans="" idx="20" stp="07:51:37" resp_a="0,0.00" isap="N" isDel="N" resp_b="1,0.10" qType="MC" resp_c="1,0.10" resp_d="1,0.10" isspp="N" resp_e="0,0.00" anspt="0.3" sig="16" anypt="0.1">
+  <v scr="" fans="" lto="" tm="" tscr="2.5" fanst="" id="#0C0F181B" ans="" att=""/>
+  <v scr="0.10" fans="B" lto="" tm="0.78" tscr="2.6" fanst="0.78" id="#86A3D8FD" ans="B" att="1"/>
+  <v scr="0.10" fans="C" lto="" tm="0.37" tscr="2.8" fanst="0.37" id="#86A56B48" ans="C" att="1"/>
+  <v scr="0.10" fans="D" lto="" tm="1.22" tscr="2.4" fanst="1.22" id="#86A90F20" ans="D" att="1"/>
+  <v scr="" fans="" lto="" tm="" tscr="1.6" fanst="" id="#8D615BB7" ans="" att=""/>
+ </p>
+ <p qn="Question 21" strt="07:51:40" cans="A" idx="21" stp="07:51:42" resp_a="1,0.40" isap="N" isDel="N" resp_b="0,0.00" qType="MC" resp_c="0,0.00" resp_d="1,0.10" isspp="N" resp_e="0,0.00" anspt="0.3" sig="16" anypt="0.1">
+  <v scr="" fans="" lto="" tm="" tscr="2.5" fanst="" id="#0C0F181B" ans="" att=""/>
+  <v scr="0.10" fans="A" lto="" tm="0.35" tscr="2.6" fanst="0.35" id="#86A3D8FD" ans="A" att="1"/>
+  <v scr="" fans="" lto="" tm="" tscr="2.8" fanst="" id="#86A56B48" ans="" att=""/>
+  <v scr="0.10" fans="D" lto="" tm="0.85" tscr="2.4" fanst="0.85" id="#86A90F20" ans="D" att="1"/>
+  <v scr="" fans="" lto="" tm="" tscr="1.6" fanst="" id="#8D615BB7" ans="" att=""/>
+ </p>
+ <p qn="Question 22" strt="07:51:45" cans="B" idx="22" stp="07:51:48" resp_a="0,0.00" isap="N" isDel="N" resp_b="1,0.40" qType="MC" resp_c="1,0.10" resp_d="2,0.10" isspp="N" resp_e="0,0.00" anspt="0.3" sig="16" anypt="0.1">
+  <v scr="0.10" fans="D" lto="" tm="0.57" tscr="2.5" fanst="0.57" id="#0C0F181B" ans="D" att="1"/>
+  <v scr="0.10" fans="C" lto="" tm="1.38" tscr="2.6" fanst="1.38" id="#86A3D8FD" ans="C" att="1"/>
+  <v scr="0.10" fans="B" lto="" tm="0.98" tscr="2.8" fanst="0.98" id="#86A56B48" ans="B" att="1"/>
+  <v scr="0.10" fans="D" lto="" tm="1.80" tscr="2.4" fanst="1.80" id="#86A90F20" ans="D" att="1"/>
+  <v scr="" fans="" lto="" tm="" tscr="1.6" fanst="" id="#8D615BB7" ans="" att=""/>
+ </p>
+ <p qn="Question 23" strt="07:51:52" cans="D" idx="23" stp="07:51:55" resp_a="0,0.00" isap="N" isDel="N" resp_b="3,0.10" qType="MC" resp_c="0,0.00" resp_d="2,0.40" isspp="N" resp_e="0,0.00" anspt="0.3" sig="16" anypt="0.1">
+  <v scr="0.10" fans="D" lto="" tm="0.43" tscr="2.5" fanst="0.43" id="#0C0F181B" ans="D" att="1"/>
+  <v scr="0.10" fans="D" lto="" tm="1.19" tscr="2.6" fanst="1.19" id="#86A3D8FD" ans="D" att="1"/>
+  <v scr="0.10" fans="B" lto="" tm="0.79" tscr="2.8" fanst="0.79" id="#86A56B48" ans="B" att="1"/>
+  <v scr="0.10" fans="B" lto="" tm="2.37" tscr="2.4" fanst="2.37" id="#86A90F20" ans="B" att="1"/>
+  <v scr="0.10" fans="B" lto="" tm="1.75" tscr="1.6" fanst="1.75" id="#8D615BB7" ans="B" att="1"/>
+ </p>
+ <p qn="Question 24" strt="07:51:57" cans="" idx="24" stp="07:52:00" resp_a="0,0.00" isap="N" isDel="N" resp_b="1,0.10" qType="MC" resp_c="2,0.10" resp_d="0,0.00" isspp="N" resp_e="0,0.00" anspt="0.3" sig="16" anypt="0.1">
+  <v scr="" fans="" lto="" tm="" tscr="2.5" fanst="" id="#0C0F181B" ans="" att=""/>
+  <v scr="0.10" fans="C" lto="" tm="1.02" tscr="2.6" fanst="1.02" id="#86A3D8FD" ans="C" att="1"/>
+  <v scr="0.10" fans="C" lto="" tm="0.58" tscr="2.8" fanst="0.58" id="#86A56B48" ans="C" att="1"/>
+  <v scr="0.10" fans="B" lto="" tm="1.40" tscr="2.4" fanst="1.40" id="#86A90F20" ans="B" att="1"/>
+  <v scr="" fans="" lto="" tm="" tscr="1.6" fanst="" id="#8D615BB7" ans="" att=""/>
+ </p>
+ <p qn="Question 25" strt="07:52:02" cans="A" idx="25" stp="07:52:05" resp_a="1,0.40" isap="N" isDel="N" resp_b="1,0.10" qType="MC" resp_c="0,0.00" resp_d="2,0.10" isspp="N" resp_e="0,0.00" anspt="0.3" sig="16" anypt="0.1">
+  <v scr="0.10" fans="D" lto="" tm="0.45" tscr="2.5" fanst="0.45" id="#0C0F181B" ans="D" att="1"/>
+  <v scr="0.10" fans="A" lto="" tm="1.20" tscr="2.6" fanst="1.20" id="#86A3D8FD" ans="A" att="1"/>
+  <v scr="0.10" fans="B" lto="" tm="0.82" tscr="2.8" fanst="0.82" id="#86A56B48" ans="B" att="1"/>
+  <v scr="0.10" fans="D" lto="" tm="1.77" tscr="2.4" fanst="1.77" id="#86A90F20" ans="D" att="1"/>
+  <v scr="" fans="" lto="" tm="" tscr="1.6" fanst="" id="#8D615BB7" ans="" att=""/>
+ </p>
+ <p qn="Question 26" strt="07:52:15" cans="C" idx="26" stp="07:52:18" resp_a="0,0.00" isap="N" isDel="N" resp_b="1,0.10" qType="MC" resp_c="2,0.40" resp_d="0,0.00" isspp="N" resp_e="0,0.00" anspt="0.3" sig="16" anypt="0.1">
+  <v scr="" fans="" lto="" tm="" tscr="2.5" fanst="" id="#0C0F181B" ans="" att=""/>
+  <v scr="0.10" fans="C" lto="" tm="1.37" tscr="2.6" fanst="1.37" id="#86A3D8FD" ans="C" att="1"/>
+  <v scr="0.10" fans="C" lto="" tm="0.98" tscr="2.8" fanst="0.98" id="#86A56B48" ans="C" att="1"/>
+  <v scr="0.10" fans="B" lto="" tm="1.96" tscr="2.4" fanst="1.96" id="#86A90F20" ans="B" att="1"/>
+  <v scr="" fans="" lto="" tm="" tscr="1.6" fanst="" id="#8D615BB7" ans="" att=""/>
+ </p>
+ <p qn="Question 27" strt="07:52:25" cans="D" idx="27" stp="07:52:28" resp_a="0,0.00" isap="N" isDel="N" resp_b="2,0.10" qType="MC" resp_c="0,0.00" resp_d="2,0.40" isspp="N" resp_e="0,0.00" anspt="0.3" sig="16" anypt="0.1">
+  <v scr="0.10" fans="D" lto="" tm="2.64" tscr="2.5" fanst="2.64" id="#0C0F181B" ans="D" att="1"/>
+  <v scr="0.10" fans="B" lto="" tm="1.29" tscr="2.6" fanst="1.29" id="#86A3D8FD" ans="B" att="1"/>
+  <v scr="0.10" fans="B" lto="" tm="0.91" tscr="2.8" fanst="0.91" id="#86A56B48" ans="B" att="1"/>
+  <v scr="0.10" fans="D" lto="" tm="1.68" tscr="2.4" fanst="1.68" id="#86A90F20" ans="D" att="1"/>
+  <v scr="" fans="" lto="" tm="" tscr="1.6" fanst="" id="#8D615BB7" ans="" att=""/>
+ </p>
+ <p qn="Question 28" strt="07:52:31" cans="C" idx="28" stp="07:52:37" resp_a="1,0.10" isap="N" isDel="N" resp_b="0,0.00" qType="MC" resp_c="2,0.40" resp_d="1,0.10" isspp="N" resp_e="0,0.00" anspt="0.3" sig="16" anypt="0.1">
+  <v scr="0.10" fans="C" lto="" tm="0.58" tscr="2.5" fanst="0.58" id="#0C0F181B" ans="C" att="1"/>
+  <v scr="0.10" fans="C" lto="" tm="1.53" tscr="2.6" fanst="1.53" id="#86A3D8FD" ans="C" att="1"/>
+  <v scr="0.10" fans="A" lto="" tm="0.95" tscr="2.8" fanst="0.95" id="#86A56B48" ans="A" att="1"/>
+  <v scr="0.10" fans="D" lto="" tm="2.06" tscr="2.4" fanst="2.06" id="#86A90F20" ans="D" att="1"/>
+  <v scr="" fans="" lto="" tm="" tscr="1.6" fanst="" id="#8D615BB7" ans="" att=""/>
+ </p>
+</ssn>

@@ -1,0 +1,927 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom" 
+	xmlns:gd="http://schemas.google.com/g/2005" 
+	xmlns:media="http://search.yahoo.com/mrss/" 
+	xmlns:openSearch="http://a9.com/-/spec/opensearchrss/1.0/" 
+	xmlns:yt="http://gdata.youtube.com/schemas/2007"
+	>
+	<id>http://gdata.youtube.com/feeds/api/users/mastronardif/uploads</id>
+	<updated>2014-07-05T02:10:57.660Z</updated>
+	<category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video"/>
+	<title type="text">Uploads by Frank Mastronardi</title>
+	<logo>http://www.gstatic.com/youtube/img/logo.png</logo>
+	<link href="http://gdata.youtube.com/feeds/api/users/mastronardif" rel="related" type="application/atom+xml"/>
+	<link href="http://www.youtube.com/channel/UCTykwoiAc-6Ho5Q8vmsxIew/videos" rel="alternate" type="text/html"/>
+	<link href="http://gdata.youtube.com/feeds/api/users/mastronardif/uploads" rel="http://schemas.google.com/g/2005#feed" type="application/atom+xml"/>
+	<link href="http://gdata.youtube.com/feeds/api/users/mastronardif/uploads/batch" rel="http://schemas.google.com/g/2005#batch" type="application/atom+xml"/>
+	<link href="http://gdata.youtube.com/feeds/api/users/mastronardif/uploads?start-index=1&amp;max-results=25" rel="self" type="application/atom+xml"/>
+	<link href="http://gdata.youtube.com/feeds/api/users/mastronardif/uploads?start-index=26&amp;max-results=25" rel="next" type="application/atom+xml"/>
+	<author>
+		<name>Frank Mastronardi</name>
+		<uri>http://gdata.youtube.com/feeds/api/users/mastronardif</uri>
+	</author>
+	<generator uri="http://gdata.youtube.com" version="2.1">YouTube data API</generator>
+	<openSearch:totalResults>135</openSearch:totalResults>
+	<openSearch:startIndex>1</openSearch:startIndex>
+	<openSearch:itemsPerPage>25</openSearch:itemsPerPage>
+	<entry>
+		<id>http://gdata.youtube.com/feeds/api/videos/CNQVwBktvzQ</id>
+		<published>2013-12-07T20:36:36.000Z</published>
+		<updated>2013-12-07T20:38:15.000Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video"/>
+		<category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Comedy"/>
+		<title type="text">Seeds amore</title>
+		<content type="text"/>
+		<link href="http://www.youtube.com/watch?v=CNQVwBktvzQ&amp;feature=youtube_gdata" rel="alternate" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/videos/CNQVwBktvzQ/related" rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml"/>
+		<link href="http://m.youtube.com/details?v=CNQVwBktvzQ" rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/users/mastronardif/uploads/CNQVwBktvzQ" rel="self" type="application/atom+xml"/>
+		<author>
+			<name>Frank Mastronardi</name>
+			<uri>http://gdata.youtube.com/feeds/api/users/mastronardif</uri>
+		</author>
+		<gd:comments>
+			<gd:feedLink countHint="0" href="http://gdata.youtube.com/feeds/api/videos/CNQVwBktvzQ/comments" rel="http://gdata.youtube.com/schemas/2007#comments"/>
+		</gd:comments>
+		<media:group>
+			<media:category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Comedy</media:category>
+			<media:content duration="162" expression="full" isDefault="true" medium="video" type="application/x-shockwave-flash" url="http://www.youtube.com/v/CNQVwBktvzQ?version=3&amp;f=user_uploads&amp;app=youtube_gdata" yt:format="5"/>
+			<media:content duration="162" expression="full" medium="video" type="video/3gpp" url="rtsp://r5---sn-p5qlsu7l.c.youtube.com/CigLENy73wIaHwk0vy0ZwBXUCBMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="1"/>
+			<media:content duration="162" expression="full" medium="video" type="video/3gpp" url="rtsp://r5---sn-p5qlsu7l.c.youtube.com/CigLENy73wIaHwk0vy0ZwBXUCBMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="6"/>
+			<media:description type="plain"/>
+			<media:keywords/>
+			<media:player url="http://www.youtube.com/watch?v=CNQVwBktvzQ&amp;feature=youtube_gdata_player"/>
+			<media:thumbnail height="360" time="00:01:21" url="http://i1.ytimg.com/vi/CNQVwBktvzQ/0.jpg" width="480"/>
+			<media:thumbnail height="90" time="00:00:40.500" url="http://i1.ytimg.com/vi/CNQVwBktvzQ/1.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:01:21" url="http://i1.ytimg.com/vi/CNQVwBktvzQ/2.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:02:01.500" url="http://i1.ytimg.com/vi/CNQVwBktvzQ/3.jpg" width="120"/>
+			<media:title type="plain">Seeds amore</media:title>
+			<yt:duration seconds="162"/>
+		</media:group>
+		<yt:statistics favoriteCount="0" viewCount="3"/>
+	</entry>
+	<entry>
+		<id>http://gdata.youtube.com/feeds/api/videos/HLfUbirSLQQ</id>
+		<published>2013-08-11T22:57:37.000Z</published>
+		<updated>2013-08-11T22:57:37.000Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video"/>
+		<category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Comedy"/>
+		<title type="text">Do plane</title>
+		<content type="text"/>
+		<link href="http://www.youtube.com/watch?v=HLfUbirSLQQ&amp;feature=youtube_gdata" rel="alternate" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/videos/HLfUbirSLQQ/related" rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml"/>
+		<link href="http://m.youtube.com/details?v=HLfUbirSLQQ" rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/users/mastronardif/uploads/HLfUbirSLQQ" rel="self" type="application/atom+xml"/>
+		<author>
+			<name>Frank Mastronardi</name>
+			<uri>http://gdata.youtube.com/feeds/api/users/mastronardif</uri>
+		</author>
+		<gd:comments>
+			<gd:feedLink countHint="0" href="http://gdata.youtube.com/feeds/api/videos/HLfUbirSLQQ/comments" rel="http://gdata.youtube.com/schemas/2007#comments"/>
+		</gd:comments>
+		<media:group>
+			<media:category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Comedy</media:category>
+			<media:content duration="14" expression="full" isDefault="true" medium="video" type="application/x-shockwave-flash" url="http://www.youtube.com/v/HLfUbirSLQQ?version=3&amp;f=user_uploads&amp;app=youtube_gdata" yt:format="5"/>
+			<media:content duration="14" expression="full" medium="video" type="video/3gpp" url="rtsp://r2---sn-p5qlsu7d.c.youtube.com/CigLENy73wIaHwkELdIqbtS3HBMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="1"/>
+			<media:content duration="14" expression="full" medium="video" type="video/3gpp" url="rtsp://r2---sn-p5qlsu7d.c.youtube.com/CigLENy73wIaHwkELdIqbtS3HBMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="6"/>
+			<media:description type="plain"/>
+			<media:keywords/>
+			<media:player url="http://www.youtube.com/watch?v=HLfUbirSLQQ&amp;feature=youtube_gdata_player"/>
+			<media:thumbnail height="360" time="00:00:07" url="http://i1.ytimg.com/vi/HLfUbirSLQQ/0.jpg" width="480"/>
+			<media:thumbnail height="90" time="00:00:03.500" url="http://i1.ytimg.com/vi/HLfUbirSLQQ/1.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:07" url="http://i1.ytimg.com/vi/HLfUbirSLQQ/2.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:10.500" url="http://i1.ytimg.com/vi/HLfUbirSLQQ/3.jpg" width="120"/>
+			<media:title type="plain">Do plane</media:title>
+			<yt:duration seconds="14"/>
+		</media:group>
+		<yt:statistics favoriteCount="0" viewCount="2"/>
+	</entry>
+	<entry>
+		<id>http://gdata.youtube.com/feeds/api/videos/KdWfnzJAr6I</id>
+		<published>2013-08-11T22:55:23.000Z</published>
+		<updated>2013-08-11T22:55:23.000Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video"/>
+		<category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Comedy"/>
+		<title type="text">The pool</title>
+		<content type="text"/>
+		<link href="http://www.youtube.com/watch?v=KdWfnzJAr6I&amp;feature=youtube_gdata" rel="alternate" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/videos/KdWfnzJAr6I/related" rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml"/>
+		<link href="http://m.youtube.com/details?v=KdWfnzJAr6I" rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/users/mastronardif/uploads/KdWfnzJAr6I" rel="self" type="application/atom+xml"/>
+		<author>
+			<name>Frank Mastronardi</name>
+			<uri>http://gdata.youtube.com/feeds/api/users/mastronardif</uri>
+		</author>
+		<gd:comments>
+			<gd:feedLink countHint="0" href="http://gdata.youtube.com/feeds/api/videos/KdWfnzJAr6I/comments" rel="http://gdata.youtube.com/schemas/2007#comments"/>
+		</gd:comments>
+		<media:group>
+			<media:category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Comedy</media:category>
+			<media:content duration="63" expression="full" isDefault="true" medium="video" type="application/x-shockwave-flash" url="http://www.youtube.com/v/KdWfnzJAr6I?version=3&amp;f=user_uploads&amp;app=youtube_gdata" yt:format="5"/>
+			<media:content duration="63" expression="full" medium="video" type="video/3gpp" url="rtsp://r8---sn-p5qlsu7z.c.youtube.com/CigLENy73wIaHwmir0Ayn5_VKRMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="1"/>
+			<media:content duration="63" expression="full" medium="video" type="video/3gpp" url="rtsp://r8---sn-p5qlsu7z.c.youtube.com/CigLENy73wIaHwmir0Ayn5_VKRMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="6"/>
+			<media:description type="plain"/>
+			<media:keywords/>
+			<media:player url="http://www.youtube.com/watch?v=KdWfnzJAr6I&amp;feature=youtube_gdata_player"/>
+			<media:thumbnail height="360" time="00:00:31.500" url="http://i1.ytimg.com/vi/KdWfnzJAr6I/0.jpg" width="480"/>
+			<media:thumbnail height="90" time="00:00:15.750" url="http://i1.ytimg.com/vi/KdWfnzJAr6I/1.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:31.500" url="http://i1.ytimg.com/vi/KdWfnzJAr6I/2.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:47.250" url="http://i1.ytimg.com/vi/KdWfnzJAr6I/3.jpg" width="120"/>
+			<media:title type="plain">The pool</media:title>
+			<yt:duration seconds="63"/>
+		</media:group>
+		<yt:statistics favoriteCount="0" viewCount="30"/>
+	</entry>
+	<entry>
+		<id>http://gdata.youtube.com/feeds/api/videos/GqtSwUHeYVg</id>
+		<published>2013-08-05T23:29:05.000Z</published>
+		<updated>2013-08-05T23:29:05.000Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video"/>
+		<category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Comedy"/>
+		<title type="text">Overlong vi</title>
+		<content type="text"/>
+		<link href="http://www.youtube.com/watch?v=GqtSwUHeYVg&amp;feature=youtube_gdata" rel="alternate" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/videos/GqtSwUHeYVg/related" rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml"/>
+		<link href="http://m.youtube.com/details?v=GqtSwUHeYVg" rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/users/mastronardif/uploads/GqtSwUHeYVg" rel="self" type="application/atom+xml"/>
+		<author>
+			<name>Frank Mastronardi</name>
+			<uri>http://gdata.youtube.com/feeds/api/users/mastronardif</uri>
+		</author>
+		<gd:comments>
+			<gd:feedLink countHint="0" href="http://gdata.youtube.com/feeds/api/videos/GqtSwUHeYVg/comments" rel="http://gdata.youtube.com/schemas/2007#comments"/>
+		</gd:comments>
+		<media:group>
+			<media:category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Comedy</media:category>
+			<media:content duration="30" expression="full" isDefault="true" medium="video" type="application/x-shockwave-flash" url="http://www.youtube.com/v/GqtSwUHeYVg?version=3&amp;f=user_uploads&amp;app=youtube_gdata" yt:format="5"/>
+			<media:content duration="30" expression="full" medium="video" type="video/3gpp" url="rtsp://r7---sn-p5qlsu7s.c.youtube.com/CigLENy73wIaHwlYYd5BwVKrGhMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="1"/>
+			<media:content duration="30" expression="full" medium="video" type="video/3gpp" url="rtsp://r7---sn-p5qlsu7s.c.youtube.com/CigLENy73wIaHwlYYd5BwVKrGhMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="6"/>
+			<media:description type="plain"/>
+			<media:keywords/>
+			<media:player url="http://www.youtube.com/watch?v=GqtSwUHeYVg&amp;feature=youtube_gdata_player"/>
+			<media:thumbnail height="360" time="00:00:15" url="http://i1.ytimg.com/vi/GqtSwUHeYVg/0.jpg" width="480"/>
+			<media:thumbnail height="90" time="00:00:07.500" url="http://i1.ytimg.com/vi/GqtSwUHeYVg/1.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:15" url="http://i1.ytimg.com/vi/GqtSwUHeYVg/2.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:22.500" url="http://i1.ytimg.com/vi/GqtSwUHeYVg/3.jpg" width="120"/>
+			<media:title type="plain">Overlong vi</media:title>
+			<yt:duration seconds="30"/>
+		</media:group>
+		<yt:statistics favoriteCount="0" viewCount="3"/>
+	</entry>
+	<entry>
+		<id>http://gdata.youtube.com/feeds/api/videos/oY3XMofU66M</id>
+		<published>2013-08-05T23:07:05.000Z</published>
+		<updated>2013-08-05T23:07:05.000Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video"/>
+		<category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Comedy"/>
+		<title type="text">Overlong ov</title>
+		<content type="text"/>
+		<link href="http://www.youtube.com/watch?v=oY3XMofU66M&amp;feature=youtube_gdata" rel="alternate" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/videos/oY3XMofU66M/related" rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml"/>
+		<link href="http://m.youtube.com/details?v=oY3XMofU66M" rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/users/mastronardif/uploads/oY3XMofU66M" rel="self" type="application/atom+xml"/>
+		<author>
+			<name>Frank Mastronardi</name>
+			<uri>http://gdata.youtube.com/feeds/api/users/mastronardif</uri>
+		</author>
+		<gd:comments>
+			<gd:feedLink countHint="0" href="http://gdata.youtube.com/feeds/api/videos/oY3XMofU66M/comments" rel="http://gdata.youtube.com/schemas/2007#comments"/>
+		</gd:comments>
+		<media:group>
+			<media:category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Comedy</media:category>
+			<media:content duration="16" expression="full" isDefault="true" medium="video" type="application/x-shockwave-flash" url="http://www.youtube.com/v/oY3XMofU66M?version=3&amp;f=user_uploads&amp;app=youtube_gdata" yt:format="5"/>
+			<media:content duration="16" expression="full" medium="video" type="video/3gpp" url="rtsp://r2---sn-p5qlsu7e.c.youtube.com/CigLENy73wIaHwmj69SHMteNoRMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="1"/>
+			<media:content duration="16" expression="full" medium="video" type="video/3gpp" url="rtsp://r2---sn-p5qlsu7e.c.youtube.com/CigLENy73wIaHwmj69SHMteNoRMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="6"/>
+			<media:description type="plain"/>
+			<media:keywords/>
+			<media:player url="http://www.youtube.com/watch?v=oY3XMofU66M&amp;feature=youtube_gdata_player"/>
+			<media:thumbnail height="360" time="00:00:08" url="http://i1.ytimg.com/vi/oY3XMofU66M/0.jpg" width="480"/>
+			<media:thumbnail height="90" time="00:00:04" url="http://i1.ytimg.com/vi/oY3XMofU66M/1.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:08" url="http://i1.ytimg.com/vi/oY3XMofU66M/2.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:12" url="http://i1.ytimg.com/vi/oY3XMofU66M/3.jpg" width="120"/>
+			<media:title type="plain">Overlong ov</media:title>
+			<yt:duration seconds="16"/>
+		</media:group>
+		<yt:statistics favoriteCount="0" viewCount="3"/>
+	</entry>
+	<entry>
+		<id>http://gdata.youtube.com/feeds/api/videos/FAAEx3gtf8Y</id>
+		<published>2013-08-05T22:56:57.000Z</published>
+		<updated>2013-08-05T22:56:57.000Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video"/>
+		<category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Comedy"/>
+		<title type="text">Overlong iii</title>
+		<content type="text"/>
+		<link href="http://www.youtube.com/watch?v=FAAEx3gtf8Y&amp;feature=youtube_gdata" rel="alternate" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/videos/FAAEx3gtf8Y/related" rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml"/>
+		<link href="http://m.youtube.com/details?v=FAAEx3gtf8Y" rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/users/mastronardif/uploads/FAAEx3gtf8Y" rel="self" type="application/atom+xml"/>
+		<author>
+			<name>Frank Mastronardi</name>
+			<uri>http://gdata.youtube.com/feeds/api/users/mastronardif</uri>
+		</author>
+		<gd:comments>
+			<gd:feedLink countHint="0" href="http://gdata.youtube.com/feeds/api/videos/FAAEx3gtf8Y/comments" rel="http://gdata.youtube.com/schemas/2007#comments"/>
+		</gd:comments>
+		<media:group>
+			<media:category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Comedy</media:category>
+			<media:content duration="20" expression="full" isDefault="true" medium="video" type="application/x-shockwave-flash" url="http://www.youtube.com/v/FAAEx3gtf8Y?version=3&amp;f=user_uploads&amp;app=youtube_gdata" yt:format="5"/>
+			<media:content duration="20" expression="full" medium="video" type="video/3gpp" url="rtsp://r8---sn-p5qlsu7e.c.youtube.com/CigLENy73wIaHwnGfy14xwQAFBMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="1"/>
+			<media:content duration="20" expression="full" medium="video" type="video/3gpp" url="rtsp://r8---sn-p5qlsu7e.c.youtube.com/CigLENy73wIaHwnGfy14xwQAFBMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="6"/>
+			<media:description type="plain"/>
+			<media:keywords/>
+			<media:player url="http://www.youtube.com/watch?v=FAAEx3gtf8Y&amp;feature=youtube_gdata_player"/>
+			<media:thumbnail height="360" time="00:00:10" url="http://i1.ytimg.com/vi/FAAEx3gtf8Y/0.jpg" width="480"/>
+			<media:thumbnail height="90" time="00:00:05" url="http://i1.ytimg.com/vi/FAAEx3gtf8Y/1.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:10" url="http://i1.ytimg.com/vi/FAAEx3gtf8Y/2.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:15" url="http://i1.ytimg.com/vi/FAAEx3gtf8Y/3.jpg" width="120"/>
+			<media:title type="plain">Overlong iii</media:title>
+			<yt:duration seconds="20"/>
+		</media:group>
+		<yt:statistics favoriteCount="0" viewCount="2"/>
+	</entry>
+	<entry>
+		<id>http://gdata.youtube.com/feeds/api/videos/EXYnb77Bft8</id>
+		<published>2013-08-05T22:56:24.000Z</published>
+		<updated>2013-08-05T22:56:24.000Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video"/>
+		<category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Comedy"/>
+		<title type="text">Overlong ii</title>
+		<content type="text"/>
+		<link href="http://www.youtube.com/watch?v=EXYnb77Bft8&amp;feature=youtube_gdata" rel="alternate" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/videos/EXYnb77Bft8/related" rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml"/>
+		<link href="http://m.youtube.com/details?v=EXYnb77Bft8" rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/users/mastronardif/uploads/EXYnb77Bft8" rel="self" type="application/atom+xml"/>
+		<author>
+			<name>Frank Mastronardi</name>
+			<uri>http://gdata.youtube.com/feeds/api/users/mastronardif</uri>
+		</author>
+		<gd:comments>
+			<gd:feedLink countHint="0" href="http://gdata.youtube.com/feeds/api/videos/EXYnb77Bft8/comments" rel="http://gdata.youtube.com/schemas/2007#comments"/>
+		</gd:comments>
+		<media:group>
+			<media:category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Comedy</media:category>
+			<media:content duration="4" expression="full" isDefault="true" medium="video" type="application/x-shockwave-flash" url="http://www.youtube.com/v/EXYnb77Bft8?version=3&amp;f=user_uploads&amp;app=youtube_gdata" yt:format="5"/>
+			<media:content duration="4" expression="full" medium="video" type="video/3gpp" url="rtsp://r2---sn-p5qlsu7s.c.youtube.com/CigLENy73wIaHwnffsG-byd2ERMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="1"/>
+			<media:content duration="4" expression="full" medium="video" type="video/3gpp" url="rtsp://r2---sn-p5qlsu7s.c.youtube.com/CigLENy73wIaHwnffsG-byd2ERMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="6"/>
+			<media:description type="plain"/>
+			<media:keywords/>
+			<media:player url="http://www.youtube.com/watch?v=EXYnb77Bft8&amp;feature=youtube_gdata_player"/>
+			<media:thumbnail height="360" time="00:00:02" url="http://i1.ytimg.com/vi/EXYnb77Bft8/0.jpg" width="480"/>
+			<media:thumbnail height="90" time="00:00:01" url="http://i1.ytimg.com/vi/EXYnb77Bft8/1.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:02" url="http://i1.ytimg.com/vi/EXYnb77Bft8/2.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:03" url="http://i1.ytimg.com/vi/EXYnb77Bft8/3.jpg" width="120"/>
+			<media:title type="plain">Overlong ii</media:title>
+			<yt:duration seconds="4"/>
+		</media:group>
+		<yt:statistics favoriteCount="0" viewCount="3"/>
+	</entry>
+	<entry>
+		<id>http://gdata.youtube.com/feeds/api/videos/AkoJ5nrWXrM</id>
+		<published>2013-08-05T22:55:02.000Z</published>
+		<updated>2013-08-05T22:55:02.000Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video"/>
+		<category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Comedy"/>
+		<title type="text">Overlong</title>
+		<content type="text"/>
+		<link href="http://www.youtube.com/watch?v=AkoJ5nrWXrM&amp;feature=youtube_gdata" rel="alternate" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/videos/AkoJ5nrWXrM/related" rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml"/>
+		<link href="http://m.youtube.com/details?v=AkoJ5nrWXrM" rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/users/mastronardif/uploads/AkoJ5nrWXrM" rel="self" type="application/atom+xml"/>
+		<author>
+			<name>Frank Mastronardi</name>
+			<uri>http://gdata.youtube.com/feeds/api/users/mastronardif</uri>
+		</author>
+		<gd:comments>
+			<gd:feedLink countHint="0" href="http://gdata.youtube.com/feeds/api/videos/AkoJ5nrWXrM/comments" rel="http://gdata.youtube.com/schemas/2007#comments"/>
+		</gd:comments>
+		<media:group>
+			<media:category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Comedy</media:category>
+			<media:content duration="91" expression="full" isDefault="true" medium="video" type="application/x-shockwave-flash" url="http://www.youtube.com/v/AkoJ5nrWXrM?version=3&amp;f=user_uploads&amp;app=youtube_gdata" yt:format="5"/>
+			<media:content duration="91" expression="full" medium="video" type="video/3gpp" url="rtsp://r2---sn-p5qlsu76.c.youtube.com/CigLENy73wIaHwmzXtZ65glKAhMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="1"/>
+			<media:content duration="91" expression="full" medium="video" type="video/3gpp" url="rtsp://r2---sn-p5qlsu76.c.youtube.com/CigLENy73wIaHwmzXtZ65glKAhMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="6"/>
+			<media:description type="plain"/>
+			<media:keywords/>
+			<media:player url="http://www.youtube.com/watch?v=AkoJ5nrWXrM&amp;feature=youtube_gdata_player"/>
+			<media:thumbnail height="360" time="00:00:45.500" url="http://i1.ytimg.com/vi/AkoJ5nrWXrM/0.jpg" width="480"/>
+			<media:thumbnail height="90" time="00:00:22.750" url="http://i1.ytimg.com/vi/AkoJ5nrWXrM/1.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:45.500" url="http://i1.ytimg.com/vi/AkoJ5nrWXrM/2.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:01:08.250" url="http://i1.ytimg.com/vi/AkoJ5nrWXrM/3.jpg" width="120"/>
+			<media:title type="plain">Overlong</media:title>
+			<yt:duration seconds="91"/>
+		</media:group>
+		<yt:statistics favoriteCount="0" viewCount="5"/>
+	</entry>
+	<entry>
+		<id>http://gdata.youtube.com/feeds/api/videos/w3OJUR8Uxwo</id>
+		<published>2013-08-05T02:17:50.000Z</published>
+		<updated>2013-08-05T02:17:50.000Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video"/>
+		<category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Comedy"/>
+		<title type="text">Al house</title>
+		<content type="text"/>
+		<link href="http://www.youtube.com/watch?v=w3OJUR8Uxwo&amp;feature=youtube_gdata" rel="alternate" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/videos/w3OJUR8Uxwo/related" rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml"/>
+		<link href="http://m.youtube.com/details?v=w3OJUR8Uxwo" rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/users/mastronardif/uploads/w3OJUR8Uxwo" rel="self" type="application/atom+xml"/>
+		<author>
+			<name>Frank Mastronardi</name>
+			<uri>http://gdata.youtube.com/feeds/api/users/mastronardif</uri>
+		</author>
+		<gd:comments>
+			<gd:feedLink countHint="0" href="http://gdata.youtube.com/feeds/api/videos/w3OJUR8Uxwo/comments" rel="http://gdata.youtube.com/schemas/2007#comments"/>
+		</gd:comments>
+		<media:group>
+			<media:category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Comedy</media:category>
+			<media:content duration="36" expression="full" isDefault="true" medium="video" type="application/x-shockwave-flash" url="http://www.youtube.com/v/w3OJUR8Uxwo?version=3&amp;f=user_uploads&amp;app=youtube_gdata" yt:format="5"/>
+			<media:content duration="36" expression="full" medium="video" type="video/3gpp" url="rtsp://r4---sn-p5qlsu7l.c.youtube.com/CigLENy73wIaHwkKxxQfUYlzwxMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="1"/>
+			<media:content duration="36" expression="full" medium="video" type="video/3gpp" url="rtsp://r4---sn-p5qlsu7l.c.youtube.com/CigLENy73wIaHwkKxxQfUYlzwxMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="6"/>
+			<media:description type="plain"/>
+			<media:keywords/>
+			<media:player url="http://www.youtube.com/watch?v=w3OJUR8Uxwo&amp;feature=youtube_gdata_player"/>
+			<media:thumbnail height="360" time="00:00:18" url="http://i1.ytimg.com/vi/w3OJUR8Uxwo/0.jpg" width="480"/>
+			<media:thumbnail height="90" time="00:00:09" url="http://i1.ytimg.com/vi/w3OJUR8Uxwo/1.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:18" url="http://i1.ytimg.com/vi/w3OJUR8Uxwo/2.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:27" url="http://i1.ytimg.com/vi/w3OJUR8Uxwo/3.jpg" width="120"/>
+			<media:title type="plain">Al house</media:title>
+			<yt:duration seconds="36"/>
+		</media:group>
+		<yt:statistics favoriteCount="0" viewCount="4"/>
+	</entry>
+	<entry>
+		<id>http://gdata.youtube.com/feeds/api/videos/g8IVx1Kv5L0</id>
+		<published>2013-07-29T23:32:48.000Z</published>
+		<updated>2013-07-29T23:32:48.000Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video"/>
+		<category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Comedy"/>
+		<title type="text">Bounty</title>
+		<content type="text"/>
+		<link href="http://www.youtube.com/watch?v=g8IVx1Kv5L0&amp;feature=youtube_gdata" rel="alternate" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/videos/g8IVx1Kv5L0/related" rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml"/>
+		<link href="http://m.youtube.com/details?v=g8IVx1Kv5L0" rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/users/mastronardif/uploads/g8IVx1Kv5L0" rel="self" type="application/atom+xml"/>
+		<author>
+			<name>Frank Mastronardi</name>
+			<uri>http://gdata.youtube.com/feeds/api/users/mastronardif</uri>
+		</author>
+		<gd:comments>
+			<gd:feedLink countHint="0" href="http://gdata.youtube.com/feeds/api/videos/g8IVx1Kv5L0/comments" rel="http://gdata.youtube.com/schemas/2007#comments"/>
+		</gd:comments>
+		<media:group>
+			<media:category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Comedy</media:category>
+			<media:content duration="125" expression="full" isDefault="true" medium="video" type="application/x-shockwave-flash" url="http://www.youtube.com/v/g8IVx1Kv5L0?version=3&amp;f=user_uploads&amp;app=youtube_gdata" yt:format="5"/>
+			<media:content duration="125" expression="full" medium="video" type="video/3gpp" url="rtsp://r8---sn-p5qlsu7d.c.youtube.com/CigLENy73wIaHwm95K9SxxXCgxMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="1"/>
+			<media:content duration="125" expression="full" medium="video" type="video/3gpp" url="rtsp://r8---sn-p5qlsu7d.c.youtube.com/CigLENy73wIaHwm95K9SxxXCgxMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="6"/>
+			<media:description type="plain"/>
+			<media:keywords/>
+			<media:player url="http://www.youtube.com/watch?v=g8IVx1Kv5L0&amp;feature=youtube_gdata_player"/>
+			<media:thumbnail height="360" time="00:01:02.500" url="http://i1.ytimg.com/vi/g8IVx1Kv5L0/0.jpg" width="480"/>
+			<media:thumbnail height="90" time="00:00:31.250" url="http://i1.ytimg.com/vi/g8IVx1Kv5L0/1.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:01:02.500" url="http://i1.ytimg.com/vi/g8IVx1Kv5L0/2.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:01:33.750" url="http://i1.ytimg.com/vi/g8IVx1Kv5L0/3.jpg" width="120"/>
+			<media:title type="plain">Bounty</media:title>
+			<yt:duration seconds="125"/>
+		</media:group>
+		<yt:statistics favoriteCount="0" viewCount="10"/>
+	</entry>
+	<entry>
+		<id>http://gdata.youtube.com/feeds/api/videos/gfBXhKt6_vA</id>
+		<published>2013-07-28T21:40:35.000Z</published>
+		<updated>2013-07-28T21:40:35.000Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video"/>
+		<category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Comedy"/>
+		<title type="text">Oak wood</title>
+		<content type="text"/>
+		<link href="http://www.youtube.com/watch?v=gfBXhKt6_vA&amp;feature=youtube_gdata" rel="alternate" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/videos/gfBXhKt6_vA/related" rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml"/>
+		<link href="http://m.youtube.com/details?v=gfBXhKt6_vA" rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/users/mastronardif/uploads/gfBXhKt6_vA" rel="self" type="application/atom+xml"/>
+		<author>
+			<name>Frank Mastronardi</name>
+			<uri>http://gdata.youtube.com/feeds/api/users/mastronardif</uri>
+		</author>
+		<gd:comments>
+			<gd:feedLink countHint="0" href="http://gdata.youtube.com/feeds/api/videos/gfBXhKt6_vA/comments" rel="http://gdata.youtube.com/schemas/2007#comments"/>
+		</gd:comments>
+		<media:group>
+			<media:category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Comedy</media:category>
+			<media:content duration="97" expression="full" isDefault="true" medium="video" type="application/x-shockwave-flash" url="http://www.youtube.com/v/gfBXhKt6_vA?version=3&amp;f=user_uploads&amp;app=youtube_gdata" yt:format="5"/>
+			<media:content duration="97" expression="full" medium="video" type="video/3gpp" url="rtsp://r7---sn-p5qlsu7e.c.youtube.com/CigLENy73wIaHwnw_nqrhFfwgRMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="1"/>
+			<media:content duration="97" expression="full" medium="video" type="video/3gpp" url="rtsp://r7---sn-p5qlsu7e.c.youtube.com/CigLENy73wIaHwnw_nqrhFfwgRMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="6"/>
+			<media:description type="plain"/>
+			<media:keywords/>
+			<media:player url="http://www.youtube.com/watch?v=gfBXhKt6_vA&amp;feature=youtube_gdata_player"/>
+			<media:thumbnail height="360" time="00:00:48.500" url="http://i1.ytimg.com/vi/gfBXhKt6_vA/0.jpg" width="480"/>
+			<media:thumbnail height="90" time="00:00:24.250" url="http://i1.ytimg.com/vi/gfBXhKt6_vA/1.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:48.500" url="http://i1.ytimg.com/vi/gfBXhKt6_vA/2.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:01:12.750" url="http://i1.ytimg.com/vi/gfBXhKt6_vA/3.jpg" width="120"/>
+			<media:title type="plain">Oak wood</media:title>
+			<yt:duration seconds="97"/>
+		</media:group>
+		<yt:statistics favoriteCount="0" viewCount="6"/>
+	</entry>
+	<entry>
+		<id>http://gdata.youtube.com/feeds/api/videos/y06WnYrrJMA</id>
+		<published>2013-07-28T19:03:27.000Z</published>
+		<updated>2013-07-28T19:03:27.000Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video"/>
+		<category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Comedy"/>
+		<title type="text">1900 fair view</title>
+		<content type="text"/>
+		<link href="http://www.youtube.com/watch?v=y06WnYrrJMA&amp;feature=youtube_gdata" rel="alternate" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/videos/y06WnYrrJMA/related" rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml"/>
+		<link href="http://m.youtube.com/details?v=y06WnYrrJMA" rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/users/mastronardif/uploads/y06WnYrrJMA" rel="self" type="application/atom+xml"/>
+		<author>
+			<name>Frank Mastronardi</name>
+			<uri>http://gdata.youtube.com/feeds/api/users/mastronardif</uri>
+		</author>
+		<gd:comments>
+			<gd:feedLink countHint="0" href="http://gdata.youtube.com/feeds/api/videos/y06WnYrrJMA/comments" rel="http://gdata.youtube.com/schemas/2007#comments"/>
+		</gd:comments>
+		<media:group>
+			<media:category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Comedy</media:category>
+			<media:content duration="66" expression="full" isDefault="true" medium="video" type="application/x-shockwave-flash" url="http://www.youtube.com/v/y06WnYrrJMA?version=3&amp;f=user_uploads&amp;app=youtube_gdata" yt:format="5"/>
+			<media:content duration="66" expression="full" medium="video" type="video/3gpp" url="rtsp://r3---sn-p5qlsu76.c.youtube.com/CigLENy73wIaHwnAJOuKnZZOyxMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="1"/>
+			<media:content duration="66" expression="full" medium="video" type="video/3gpp" url="rtsp://r3---sn-p5qlsu76.c.youtube.com/CigLENy73wIaHwnAJOuKnZZOyxMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="6"/>
+			<media:description type="plain"/>
+			<media:keywords/>
+			<media:player url="http://www.youtube.com/watch?v=y06WnYrrJMA&amp;feature=youtube_gdata_player"/>
+			<media:thumbnail height="360" time="00:00:33" url="http://i1.ytimg.com/vi/y06WnYrrJMA/0.jpg" width="480"/>
+			<media:thumbnail height="90" time="00:00:16.500" url="http://i1.ytimg.com/vi/y06WnYrrJMA/1.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:33" url="http://i1.ytimg.com/vi/y06WnYrrJMA/2.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:49.500" url="http://i1.ytimg.com/vi/y06WnYrrJMA/3.jpg" width="120"/>
+			<media:title type="plain">1900 fair view</media:title>
+			<yt:duration seconds="66"/>
+		</media:group>
+		<yt:statistics favoriteCount="0" viewCount="8"/>
+	</entry>
+	<entry>
+		<id>http://gdata.youtube.com/feeds/api/videos/fOA7_VXVM0M</id>
+		<published>2013-07-24T01:06:07.000Z</published>
+		<updated>2013-07-24T01:06:07.000Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video"/>
+		<category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Comedy"/>
+		<title type="text">5517 Glencree Court</title>
+		<content type="text">5517 Glencree Court</content>
+		<link href="http://www.youtube.com/watch?v=fOA7_VXVM0M&amp;feature=youtube_gdata" rel="alternate" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/videos/fOA7_VXVM0M/related" rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml"/>
+		<link href="http://m.youtube.com/details?v=fOA7_VXVM0M" rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/users/mastronardif/uploads/fOA7_VXVM0M" rel="self" type="application/atom+xml"/>
+		<author>
+			<name>Frank Mastronardi</name>
+			<uri>http://gdata.youtube.com/feeds/api/users/mastronardif</uri>
+		</author>
+		<gd:comments>
+			<gd:feedLink countHint="0" href="http://gdata.youtube.com/feeds/api/videos/fOA7_VXVM0M/comments" rel="http://gdata.youtube.com/schemas/2007#comments"/>
+		</gd:comments>
+		<media:group>
+			<media:category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Comedy</media:category>
+			<media:content duration="29" expression="full" isDefault="true" medium="video" type="application/x-shockwave-flash" url="http://www.youtube.com/v/fOA7_VXVM0M?version=3&amp;f=user_uploads&amp;app=youtube_gdata" yt:format="5"/>
+			<media:content duration="29" expression="full" medium="video" type="video/3gpp" url="rtsp://r3---sn-p5qlsu7z.c.youtube.com/CigLENy73wIaHwlDM9VV_TvgfBMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="1"/>
+			<media:content duration="29" expression="full" medium="video" type="video/3gpp" url="rtsp://r3---sn-p5qlsu7z.c.youtube.com/CigLENy73wIaHwlDM9VV_TvgfBMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="6"/>
+			<media:description type="plain">5517 Glencree Court</media:description>
+			<media:keywords/>
+			<media:player url="http://www.youtube.com/watch?v=fOA7_VXVM0M&amp;feature=youtube_gdata_player"/>
+			<media:thumbnail height="360" time="00:00:14.500" url="http://i1.ytimg.com/vi/fOA7_VXVM0M/0.jpg" width="480"/>
+			<media:thumbnail height="90" time="00:00:07.250" url="http://i1.ytimg.com/vi/fOA7_VXVM0M/1.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:14.500" url="http://i1.ytimg.com/vi/fOA7_VXVM0M/2.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:21.750" url="http://i1.ytimg.com/vi/fOA7_VXVM0M/3.jpg" width="120"/>
+			<media:title type="plain">5517 Glencree Court</media:title>
+			<yt:duration seconds="29"/>
+		</media:group>
+		<yt:statistics favoriteCount="0" viewCount="3"/>
+	</entry>
+	<entry>
+		<id>http://gdata.youtube.com/feeds/api/videos/aorwPUNVso8</id>
+		<published>2013-07-20T16:07:36.000Z</published>
+		<updated>2013-07-20T16:07:36.000Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video"/>
+		<category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Comedy"/>
+		<title type="text">Avon Bb&amp;t</title>
+		<content type="text"/>
+		<link href="http://www.youtube.com/watch?v=aorwPUNVso8&amp;feature=youtube_gdata" rel="alternate" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/videos/aorwPUNVso8/related" rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml"/>
+		<link href="http://m.youtube.com/details?v=aorwPUNVso8" rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/users/mastronardif/uploads/aorwPUNVso8" rel="self" type="application/atom+xml"/>
+		<author>
+			<name>Frank Mastronardi</name>
+			<uri>http://gdata.youtube.com/feeds/api/users/mastronardif</uri>
+		</author>
+		<gd:comments>
+			<gd:feedLink countHint="0" href="http://gdata.youtube.com/feeds/api/videos/aorwPUNVso8/comments" rel="http://gdata.youtube.com/schemas/2007#comments"/>
+		</gd:comments>
+		<media:group>
+			<media:category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Comedy</media:category>
+			<media:content duration="42" expression="full" isDefault="true" medium="video" type="application/x-shockwave-flash" url="http://www.youtube.com/v/aorwPUNVso8?version=3&amp;f=user_uploads&amp;app=youtube_gdata" yt:format="5"/>
+			<media:content duration="42" expression="full" medium="video" type="video/3gpp" url="rtsp://r6---sn-p5qlsu7d.c.youtube.com/CigLENy73wIaHwmPslVDPfCKahMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="1"/>
+			<media:content duration="42" expression="full" medium="video" type="video/3gpp" url="rtsp://r6---sn-p5qlsu7d.c.youtube.com/CigLENy73wIaHwmPslVDPfCKahMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="6"/>
+			<media:description type="plain"/>
+			<media:keywords/>
+			<media:player url="http://www.youtube.com/watch?v=aorwPUNVso8&amp;feature=youtube_gdata_player"/>
+			<media:thumbnail height="360" time="00:00:21" url="http://i1.ytimg.com/vi/aorwPUNVso8/0.jpg" width="480"/>
+			<media:thumbnail height="90" time="00:00:10.500" url="http://i1.ytimg.com/vi/aorwPUNVso8/1.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:21" url="http://i1.ytimg.com/vi/aorwPUNVso8/2.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:31.500" url="http://i1.ytimg.com/vi/aorwPUNVso8/3.jpg" width="120"/>
+			<media:title type="plain">Avon Bb&amp;t</media:title>
+			<yt:duration seconds="42"/>
+		</media:group>
+		<yt:statistics favoriteCount="0" viewCount="9"/>
+	</entry>
+	<entry>
+		<id>http://gdata.youtube.com/feeds/api/videos/iI7LWoOdLH8</id>
+		<published>2013-07-20T16:04:08.000Z</published>
+		<updated>2013-07-20T16:04:08.000Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video"/>
+		<category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Comedy"/>
+		<title type="text">Avon calling</title>
+		<content type="text"/>
+		<link href="http://www.youtube.com/watch?v=iI7LWoOdLH8&amp;feature=youtube_gdata" rel="alternate" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/videos/iI7LWoOdLH8/related" rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml"/>
+		<link href="http://m.youtube.com/details?v=iI7LWoOdLH8" rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/users/mastronardif/uploads/iI7LWoOdLH8" rel="self" type="application/atom+xml"/>
+		<author>
+			<name>Frank Mastronardi</name>
+			<uri>http://gdata.youtube.com/feeds/api/users/mastronardif</uri>
+		</author>
+		<gd:comments>
+			<gd:feedLink countHint="0" href="http://gdata.youtube.com/feeds/api/videos/iI7LWoOdLH8/comments" rel="http://gdata.youtube.com/schemas/2007#comments"/>
+		</gd:comments>
+		<media:group>
+			<media:category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Comedy</media:category>
+			<media:content duration="49" expression="full" isDefault="true" medium="video" type="application/x-shockwave-flash" url="http://www.youtube.com/v/iI7LWoOdLH8?version=3&amp;f=user_uploads&amp;app=youtube_gdata" yt:format="5"/>
+			<media:content duration="49" expression="full" medium="video" type="video/3gpp" url="rtsp://r4---sn-p5qlsu7d.c.youtube.com/CigLENy73wIaHwl_LJ2DWsuOiBMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="1"/>
+			<media:content duration="49" expression="full" medium="video" type="video/3gpp" url="rtsp://r4---sn-p5qlsu7d.c.youtube.com/CigLENy73wIaHwl_LJ2DWsuOiBMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="6"/>
+			<media:description type="plain"/>
+			<media:keywords/>
+			<media:player url="http://www.youtube.com/watch?v=iI7LWoOdLH8&amp;feature=youtube_gdata_player"/>
+			<media:thumbnail height="360" time="00:00:24.500" url="http://i1.ytimg.com/vi/iI7LWoOdLH8/0.jpg" width="480"/>
+			<media:thumbnail height="90" time="00:00:12.250" url="http://i1.ytimg.com/vi/iI7LWoOdLH8/1.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:24.500" url="http://i1.ytimg.com/vi/iI7LWoOdLH8/2.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:36.750" url="http://i1.ytimg.com/vi/iI7LWoOdLH8/3.jpg" width="120"/>
+			<media:title type="plain">Avon calling</media:title>
+			<yt:duration seconds="49"/>
+		</media:group>
+		<yt:statistics favoriteCount="0" viewCount="30"/>
+	</entry>
+	<entry>
+		<id>http://gdata.youtube.com/feeds/api/videos/s5wqz7rxAzI</id>
+		<published>2013-07-19T22:50:49.000Z</published>
+		<updated>2013-07-19T22:50:49.000Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video"/>
+		<category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Comedy"/>
+		<title type="text">Boxwood 3</title>
+		<content type="text"/>
+		<link href="http://www.youtube.com/watch?v=s5wqz7rxAzI&amp;feature=youtube_gdata" rel="alternate" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/videos/s5wqz7rxAzI/related" rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml"/>
+		<link href="http://m.youtube.com/details?v=s5wqz7rxAzI" rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/users/mastronardif/uploads/s5wqz7rxAzI" rel="self" type="application/atom+xml"/>
+		<author>
+			<name>Frank Mastronardi</name>
+			<uri>http://gdata.youtube.com/feeds/api/users/mastronardif</uri>
+		</author>
+		<gd:comments>
+			<gd:feedLink countHint="0" href="http://gdata.youtube.com/feeds/api/videos/s5wqz7rxAzI/comments" rel="http://gdata.youtube.com/schemas/2007#comments"/>
+		</gd:comments>
+		<media:group>
+			<media:category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Comedy</media:category>
+			<media:content duration="9" expression="full" isDefault="true" medium="video" type="application/x-shockwave-flash" url="http://www.youtube.com/v/s5wqz7rxAzI?version=3&amp;f=user_uploads&amp;app=youtube_gdata" yt:format="5"/>
+			<media:content duration="9" expression="full" medium="video" type="video/3gpp" url="rtsp://r4---sn-p5qlsu7r.c.youtube.com/CigLENy73wIaHwkyA_G6zyqcsxMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="1"/>
+			<media:content duration="9" expression="full" medium="video" type="video/3gpp" url="rtsp://r4---sn-p5qlsu7r.c.youtube.com/CigLENy73wIaHwkyA_G6zyqcsxMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="6"/>
+			<media:description type="plain"/>
+			<media:keywords/>
+			<media:player url="http://www.youtube.com/watch?v=s5wqz7rxAzI&amp;feature=youtube_gdata_player"/>
+			<media:thumbnail height="360" time="00:00:04.500" url="http://i1.ytimg.com/vi/s5wqz7rxAzI/0.jpg" width="480"/>
+			<media:thumbnail height="90" time="00:00:02.250" url="http://i1.ytimg.com/vi/s5wqz7rxAzI/1.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:04.500" url="http://i1.ytimg.com/vi/s5wqz7rxAzI/2.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:06.750" url="http://i1.ytimg.com/vi/s5wqz7rxAzI/3.jpg" width="120"/>
+			<media:title type="plain">Boxwood 3</media:title>
+			<yt:duration seconds="9"/>
+		</media:group>
+		<yt:statistics favoriteCount="0" viewCount="3"/>
+	</entry>
+	<entry>
+		<id>http://gdata.youtube.com/feeds/api/videos/dIX4AKL0piI</id>
+		<published>2013-07-19T22:49:46.000Z</published>
+		<updated>2013-07-19T22:49:46.000Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video"/>
+		<category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Comedy"/>
+		<title type="text">Boxwood basement laundry</title>
+		<content type="text"/>
+		<link href="http://www.youtube.com/watch?v=dIX4AKL0piI&amp;feature=youtube_gdata" rel="alternate" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/videos/dIX4AKL0piI/related" rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml"/>
+		<link href="http://m.youtube.com/details?v=dIX4AKL0piI" rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/users/mastronardif/uploads/dIX4AKL0piI" rel="self" type="application/atom+xml"/>
+		<author>
+			<name>Frank Mastronardi</name>
+			<uri>http://gdata.youtube.com/feeds/api/users/mastronardif</uri>
+		</author>
+		<gd:comments>
+			<gd:feedLink countHint="0" href="http://gdata.youtube.com/feeds/api/videos/dIX4AKL0piI/comments" rel="http://gdata.youtube.com/schemas/2007#comments"/>
+		</gd:comments>
+		<media:group>
+			<media:category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Comedy</media:category>
+			<media:content duration="12" expression="full" isDefault="true" medium="video" type="application/x-shockwave-flash" url="http://www.youtube.com/v/dIX4AKL0piI?version=3&amp;f=user_uploads&amp;app=youtube_gdata" yt:format="5"/>
+			<media:content duration="12" expression="full" medium="video" type="video/3gpp" url="rtsp://r6---sn-p5qlsu7k.c.youtube.com/CigLENy73wIaHwkipvSiAPiFdBMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="1"/>
+			<media:content duration="12" expression="full" medium="video" type="video/3gpp" url="rtsp://r6---sn-p5qlsu7k.c.youtube.com/CigLENy73wIaHwkipvSiAPiFdBMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="6"/>
+			<media:description type="plain"/>
+			<media:keywords/>
+			<media:player url="http://www.youtube.com/watch?v=dIX4AKL0piI&amp;feature=youtube_gdata_player"/>
+			<media:thumbnail height="360" time="00:00:06" url="http://i1.ytimg.com/vi/dIX4AKL0piI/0.jpg" width="480"/>
+			<media:thumbnail height="90" time="00:00:03" url="http://i1.ytimg.com/vi/dIX4AKL0piI/1.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:06" url="http://i1.ytimg.com/vi/dIX4AKL0piI/2.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:09" url="http://i1.ytimg.com/vi/dIX4AKL0piI/3.jpg" width="120"/>
+			<media:title type="plain">Boxwood basement laundry</media:title>
+			<yt:duration seconds="12"/>
+		</media:group>
+		<yt:statistics favoriteCount="0" viewCount="7"/>
+	</entry>
+	<entry>
+		<id>http://gdata.youtube.com/feeds/api/videos/So0S98CXYZI</id>
+		<published>2013-07-19T22:48:23.000Z</published>
+		<updated>2013-07-19T22:48:23.000Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video"/>
+		<category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Comedy"/>
+		<title type="text">Boxwood</title>
+		<content type="text"/>
+		<link href="http://www.youtube.com/watch?v=So0S98CXYZI&amp;feature=youtube_gdata" rel="alternate" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/videos/So0S98CXYZI/related" rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml"/>
+		<link href="http://m.youtube.com/details?v=So0S98CXYZI" rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/users/mastronardif/uploads/So0S98CXYZI" rel="self" type="application/atom+xml"/>
+		<author>
+			<name>Frank Mastronardi</name>
+			<uri>http://gdata.youtube.com/feeds/api/users/mastronardif</uri>
+		</author>
+		<gd:comments>
+			<gd:feedLink countHint="0" href="http://gdata.youtube.com/feeds/api/videos/So0S98CXYZI/comments" rel="http://gdata.youtube.com/schemas/2007#comments"/>
+		</gd:comments>
+		<media:group>
+			<media:category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Comedy</media:category>
+			<media:content duration="80" expression="full" isDefault="true" medium="video" type="application/x-shockwave-flash" url="http://www.youtube.com/v/So0S98CXYZI?version=3&amp;f=user_uploads&amp;app=youtube_gdata" yt:format="5"/>
+			<media:content duration="80" expression="full" medium="video" type="video/3gpp" url="rtsp://r4---sn-p5qlsu7e.c.youtube.com/CigLENy73wIaHwmSYZfA9xKNShMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="1"/>
+			<media:content duration="80" expression="full" medium="video" type="video/3gpp" url="rtsp://r4---sn-p5qlsu7e.c.youtube.com/CigLENy73wIaHwmSYZfA9xKNShMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="6"/>
+			<media:description type="plain"/>
+			<media:keywords/>
+			<media:player url="http://www.youtube.com/watch?v=So0S98CXYZI&amp;feature=youtube_gdata_player"/>
+			<media:thumbnail height="360" time="00:00:40" url="http://i1.ytimg.com/vi/So0S98CXYZI/0.jpg" width="480"/>
+			<media:thumbnail height="90" time="00:00:20" url="http://i1.ytimg.com/vi/So0S98CXYZI/1.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:40" url="http://i1.ytimg.com/vi/So0S98CXYZI/2.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:01:00" url="http://i1.ytimg.com/vi/So0S98CXYZI/3.jpg" width="120"/>
+			<media:title type="plain">Boxwood</media:title>
+			<yt:duration seconds="80"/>
+		</media:group>
+		<yt:statistics favoriteCount="0" viewCount="3"/>
+	</entry>
+	<entry>
+		<id>http://gdata.youtube.com/feeds/api/videos/CAAMNIuetGA</id>
+		<published>2013-07-19T12:06:50.000Z</published>
+		<updated>2013-07-19T12:06:50.000Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video"/>
+		<category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Comedy"/>
+		<title type="text">The twn house</title>
+		<content type="text"/>
+		<link href="http://www.youtube.com/watch?v=CAAMNIuetGA&amp;feature=youtube_gdata" rel="alternate" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/videos/CAAMNIuetGA/related" rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml"/>
+		<link href="http://m.youtube.com/details?v=CAAMNIuetGA" rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/users/mastronardif/uploads/CAAMNIuetGA" rel="self" type="application/atom+xml"/>
+		<author>
+			<name>Frank Mastronardi</name>
+			<uri>http://gdata.youtube.com/feeds/api/users/mastronardif</uri>
+		</author>
+		<gd:comments>
+			<gd:feedLink countHint="0" href="http://gdata.youtube.com/feeds/api/videos/CAAMNIuetGA/comments" rel="http://gdata.youtube.com/schemas/2007#comments"/>
+		</gd:comments>
+		<media:group>
+			<media:category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Comedy</media:category>
+			<media:content duration="30" expression="full" isDefault="true" medium="video" type="application/x-shockwave-flash" url="http://www.youtube.com/v/CAAMNIuetGA?version=3&amp;f=user_uploads&amp;app=youtube_gdata" yt:format="5"/>
+			<media:content duration="30" expression="full" medium="video" type="video/3gpp" url="rtsp://r5---sn-p5qlsu7k.c.youtube.com/CigLENy73wIaHwlgtJ6LNAwACBMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="1"/>
+			<media:content duration="30" expression="full" medium="video" type="video/3gpp" url="rtsp://r5---sn-p5qlsu7k.c.youtube.com/CigLENy73wIaHwlgtJ6LNAwACBMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="6"/>
+			<media:description type="plain"/>
+			<media:keywords/>
+			<media:player url="http://www.youtube.com/watch?v=CAAMNIuetGA&amp;feature=youtube_gdata_player"/>
+			<media:thumbnail height="360" time="00:00:15" url="http://i1.ytimg.com/vi/CAAMNIuetGA/0.jpg" width="480"/>
+			<media:thumbnail height="90" time="00:00:07.500" url="http://i1.ytimg.com/vi/CAAMNIuetGA/1.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:15" url="http://i1.ytimg.com/vi/CAAMNIuetGA/2.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:22.500" url="http://i1.ytimg.com/vi/CAAMNIuetGA/3.jpg" width="120"/>
+			<media:title type="plain">The twn house</media:title>
+			<yt:duration seconds="30"/>
+		</media:group>
+		<yt:statistics favoriteCount="0" viewCount="4"/>
+	</entry>
+	<entry>
+		<id>http://gdata.youtube.com/feeds/api/videos/1PhFeQ0Msf0</id>
+		<published>2013-07-18T22:13:16.000Z</published>
+		<updated>2013-07-18T22:13:16.000Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video"/>
+		<category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Comedy"/>
+		<title type="text">Churc hhh</title>
+		<content type="text"/>
+		<link href="http://www.youtube.com/watch?v=1PhFeQ0Msf0&amp;feature=youtube_gdata" rel="alternate" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/videos/1PhFeQ0Msf0/related" rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml"/>
+		<link href="http://m.youtube.com/details?v=1PhFeQ0Msf0" rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/users/mastronardif/uploads/1PhFeQ0Msf0" rel="self" type="application/atom+xml"/>
+		<author>
+			<name>Frank Mastronardi</name>
+			<uri>http://gdata.youtube.com/feeds/api/users/mastronardif</uri>
+		</author>
+		<gd:comments>
+			<gd:feedLink countHint="0" href="http://gdata.youtube.com/feeds/api/videos/1PhFeQ0Msf0/comments" rel="http://gdata.youtube.com/schemas/2007#comments"/>
+		</gd:comments>
+		<media:group>
+			<media:category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Comedy</media:category>
+			<media:content duration="41" expression="full" isDefault="true" medium="video" type="application/x-shockwave-flash" url="http://www.youtube.com/v/1PhFeQ0Msf0?version=3&amp;f=user_uploads&amp;app=youtube_gdata" yt:format="5"/>
+			<media:content duration="41" expression="full" medium="video" type="video/3gpp" url="rtsp://r4---sn-p5qlsu76.c.youtube.com/CigLENy73wIaHwn9sQwNeUX41BMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="1"/>
+			<media:content duration="41" expression="full" medium="video" type="video/3gpp" url="rtsp://r4---sn-p5qlsu76.c.youtube.com/CigLENy73wIaHwn9sQwNeUX41BMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="6"/>
+			<media:description type="plain"/>
+			<media:keywords/>
+			<media:player url="http://www.youtube.com/watch?v=1PhFeQ0Msf0&amp;feature=youtube_gdata_player"/>
+			<media:thumbnail height="360" time="00:00:20.500" url="http://i1.ytimg.com/vi/1PhFeQ0Msf0/0.jpg" width="480"/>
+			<media:thumbnail height="90" time="00:00:10.250" url="http://i1.ytimg.com/vi/1PhFeQ0Msf0/1.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:20.500" url="http://i1.ytimg.com/vi/1PhFeQ0Msf0/2.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:30.750" url="http://i1.ytimg.com/vi/1PhFeQ0Msf0/3.jpg" width="120"/>
+			<media:title type="plain">Churc hhh</media:title>
+			<yt:duration seconds="41"/>
+		</media:group>
+		<yt:statistics favoriteCount="0" viewCount="6"/>
+	</entry>
+	<entry>
+		<id>http://gdata.youtube.com/feeds/api/videos/C1QSoLfS5qo</id>
+		<published>2013-07-18T22:12:24.000Z</published>
+		<updated>2013-07-18T22:12:24.000Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video"/>
+		<category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Comedy"/>
+		<title type="text">Church Hogg</title>
+		<content type="text"/>
+		<link href="http://www.youtube.com/watch?v=C1QSoLfS5qo&amp;feature=youtube_gdata" rel="alternate" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/videos/C1QSoLfS5qo/related" rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml"/>
+		<link href="http://m.youtube.com/details?v=C1QSoLfS5qo" rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/users/mastronardif/uploads/C1QSoLfS5qo" rel="self" type="application/atom+xml"/>
+		<author>
+			<name>Frank Mastronardi</name>
+			<uri>http://gdata.youtube.com/feeds/api/users/mastronardif</uri>
+		</author>
+		<gd:comments>
+			<gd:feedLink countHint="0" href="http://gdata.youtube.com/feeds/api/videos/C1QSoLfS5qo/comments" rel="http://gdata.youtube.com/schemas/2007#comments"/>
+		</gd:comments>
+		<media:group>
+			<media:category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Comedy</media:category>
+			<media:content duration="23" expression="full" isDefault="true" medium="video" type="application/x-shockwave-flash" url="http://www.youtube.com/v/C1QSoLfS5qo?version=3&amp;f=user_uploads&amp;app=youtube_gdata" yt:format="5"/>
+			<media:content duration="23" expression="full" medium="video" type="video/3gpp" url="rtsp://r6---sn-p5qlsu7s.c.youtube.com/CigLENy73wIaHwmq5tK3oBJUCxMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="1"/>
+			<media:content duration="23" expression="full" medium="video" type="video/3gpp" url="rtsp://r6---sn-p5qlsu7s.c.youtube.com/CigLENy73wIaHwmq5tK3oBJUCxMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="6"/>
+			<media:description type="plain"/>
+			<media:keywords/>
+			<media:player url="http://www.youtube.com/watch?v=C1QSoLfS5qo&amp;feature=youtube_gdata_player"/>
+			<media:thumbnail height="360" time="00:00:11.500" url="http://i1.ytimg.com/vi/C1QSoLfS5qo/0.jpg" width="480"/>
+			<media:thumbnail height="90" time="00:00:05.750" url="http://i1.ytimg.com/vi/C1QSoLfS5qo/1.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:11.500" url="http://i1.ytimg.com/vi/C1QSoLfS5qo/2.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:17.250" url="http://i1.ytimg.com/vi/C1QSoLfS5qo/3.jpg" width="120"/>
+			<media:title type="plain">Church Hogg</media:title>
+			<yt:duration seconds="23"/>
+		</media:group>
+		<yt:statistics favoriteCount="0" viewCount="2"/>
+	</entry>
+	<entry>
+		<id>http://gdata.youtube.com/feeds/api/videos/XCKCH7sU4Rg</id>
+		<published>2013-07-18T22:11:32.000Z</published>
+		<updated>2013-07-18T22:11:32.000Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video"/>
+		<category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Comedy"/>
+		<title type="text">Church fff</title>
+		<content type="text"/>
+		<link href="http://www.youtube.com/watch?v=XCKCH7sU4Rg&amp;feature=youtube_gdata" rel="alternate" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/videos/XCKCH7sU4Rg/related" rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml"/>
+		<link href="http://m.youtube.com/details?v=XCKCH7sU4Rg" rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/users/mastronardif/uploads/XCKCH7sU4Rg" rel="self" type="application/atom+xml"/>
+		<author>
+			<name>Frank Mastronardi</name>
+			<uri>http://gdata.youtube.com/feeds/api/users/mastronardif</uri>
+		</author>
+		<gd:comments>
+			<gd:feedLink countHint="0" href="http://gdata.youtube.com/feeds/api/videos/XCKCH7sU4Rg/comments" rel="http://gdata.youtube.com/schemas/2007#comments"/>
+		</gd:comments>
+		<media:group>
+			<media:category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Comedy</media:category>
+			<media:content duration="12" expression="full" isDefault="true" medium="video" type="application/x-shockwave-flash" url="http://www.youtube.com/v/XCKCH7sU4Rg?version=3&amp;f=user_uploads&amp;app=youtube_gdata" yt:format="5"/>
+			<media:content duration="12" expression="full" medium="video" type="video/3gpp" url="rtsp://r2---sn-p5qlsu7l.c.youtube.com/CigLENy73wIaHwkY4RS7H4IiXBMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="1"/>
+			<media:content duration="12" expression="full" medium="video" type="video/3gpp" url="rtsp://r2---sn-p5qlsu7l.c.youtube.com/CigLENy73wIaHwkY4RS7H4IiXBMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="6"/>
+			<media:description type="plain"/>
+			<media:keywords/>
+			<media:player url="http://www.youtube.com/watch?v=XCKCH7sU4Rg&amp;feature=youtube_gdata_player"/>
+			<media:thumbnail height="360" time="00:00:06" url="http://i1.ytimg.com/vi/XCKCH7sU4Rg/0.jpg" width="480"/>
+			<media:thumbnail height="90" time="00:00:03" url="http://i1.ytimg.com/vi/XCKCH7sU4Rg/1.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:06" url="http://i1.ytimg.com/vi/XCKCH7sU4Rg/2.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:09" url="http://i1.ytimg.com/vi/XCKCH7sU4Rg/3.jpg" width="120"/>
+			<media:title type="plain">Church fff</media:title>
+			<yt:duration seconds="12"/>
+		</media:group>
+		<yt:statistics favoriteCount="0" viewCount="3"/>
+	</entry>
+	<entry>
+		<id>http://gdata.youtube.com/feeds/api/videos/ZdvCfOpByxA</id>
+		<published>2013-07-18T22:10:47.000Z</published>
+		<updated>2013-07-18T22:10:47.000Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video"/>
+		<category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Comedy"/>
+		<title type="text">Church wee</title>
+		<content type="text"/>
+		<link href="http://www.youtube.com/watch?v=ZdvCfOpByxA&amp;feature=youtube_gdata" rel="alternate" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/videos/ZdvCfOpByxA/related" rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml"/>
+		<link href="http://m.youtube.com/details?v=ZdvCfOpByxA" rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/users/mastronardif/uploads/ZdvCfOpByxA" rel="self" type="application/atom+xml"/>
+		<author>
+			<name>Frank Mastronardi</name>
+			<uri>http://gdata.youtube.com/feeds/api/users/mastronardif</uri>
+		</author>
+		<gd:comments>
+			<gd:feedLink countHint="0" href="http://gdata.youtube.com/feeds/api/videos/ZdvCfOpByxA/comments" rel="http://gdata.youtube.com/schemas/2007#comments"/>
+		</gd:comments>
+		<media:group>
+			<media:category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Comedy</media:category>
+			<media:content duration="12" expression="full" isDefault="true" medium="video" type="application/x-shockwave-flash" url="http://www.youtube.com/v/ZdvCfOpByxA?version=3&amp;f=user_uploads&amp;app=youtube_gdata" yt:format="5"/>
+			<media:content duration="12" expression="full" medium="video" type="video/3gpp" url="rtsp://r1---sn-p5qlsu7k.c.youtube.com/CigLENy73wIaHwkQy0HqfMLbZRMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="1"/>
+			<media:content duration="12" expression="full" medium="video" type="video/3gpp" url="rtsp://r1---sn-p5qlsu7k.c.youtube.com/CigLENy73wIaHwkQy0HqfMLbZRMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="6"/>
+			<media:description type="plain"/>
+			<media:keywords/>
+			<media:player url="http://www.youtube.com/watch?v=ZdvCfOpByxA&amp;feature=youtube_gdata_player"/>
+			<media:thumbnail height="360" time="00:00:06" url="http://i1.ytimg.com/vi/ZdvCfOpByxA/0.jpg" width="480"/>
+			<media:thumbnail height="90" time="00:00:03" url="http://i1.ytimg.com/vi/ZdvCfOpByxA/1.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:06" url="http://i1.ytimg.com/vi/ZdvCfOpByxA/2.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:09" url="http://i1.ytimg.com/vi/ZdvCfOpByxA/3.jpg" width="120"/>
+			<media:title type="plain">Church wee</media:title>
+			<yt:duration seconds="12"/>
+		</media:group>
+		<yt:statistics favoriteCount="0" viewCount="25"/>
+	</entry>
+	<entry>
+		<id>http://gdata.youtube.com/feeds/api/videos/f71hdqsvWL8</id>
+		<published>2013-07-18T22:10:05.000Z</published>
+		<updated>2013-07-18T22:10:05.000Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video"/>
+		<category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Comedy"/>
+		<title type="text">Church ddd</title>
+		<content type="text"/>
+		<link href="http://www.youtube.com/watch?v=f71hdqsvWL8&amp;feature=youtube_gdata" rel="alternate" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/videos/f71hdqsvWL8/related" rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml"/>
+		<link href="http://m.youtube.com/details?v=f71hdqsvWL8" rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/users/mastronardif/uploads/f71hdqsvWL8" rel="self" type="application/atom+xml"/>
+		<author>
+			<name>Frank Mastronardi</name>
+			<uri>http://gdata.youtube.com/feeds/api/users/mastronardif</uri>
+		</author>
+		<gd:comments>
+			<gd:feedLink countHint="0" href="http://gdata.youtube.com/feeds/api/videos/f71hdqsvWL8/comments" rel="http://gdata.youtube.com/schemas/2007#comments"/>
+		</gd:comments>
+		<media:group>
+			<media:category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Comedy</media:category>
+			<media:content duration="12" expression="full" isDefault="true" medium="video" type="application/x-shockwave-flash" url="http://www.youtube.com/v/f71hdqsvWL8?version=3&amp;f=user_uploads&amp;app=youtube_gdata" yt:format="5"/>
+			<media:content duration="12" expression="full" medium="video" type="video/3gpp" url="rtsp://r6---sn-p5qlsu7r.c.youtube.com/CigLENy73wIaHwm_WC-rdmG9fxMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="1"/>
+			<media:content duration="12" expression="full" medium="video" type="video/3gpp" url="rtsp://r6---sn-p5qlsu7r.c.youtube.com/CigLENy73wIaHwm_WC-rdmG9fxMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="6"/>
+			<media:description type="plain"/>
+			<media:keywords/>
+			<media:player url="http://www.youtube.com/watch?v=f71hdqsvWL8&amp;feature=youtube_gdata_player"/>
+			<media:thumbnail height="360" time="00:00:06" url="http://i1.ytimg.com/vi/f71hdqsvWL8/0.jpg" width="480"/>
+			<media:thumbnail height="90" time="00:00:03" url="http://i1.ytimg.com/vi/f71hdqsvWL8/1.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:06" url="http://i1.ytimg.com/vi/f71hdqsvWL8/2.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:09" url="http://i1.ytimg.com/vi/f71hdqsvWL8/3.jpg" width="120"/>
+			<media:title type="plain">Church ddd</media:title>
+			<yt:duration seconds="12"/>
+		</media:group>
+		<yt:statistics favoriteCount="0" viewCount="1"/>
+	</entry>
+	<entry>
+		<id>http://gdata.youtube.com/feeds/api/videos/3b-D-T-A8oE</id>
+		<published>2013-07-18T22:09:06.000Z</published>
+		<updated>2013-07-18T22:09:06.000Z</updated>
+		<category scheme="http://schemas.google.com/g/2005#kind" term="http://gdata.youtube.com/schemas/2007#video"/>
+		<category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat" term="Comedy"/>
+		<title type="text">Church CCTV</title>
+		<content type="text"/>
+		<link href="http://www.youtube.com/watch?v=3b-D-T-A8oE&amp;feature=youtube_gdata" rel="alternate" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/videos/3b-D-T-A8oE/related" rel="http://gdata.youtube.com/schemas/2007#video.related" type="application/atom+xml"/>
+		<link href="http://m.youtube.com/details?v=3b-D-T-A8oE" rel="http://gdata.youtube.com/schemas/2007#mobile" type="text/html"/>
+		<link href="http://gdata.youtube.com/feeds/api/users/mastronardif/uploads/3b-D-T-A8oE" rel="self" type="application/atom+xml"/>
+		<author>
+			<name>Frank Mastronardi</name>
+			<uri>http://gdata.youtube.com/feeds/api/users/mastronardif</uri>
+		</author>
+		<gd:comments>
+			<gd:feedLink countHint="0" href="http://gdata.youtube.com/feeds/api/videos/3b-D-T-A8oE/comments" rel="http://gdata.youtube.com/schemas/2007#comments"/>
+		</gd:comments>
+		<media:group>
+			<media:category label="Comedy" scheme="http://gdata.youtube.com/schemas/2007/categories.cat">Comedy</media:category>
+			<media:content duration="22" expression="full" isDefault="true" medium="video" type="application/x-shockwave-flash" url="http://www.youtube.com/v/3b-D-T-A8oE?version=3&amp;f=user_uploads&amp;app=youtube_gdata" yt:format="5"/>
+			<media:content duration="22" expression="full" medium="video" type="video/3gpp" url="rtsp://r6---sn-p5qlsu7e.c.youtube.com/CigLENy73wIaHwmB8oA_-YO_3RMYDSANFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="1"/>
+			<media:content duration="22" expression="full" medium="video" type="video/3gpp" url="rtsp://r6---sn-p5qlsu7e.c.youtube.com/CigLENy73wIaHwmB8oA_-YO_3RMYESARFEgGUgx1c2VyX3VwbG9hZHMM/0/0/0/video.3gp" yt:format="6"/>
+			<media:description type="plain"/>
+			<media:keywords/>
+			<media:player url="http://www.youtube.com/watch?v=3b-D-T-A8oE&amp;feature=youtube_gdata_player"/>
+			<media:thumbnail height="360" time="00:00:11" url="http://i1.ytimg.com/vi/3b-D-T-A8oE/0.jpg" width="480"/>
+			<media:thumbnail height="90" time="00:00:05.500" url="http://i1.ytimg.com/vi/3b-D-T-A8oE/1.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:11" url="http://i1.ytimg.com/vi/3b-D-T-A8oE/2.jpg" width="120"/>
+			<media:thumbnail height="90" time="00:00:16.500" url="http://i1.ytimg.com/vi/3b-D-T-A8oE/3.jpg" width="120"/>
+			<media:title type="plain">Church CCTV</media:title>
+			<yt:duration seconds="22"/>
+		</media:group>
+		<yt:statistics favoriteCount="0" viewCount="7"/>
+	</entry>
+</feed>

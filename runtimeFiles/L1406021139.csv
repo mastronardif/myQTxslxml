@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+Scoring, Performance = -1, Participation = 1, Min Reply = 2, Min Correct = 0, ""
+Question, , ,"Question 1|MC|16", Score, Final Answer Time, Number of Attempts, First Response, Time, "Question 2|MC|16", Score, Final Answer Time, Number of Attempts, First Response, Time, "Question 3|MC|16", Score, Final Answer Time, Number of Attempts, First Response, Time
+Start Time, , , 11:40:00, , , , , , 11:40:27, , , , , , 11:41:04, , , , , 
+Stop Time, , ,11:40:21, , , , , , 11:40:57, , , , , , 11:41:16, , , , , 
+Correct Answer, , ,, , , , , , , , , , , , , , , , , 
+#800524A1,"",0,C,0,14.717,2,A,1.017,C,0,16.333,2,C,12.083,A,0,2.983,1,A,2.983,
+#87FB2854,"",0,E,0,10.467,3,C,4.517,C,0,20.900,1,C,20.900,A,0,6.417,1,A,6.417,
+</root>
