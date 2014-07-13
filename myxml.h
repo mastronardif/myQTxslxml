@@ -11,10 +11,11 @@ class myxml
 public:
     myxml();
 
+    static  QString xsl_xml_FromStringFile(const QString xslt, QString fnxml, QString fout);
+    static  QString xsl_xml_FromFiles(QString fnxsl, QString fnxml, QString fout);
+
 
     static  QString Find(QString fnxpath, QString fnxml, QString fout);
-    static  QString xsl_xmlFromStrings(const QString fnxsl, QString fnxml, QString fout);
-    static  QString xsl_xml22(QString fnxsl, QString fnxml, QString fout);
     static  QString xsl_xml(QString fnxsl, QString fnxml, QString fout);
 
 private:

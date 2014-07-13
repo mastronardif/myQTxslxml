@@ -12,6 +12,7 @@ myxml::myxml()
 }
 
 
+QString FindByXpath(QString srcXML, QString xpath);
 
 QString helper_QDomElementToString(QDomElement de)
 {
@@ -139,30 +140,52 @@ QString ReadfFileToString(QString fp)
 
 
 
-QString FindByXpath(QString srcXML, QString xpath)
-{
-    QString retval = "";   // Default found nothing.
-    QBuffer device;
-//qDebug() << srcXML;
-//qDebug() << xpath;
-
-    device.setData(srcXML.toUtf8());
-    device.open(QIODevice::ReadOnly);
-    QXmlQuery qq(QXmlQuery::XSLT20);
-    qq.bindVariable("inputDocument", &device);
-    QString xq = "doc($inputDocument)"+xpath;
-    qq.setQuery(xq);
-    bool rc1 = qq.evaluateTo(&retval);
-
-    return retval;
-}
 
 QString FindByXpath00(QString srcFN, QString xp)
 {
-    QString xml = ReadfFileToString(srcFN);
+    //QString xml = ReadfFileToString(srcFN);
 
-    return FindByXpath(xml, xp);
+    return FindByXpath(srcFN, xp);
 }
+
+QString myxml::xsl_xml_FromStringFile(const QString xslt, QString fnxml, QString fout)
+{
+    qDebug() << xslt;
+    QString out;
+    QBuffer device;
+
+    device.setData(xslt.toUtf8());
+    device.open(QIODevice::ReadOnly);
+
+    QXmlQuery query(QXmlQuery::XSLT20);
+
+    query.setFocus(QUrl(fnxml));
+
+    query.setQuery(&device);
+    query.evaluateTo(&out);
+    device.close();
+    return out;
+}
+
+QString myxml::xsl_xml_FromFiles(const QString fnxsl, QString fnxml, QString fout)
+{
+    //Find();
+    //return "I called find()";
+    QString str = QString("\n %1 %2 %3 \n").arg("fnxsl", "fnxml", "fout");
+    //myxml::xsl_xml(fnxsl, fnxml, fout);
+
+    qDebug() << str;
+    QString out;
+    QXmlQuery query(QXmlQuery::XSLT20);
+    //QXmlQuery query(QXmlQuery::XQuery10);
+
+    query.setFocus(QUrl(fnxml));
+    query.setQuery(QUrl(fnxsl));
+    query.evaluateTo(&out);
+
+    return out;
+}
+
 
 QDomElement myxml::Find()
 {
@@ -289,6 +312,7 @@ return retval;
     return retval;
 }
 
+//QString myxml::xslxml_FromStringFile(QString xsl, QString fnxml, QString fout)
 QString myxml::Find(QString xpath, QString fnxml, QString fout)
 {
     //QString xpath = "/ssn/p[@idx='27']/.";
@@ -296,43 +320,27 @@ QString myxml::Find(QString xpath, QString fnxml, QString fout)
     return results;
 }
 
-QString myxml::xsl_xmlFromStrings(const QString fnxsl, QString fnxml, QString fout)
+QString FindByXpath(QString srcXML, QString xpath)
 {
-    QString srcXML = ReadfFileToString( fnxml);
-    QString xpath = ReadfFileToString( fnxsl);
-    //QString retval = FindByXpath( srcXML,  xpath);
-    QString retval = FindByXpath00( fnxml,  xpath);
+    qDebug() <<  __FILE__ << __LINE__  << __func__;
+    // qDebug() << QString("\n%1 %2 %3\n").arg(__func__ , __LINE__, __FILE__);
+    QString retval = "";   // Default found nothing.
+    QBuffer device;
+//qDebug() << srcXML;
+//qDebug() << xpath;
+
+    device.setData(srcXML.toUtf8());
+    device.open(QIODevice::ReadOnly);
+    QXmlQuery qq(QXmlQuery::XSLT20);
+    qq.bindVariable("inputDocument", &device);
+    QString xq = "doc($inputDocument)"+xpath;
+    qq.setQuery(xq);
+    bool rc1 = qq.evaluateTo(&retval);
+
     return retval;
 }
 
-QString myxml::xsl_xml22(const QString fnxsl, QString fnxml, QString fout)
-{
-    //Find();
-    //return "I called find()";
-    QString str = QString("\n %1 %2 %3 \n").arg("fnxsl", "fnxml", "fout");
-    //myxml::xsl_xml(fnxsl, fnxml, fout);
 
-    qDebug() << str;
-    QString out;
-    QXmlQuery query(QXmlQuery::XSLT20);
-    //QXmlQuery query(QXmlQuery::XQuery10);
-    //QXmlQuery query(QXmlQuery::XPath20);
-
-//return "";
-    query.setFocus(QUrl(fnxml));
-    query.setQuery(QUrl(fnxsl));
-    query.evaluateTo(&out);
-    //webview->setHtml(out);
-    //qDebug() << "output(" << out << ").";
-
-//    QTextStream cin(stdin);
-//    QTextStream cout(stdout);
-
-//    cout << out << endl;
-
-
-    return out;
-}
 
 QString myxml::xsl_xml(QString fnxsl, QString fnxml, QString fout)
 {

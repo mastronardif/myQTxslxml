@@ -10,7 +10,7 @@ using namespace std;
 // /Users/frank.mastronardi/Qt5.2.1/5.2.1/clang_64/bin/xmlpatterns -help
 // ./myqtxslxml   list01.xsl  di_vidoes.xml
 // /Users/frank.mastronardi/Qt5.2.1/5.2.1/clang_64/bin/xmlpatterns  ./list01.xsl  ./di_vidoes.xml
-
+QString ReadfFileToString(QString fp);
 int main(int argc, char *argv[])
 {
     QString fnxml;
@@ -21,8 +21,8 @@ int main(int argc, char *argv[])
 
     //fnxml = "/Users/frank.mastronardi/Dbg-myqtxslxml/Lq1406110746.xml";
     //fnxsl = "/Users/frank.mastronardi/Dbg-myqtxslxml/list01.xsl";
-    //fnxsl = "/Users/frank.mastronardi/Dbg-myqtxslxml/SearchReplace03.xsl";
-    fnxsl = "/Users/frank.mastronardi/Dbg-myqtxslxml/test.xsl";
+    fnxsl = "/Users/frank.mastronardi/Dbg-myqtxslxml/SearchReplace03.xsl";
+    //fnxsl = "/Users/frank.mastronardi/Dbg-myqtxslxml/test.xsl";
     //fnxml = "/Users/frank.mastronardi/Dbg-myqtxslxml/Course.xml";
     fnxml = "/Users/frank.mastronardi/Dbg-myqtxslxml/Lq1406110746.xml";
 
@@ -36,21 +36,22 @@ int main(int argc, char *argv[])
 
     if (1==1)
     {
-        QString out = myxml::xsl_xmlFromStrings(fnxsl, fnxml,  "./theoutput.xml" );
-        qDebug() << "\n xsl_xmlFromStrings = " << fnxsl << "in " << fnxml << "\n" << out << "\n";
+        QString xslt = ReadfFileToString(fnxsl);
 
+        QString out = myxml::xsl_xml_FromStringFile(xslt, fnxml,  "./theoutput.xml" );
+        qDebug() << "\n xsl_xmlFromStrings = " << fnxsl << "in " << fnxml << "\n" << out << "\n";
     }
 
 
-if (1==12)
+if (1==122)
 {
-    QString out = myxml::xsl_xml22(fnxsl, fnxml,  "./theoutput.xml" );
+    QString out = myxml::xsl_xml_FromFiles(fnxsl, fnxml,  "./theoutput.xml" );
     //std::cout << "\n Find = " << fnxsl << "in " << fnxml << "\n" << out << "\n";
     std::cout << out.toStdString() << "\n";
 return 0;
 }
 
-if (1==2)
+if (1==11)
  {
         QString out = myxml::Find(fnxsl, fnxml,  "./theoutput.xml" );
 
@@ -100,7 +101,7 @@ if (1==2)
 
      // try the dynamic lib on the mac.
      QString fnxslt("aaa");
-     myxml::xsl_xml22("./list01.xsl", "./di_vidoes.xml",  "./theoutput.xml" );
+     myxml::xsl_xml_FromFiles("./list01.xsl", "./di_vidoes.xml",  "./theoutput.xml" );
 
      return 0; // success
     //return a.exec();
