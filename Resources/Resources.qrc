@@ -1,1 +1,6 @@
-<RCC/>
+<RCC>
+    <qresource prefix="/">
+        <file>xsltTemplates/SearchReplace03.xsl</file>
+        <file>xsltTemplates/MarkQuestion.xslt</file>
+    </qresource>
+</RCC>

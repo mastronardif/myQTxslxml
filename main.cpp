@@ -2,6 +2,7 @@
 #include <iostream>
 #include <QDebug>
 #include "myxml.h"
+#include "myxslttemplates.h"
 
 using namespace std;
 
@@ -36,7 +37,14 @@ int main(int argc, char *argv[])
 
     if (1==1)
     {
-        QString xslt = ReadfFileToString(fnxsl);
+         QString xslt = myXsltTemplates::GetResource000(":/xsltTemplates/MarkQuestion.xslt");
+         //
+         xslt = xslt.replace("__XP_FIND_Q_BY_IDX__", "ssn/p[@idx='26']");
+         xslt = xslt.replace("__ISDEL_ACTION__",     "FM-Y2");
+
+         qDebug() << xslt;
+         //return 1;
+        //QString xslt = ReadfFileToString(fnxsl);
 
         QString out = myxml::xsl_xml_FromStringFile(xslt, fnxml,  "./theoutput.xml" );
         qDebug() << "\n xsl_xmlFromStrings = " << fnxsl << "in " << fnxml << "\n" << out << "\n";

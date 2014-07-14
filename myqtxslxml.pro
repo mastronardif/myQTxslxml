@@ -20,7 +20,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     myxml.cpp \
+    myxslttemplates.cpp
 
 
 HEADERS += \
-    myxml.h
+    myxml.h \
+    myxslttemplates.h
+
+RESOURCES += \
+    Resources/Resources.qrc
