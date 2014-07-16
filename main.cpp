@@ -37,7 +37,10 @@ int main(int argc, char *argv[])
 
     if (1==1)
     {
-         QString xslt = myXsltTemplates::GetResource000(":/xsltTemplates/MarkQuestion.xslt");
+         //QString xslt = myXsltTemplates::GetResource000(":/xsltTemplates/MarkQuestion.xslt");
+         QString xslt = myXsltTemplates::GetXSLT_For("MarkQuestion.xslt");
+         qDebug() << xslt;
+         //return 123;
          //
          xslt = xslt.replace("__XP_FIND_Q_BY_IDX__", "ssn/p[@idx='26']");
          xslt = xslt.replace("__ISDEL_ACTION__",     "FM-Y2");

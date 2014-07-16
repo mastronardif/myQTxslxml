@@ -28,3 +28,29 @@ QTextStream in(&commonFile);
 QString content = in.readAll();
 return content;
 }
+
+QString myXsltTemplates::GetXSLT_For(const QString name)
+{
+    // sw/ on the name
+    QString retval;
+retval = QString(QString("")+
+            "<xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">"+
+                 "<xsl:template match=\"node()|@*\">"+
+                  "<xsl:copy>"+
+                   " <xsl:apply-templates select=\"@*|node()\"/>"+
+                  "</xsl:copy>"+
+                "</xsl:template>"+
+
+                 "<xsl:template match=\"__XP_FIND_Q_BY_IDX__\">"+
+                 "<p isDel=\"__ISDEL_ACTION__\">"+
+                 "   <xsl:apply-templates select=\"@*|node()\"/>"+
+                 "  </p>"+
+                 "</xsl:template>"+
+            "</xsl:stylesheet>"+
+                 ""
+            );
+    //retval="";
+
+    return retval;
+
+}

@@ -9,6 +9,7 @@ public:
     myXsltTemplates();
 
     static QString GetResource000(const QString name);
+    static QString GetXSLT_For(const QString name);
 };
 
 #endif // MYXSLTTEMPLATES_H
