@@ -159,7 +159,8 @@ QString myxml::xsl_xml_FromStringFile(const QString xslt, QString fnxml, QString
 
     QXmlQuery query(QXmlQuery::XSLT20);
 
-    query.setFocus(QUrl(fnxml));
+    //query.setFocus(QUrl(fnxml));
+    query.setFocus(QUrl::fromLocalFile(fnxml));
 
     query.setQuery(&device);
     query.evaluateTo(&out);
