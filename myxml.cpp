@@ -102,6 +102,19 @@ QDomElement helper_xmltoDE(QString xml)
 
 //}
 
+int WriteStringToFile(const QString src, QString fp)
+{
+    int iRetval = 0;
+
+    QFile file(fp);
+    iRetval = file.open(QIODevice::WriteOnly);
+    QTextStream out(&file);   // we will serialize the data into the file
+    out << QString(src);   // serialize a string
+    file.close();
+
+    return iRetval;
+}
+
 QString ReadfFileToString(QString fp)
 {
     QString retval;

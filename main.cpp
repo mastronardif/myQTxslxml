@@ -38,19 +38,24 @@ int main(int argc, char *argv[])
     if (1==1)
     {
          //QString xslt = myXsltTemplates::GetResource000(":/xsltTemplates/MarkQuestion.xslt");
-         QString xslt = myXsltTemplates::GetXSLT_For("MarkQuestion.xslt");
-         qDebug() << xslt;
+         //QString xslt = myXsltTemplates::GetXSLT_For("MarkQuestion.xslt");
+         //qDebug() << xslt;
          //return 123;
          //
-         xslt = xslt.replace("__XP_FIND_Q_BY_IDX__", "ssn/p[@idx='26']");
-         xslt = xslt.replace("__ISDEL_ACTION__",     "FM-Y2");
+//         xslt = xslt.replace("__XP_FIND_Q_BY_IDX__", "ssn/p[@idx='26']");
+//         xslt = xslt.replace("__ISDEL_ACTION__",     "FM-Y2");
 
-         qDebug() << xslt;
+//         qDebug() << xslt;
          //return 1;
-        //QString xslt = ReadfFileToString(fnxsl);
+        QString xslt00 = myXsltTemplates::GetXSLT_For22("RemoveClickerQuestion.xslt");
+        int WriteStringToFile(const QString src, QString fp);
+        WriteStringToFile(xslt00, "/Users/frank.mastronardi/myQTxslxml/runtimeFiles/l001.xml");
+        QString xslt = ReadfFileToString(fnxsl);
+        WriteStringToFile(xslt, "/Users/frank.mastronardi/myQTxslxml/runtimeFiles/r001.xml");
 
-        QString out = myxml::xsl_xml_FromStringFile(xslt, fnxml,  "./theoutput.xml" );
+        QString out = myxml::xsl_xml_FromStringFile(xslt00, fnxml,  "./theoutput.xml" );
         qDebug() << "\n xsl_xmlFromStrings = " << fnxsl << "in " << fnxml << "\n" << out << "\n";
+        std::cout << out.toStdString() << "\n";
     }
 
 
