@@ -1,6 +1,7 @@
 #include <QCoreApplication>
 #include <iostream>
 #include <QDebug>
+#include <QTime>
 #include "myxml.h"
 #include "myxslttemplates.h"
 
@@ -14,6 +15,10 @@ using namespace std;
 QString ReadfFileToString(QString fp);
 int main(int argc, char *argv[])
 {
+#ifndef FMTIMEANALYSIS
+    QTime time;
+    time.start();
+#endif
     QString fnxml;
     QString fnxsl;
     QCoreApplication a(argc, argv);
@@ -46,12 +51,12 @@ int main(int argc, char *argv[])
 //         xslt = xslt.replace("__ISDEL_ACTION__",     "FM-Y2");
 
 //         qDebug() << xslt;
-         //return 1;
-        QString xslt00 = myXsltTemplates::GetXSLT_For22("RemoveClickerQuestion.xslt");
+        QString xslt00;
+        //QString xslt00 = myXsltTemplates::GetXSLT_For22("RemoveClickerQuestion.xslt");
         int WriteStringToFile(const QString src, QString fp);
         WriteStringToFile(xslt00, "/Users/frank.mastronardi/myQTxslxml/runtimeFiles/l001.xml");
-        QString xslt = ReadfFileToString(fnxsl);
-        WriteStringToFile(xslt, "/Users/frank.mastronardi/myQTxslxml/runtimeFiles/r001.xml");
+        xslt00 = ReadfFileToString(fnxsl);
+        WriteStringToFile(xslt00, "/Users/frank.mastronardi/myQTxslxml/runtimeFiles/r001.xml");
 
         QString out = myxml::xsl_xml_FromStringFile(xslt00, fnxml,  "./theoutput.xml" );
         qDebug() << "\n xsl_xmlFromStrings = " << fnxsl << "in " << fnxml << "\n" << out << "\n";
@@ -64,7 +69,7 @@ if (1==122)
     QString out = myxml::xsl_xml_FromFiles(fnxsl, fnxml,  "./theoutput.xml" );
     //std::cout << "\n Find = " << fnxsl << "in " << fnxml << "\n" << out << "\n";
     std::cout << out.toStdString() << "\n";
-return 0;
+//return 0;
 }
 
 if (1==11)
@@ -98,27 +103,17 @@ if (1==11)
         //QTextStream cin(stdin);
         //QTextStream cout(stdout);
         //cout << out << endl;
-        return 0;
     //}
-    qDebug() << "\nUsage: exe xsl  xml";
-
-    return -1;
-
-     //std::cout << "Hello Console" << argc << argv[1] << argv[2];
-     QString str = QString("\n %1 %2 %3 \n").arg(QString::number(argc), argv[1], argv[2]);
+//    qDebug() << "\nUsage: exe xsl  xml";
 
 
-     //std::cout << str;
-     qDebug() << str;
-//printf("\nsdfsdfsfsf\n");
+#ifndef FMTIMEANALYSIS
+    int difference = time.elapsed();
+    QString str = QString("\n[%1] Func(%2) took %3 msec \n").arg(QDateTime::currentDateTime().toString("MM-dd-yy hh:mm:ss.zzz"), __FUNCTION__, QString::number(difference));
+    qDebug() << str;
+#endif
 
-     // has issues xslting xslt version 1.0
-     //myxml::xsl_xml("xsl", "xml", "fout");
-
-     // try the dynamic lib on the mac.
-     QString fnxslt("aaa");
-     myxml::xsl_xml_FromFiles("./list01.xsl", "./di_vidoes.xml",  "./theoutput.xml" );
-
+    qDebug() << "\nDDJKEPJFJDLFJ\n";
      return 0; // success
     //return a.exec();
 }
