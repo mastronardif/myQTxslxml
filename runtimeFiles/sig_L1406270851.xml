@@ -1,0 +1,105 @@
+<!--**************** Naming Convention **********-->
+<!--qn : Question Name-->
+<!--resp : Response prefix-->
+<!--strt : Start Time-->
+<!--stp : Stop Time-->
+<!--isspp : is self paced polling-->
+<!--isap : is Anonymous polling-->
+<!--qType : Question Type-->
+<!--sig : Significiant Characters-->
+<!--idx : Question Index (SrNo)-->
+<!--cans : Correct answer-->
+<!--ssn : Session tag-->
+<!--v : Voting-->
+<!--ans : Final Response recorded-->
+<!--fans : first response-->
+<!--id : Clicker ID-->
+<!--scr : Score-->
+<!--fanst : Final answer time-->
+<!--att : Number of attempts-->
+<!--tm : Time-->
+<!--lto : Loaned clicker to-->
+<!--p : Polling tag name-->
+<!--part : Participation Points-->
+<!--perf : performance points-->
+<!--minrep : Minimum reply-->
+<!--ssnn : Session Name-->
+<!--anspt : Correct answer points-->
+<!--tscr : total score across polling questions for the student-->
+<!--isDel : flag to indicate whether the quesiton is deleted-->
+<!--MinPart_S : store the Participation Requirement setting as it was selected in i>clicker -> Scoring tab-->
+<!--anypt : this tag will be used to store response any choice points-->
+<!--File naming convention : for example if the file name is 'L1309231102.xml'-->
+<!--L - Indication that this is a session log file the deleted session files will prefix with x-->
+<!--13 - Year-->
+<!--09 - Month-->
+<!--23 - Day-->
+<!--11 - Hour-->
+<!--02 - Minute-->
+<!--******************************************-->
+<ssn MinPart_S="at least 75% of the questions" perf="-1" minrep="8" part="0" ssnn="Session 3">
+ <p resp_b="0,0.00" sig="16" strt="08:51:55" cans="" resp_c="0,0.00" qn="Question 1" isDel="N" resp_d="0,0.00" qType="MC" isap="N" resp_e="0,0.00" isspp="N" anspt="1" anypt="0" idx="1" stp="08:52:03" resp_a="0,0.00">
+  <v fans="" ans="" att="" tscr="0" tm="" fanst="" scr="" lto="" id="#800524A1"/>
+  <v fans="" ans="" att="" tscr="0" tm="" fanst="" scr="" lto="" id="#87FB2854"/>
+ </p>
+ <p sig="8" strt="08:52:07" cans="" qn="Question 2" isDel="N" qType="NU" isap="N" isspp="N" anspt="1" anypt="0" idx="2" stp="">
+  <v fans="" ans="" att="" tscr="0" tm="" fanst="" scr="" lto="" id="#800524A1"/>
+  <v fans="" ans="" att="" tscr="0" tm="" fanst="" scr="" lto="" id="#87FB2854"/>
+ </p>
+ <p resp_b="0,0.00" sig="16" strt="10:18:57" cans="" resp_c="0,0.00" qn="Question 3" isDel="N" resp_d="0,0.00" qType="MC" isap="N" resp_e="0,0.00" isspp="N" anspt="1" anypt="0" idx="3" stp="10:18:57" resp_a="0,0.00">
+  <v fans="" ans="" att="" tscr="0" tm="" fanst="" scr="" lto="" id="#800524A1"/>
+  <v fans="" ans="" att="" tscr="0" tm="" fanst="" scr="" lto="" id="#87FB2854"/>
+ </p>
+ <p resp_b="0,0.00" sig="16" strt="10:19:24" cans="" resp_c="0,0.00" qn="Question 4" isDel="N" resp_d="0,0.00" qType="MC" isap="N" resp_e="0,0.00" isspp="N" anspt="1" anypt="0" idx="4" stp="10:19:39" resp_a="0,0.00">
+  <v fans="" ans="" att="" tscr="0" tm="" fanst="" scr="" lto="" id="#800524A1"/>
+  <v fans="" ans="" att="" tscr="0" tm="" fanst="" scr="" lto="" id="#87FB2854"/>
+ </p>
+ <p resp_b="0,0.00" sig="16" strt="10:19:52" cans="" resp_c="0,0.00" qn="Question 5" isDel="N" resp_d="0,0.00" qType="MC" isap="N" resp_e="0,0.00" isspp="N" anspt="1" anypt="0" idx="5" stp="10:20:08" resp_a="0,0.00">
+  <v fans="" ans="" att="" tscr="0" tm="" fanst="" scr="" lto="" id="#800524A1"/>
+  <v fans="" ans="" att="" tscr="0" tm="" fanst="" scr="" lto="" id="#87FB2854"/>
+ </p>
+
+ <p sig="16" strt="10:32:00" cans="" qn="Question 6" isDel="N" qType="AN" isap="N" isspp="N" anspt="1" anypt="0" idx="6" stp="10:33:00">
+  <respLs>
+   <respR respLS="abcd" respS="ABCD" respCP="1,0.00"/>
+   <respR respLS="cdbea" respS="CDBEA" respCP="1,0.00"/>
+  </respLs>
+  <v fans="ABCD" ans="ABCD" att="1" tscr="0" tm="20.76" fanst="20.76" scr="0.00" lto="" id="#800524A1"/>
+  <v fans="CDBEA" ans="CDBEA" att="1" tscr="0" tm="46.50" fanst="46.50" scr="0.00" lto="" id="#87FB2854"/>
+ </p>
+
+ <p sig="16" strt="10:33:21" cans="" qn="Question 7" isDel="N" qType="AN" isap="N" isspp="N" anspt="1" anypt="0" idx="7" stp="10:33:32">
+  <v fans="" ans="" att="" tscr="0" tm="" fanst="" scr="" lto="" id="#800524A1"/>
+  <v fans="" ans="" att="" tscr="0" tm="" fanst="" scr="" lto="" id="#87FB2854"/>
+ </p>
+
+ <p sig="16" strt="10:33:38" cans="" qn="Question 8" isDel="N" qType="AN" isap="N" isspp="N" anspt="1" anypt="0" idx="8" stp="10:34:34">
+  <respLs>
+   <respR respLS="babdbcbadad" respS="BABDBCBADAD" respCP="1,0.00"/>
+   <respR respLS="bbcaa" respS="BBCAA" respCP="1,0.00"/>
+  </respLs>
+  <v fans="BBCAA" ans="BBCAA" att="1" tscr="0" tm="21.79" fanst="21.79" scr="0.00" lto="" id="#800524A1"/>
+  <v fans="BABDBCBADAD" ans="BABDBCBADAD" att="1" tscr="0" tm="47.45" fanst="47.45" scr="0.00" lto="" id="#87FB2854"/>
+ </p>
+ 
+ <p resp_b="0,0.00" sig="16" strt="11:35:40" cans="" resp_c="0,0.00" qn="Question 9" isDel="N" resp_d="0,0.00" qType="MC" isap="N" resp_e="0,0.00" isspp="N" anspt="1" anypt="0" idx="9" stp="11:35:41" resp_a="0,0.00">
+  <v fans="" ans="" att="" tscr="0" tm="" fanst="" scr="" lto="" id="#800524A1"/>
+  <v fans="" ans="" att="" tscr="0" tm="" fanst="" scr="" lto="" id="#87FB2854"/>
+ </p>
+ <p sig="5" strt="11:35:48" cans="" qn="Question 10" isDel="N" qType="NU" isap="N" isspp="N" anspt="1" anypt="0" idx="10" stp="11:37:21">
+  <v fans="1.100" ans="1.1" att="1" tscr="0" tm="67.70" fanst="67.70" scr="0.00" lto="" id="#800524A1"/>
+  <v fans="10790.9" ans="10790" att="1" tscr="0" tm="54.74" fanst="54.74" scr="0.00" lto="" id="#87FB2854"/>
+  <respLs>
+   <respR respLS="1.1" respS="1.1" respCP="1,0"/>
+   <respR respLS="10790" respS="10790" respCP="1,0"/>
+  </respLs>
+ </p>
+ <p sig="8" strt="11:37:28" cans="" qn="Question 11" isDel="N" qType="NU" isap="N" isspp="N" anspt="1" anypt="0" idx="11" stp="11:38:30">
+  <respLs>
+   <respR respLS="10.02" respS="10.02" respCP="1,0.00"/>
+   <respR respLS="21100" respS="21100" respCP="1,0.00"/>
+  </respLs>
+  <v fans="21100" ans="21100" att="1" tscr="0" tm="57.76" fanst="57.76" scr="0.00" lto="" id="#800524A1"/>
+  <v fans="010.02" ans="010.02" att="1" tscr="0" tm="24.85" fanst="24.85" scr="0.00" lto="" id="#87FB2854"/>
+ </p>
+</ssn>

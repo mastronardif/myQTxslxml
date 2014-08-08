@@ -113,7 +113,6 @@ if (1==11)
     qDebug() << str;
 #endif
 
-    qDebug() << "\nDDJKEPJFJDLFJ\n";
      return 0; // success
     //return a.exec();
 }

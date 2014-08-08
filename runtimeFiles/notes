@@ -1,0 +1,46 @@
+
+
+----------------------------------
+----------------------------------
+
+
+<THE_RESULTS>
+{
+for $x in doc("Lq1406110746.xml")/ssn/p[@idx='27']
+return 
+<f>
+{($x/..)}
+
+{($x)}
+. Category: {data($x/@qn)}
+</f>
+}
+</THE_RESULTS>
+
+----------------------------------
+----------------------------------
+
+ for $i in doc("Lq1406110746.xml")/ssn/p/@*
+ return <p>{$i}</p>
+
+----------------------------------
+----------------------------------
+doc('doc.xml') 
+/ssn/p/
+<p>{@* except @class
+}</p> 
+
+
+
+----------------------------------
+----------------------------------
+<RajWhatYouWant>
+ {doc("Lq1406110746.xml")/ssn/p[@idx='27']/preceding::*/<thequestoin qn="{@qn}">{v}</thequestoin>}
+ </RajWhatYouWant>
+
+doc('cookbook.xml')/descendant-or-self::element(recipe)/child::element(title)
+
+
+doc('Lq1406110746.xml')/descendant-or-self::element(p)/child::element(v)
+
+{doc("Lq1406110746.xml") //@*:name}
