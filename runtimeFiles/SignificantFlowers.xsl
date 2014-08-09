@@ -56,11 +56,12 @@
         </xsl:attribute>
     </xsl:for-each>
 
+<!--
     <xsl:element name="Jack">
         <xsl:attribute name="you">
             <xsl:value-of select="'off'"/>
         </xsl:attribute>
-    </xsl:element>
+    </xsl:element> -->
 
     <!-- for each element -->
     <xsl:for-each select="./*">
@@ -74,11 +75,47 @@
               </xsl:when>
 
               <xsl:when test="name(.) = 'respLs'">
-   <ADDSOMEATTRIBUEST/> <xsl:copy-of select="." /> <goaheadAddSomeShit/>
+                    <!-- <ADDSOMEATTRIBUEST/> <xsl:copy-of select="." /> <goaheadAddSomeShit/> -->
    parent11
-   <xsl:copy-of select="@*"/>
-<xsl:copy-of select="name(.)"/>
-parent22
+                <xsl:element name="{name(.)}"> <!-- respLs -->
+                       <xsl:for-each select="./@*">
+
+                            <xsl:attribute name="{name(.)}">
+                                <xsl:value-of select="."/>
+                            </xsl:attribute>
+                        </xsl:for-each>
+
+                        <!-- elements -->
+                        <xsl:for-each select="./*">
+
+                        <xsl:choose>
+
+                            <xsl:when test="name(.) = 'respR'">
+                               <!-- <xsl:copy-of select="." /> -->
+                                <xsl:element name="{name(.)}">
+                                    <!-- update attributes -->
+                                    <!-- add new attrib or update -->
+                                    <xsl:attribute name="newFUCKER"> shit </xsl:attribute>
+
+                                    <xsl:for-each select="./@*">
+                                        <xsl:attribute name="{name(.)}">
+                                        <xsl:value-of select="."/>
+                                        </xsl:attribute>
+                                    </xsl:for-each>
+
+                               </xsl:element>
+
+                            </xsl:when>
+                            <!-- other elements ignore -->
+                            <xsl:otherwise>
+                               <xsl:copy-of select="." />
+                            </xsl:otherwise>
+                        </xsl:choose>
+
+                        </xsl:for-each>
+
+                    </xsl:element> <!-- /respLs -->
+parent21
 
    <xsl:for-each select="./*">
         <xsl:copy-of select="." />
@@ -135,12 +172,13 @@ ZZZZZZZZZ
 
     </xsl:for-each>
 
+<!--
 <xsl:element name="Jack">
     <xsl:attribute name="you">
     <xsl:value-of select="'off'"/>
     </xsl:attribute>
 </xsl:element>
-
+-->
 </xsl:element>
 
 <xsl:for-each select="./@*">
