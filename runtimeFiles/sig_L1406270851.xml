@@ -63,7 +63,7 @@
   <respLs f="you">
    <respR respLS="abcd" respS="ABCD" respCP="1,0.00"/>
    <respR respLS="cdbea" respS="CDBEA" respCP="1,0.00"/>
-   <respRnewshit respLS="cdbea" respS="CDBEA" respCP="1,0.00"/>
+   <respNew_elem respLS="cdbea" respS="CDBEA" respCP="1,0.00"/>
   </respLs>
   <v fans="ABCD" ans="ABCD" att="1" tscr="0" tm="20.76" fanst="20.76" scr="0.00" lto="" id="#800524A1"/>
   <v fans="CDBEA" ans="CDBEA" att="1" tscr="0" tm="46.50" fanst="46.50" scr="0.00" lto="" id="#87FB2854"/>

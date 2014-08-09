@@ -42,18 +42,32 @@
 -->
   </xsl:template>
 
-
+<xsl:variable name="sigChars" select="23"/> <!-- <xsl:variable name="sigChars" select="%1"/>-->
 
 <xsl:template name="makeSignificant01">
+
  <makeSignificant01>
     <Original><xsl:copy-of select="." /></Original>
 
 <newshit>
 <xsl:element name="{name(.)}">
     <xsl:for-each select="./@*">
+    <xsl:choose>
+        <xsl:when test="name(.) = 'sig'">
+            <xsl:attribute name="{name(.)}"><xsl:value-of select="$sigChars"/></xsl:attribute>
+        </xsl:when>
+
+                            <xsl:otherwise>
+                            <xsl:attribute name="{name(.)}">
+                                <xsl:value-of select="."/>
+                            </xsl:attribute>
+                            </xsl:otherwise>
+    </xsl:choose>
+<!--
         <xsl:attribute name="{name(.)}">
             <xsl:value-of select="."/>
         </xsl:attribute>
+        -->
     </xsl:for-each>
 
 <!--
@@ -93,19 +107,35 @@
                             <xsl:when test="name(.) = 'respR'">
                                <!-- <xsl:copy-of select="." /> -->
                                 <xsl:element name="{name(.)}">
-                                    <!-- update attributes -->
                                     <!-- add new attrib or update -->
-                                    <xsl:attribute name="newFUCKER"> shit </xsl:attribute>
 
                                     <xsl:for-each select="./@*">
-                                        <xsl:attribute name="{name(.)}">
-                                        <xsl:value-of select="."/>
-                                        </xsl:attribute>
+                                        <!-- <xsl:attribute name="{name(.)}">
+                                        <xsl:value-of select="."/> </xsl:attribute> -->
+
+
+<xsl:choose>
+<xsl:when test="name(.) = 'respLS'">
+<xsl:attribute name="{name(.)}"><xsl:value-of select="."/> </xsl:attribute>
+<xsl:attribute name="sig_respLS"><xsl:value-of select="substring(.,1, $sigChars)"/> </xsl:attribute>
+
+
+</xsl:when>
+                            <xsl:otherwise> <!-- leave attributes unchanged -->
+                               <xsl:copy-of select="." />
+                               <xsl:attribute name="{name(.)}">
+                               <xsl:value-of select="."/> </xsl:attribute>
+
+                            </xsl:otherwise>
+                        </xsl:choose>
+
                                     </xsl:for-each>
 
                                </xsl:element>
 
                             </xsl:when>
+
+
                             <!-- other elements ignore -->
                             <xsl:otherwise>
                                <xsl:copy-of select="." />
@@ -115,14 +145,16 @@
                         </xsl:for-each>
 
                     </xsl:element> <!-- /respLs -->
-parent21
 
+parent21
+<!--
    <xsl:for-each select="./*">
         <xsl:copy-of select="." />
             <xsl:for-each select="./*">
                 <xsl:copy-of select="." />
             </xsl:for-each>
    </xsl:for-each>
+   -->
    FOR EACH ELEM
               </xsl:when>
 
@@ -130,9 +162,10 @@ parent21
 
               <xsl:when test="name(.) = 'v'">
    <ADDSOMEATTRIBUEST/> <xsl:copy-of select="." />
+
               </xsl:when>
 
-                 <!-- default 3 identifier cols -->
+                 <!-- Ignore other emlements -->
                  <xsl:otherwise>
                     <xsl:copy-of select="." />
                  </xsl:otherwise>
