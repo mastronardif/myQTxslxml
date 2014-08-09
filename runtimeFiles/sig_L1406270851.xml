@@ -60,7 +60,7 @@
  </p>
 
  <p sig="16" strt="10:32:00" cans="" qn="Question 6" isDel="N" qType="AN" isap="N" isspp="N" anspt="1" anypt="0" idx="6" stp="10:33:00">
-  <respLs>
+  <respLs f="you">
    <respR respLS="abcd" respS="ABCD" respCP="1,0.00"/>
    <respR respLS="cdbea" respS="CDBEA" respCP="1,0.00"/>
   </respLs>

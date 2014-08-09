@@ -46,7 +46,71 @@
 
 <xsl:template name="makeSignificant01">
  <makeSignificant01>
-    <xsl:copy-of select="." />
+    <Original><xsl:copy-of select="." /></Original>
+
+<newshit>
+<xsl:element name="{name(.)}">
+    <xsl:for-each select="./@*">
+        <xsl:attribute name="{name(.)}">
+            <xsl:value-of select="."/>
+        </xsl:attribute>
+    </xsl:for-each>
+
+    <xsl:element name="Jack">
+        <xsl:attribute name="you">
+            <xsl:value-of select="'off'"/>
+        </xsl:attribute>
+    </xsl:element>
+
+    <!-- for each element -->
+    <xsl:for-each select="./*">
+
+        <xsl:choose>
+              <!-- <xsl:when test="@respLS">-->
+              <xsl:when test="position()  = 92">
+              <xsl:value-of select="position()" />
+<SKIP/>
+<xsl:value-of select="."/> <xsl:value-of select="name(.)"/><skip/>
+              </xsl:when>
+
+              <xsl:when test="name(.) = 'respLs'">
+   <ADDSOMEATTRIBUEST/> <xsl:copy-of select="." /> <goaheadAddSomeShit/>
+   parent11
+   <xsl:copy-of select="@*"/>
+<xsl:copy-of select="name(.)"/>
+parent22
+
+   <xsl:for-each select="./*">
+        <xsl:copy-of select="." />
+            <xsl:for-each select="./*">
+                <xsl:copy-of select="." />
+            </xsl:for-each>
+   </xsl:for-each>
+   FOR EACH ELEM
+              </xsl:when>
+
+
+
+              <xsl:when test="name(.) = 'v'">
+   <ADDSOMEATTRIBUEST/> <xsl:copy-of select="." />
+              </xsl:when>
+
+                 <!-- default 3 identifier cols -->
+                 <xsl:otherwise>
+                    <xsl:copy-of select="." />
+                 </xsl:otherwise>
+         </xsl:choose>
+
+
+<!--
+        bb <xsl:value-of select="position()" />
+        <xsl:copy-of select="." />
+        -->
+    </xsl:for-each>
+
+</xsl:element>
+</newshit>
+ZZZZZZZZZ
 
     <xsl:copy-of select="./respLs/respR" />
 
@@ -57,6 +121,8 @@
  <xsl:value-of select="ass"/>
 </xsl:attribute>
 </xsl:element>
+
+<!-- END -->
 
 <xsl:element name="{name(.)}">
     <xsl:for-each select="./@*">
