@@ -42,7 +42,7 @@
 -->
   </xsl:template>
 
-<xsl:variable name="sigChars" select="23"/> <!-- <xsl:variable name="sigChars" select="%1"/>-->
+<xsl:variable name="sigChars" select="3"/> <!-- <xsl:variable name="sigChars" select="%1"/>-->
 
 <xsl:template name="makeSignificant01">
 
@@ -123,8 +123,7 @@
 </xsl:when>
                             <xsl:otherwise> <!-- leave attributes unchanged -->
                                <xsl:copy-of select="." />
-                               <xsl:attribute name="{name(.)}">
-                               <xsl:value-of select="."/> </xsl:attribute>
+                               <xsl:attribute name="{name(.)}"><xsl:value-of select="."/> </xsl:attribute>
 
                             </xsl:otherwise>
                         </xsl:choose>
@@ -161,8 +160,26 @@ parent21
 
 
               <xsl:when test="name(.) = 'v'">
-   <ADDSOMEATTRIBUEST/> <xsl:copy-of select="." />
+   <original1/> <xsl:copy-of select="." /> <_original2/>
 
+                    <xsl:element name="{name(.)}FUCK">
+                    <xsl:for-each select="./@*">
+
+<xsl:choose>
+<xsl:when test="name(.) = 'sig_ans'">
+    <!-- have only one attrib by said name -->
+</xsl:when>
+<xsl:when test="name(.) = 'ans'">
+   <xsl:attribute name="sig_{name(.)}"><xsl:value-of select="substring(.,1, $sigChars)"/> </xsl:attribute>
+</xsl:when>
+
+<xsl:otherwise>
+   <xsl:copy-of select="." />
+</xsl:otherwise>
+</xsl:choose>
+
+                    </xsl:for-each>
+                    </xsl:element>
               </xsl:when>
 
                  <!-- Ignore other emlements -->
