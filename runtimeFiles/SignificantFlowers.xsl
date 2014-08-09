@@ -70,12 +70,6 @@
         -->
     </xsl:for-each>
 
-<!--
-    <xsl:element name="Jack">
-        <xsl:attribute name="you">
-            <xsl:value-of select="'off'"/>
-        </xsl:attribute>
-    </xsl:element> -->
 
     <!-- for each element -->
     <xsl:for-each select="./*">
@@ -90,7 +84,6 @@
 
               <xsl:when test="name(.) = 'respLs'">
                     <!-- <ADDSOMEATTRIBUEST/> <xsl:copy-of select="." /> <goaheadAddSomeShit/> -->
-   parent11
                 <xsl:element name="{name(.)}"> <!-- respLs -->
                        <xsl:for-each select="./@*">
 
@@ -145,15 +138,6 @@
 
                     </xsl:element> <!-- /respLs -->
 
-parent21
-<!--
-   <xsl:for-each select="./*">
-        <xsl:copy-of select="." />
-            <xsl:for-each select="./*">
-                <xsl:copy-of select="." />
-            </xsl:for-each>
-   </xsl:for-each>
-   -->
    FOR EACH ELEM
               </xsl:when>
 
@@ -187,67 +171,14 @@ parent21
                     <xsl:copy-of select="." />
                  </xsl:otherwise>
          </xsl:choose>
-
-
-<!--
-        bb <xsl:value-of select="position()" />
-        <xsl:copy-of select="." />
-        -->
     </xsl:for-each>
-
 </xsl:element>
 </newshit>
-ZZZZZZZZZ
-
-    <xsl:copy-of select="./respLs/respR" />
-
-<xsl:value-of select="name(.)"/>
-
-<xsl:element name="FUCK">
-<xsl:attribute name="you">
- <xsl:value-of select="ass"/>
-</xsl:attribute>
-</xsl:element>
 
 <!-- END -->
-
-<xsl:element name="{name(.)}">
-    <xsl:for-each select="./@*">
-
-        <xsl:attribute name="{name(.)}">
-            <xsl:value-of select="."/>
-        </xsl:attribute>
-
-
-
-    </xsl:for-each>
-
-<!--
-<xsl:element name="Jack">
-    <xsl:attribute name="you">
-    <xsl:value-of select="'off'"/>
-    </xsl:attribute>
-</xsl:element>
--->
-</xsl:element>
-
-<xsl:for-each select="./@*">
-
-aa <xsl:value-of select="position()" />
- <xsl:value-of select="name(.)"/>=
-<xsl:value-of select="." />
-
-</xsl:for-each>
-
-        <!-- <xsl:for-each select="./*"> -->
-        <xsl:for-each select="./*">
-
-bb <xsl:value-of select="position()" />
-<xsl:copy-of select="." />
-    </xsl:for-each>
-
 </makeSignificant01>
 </xsl:template>
+
 
 <xsl:template match="ProductType">
 <xsl:element name="{name()}">
