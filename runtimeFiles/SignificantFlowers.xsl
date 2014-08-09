@@ -28,12 +28,84 @@
   </xsl:template>
 
   <xsl:template match="ssn/p[@idx='6']/respLs/respR/@*">
-
-
     <xsl:call-template name="XMLTOTITLE221" />
-
-
   </xsl:template>
+
+
+ <xsl:template match="ssn/p[@idx='6']">
+ <xsl:call-template name="makeSignificant01" />
+ <!--
+ <xsl:copy-of select="." />
+<fu>
+<xsl:copy-of select="." />
+</fu>
+-->
+  </xsl:template>
+
+
+
+<xsl:template name="makeSignificant01">
+ <makeSignificant01>
+    <xsl:copy-of select="." />
+
+    <xsl:copy-of select="./respLs/respR" />
+
+<xsl:value-of select="name(.)"/>
+
+<xsl:element name="FUCK">
+<xsl:attribute name="you">
+ <xsl:value-of select="ass"/>
+</xsl:attribute>
+</xsl:element>
+
+<xsl:element name="{name(.)}">
+    <xsl:for-each select="./@*">
+
+        <xsl:attribute name="{name(.)}">
+            <xsl:value-of select="."/>
+        </xsl:attribute>
+
+
+
+    </xsl:for-each>
+
+<xsl:element name="Jack">
+    <xsl:attribute name="you">
+    <xsl:value-of select="'off'"/>
+    </xsl:attribute>
+</xsl:element>
+
+</xsl:element>
+
+<xsl:for-each select="./@*">
+
+aa <xsl:value-of select="position()" />
+ <xsl:value-of select="name(.)"/>=
+<xsl:value-of select="." />
+
+</xsl:for-each>
+
+        <!-- <xsl:for-each select="./*"> -->
+        <xsl:for-each select="./*">
+
+bb <xsl:value-of select="position()" />
+<xsl:copy-of select="." />
+    </xsl:for-each>
+
+</makeSignificant01>
+</xsl:template>
+
+<xsl:template match="ProductType">
+<xsl:element name="{name()}">
+ <xsl:apply-templates select="Features/Feature" />
+</xsl:element>
+</xsl:template>
+
+<xsl:template match="Features/Feature">
+<xsl:element name="{@Name}">
+    <xsl:value-of select="text()" />
+</xsl:element>
+</xsl:template>
 
 
 <xsl:template name="XMLTOTITLE221">
@@ -108,8 +180,6 @@
   </xsl:template>
 
 <!-- if not there lets add the attrib -->
-
-
 
   <xsl:template match="@nm">
      <xsl:attribute name="n">
