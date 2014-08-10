@@ -12,44 +12,19 @@
     </xsl:copy>
   </xsl:template>
 
-
-    <!-- Mark question as deleted /ssn/p[@idx='27']/. -->
-
-
-  <xsl:template match="ssn/p[@idx='6']/@qn">
-      <xsl:attribute name="qn">
-       <xsl:value-of select="concat('FM New',.)"/>
-     </xsl:attribute>
-
-    <xsl:attribute name="FM_newtagSIG">
-     <xsl:value-of select="concat('FM New',.)"/>
-   </xsl:attribute>
-
-  </xsl:template>
-
-  <xsl:template match="ssn/p[@idx='6']/respLs/respR/@*">
-    <xsl:call-template name="XMLTOTITLE221" />
-  </xsl:template>
-
+<xsl:variable name="sigChars" select="3"/> <!-- <xsl:variable name="sigChars" select="%1"/>-->
 
  <xsl:template match="ssn/p[@idx='6']">
  <xsl:call-template name="makeSignificant01" />
- <!--
- <xsl:copy-of select="." />
-<fu>
-<xsl:copy-of select="." />
-</fu>
--->
   </xsl:template>
 
-<xsl:variable name="sigChars" select="3"/> <!-- <xsl:variable name="sigChars" select="%1"/>-->
 
 <xsl:template name="makeSignificant01">
 
  <makeSignificant01>
     <Original><xsl:copy-of select="." /></Original>
 
-<newshit>
+<newsh_t>
 <xsl:element name="{name(.)}">
     <xsl:for-each select="./@*">
     <xsl:choose>
@@ -63,11 +38,6 @@
                             </xsl:attribute>
                             </xsl:otherwise>
     </xsl:choose>
-<!--
-        <xsl:attribute name="{name(.)}">
-            <xsl:value-of select="."/>
-        </xsl:attribute>
-        -->
     </xsl:for-each>
 
 
@@ -78,12 +48,10 @@
               <!-- <xsl:when test="@respLS">-->
               <xsl:when test="position()  = 92">
               <xsl:value-of select="position()" />
-<SKIP/>
-<xsl:value-of select="."/> <xsl:value-of select="name(.)"/><skip/>
+
               </xsl:when>
 
               <xsl:when test="name(.) = 'respLs'">
-                    <!-- <ADDSOMEATTRIBUEST/> <xsl:copy-of select="." /> <goaheadAddSomeShit/> -->
                 <xsl:element name="{name(.)}"> <!-- respLs -->
                        <xsl:for-each select="./@*">
 
@@ -137,8 +105,6 @@
                         </xsl:for-each>
 
                     </xsl:element> <!-- /respLs -->
-
-   FOR EACH ELEM
               </xsl:when>
 
 
@@ -146,7 +112,7 @@
               <xsl:when test="name(.) = 'v'">
    <original1/> <xsl:copy-of select="." /> <_original2/>
 
-                    <xsl:element name="{name(.)}FUCK">
+                    <xsl:element name="{name(.)}DUCK">
                     <xsl:for-each select="./@*">
 
 <xsl:choose>
@@ -173,24 +139,11 @@
          </xsl:choose>
     </xsl:for-each>
 </xsl:element>
-</newshit>
-
-<!-- END -->
+</newsh_t>
 </makeSignificant01>
+
 </xsl:template>
 
-
-<xsl:template match="ProductType">
-<xsl:element name="{name()}">
- <xsl:apply-templates select="Features/Feature" />
-</xsl:element>
-</xsl:template>
-
-<xsl:template match="Features/Feature">
-<xsl:element name="{@Name}">
-    <xsl:value-of select="text()" />
-</xsl:element>
-</xsl:template>
 
 
 <xsl:template name="XMLTOTITLE221">
