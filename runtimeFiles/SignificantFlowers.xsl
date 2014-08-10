@@ -46,11 +46,6 @@
 
         <xsl:choose>
               <!-- <xsl:when test="@respLS">-->
-              <xsl:when test="position()  = 92">
-              <xsl:value-of select="position()" />
-
-              </xsl:when>
-
               <xsl:when test="name(.) = 'respLs'">
                 <xsl:element name="{name(.)}"> <!-- respLs -->
                        <xsl:for-each select="./@*">
