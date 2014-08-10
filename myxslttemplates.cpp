@@ -105,9 +105,9 @@ QString myXsltTemplates::GetXSLT_For_SignificantCharacters(const QString XsltNam
      "</xsl:copy>"+
     "</xsl:template>"+
 
-    "<xsl:variable name=\"sigChars\" select=\"3\"/>"+ //<!-- <xsl:variable name="sigChars" select="%1"/>-->
+    "<xsl:variable name=\"sigChars\" select=\"%1\"/>"+ //<!-- <xsl:variable name=\"sigChars\" select=\"3\"/> <xsl:variable name="sigChars" select="%1"/>-->
 
-    "<xsl:template match=\"ssn/p[@idx='6']\">"+
+    "<xsl:template match=\"ssn/p[@idx='%2']\">"+
         "<xsl:call-template name=\"makeSignificant01\" />"+
     "</xsl:template>"+
 

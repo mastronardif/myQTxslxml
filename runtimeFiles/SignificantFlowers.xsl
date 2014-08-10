@@ -12,8 +12,8 @@
     </xsl:copy>
   </xsl:template>
 
-<xsl:variable name="sigChars" select="3"/> <!-- <xsl:variable name="sigChars" select="%1"/>-->
-
+ <!-- <xsl:variable name="sigChars" select="3"/> <xsl:variable name="sigChars" select="%1"/>-->
+<xsl:variable name="sigChars" select="3"/>
  <xsl:template match="ssn/p[@idx='6']">
  <xsl:call-template name="makeSignificant01" />
   </xsl:template>

@@ -53,11 +53,14 @@ int main(int argc, char *argv[])
 //         qDebug() << xslt;
         QString xslt00;
         //xslt00 = myXsltTemplates::GetXSLT_For22("RemoveClickerQuestion.xslt");
-        //xslt00 = myXsltTemplates::GetXSLT_For_SignificantCharacters("SignificantCharacters.xslt");
-        xslt00 = ReadfFileToString(fnxsl);
+        xslt00 = myXsltTemplates::GetXSLT_For_SignificantCharacters("SignificantCharacters.xslt");
+        QString sigchars = "2";
+        QString qIdx = "6";
+        xslt00 = QString(xslt00).arg(sigchars, qIdx);
+        //xslt00 = ReadfFileToString(fnxsl);
 
         int WriteStringToFile(const QString src, QString fp);
-        WriteStringToFile(xslt00, "/Users/frank.mastronardi/myQTxslxml/runtimeFiles/L001.xsl");
+        WriteStringToFile(xslt00, "/Users/frank.mastronardi/myQTxslxml/runtimeFiles/L001.xsl.xml");
         //xslt00 = ReadfFileToString(fnxsl);
         //WriteStringToFile(xslt00, "/Users/frank.mastronardi/myQTxslxml/runtimeFiles/r001.xml");
 
