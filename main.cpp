@@ -52,11 +52,14 @@ int main(int argc, char *argv[])
 
 //         qDebug() << xslt;
         QString xslt00;
-        //QString xslt00 = myXsltTemplates::GetXSLT_For22("RemoveClickerQuestion.xslt");
-        int WriteStringToFile(const QString src, QString fp);
-        WriteStringToFile(xslt00, "/Users/frank.mastronardi/myQTxslxml/runtimeFiles/l001.xml");
+        //xslt00 = myXsltTemplates::GetXSLT_For22("RemoveClickerQuestion.xslt");
+        //xslt00 = myXsltTemplates::GetXSLT_For_SignificantCharacters("SignificantCharacters.xslt");
         xslt00 = ReadfFileToString(fnxsl);
-        WriteStringToFile(xslt00, "/Users/frank.mastronardi/myQTxslxml/runtimeFiles/r001.xml");
+
+        int WriteStringToFile(const QString src, QString fp);
+        WriteStringToFile(xslt00, "/Users/frank.mastronardi/myQTxslxml/runtimeFiles/L001.xsl");
+        //xslt00 = ReadfFileToString(fnxsl);
+        //WriteStringToFile(xslt00, "/Users/frank.mastronardi/myQTxslxml/runtimeFiles/r001.xml");
 
         QString out = myxml::xsl_xml_FromStringFile(xslt00, fnxml,  "./theoutput.xml" );
         qDebug() << "\n xsl_xmlFromStrings = " << fnxsl << "in " << fnxml << "\n" << out << "\n";
