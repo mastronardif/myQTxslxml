@@ -26,10 +26,10 @@ int main(int argc, char *argv[])
     //fnxsl = "/ssn/p[@idx='27']/.";
 
     //fnxml = "/Users/frank.mastronardi/Dbg-myqtxslxml/Lq1406110746.xml";
-    //fnxsl = "/Users/frank.mastronardi/Dbg-myqtxslxml/list01.xsl";
+    //fnxsl = "C:\\myworkspaces\\myQTxslxml\\runtimeFiles\\SignificantFlowers.xsl";
     fnxsl = "/Users/frank.mastronardi/Dbg-myqtxslxml/SearchReplace03.xsl";
     //fnxsl = "/Users/frank.mastronardi/Dbg-myqtxslxml/test.xsl";
-    //fnxml = "/Users/frank.mastronardi/Dbg-myqtxslxml/Course.xml";
+    //fnxml = "C:\\myworkspaces\\myQTxslxml\\runtimeFiles\\sig_L1406270851.xml";
     fnxml = "/Users/frank.mastronardi/Dbg-myqtxslxml/Lq1406110746.xml";
 
     if (argc>1)
