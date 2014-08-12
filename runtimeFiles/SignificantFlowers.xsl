@@ -74,13 +74,11 @@
 <xsl:when test="name(.) = 'respLS'">
 <xsl:attribute name="{name(.)}"><xsl:value-of select="."/> </xsl:attribute>
 <xsl:attribute name="sig_respLS"><xsl:value-of select="substring(.,1, $sigChars)"/> </xsl:attribute>
-
-
 </xsl:when>
                             <xsl:otherwise> <!-- leave attributes unchanged -->
-                               <xsl:copy-of select="." />
-                               <xsl:attribute name="{name(.)}"><xsl:value-of select="."/> </xsl:attribute>
-
+<xsl:copy-of select="." />
+<!--  or this.                           <xsl:attribute name="{name(.)}"><xsl:value-of select="."/> </xsl:attribute>
+-->
                             </xsl:otherwise>
                         </xsl:choose>
 
