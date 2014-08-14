@@ -14,7 +14,7 @@
 
  <!-- <xsl:variable name="sigChars" select="3"/> <xsl:variable name="sigChars" select="%1"/>-->
 <!-- <xsl:variable name="sigChars" select="3"/>
- <xsl:template match="ssn/p[@idx='6']">
+ <xsl:template match="ssn/p[@idx='666']">
  <xsl:call-template name="makeSignificant01" />
   </xsl:template> -->
 
@@ -31,12 +31,18 @@
 <makeRespLs>
 <!-- <xsl:copy-of select="." /> -->
 
-
-
+  <xsl:variable name="xx">
+    <html>
+      <body>
+      <ffffff/>
+      </body>
+    </html>
+  </xsl:variable>
+  <xsl:value-of select="$xx"/>
 
 <!--  <xsl:for-each select="./*"> -->
-<xsl:variable name="title">
- <xsl:choose>
+<!-- <xsl:variable name="title">
+ <xsl:choose> -->
 
  <xsl:for-each select="v[not(@fans=preceding-sibling::v/@fans)]">
 <xsl:sort select ="substring(@fans,1, 3)"/>
@@ -61,10 +67,11 @@
 
  </xsl:for-each>
 
- </xsl:choose>
-</xsl:variable>
+<!-- </xsl:choose>
+</xsl:variable> 
 
  <xsl:value-of select="$title" />
+ -->
 </makeRespLs>
 
 
