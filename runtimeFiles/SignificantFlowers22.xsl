@@ -31,23 +31,43 @@
 <makeRespLs>
 <!-- <xsl:copy-of select="." /> -->
 
-<xsl:copy-of select="./p/respLs/*" />
-<xsl:value-of select="./v/@*"/>
 
- <xsl:for-each select="./*">
 
+
+<!--  <xsl:for-each select="./*"> -->
+<xsl:variable name="title">
+ <xsl:choose>
+
+ <xsl:for-each select="v[not(@fans=preceding-sibling::v/@fans)]">
+<xsl:sort select ="substring(@fans,1, 3)"/>
+<!--
     <xsl:sort select ="substring(@fans,1, 3)"/>
+    <xsl:sort select ="@fans"/>
+    -->
 
     <xsl:choose>
     <xsl:when test="name(.) = 'v'">
+    <row>
     row(<xsl:value-of select="position()"/>) <xsl:value-of select ="substring(@fans,1, 3)"/> -
+    </row>
         <xsl:copy-of select="." />
+
+<!--
+<xsl:value-of select="preceding::v[1]/@fans"/>
+-->
     </xsl:when>
     </xsl:choose>
 
+
  </xsl:for-each>
 
+ </xsl:choose>
+</xsl:variable>
+
+ <xsl:value-of select="$title" />
 </makeRespLs>
+
+
 
 </xsl:template>
 <!-- ////////////////////////////////// -->
