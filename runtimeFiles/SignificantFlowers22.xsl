@@ -4,6 +4,7 @@
 <!-- Import the identity transformation. -->
 
  <!--
+ http://www.dpawson.co.uk/xsl/sect2/N8090.html - this guy knows his s
    <xsl:import href="Identity.xsl"/>
   -->
    <xsl:template match="node()|@*">
@@ -28,23 +29,18 @@
  </xsl:template>  -->
 
 <xsl:template name="makeRespLs">
-<makeRespLs>
+<makeRespLs fm="holy f in s I might be able to do w/ out keys">
 <!-- <xsl:copy-of select="." /> -->
 
-  <xsl:variable name="xx">
-    <html>
-      <body>
-      <ffffff/>
-      </body>
-    </html>
-  </xsl:variable>
-  <xsl:value-of select="$xx"/>
 
+
+<xsl:variable name="makeRespLs00">
 <!--  <xsl:for-each select="./*"> -->
 <!-- <xsl:variable name="title">
  <xsl:choose> -->
 
- <xsl:for-each select="v[not(@fans=preceding-sibling::v/@fans)]">
+ <!-- <xsl:for-each select="v[not(@fans=preceding-sibling::v/@fans)]"> -->
+ <xsl:for-each select="v">
 <xsl:sort select ="substring(@fans,1, 3)"/>
 <!--
     <xsl:sort select ="substring(@fans,1, 3)"/>
@@ -54,7 +50,15 @@
     <xsl:choose>
     <xsl:when test="name(.) = 'v'">
     <row>
-    row(<xsl:value-of select="position()"/>) <xsl:value-of select ="substring(@fans,1, 3)"/> -
+
+<!--    row(<xsl:value-of select="position()"/>) <xsl:value-of select ="substring(@fans,1, 3)"/> - -->
+    <xsl:attribute name="rid">
+<xsl:value-of select="position()"/>
+    </xsl:attribute>
+
+    <xsl:attribute name="{name(.)}">
+         <xsl:value-of select ="substring(@fans,1, 3)"/>
+    </xsl:attribute>
     </row>
         <xsl:copy-of select="." />
 
@@ -66,6 +70,17 @@
 
 
  </xsl:for-each>
+
+</xsl:variable>
+
+ <xsl:copy-of select="$makeRespLs00"/>
+
+
+
+ <xsl:for-each select="$makeRespLs00/v">
+    <xsl:value-of select="position()"/> - <xsl:value-of select ="substring(@fans,1, 3)"/> <xsl:copy-of select="." /> previous <xsl:value-of select="substring(preceding::v[1]/@fans,1,3)"/>
+    .
+</xsl:for-each>
 
 <!-- </xsl:choose>
 </xsl:variable> 
