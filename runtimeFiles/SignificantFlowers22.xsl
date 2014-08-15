@@ -75,9 +75,15 @@
 
  <xsl:copy-of select="$makeRespLs00"/>
 
-
+<fmdebug/>
 
  <xsl:for-each select="$makeRespLs00/v">
+  <xsl:choose>
+    <xsl:when test= "substring(@fans,1, 3) !=  substring(preceding::v[1]/@fans,1,3)">
+        pos(<xsl:value-of select="position()"/>) . <!-- - 1<xsl:value-of select="position() - $pos_0"/> -->
+    </xsl:when>
+  </xsl:choose>
+
     <xsl:value-of select="position()"/> - <xsl:value-of select ="substring(@fans,1, 3)"/> <xsl:copy-of select="." /> previous <xsl:value-of select="substring(preceding::v[1]/@fans,1,3)"/>
     .
 </xsl:for-each>
