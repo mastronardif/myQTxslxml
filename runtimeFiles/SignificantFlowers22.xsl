@@ -19,7 +19,7 @@
  <xsl:call-template name="makeSignificant01" />
   </xsl:template> -->
 
-<xsl:variable name="sigChars" select="3"/>
+<xsl:variable name="sigChars" select="1"/>
  <xsl:template match="ssn/p[@idx='6']">
  <xsl:call-template name="makeRespLs" />
   </xsl:template>
@@ -73,12 +73,12 @@
 
 </xsl:variable>
 
- <xsl:copy-of select="$makeRespLs00"/>
+ <!-- <xsl:copy-of select="$makeRespLs00"/> -->
 
 <fmdebug/>
 
 
-
+<fmdebug msg="the aggregate - group-by significant fans /w count "/>
  <xsl:for-each select="$makeRespLs00/v">
 <!-- (<xsl:value-of select="substring(@fans,1, 3)"/>) -->
   <xsl:choose>
@@ -94,19 +94,53 @@
 -->
 
 <xsl:when test="position()  = 1">
-    <xsl:call-template name="myCount">
+<xsl:variable name="cnt">
+<xsl:call-template name="myCount">
         <xsl:with-param name="myNode" select="$makeRespLs00"/>
         <xsl:with-param name="myKey" select="substring(@fans,1, $sigChars)"/>
-    </xsl:call-template> [<xsl:value-of select ="substring(@fans,1, $sigChars)"/>] <xsl:copy-of select="." />
+    </xsl:call-template>
+</xsl:variable>
+
+
+<respR>
+<xsl:attribute name="respCP">
+<xsl:value-of select="concat($cnt, ',', 'wtf_points')" />
+</xsl:attribute>
+<xsl:attribute name="sigAns">
+<xsl:value-of select="substring(@fans,1,$sigChars)"/>
+</xsl:attribute>
+</respR>
 </xsl:when>
 
     <!-- sequence change -->
     <xsl:when test= "substring(@fans,1, $sigChars) !=  substring(preceding::v[1]/@fans,1,$sigChars)">
+
+
+<xsl:variable name="cnt">
+<xsl:call-template name="myCount">
+        <xsl:with-param name="myNode" select="$makeRespLs00"/>
+        <xsl:with-param name="myKey" select="substring(@fans,1, $sigChars)"/>
+    </xsl:call-template>
+</xsl:variable>
+
+
+<respR>
+<xsl:attribute name="respCP">
+<xsl:value-of select="concat($cnt, ',', 'wtf_points')" />
+</xsl:attribute>
+<xsl:attribute name="sigAns">
+<xsl:value-of select="substring(@fans,1,$sigChars)"/>
+</xsl:attribute>
+</respR>
+
+
+<!--
 <xsl:call-template name="myCount">
     <xsl:with-param name="myNode" select="$makeRespLs00"/>
     <xsl:with-param name="myKey" select="substring(@fans,1, $sigChars)"/>
 </xsl:call-template> [<xsl:value-of select ="substring(@fans,1, $sigChars)"/>] <xsl:copy-of select="." />
 <xsl:value-of select ="position()"/>
+-->
 </xsl:when>
 
   </xsl:choose>
@@ -128,7 +162,7 @@
 <xsl:param name="myNode"/>
 <xsl:param name="myKey"/>
   <!--      <xsl:value-of select="count($myNode/v[substring(@fans,1, 3) = $myKey])"/> -->
-myCount(<xsl:value-of select="count($myNode/row[substring(@v,1, $sigChars) = $myKey])"/>) </xsl:template>
+<xsl:value-of select="count($myNode/row[substring(@v,1, $sigChars) = $myKey])"/></xsl:template>
 <!-- ////////////////////////////////// -->
 
 <xsl:template name="makeSignificant01">
