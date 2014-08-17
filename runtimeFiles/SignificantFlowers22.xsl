@@ -19,7 +19,7 @@
  <xsl:call-template name="makeSignificant01" />
   </xsl:template> -->
 
-<xsl:variable name="sigChars" select="1"/>
+<xsl:variable name="sigChars" select="3"/>
  <xsl:template match="ssn/p[@idx='6']">
  <xsl:call-template name="makeRespLs" />
   </xsl:template>
@@ -33,54 +33,157 @@
 <!-- <xsl:copy-of select="." /> -->
 
 
-
 <xsl:variable name="makeRespLs00">
-<!--  <xsl:for-each select="./*"> -->
-<!-- <xsl:variable name="title">
- <xsl:choose> -->
+<row rid="-1" sig_v="substring(12345678901234567890,1, $sigChars)"/>
+<v fans="Bogus louie hobston" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id=""/>
 
- <!-- <xsl:for-each select="v[not(@fans=preceding-sibling::v/@fans)]"> -->
  <xsl:for-each select="v">
-<xsl:sort select ="substring(@fans,1, $sigChars)"/>
-<!--
-    <xsl:sort select ="substring(@fans,1, 3)"/>
-    <xsl:sort select ="@fans"/>
-    -->
-
+    <xsl:sort select ="substring(@fans,1, $sigChars)"/>
     <xsl:choose>
     <xsl:when test="name(.) = 'v'">
     <row>
-
-<!--    row(<xsl:value-of select="position()"/>) <xsl:value-of select ="substring(@fans,1, 3)"/> - -->
     <xsl:attribute name="rid">
 <xsl:value-of select="position()"/>
     </xsl:attribute>
 
-    <xsl:attribute name="{name(.)}">
+    <xsl:attribute name="sig_{name(.)}">
          <xsl:value-of select ="substring(@fans,1, $sigChars)"/>
     </xsl:attribute>
     </row>
         <xsl:copy-of select="." />
-
-<!--
-<xsl:value-of select="preceding::v[1]/@fans"/>
--->
     </xsl:when>
     </xsl:choose>
-
-
  </xsl:for-each>
-
 </xsl:variable>
 
- <!-- <xsl:copy-of select="$makeRespLs00"/> -->
+<fmdebug msg="set I"/>
+<xsl:copy-of select="$makeRespLs00"/>
 
+<!-- set II begin -->
+<fmdebug msg="set II"/>
+<xsl:variable name="makeRespLs00">
+<row rid="-1" rs2="1" sig_v="````````"/>
+ <xsl:for-each select="$makeRespLs00/row">
+  <xsl:choose>
+  <!-- sequence change -->
+  <xsl:when test= "@sig_v !=  preceding::row[1]/@sig_v">
+<row>
+
+<xsl:attribute name="rs2">
+<xsl:value-of select="position()" />
+</xsl:attribute>
+
+<xsl:attribute name="rs20">
+<xsl:value-of select="'null'" />
+</xsl:attribute>
+
+<xsl:attribute name="sig_v">
+<xsl:value-of select="@sig_v" />
+</xsl:attribute>
+</row>
+</xsl:when>
+  </xsl:choose>
+</xsl:for-each>
+</xsl:variable>
+
+<fmdebug msg="set II"/>
+<xsl:copy-of select="$makeRespLs00"/>
+<!-- end  -->
+
+
+<fmdebug msg="set III"/>
+<xsl:variable name="makeRespLs00">
+ <xsl:for-each select="$makeRespLs00/row">
+  <xsl:choose>
+
+  <!-- sequence change -->
+
+
+  <xsl:when test= "@sig_v !=  preceding::row[1]/@sig_v">
+<row>
+
+
+
+<xsl:attribute name="b4_sig_v">
+<xsl:value-of select="preceding::row[1]/@sig_v" />
+</xsl:attribute>
+<xsl:attribute name="b4_count">
+<xsl:value-of select="(@rs2)-preceding::row[1]/@rs2" />
+</xsl:attribute>
+
+<xsl:attribute name="b4_rs1">
+<xsl:value-of select="preceding::row[1]/@rs2" />
+</xsl:attribute>
+<xsl:attribute name="b4_rs2">
+<xsl:value-of select="(@rs2)-1" />
+</xsl:attribute>
+
+<xsl:attribute name="rs2">
+<xsl:value-of select="@rs2" />
+</xsl:attribute>
+<xsl:attribute name="rs20">
+<xsl:value-of select="preceding::row[1]/@rs2" />
+</xsl:attribute>
+
+<xsl:attribute name="rsCount">
+<xsl:value-of select="(@rs2)-(preceding::row[1]/@rs2)" />
+</xsl:attribute>
+
+<xsl:attribute name="sig_v">
+<xsl:value-of select="@sig_v" />
+</xsl:attribute>
+</row>
+
+  <xsl:if test= "position() =  last()">
+<row>
+<xsl:attribute name="b4_sig_v">
+<xsl:value-of select="@sig_v" />
+</xsl:attribute>
+<xsl:attribute name="b4_count">
+<xsl:value-of select="(@rs2)-preceding::row[1]/@rs2" />
+</xsl:attribute>
+
+<xsl:attribute name="b4_rs1">
+<xsl:value-of select="preceding::row[1]/@rs2" />
+</xsl:attribute>
+<xsl:attribute name="b4_rs2">
+<xsl:value-of select="(@rs2)" />
+</xsl:attribute>
+</row>
+</xsl:if>
+
+</xsl:when>
+
+  <xsl:when test= "position() =  last()">
+<row>
+<xsl:attribute name="b4_sig_v">
+<xsl:value-of select="@sig_v" />
+</xsl:attribute>
+<xsl:attribute name="b4_count">
+<xsl:value-of select="(@rs2)-preceding::row[1]/@rs2" />
+</xsl:attribute>
+
+<xsl:attribute name="b4_rs1">
+<xsl:value-of select="preceding::row[1]/@rs2" />
+</xsl:attribute>
+<xsl:attribute name="b4_rs2">
+<xsl:value-of select="(@rs2)" />
+</xsl:attribute>
+</row>
+</xsl:when>
+  </xsl:choose>
+</xsl:for-each>
+</xsl:variable>
+<!-- end  -->
+
+ <!-- <xsl:copy-of select="$makeRespLs00"/> -->
+<xsl:copy-of select="$makeRespLs00"/>
 <fmdebug/>
 
 
 <fmdebug msg="the aggregate - group-by significant fans /w count "/>
- <xsl:for-each select="$makeRespLs00/v">
-<!-- (<xsl:value-of select="substring(@fans,1, 3)"/>) -->
+
+ <xsl:for-each select="$makeRespLs00/crow">
   <xsl:choose>
 
 <!--
@@ -103,6 +206,9 @@
 
 
 <respR>
+<xsl:attribute name="r1">
+<xsl:value-of select="position()" />
+</xsl:attribute>
 <xsl:attribute name="respCP">
 <xsl:value-of select="concat($cnt, ',', 'wtf_points')" />
 </xsl:attribute>
@@ -113,23 +219,33 @@
 </xsl:when>
 
     <!-- sequence change -->
-    <xsl:when test= "substring(@fans,1, $sigChars) !=  substring(preceding::v[1]/@fans,1,$sigChars)">
+    <xsl:when test= "substring(@fans,1, $sigChars) !=  substring(preceding::row[1]/@sig_v,1,$sigChars)">
+
 
 
 <xsl:variable name="cnt">
 <xsl:call-template name="myCount">
         <xsl:with-param name="myNode" select="$makeRespLs00"/>
-        <xsl:with-param name="myKey" select="substring(@fans,1, $sigChars)"/>
+        <xsl:with-param name="myKey" select="substring(@sig_v,1, $sigChars)"/>
     </xsl:call-template>
 </xsl:variable>
 
 
 <respR>
+
+    <xsl:attribute name="C_fuckR1">
+    <xsl:value-of select="position()"/>
+    <!-- <xsl:value-of select="substring(preceding::row[1]/@rid,1,$sigChars)"/> -->
+    </xsl:attribute>
+<xsl:attribute name="r1">
+<xsl:value-of select="position()" />
+</xsl:attribute>
+
 <xsl:attribute name="respCP">
-<xsl:value-of select="concat($cnt, ',', 'wtf_points')" />
+<xsl:value-of select="concat($cnt, ',', position(),  'wtf_points')" />
 </xsl:attribute>
 <xsl:attribute name="sigAns">
-<xsl:value-of select="substring(@fans,1,$sigChars)"/>
+<xsl:value-of select="substring(@sig_v,1,$sigChars)"/>
 </xsl:attribute>
 </respR>
 
@@ -144,25 +260,19 @@
 </xsl:when>
 
   </xsl:choose>
-<!--
-    <xsl:value-of select="position()"/> - <xsl:value-of select ="substring(@fans,1, 3)"/> <xsl:copy-of select="." /> previous <xsl:value-of select="substring(preceding::v[1]/@fans,1,3)"/>
-    .
-    -->
 </xsl:for-each>
 
-<!-- </xsl:choose>
-</xsl:variable> 
-
- <xsl:value-of select="$title" />
- -->
 </makeRespLs>
 </xsl:template>
 
 <xsl:template name="myCount">
 <xsl:param name="myNode"/>
 <xsl:param name="myKey"/>
+<xsl:value-of select="count($myNode/row[@sig_v = $myKey])"/>
   <!--      <xsl:value-of select="count($myNode/v[substring(@fans,1, 3) = $myKey])"/> -->
-<xsl:value-of select="count($myNode/row[substring(@v,1, $sigChars) = $myKey])"/></xsl:template>
+
+<!--<xsl:value-of select="count($myNode/row[substring(@v,1, $sigChars) = $myKey])"/> -->
+</xsl:template>
 <!-- ////////////////////////////////// -->
 
 <xsl:template name="makeSignificant01">
