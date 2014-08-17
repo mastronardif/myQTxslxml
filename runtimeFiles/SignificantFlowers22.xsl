@@ -19,7 +19,7 @@
  <xsl:call-template name="makeSignificant01" />
   </xsl:template> -->
 
-<xsl:variable name="sigChars" select="3"/>
+<xsl:variable name="sigChars" select="1"/>
  <xsl:template match="ssn/p[@idx='6']">
  <xsl:call-template name="makeRespLs" />
   </xsl:template>
@@ -29,6 +29,10 @@
  </xsl:template>  -->
 
 <xsl:template name="makeRespLs">
+<Original><xsl:copy-of select="." /></Original>
+<tots>
+    <countOf_v><xsl:value-of select="count(v)"/></countOf_v>
+</tots>
 <makeRespLs fm="holy f in s I might be able to do w/ out keys">
 <!-- <xsl:copy-of select="." /> -->
 
@@ -101,9 +105,6 @@
 
   <xsl:when test= "@sig_v !=  preceding::row[1]/@sig_v">
 <row>
-
-
-
 <xsl:attribute name="b4_sig_v">
 <xsl:value-of select="preceding::row[1]/@sig_v" />
 </xsl:attribute>
@@ -154,6 +155,7 @@
 
 </xsl:when>
 
+<!--
   <xsl:when test= "position() =  last()">
 <row>
 <xsl:attribute name="b4_sig_v">
@@ -171,13 +173,21 @@
 </xsl:attribute>
 </row>
 </xsl:when>
+-->
   </xsl:choose>
 </xsl:for-each>
 </xsl:variable>
 <!-- end  -->
 
+
  <!-- <xsl:copy-of select="$makeRespLs00"/> -->
+<respLs>
 <xsl:copy-of select="$makeRespLs00"/>
+
+<tots>
+    <countOf_v><xsl:value-of select="sum($makeRespLs00/row/@b4_count)"/></countOf_v>
+</tots>
+</respLs>
 <fmdebug/>
 
 
