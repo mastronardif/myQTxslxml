@@ -19,7 +19,7 @@
  <xsl:call-template name="makeSignificant01" />
   </xsl:template> -->
   
-<xsl:variable name="Qidx" select="3"/>
+<xsl:variable name="Qidx" select="6"/>
 <xsl:variable name="sigChars" select="1"/>
  <xsl:template match="ssn/p[@idx=$Qidx]">
  <xsl:call-template name="makeRespLs" />
@@ -294,8 +294,11 @@
 <!-- end  -->
 
 
- <!-- <xsl:copy-of select="$makeRespLs00"/> -->
+ <!-- <xsl:copy-of select="$makeRespLs00"/>-->
 <respLs>
+<xsl:attribute name="b4_sigChars"><xsl:value-of select="$sigChars" /></xsl:attribute>
+<xsl:attribute name="b4_Qidx"><xsl:value-of select="$Qidx" /></xsl:attribute>
+
 <xsl:copy-of select="$makeRespLs00"/>
 
 <tots>
