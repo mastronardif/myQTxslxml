@@ -18,9 +18,10 @@
  <xsl:template match="ssn/p[@idx='666']">
  <xsl:call-template name="makeSignificant01" />
   </xsl:template> -->
-
-<xsl:variable name="sigChars" select="16"/>
- <xsl:template match="ssn/p[@idx='1123']">
+  
+<xsl:variable name="Qidx" select="3"/>
+<xsl:variable name="sigChars" select="1"/>
+ <xsl:template match="ssn/p[@idx=$Qidx]">
  <xsl:call-template name="makeRespLs" />
   </xsl:template>
  <!-- <xsl:template match="ssn/makeSignificant01/Original/p[@idx='6']">
@@ -34,7 +35,7 @@
     <countOf_v><xsl:value-of select="count(v)"/></countOf_v>
 </tots>
 
-<makeRespLs fm="holy f in s I might be able to do w/ out keys">
+<makeRespLs fm="The aggregate w/ out keys">
 <!-- <xsl:copy-of select="." /> -->
 
 
@@ -42,67 +43,69 @@
 <!-- <row rid="-1" sig_v="substring(12345678901234567890,1, $sigChars)"/>
 <v fans="Bogus louie hobston" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id=""/>
 -->
+
+<!-- set I begin -->
  <xsl:for-each select="v">
     <!-- <xsl:sort select ="substring(@fans,1, $sigChars)"/> -->
     <xsl:sort select ="upper-case(substring(@fans,1, $sigChars))"/>
     <xsl:choose>
     <xsl:when test="name(.) = 'v'">
     <row>
-    <xsl:attribute name="rid">
+
+<!--    <xsl:attribute name="rid">
 <xsl:value-of select="position()"/>
-    </xsl:attribute>
+    </xsl:attribute> -->
 
     <xsl:attribute name="sig_{name(.)}">
-         <!-- <xsl:value-of select ="substring(@fans,1, $sigChars)"/> -->
+         <!-- <xsl:value-of select ="substring(@fans,1, $sigChars)"/>-->
          <xsl:value-of select ="upper-case(substring(@fans,1, $sigChars))"/>
     </xsl:attribute>
     </row>
+<!--
         <xsl:copy-of select="." />
+        -->
     </xsl:when>
     </xsl:choose>
  </xsl:for-each>
 </xsl:variable>
 
-<fmdebug msg="ccccc set I"/>
-<xsl:copy-of select="$makeRespLs00"/>
+<!-- <xsl:copy-of select="$makeRespLs00"/> -->
 
 
 <!-- ******************************* -->
 <!-- ******************************* -->
 <!-- set II begin -->
-<fmdebug msg="set II"/>
 
 <xsl:variable name="makeRespLs00">
 <!-- <row rid="-1" rs2="1" sig_v="````````"/> -->
  <xsl:for-each select="$makeRespLs00/row">
 
 <xsl:if test="position() = 1">
-<fmDebug msg="pos 1"/>
 <row n="set II">
 <xsl:attribute name="rs2"><xsl:value-of select="position()"/></xsl:attribute>
 <xsl:attribute name="rs20"><xsl:value-of select="'null'"/></xsl:attribute>
 <xsl:attribute name="sig_v"><xsl:value-of select="@sig_v"/></xsl:attribute>
+<xsl:attribute name="pos"><xsl:value-of select="'first'"/></xsl:attribute>
 </row>
 </xsl:if>
 
 <!-- sequence change -->
 <xsl:if test= "position() != 1 and @sig_v !=  preceding::row[1]/@sig_v">
-<fmDebug msg="row val change"/>
 
 <row n="set II an rc">
 <xsl:attribute name="rs2"><xsl:value-of select="position()"/></xsl:attribute>
 <xsl:attribute name="rs20"><xsl:value-of select="'null'"/></xsl:attribute>
 <xsl:attribute name="sig_v"><xsl:value-of select="@sig_v"/></xsl:attribute>
+<xsl:attribute name="pos"><xsl:value-of select="'middle'"/></xsl:attribute>
 </row>
 
 </xsl:if>
 <xsl:if test="position() = last()">
-    <fmDebug msg="pos last"/>
     <row n="set II">
         <xsl:attribute name="rs2"><xsl:value-of select="position()"/></xsl:attribute>
         <xsl:attribute name="rs20"><xsl:value-of select="'null'"/></xsl:attribute>
         <xsl:attribute name="sig_v"><xsl:value-of select="@sig_v"/></xsl:attribute>
-        <xsl:attribute name="last"><xsl:value-of select="'last'"/></xsl:attribute>
+        <xsl:attribute name="pos"><xsl:value-of select="'last'"/></xsl:attribute>
     </row>
 
 </xsl:if>
@@ -174,8 +177,7 @@
 
 <!-- ******************************* -->
 <!-- ******************************* -->
-<fmdebug msg="vvvvvvvvv set II"/>
-<xsl:copy-of select="$makeRespLs00"/>
+<!-- <xsl:copy-of select="$makeRespLs00"/> -->
 <!-- end  -->
 
 
@@ -195,16 +197,11 @@
 <xsl:value-of select="1+(@rs2)-preceding::row[1]/@rs2" />
 </xsl:attribute>
 
-<xsl:attribute name="b4_rs1">
-<xsl:value-of select="preceding::row[1]/@rs2" />
-</xsl:attribute>
-<xsl:attribute name="b4_rs2">
-<xsl:value-of select="(@rs2)" />
-</xsl:attribute>
-
-<xsl:attribute name="last">
-<xsl:value-of select="'last row'" />
-</xsl:attribute>
+<!--
+<xsl:attribute name="b4_rs1"><xsl:value-of select="preceding::row[1]/@rs2" /></xsl:attribute>
+<xsl:attribute name="b4_rs2"><xsl:value-of select="(@rs2)" /></xsl:attribute>
+-->
+<xsl:attribute name="last"><xsl:value-of select="'last row'"/></xsl:attribute>
 </row>
 
 <xsl:if test="@sig_v !=  preceding::row[1]/@sig_v">
@@ -216,27 +213,18 @@
 <xsl:value-of select="(@rs2)-preceding::row[1]/@rs2" />
 </xsl:attribute>
 
-<xsl:attribute name="b4_rs1">
-<xsl:value-of select="preceding::row[1]/@rs2" />
-</xsl:attribute>
-<xsl:attribute name="b4_rs2">
-<xsl:value-of select="(@rs2)-1" />
-</xsl:attribute>
+<!--
+<xsl:attribute name="b4_rs1"><xsl:value-of select="preceding::row[1]/@rs2"/></xsl:attribute>
+<xsl:attribute name="b4_rs2"><xsl:value-of select="(@rs2)-1"/></xsl:attribute>
 
-<xsl:attribute name="rs2">
-<xsl:value-of select="@rs2" />
-</xsl:attribute>
-<xsl:attribute name="rs20">
-<xsl:value-of select="preceding::row[1]/@rs2" />
-</xsl:attribute>
 
-<xsl:attribute name="rsCount">
-<xsl:value-of select="(@rs2)-(preceding::row[1]/@rs2)" />
-</xsl:attribute>
+<xsl:attribute name="rs2"><xsl:value-of select="@rs2" /></xsl:attribute>
+<xsl:attribute name="rs20"><xsl:value-of select="preceding::row[1]/@rs2" /></xsl:attribute>
 
-<xsl:attribute name="sig_v">
-<xsl:value-of select="@sig_v" />
-</xsl:attribute>
+<xsl:attribute name="rsCount"><xsl:value-of select="(@rs2)-(preceding::row[1]/@rs2)" /></xsl:attribute>
+
+<xsl:attribute name="sig_v"><xsl:value-of select="@sig_v" /></xsl:attribute>
+-->
 </row>
 
 </xsl:if>
@@ -251,6 +239,7 @@
 <xsl:value-of select="(@rs2)-preceding::row[1]/@rs2" />
 </xsl:attribute>
 
+<!--
 <xsl:attribute name="b4_rs1">
 <xsl:value-of select="preceding::row[1]/@rs2" />
 </xsl:attribute>
@@ -272,6 +261,7 @@
 <xsl:attribute name="sig_v">
 <xsl:value-of select="@sig_v" />
 </xsl:attribute>
+-->
 </row>
 
 <!--
@@ -313,8 +303,6 @@
     <countOf_v><xsl:value-of select="sum($makeRespLs00/row/@b4_count)"/></countOf_v>
 </tots>
 </respLs>
-<fmdebug/>
-
 
 <fmdebug msg="the aggregate - group-by significant fans /w count "/>
 

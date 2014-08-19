@@ -163,7 +163,7 @@ QString FindByXpath00(QString srcFN, QString xp)
 
 QString myxml::xsl_xml_FromStringFile(const QString xslt, QString fnxml, QString fout)
 {
-    qDebug() << xslt;
+    // qDebug() << xslt;
     QString out;
     QBuffer device;
 
@@ -188,7 +188,7 @@ QString myxml::xsl_xml_FromFiles(const QString fnxsl, QString fnxml, QString fou
     QString str = QString("\n %1 %2 %3 \n").arg("fnxsl", "fnxml", "fout");
     //myxml::xsl_xml(fnxsl, fnxml, fout);
 
-    qDebug() << str;
+    // qDebug() << str;
     QString out;
     QXmlQuery query(QXmlQuery::XSLT20);
     //QXmlQuery query(QXmlQuery::XQuery10);
@@ -220,7 +220,7 @@ QDomElement myxml::Find()
             "<plist version=\"1.0\"><dict>"
             "<key>BuildMachineOSBuild</key><string>13A598</string>"
             "<key>CFBundleShortVersionString</key><string>01.4 holy f</string>"
-            "<key>CFBundleSignature</key><string>????</string>"
+            "<key>CFBundleSignature</key><string>___</string>"
             "<key>CFBundleVersion</key><string>1.4</string>"
             "<key>NSPrincipalClass</key><string>NSApplication</string>"
             "</dict></plist>";
