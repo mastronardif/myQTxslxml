@@ -40,9 +40,6 @@
 
 
 <xsl:variable name="makeRespLs00">
-<!-- <row rid="-1" sig_v="substring(12345678901234567890,1, $sigChars)"/>
-<v fans="Bogus louie hobston" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id=""/>
--->
 
 <!-- set I begin -->
  <xsl:for-each select="v">
@@ -51,10 +48,6 @@
     <xsl:choose>
     <xsl:when test="name(.) = 'v'">
     <row>
-
-<!--    <xsl:attribute name="rid">
-<xsl:value-of select="position()"/>
-    </xsl:attribute> -->
 
     <xsl:attribute name="sig_{name(.)}">
          <!-- <xsl:value-of select ="substring(@fans,1, $sigChars)"/>-->
@@ -109,69 +102,6 @@
     </row>
 
 </xsl:if>
-
-
-  <!--
-    <xsl:choose>
-  <xsl:when test= "position() = 1">
-<row n="set II">
-<xsl:attribute name="rs2">
-<xsl:value-of select="position()" />
-</xsl:attribute>
-
-<xsl:attribute name="rs20">
-<xsl:value-of select="'null'" />
-</xsl:attribute>
-
-<xsl:attribute name="sig_v">
-<xsl:value-of select="@sig_v" />
-</xsl:attribute>
-</row>
-</xsl:when>
--->
-<!--
-<xsl:when test= "position() = last()">
-<row n="set II">
-<xsl:attribute name="rs2">
-<xsl:value-of select="position()" />
-</xsl:attribute>
-
-<xsl:attribute name="rs20">
-<xsl:value-of select="'null'" />
-</xsl:attribute>
-
-<xsl:attribute name="sig_v">
-<xsl:value-of select="@sig_v" />
-</xsl:attribute>
-
-<xsl:attribute name="last">
-<xsl:value-of select="'last'" />
-</xsl:attribute>
-</row>
-</xsl:when>
--->
-
-  <!-- sequence change -->
-  <!--
-  <xsl:when test= "@sig_v !=  preceding::row[1]/@sig_v">
-<row n="set II">
-
-<xsl:attribute name="rs2">
-<xsl:value-of select="position()" />
-</xsl:attribute>
-
-<xsl:attribute name="rs20">
-<xsl:value-of select="'null'" />
-</xsl:attribute>
-
-<xsl:attribute name="sig_v">
-<xsl:value-of select="@sig_v" />
-</xsl:attribute>
-</row>
-</xsl:when>
-  </xsl:choose>
--->
-
 </xsl:for-each>
 </xsl:variable>
 
@@ -238,54 +168,9 @@
 <xsl:attribute name="b4_count">
 <xsl:value-of select="(@rs2)-preceding::row[1]/@rs2" />
 </xsl:attribute>
-
-<!--
-<xsl:attribute name="b4_rs1">
-<xsl:value-of select="preceding::row[1]/@rs2" />
-</xsl:attribute>
-<xsl:attribute name="b4_rs2">
-<xsl:value-of select="(@rs2)-1" />
-</xsl:attribute>
-
-<xsl:attribute name="rs2">
-<xsl:value-of select="@rs2" />
-</xsl:attribute>
-<xsl:attribute name="rs20">
-<xsl:value-of select="preceding::row[1]/@rs2" />
-</xsl:attribute>
-
-<xsl:attribute name="rsCount">
-<xsl:value-of select="(@rs2)-(preceding::row[1]/@rs2)" />
-</xsl:attribute>
-
-<xsl:attribute name="sig_v">
-<xsl:value-of select="@sig_v" />
-</xsl:attribute>
--->
 </row>
 
-<!--
-  <xsl:if test= "position() =  last()">
-<row>
-<xsl:attribute name="b4_sig_v">
-<xsl:value-of select="@sig_v" />
-</xsl:attribute>
-<xsl:attribute name="b4_count">
-<xsl:value-of select="(@rs2)-preceding::row[1]/@rs2" />
-</xsl:attribute>
-
-<xsl:attribute name="b4_rs1">
-<xsl:value-of select="preceding::row[1]/@rs2" />
-</xsl:attribute>
-<xsl:attribute name="b4_rs2">
-<xsl:value-of select="(@rs2)" />
-</xsl:attribute>
-</row>
-</xsl:if>
--->
 </xsl:when>
-
-<!-- -->
 
 <!-- -->
   </xsl:choose>
