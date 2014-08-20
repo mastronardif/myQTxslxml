@@ -14,14 +14,15 @@
   </xsl:template>
 
  <!-- <xsl:variable name="sigChars" select="3"/> <xsl:variable name="sigChars" select="%1"/>-->
-<!-- <xsl:variable name="sigChars" select="3"/>
- <xsl:template match="ssn/p[@idx='666']">
+ <xsl:variable name="Qidx" select="6"/>
+ <xsl:variable name="sigChars" select="1"/>
+
+ <xsl:template match="ssn/p[@idx='6']">
  <xsl:call-template name="makeSignificant01" />
-  </xsl:template> -->
+  </xsl:template>
   
-<xsl:variable name="Qidx" select="6"/>
-<xsl:variable name="sigChars" select="1"/>
- <xsl:template match="ssn/p[@idx=$Qidx]">
+
+ <xsl:template match="ssn/p[@idx=$Qidx+999]">
  <xsl:call-template name="makeRespLs" />
   </xsl:template>
  <!-- <xsl:template match="ssn/makeSignificant01/Original/p[@idx='6']">
@@ -29,8 +30,28 @@
     <xsl:call-template name="makeRespLs" />
  </xsl:template>  -->
 
+
+<xsl:template name="makeVs">
+<!-- set I begin -->
+<fffffffff/>
+
+<xsl:variable name="makeVs00">
+<xsl:for-each select="v">
+<xsl:copy-of select="." />
+</xsl:for-each>
+</xsl:variable>
+<xsl:copy-of select="$makeVs00" />
+</xsl:template>
+
 <xsl:template name="makeRespLs">
-<Original><xsl:copy-of select="." /></Original>
+    <xsl:param name="pVotes"/>
+
+<!-- <Original><xsl:copy-of select="." /></Original> -->
+<!-- <xsl:variable name="makeVs00">
+<xsl:call-template name="makeVs" />
+</xsl:variable> -->
+<!-- <xsl:copy-of select="$makeVs00" /> -->
+
 <tots>
     <countOf_v><xsl:value-of select="count(v)"/></countOf_v>
 </tots>
@@ -42,7 +63,8 @@
 <xsl:variable name="makeRespLs00">
 
 <!-- set I begin -->
- <xsl:for-each select="v">
+ <!-- <xsl:for-each select="v"> -->
+ <xsl:for-each select="$pVotes/v">
     <!-- <xsl:sort select ="substring(@fans,1, $sigChars)"/> -->
     <xsl:sort select ="upper-case(substring(@fans,1, $sigChars))"/>
     <xsl:choose>
@@ -298,12 +320,9 @@
         <xsl:when test="name(.) = 'sig'">
             <xsl:attribute name="{name(.)}"><xsl:value-of select="$sigChars"/></xsl:attribute>
         </xsl:when>
-
-                            <xsl:otherwise>
-                            <xsl:attribute name="{name(.)}">
-                                <xsl:value-of select="."/>
-                            </xsl:attribute>
-                            </xsl:otherwise>
+            <xsl:otherwise>
+                <xsl:attribute name="{name(.)}"><xsl:value-of select="."/></xsl:attribute>
+            </xsl:otherwise>
     </xsl:choose>
     </xsl:for-each>
 
@@ -314,83 +333,56 @@
         <xsl:choose>
               <!-- <xsl:when test="@respLS">-->
               <xsl:when test="name(.) = 'respLs'">
-                <xsl:element name="{name(.)}"> <!-- respLs -->
-                       <xsl:for-each select="./@*">
+<!-- Skip we will add at the end -->
+<!--
+ <xsl:template match="ssn/p[@idx=$Qidx+999]">
+ <xsl:call-template name="makeRespLs" />
+  </xsl:template>
+   <fmdebug msg="replace replace replace replace"/>
+  -->
+        </xsl:when>
 
-                            <xsl:attribute name="{name(.)}">
-                                <xsl:value-of select="."/>
-                            </xsl:attribute>
-                        </xsl:for-each>
+<!-- ******************************************************************* -->
+        <xsl:when test="name(.) = 'v'">
+            <original1/> <xsl:copy-of select="." /> <_original2/>
+            <xsl:element name="{name(.)}DUCK">
 
-                        <!-- elements -->
-                        <xsl:for-each select="./*">
-
-                        <xsl:choose>
-
-                            <xsl:when test="name(.) = 'respR'">
-                               <!-- <xsl:copy-of select="." /> -->
-                                <xsl:element name="{name(.)}">
-                                    <!-- add new attrib or update -->
-
-                                    <xsl:for-each select="./@*">
-                                        <!-- <xsl:attribute name="{name(.)}">
-                                        <xsl:value-of select="."/> </xsl:attribute> -->
-
+            <xsl:for-each select="./@*">
 
 <xsl:choose>
-<xsl:when test="name(.) = 'respLS'">
-<xsl:attribute name="{name(.)}"><xsl:value-of select="."/> </xsl:attribute>
-<xsl:attribute name="sig_respLS"><xsl:value-of select="substring(.,1, $sigChars)"/> </xsl:attribute>
-</xsl:when>
-                            <xsl:otherwise> <!-- leave attributes unchanged -->
-<xsl:copy-of select="." />
-<!--  or this.                           <xsl:attribute name="{name(.)}"><xsl:value-of select="."/> </xsl:attribute>
--->
-                            </xsl:otherwise>
-                        </xsl:choose>
 
-                                    </xsl:for-each>
-
-                               </xsl:element>
-
-                            </xsl:when>
-
-
-                            <!-- other elements ignore -->
-                            <xsl:otherwise>
-                               <xsl:copy-of select="." />
-                            </xsl:otherwise>
-                        </xsl:choose>
-
-                        </xsl:for-each>
-
-                    </xsl:element> <!-- /respLs -->
+              <xsl:when test="name(.) = 'ansO'">
+                <!-- Skip we will add at the end -->
               </xsl:when>
 
-
-
-              <xsl:when test="name(.) = 'v'">
-   <original1/> <xsl:copy-of select="." /> <_original2/>
-
-                    <xsl:element name="{name(.)}DUCK">
-                    <xsl:for-each select="./@*">
-
-<xsl:choose>
 <xsl:when test="name(.) = 'sig_ans'">
-    <!-- have only one attrib by said name -->
+<!-- have only one attrib by said name -->
 </xsl:when>
 <xsl:when test="name(.) = 'ans'">
-   <xsl:attribute name="sig_{name(.)}"><xsl:value-of select="substring(.,1, $sigChars)"/> </xsl:attribute>
+<xsl:attribute name="sig_{name(.)}"><xsl:value-of select="substring(.,1, $sigChars)"/> </xsl:attribute>
 </xsl:when>
 
 <xsl:otherwise>
-   <xsl:copy-of select="." />
+<xsl:copy-of select="." />
 </xsl:otherwise>
 </xsl:choose>
 
-                    </xsl:for-each>
-                    </xsl:element>
-              </xsl:when>
+            </xsl:for-each>
+
+
+<xsl:choose>
+    <xsl:when test="not(./@ansO)">
+        <xsl:attribute name="ansO"><xsl:value-of select="@ans"/></xsl:attribute>
+    </xsl:when>
+    <xsl:otherwise> <!-- unchanged! -->
+        <xsl:attribute name="ansO"><xsl:value-of select="@ansO"/></xsl:attribute>
+    </xsl:otherwise>
+</xsl:choose>
+            </xsl:element>
+
+
+        </xsl:when>
+        <!-- ******************************************************************* -->
 
                  <!-- Ignore other emlements -->
                  <xsl:otherwise>
@@ -398,6 +390,33 @@
                  </xsl:otherwise>
          </xsl:choose>
     </xsl:for-each>
+
+
+
+<xsl:variable name="theVs">
+    <xsl:call-template name="makeVs"/>
+</xsl:variable>
+
+<fmdebug msg="the votes 11"/>
+ <xsl:copy-of select="$theVs" />
+<fmdebug msg="the votes 22"/>
+
+    <!-- if ____ not exists add it -->
+<xsl:if test="not(./respLsFUCK)">
+<fmdebug msg="WAS NOT THEIR NEW NEW NEW NEW"/>
+
+    <xsl:call-template name="makeRespLs">
+        <xsl:with-param name="pVotes" select="$theVs"/>
+    </xsl:call-template>
+<!--
+ <xsl:template match="ssn/p[@idx=$Qidx+999]">
+ <xsl:call-template name="makeRespLs" />
+  </xsl:template>
+  -->
+  <fmdebug msg="replace replace replace replace"/>
+
+</xsl:if>
+
 </xsl:element>
 </newsh_t>
 </makeSignificant01>
