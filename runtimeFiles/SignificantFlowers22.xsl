@@ -125,14 +125,14 @@
  <!-- <xsl:for-each select="v"> -->
  <xsl:for-each select="$pVotes/v">
     <!-- <xsl:sort select ="substring(@fans,1, $sigChars)"/> -->
-    <xsl:sort select ="upper-case(substring(@fans,1, $sigChars))"/>
+    <xsl:sort select ="upper-case(substring(@ans,1, $sigChars))"/>
     <xsl:choose>
     <xsl:when test="name(.) = 'v'">
     <row>
 
     <xsl:attribute name="sig_{name(.)}">
          <!-- <xsl:value-of select ="substring(@fans,1, $sigChars)"/>-->
-         <xsl:value-of select ="upper-case(substring(@fans,1, $sigChars))"/>
+         <xsl:value-of select ="upper-case(substring(@ans,1, $sigChars))"/>
     </xsl:attribute>
     </row>
 <!--
@@ -308,7 +308,7 @@
 <xsl:variable name="cnt">
 <xsl:call-template name="myCount">
         <xsl:with-param name="myNode" select="$makeRespLs00"/>
-        <xsl:with-param name="myKey" select="substring(@fans,1, $sigChars)"/>
+        <xsl:with-param name="myKey" select="substring(@ans,1, $sigChars)"/>
     </xsl:call-template>
 </xsl:variable>
 
@@ -321,13 +321,13 @@
 <xsl:value-of select="concat($cnt, ',', 'wtf_points')" />
 </xsl:attribute>
 <xsl:attribute name="sigAns">
-<xsl:value-of select="substring(@fans,1,$sigChars)"/>
+<xsl:value-of select="substring(@ans,1,$sigChars)"/>
 </xsl:attribute>
 </respR>
 </xsl:when>
 
     <!-- sequence change -->
-    <xsl:when test= "substring(@fans,1, $sigChars) !=  substring(preceding::row[1]/@sig_v,1,$sigChars)">
+    <xsl:when test= "substring(@ans,1, $sigChars) !=  substring(preceding::row[1]/@sig_v,1,$sigChars)">
 
 
 
@@ -388,7 +388,6 @@
  <makeSignificant01>
     <!-- <Original><xsl:copy-of select="." /></Original>-->
 
-
 <xsl:element name="{name(.)}">
     <xsl:for-each select="./@*">
     <xsl:choose>
@@ -409,12 +408,6 @@
               <!-- <xsl:when test="@respLS">-->
               <xsl:when test="name(.) = 'respLs'">
 <!-- Skip we will add at the end -->
-<!--
- <xsl:template match="ssn/p[@idx=$Qidx+999]">
- <xsl:call-template name="makeRespLs" />
-  </xsl:template>
-   <fmdebug msg="replace replace replace replace"/>
-  -->
         </xsl:when>
 
         <!-- ******************************************************************* -->
@@ -429,8 +422,6 @@
                  </xsl:otherwise>
          </xsl:choose>
     </xsl:for-each>
-
-
 
 <xsl:variable name="theVs">
     <xsl:call-template name="makeVs"/>
