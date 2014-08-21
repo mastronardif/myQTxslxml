@@ -11,6 +11,8 @@ public:
     static QString GetResource000(const QString name);
     static QString GetXSLT_For22(const QString XsltName);
     static QString GetXSLT_For_SignificantCharacters(const QString XsltName);
+
+    static QString removeGetXSLT_For_SignificantCharacters(const QString XsltName);
     static QString GetXSLT_For(const QString name);
 };
 
