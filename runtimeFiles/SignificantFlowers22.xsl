@@ -33,14 +33,75 @@
 
 <xsl:template name="makeVs">
 <!-- set I begin -->
-<fffffffff/>
+
 
 <xsl:variable name="makeVs00">
 <xsl:for-each select="v">
+<!-- <xsl:copy-of select="." /> -->
+
+<xsl:choose>
+<!-- ******************************************************************* -->
+        <xsl:when test="name(.) = 'v'">
+            <!-- <ORIGINAL> <xsl:copy-of select="." /> </ORIGINAL> -->
+            <xsl:element name="{name(.)}">
+
+            <xsl:for-each select="./@*">
+
+<xsl:choose>
+
+              <xsl:when test="name(.) = 'ansO'">
+                <!-- Skip we will add at the end -->
+              </xsl:when>
+
+              <xsl:when test="name(.) = 'ans'">
+                <!-- Skip we will add at the end -->
+              </xsl:when>
+
+<xsl:when test="name(.) = 'sig_ans'">
+<!-- have only one attrib by said name -->
+</xsl:when>
+
+<xsl:when test="name(.) = 'remove_ans'">
+<xsl:attribute name="{name(.)}"><xsl:value-of select="substring(.,1, $sigChars)"/> </xsl:attribute>
+<xsl:attribute name="sig_{name(.)}"><xsl:value-of select="substring(.,1, $sigChars)"/> </xsl:attribute>
+</xsl:when>
+
+<xsl:otherwise>
 <xsl:copy-of select="." />
+</xsl:otherwise>
+</xsl:choose>
+
+            </xsl:for-each>
+
+
+<xsl:choose>
+    <xsl:when test="not(./@ansO)">
+        <xsl:attribute name="ansO"><xsl:value-of select="@ans"/></xsl:attribute>
+        <xsl:attribute name="ans"><xsl:value-of select="substring(@ans,1, $sigChars)"/></xsl:attribute>
+    </xsl:when>
+    <xsl:otherwise> <!-- unchanged! -->
+        <xsl:attribute name="ansO"><xsl:value-of select="@ansO"/></xsl:attribute>
+        <xsl:attribute name="ans"><xsl:value-of select="substring(@ansO,1, $sigChars)"/></xsl:attribute>
+    </xsl:otherwise>
+</xsl:choose>
+            </xsl:element>
+
+        </xsl:when>
+        <!-- ******************************************************************* -->
+</xsl:choose>
+
 </xsl:for-each>
 </xsl:variable>
 <xsl:copy-of select="$makeVs00" />
+
+
+
+
+
+
+
+
+
 </xsl:template>
 
 <xsl:template name="makeRespLs">
@@ -52,11 +113,9 @@
 </xsl:variable> -->
 <!-- <xsl:copy-of select="$makeVs00" /> -->
 
-<tots>
-    <countOf_v><xsl:value-of select="count(v)"/></countOf_v>
-</tots>
+<!-- <tots><countOf_v><xsl:value-of select="count(v)"/></countOf_v></tots> -->
 
-<makeRespLs fm="The aggregate w/ out keys">
+<!-- <makeRespLs fm="The aggregate w/ out keys"> -->
 <!-- <xsl:copy-of select="." /> -->
 
 
@@ -133,7 +192,7 @@
 <!-- end  -->
 
 
-<fmdebug msg="set III"/>
+<!-- <fmdebug msg="set III"/> -->
 <xsl:variable name="makeRespLs00">
  <xsl:for-each select="$makeRespLs00/row">
   <xsl:choose>
@@ -141,30 +200,36 @@
   <!-- sequence change -->
 
   <xsl:when test= "position() =  last()">
-<row>
-<xsl:attribute name="b4_sig_v">
+<respR>
+<xsl:attribute name="respS">
 <xsl:value-of select="preceding::row[1]/@sig_v" />
 </xsl:attribute>
-<xsl:attribute name="b4_count">
-<xsl:value-of select="1+(@rs2)-preceding::row[1]/@rs2" />
+
+<xsl:attribute name="respLS"><xsl:value-of select="lower-case(preceding::row[1]/@sig_v)"/></xsl:attribute>
+
+<xsl:attribute name="respCP">
+<xsl:value-of select="concat(1+(@rs2)-preceding::row[1]/@rs2, ',', '0.00')"/>
 </xsl:attribute>
+<!--
+<xsl:attribute name="b4_count"><xsl:value-of select="1+(@rs2)-preceding::row[1]/@rs2" /></xsl:attribute>
+-->
 
 <!--
 <xsl:attribute name="b4_rs1"><xsl:value-of select="preceding::row[1]/@rs2" /></xsl:attribute>
 <xsl:attribute name="b4_rs2"><xsl:value-of select="(@rs2)" /></xsl:attribute>
 -->
-<xsl:attribute name="last"><xsl:value-of select="'last row'"/></xsl:attribute>
-</row>
+<!--<xsl:attribute name="last"><xsl:value-of select="'last row'"/></xsl:attribute>-->
+</respR>
 
 <xsl:if test="@sig_v !=  preceding::row[1]/@sig_v">
 <row v="difPrec">
 <xsl:attribute name="b4_sig_v">
 <xsl:value-of select="preceding::row[1]/@sig_v" />
 </xsl:attribute>
-<xsl:attribute name="b4_count">
-<xsl:value-of select="(@rs2)-preceding::row[1]/@rs2" />
-</xsl:attribute>
 
+<!--
+<xsl:attribute name="b4_count"><xsl:value-of select="(@rs2)-preceding::row[1]/@rs2" /></xsl:attribute>
+-->
 <!--
 <xsl:attribute name="b4_rs1"><xsl:value-of select="preceding::row[1]/@rs2"/></xsl:attribute>
 <xsl:attribute name="b4_rs2"><xsl:value-of select="(@rs2)-1"/></xsl:attribute>
@@ -183,14 +248,22 @@
 </xsl:when>
 
   <xsl:when test= "@sig_v !=  preceding::row[1]/@sig_v">
-<row>
-<xsl:attribute name="b4_sig_v">
+<respR>
+<xsl:attribute name="respS">
 <xsl:value-of select="preceding::row[1]/@sig_v" />
 </xsl:attribute>
-<xsl:attribute name="b4_count">
-<xsl:value-of select="(@rs2)-preceding::row[1]/@rs2" />
+
+<xsl:attribute name="respLS"><xsl:value-of select="lower-case(preceding::row[1]/@sig_v)"/></xsl:attribute>
+
+<xsl:attribute name="respCP">
+<!-- <xsl:value-of select="(@rs2)-preceding::row[1]/@rs2" /> -->
+
+<xsl:value-of select="concat((@rs2)-preceding::row[1]/@rs2, ',', '0.00')"/>
 </xsl:attribute>
-</row>
+<!--
+<xsl:attribute name="b4_count"><xsl:value-of select="(@rs2)-preceding::row[1]/@rs2"/></xsl:attribute>
+-->
+</respR>
 
 </xsl:when>
 
@@ -208,13 +281,15 @@
 
 <xsl:copy-of select="$makeRespLs00"/>
 
+<!--
 <tots>
 <FMDEBUG msg="sum of the individual votes foreach group "/>
-    <countOf_v><xsl:value-of select="sum($makeRespLs00/row/@b4_count)"/></countOf_v>
+    <countOf_v><xsl:value-of select="sum($makeRespLs00/respR/@b4_count)"/></countOf_v>
 </tots>
+-->
 </respLs>
 
-<fmdebug msg="the aggregate - group-by significant fans /w count "/>
+<!-- <fmdebug msg="the aggregate - group-by significant fans /w count "/> -->
 
  <xsl:for-each select="$makeRespLs00/crow">
   <xsl:choose>
@@ -295,7 +370,7 @@
   </xsl:choose>
 </xsl:for-each>
 
-</makeRespLs>
+<!-- </makeRespLs> -->
 </xsl:template>
 
 <xsl:template name="myCount">
@@ -311,9 +386,9 @@
 <xsl:template name="makeSignificant01">
 
  <makeSignificant01>
-    <Original><xsl:copy-of select="." /></Original>
+    <!-- <Original><xsl:copy-of select="." /></Original>-->
 
-<newsh_t>
+
 <xsl:element name="{name(.)}">
     <xsl:for-each select="./@*">
     <xsl:choose>
@@ -342,48 +417,12 @@
   -->
         </xsl:when>
 
-<!-- ******************************************************************* -->
-        <xsl:when test="name(.) = 'v'">
-            <original1/> <xsl:copy-of select="." /> <_original2/>
-            <xsl:element name="{name(.)}DUCK">
-
-            <xsl:for-each select="./@*">
-
-<xsl:choose>
-
-              <xsl:when test="name(.) = 'ansO'">
-                <!-- Skip we will add at the end -->
-              </xsl:when>
-
-<xsl:when test="name(.) = 'sig_ans'">
-<!-- have only one attrib by said name -->
-</xsl:when>
-<xsl:when test="name(.) = 'ans'">
-<xsl:attribute name="sig_{name(.)}"><xsl:value-of select="substring(.,1, $sigChars)"/> </xsl:attribute>
-</xsl:when>
-
-<xsl:otherwise>
-<xsl:copy-of select="." />
-</xsl:otherwise>
-</xsl:choose>
-
-            </xsl:for-each>
-
-
-<xsl:choose>
-    <xsl:when test="not(./@ansO)">
-        <xsl:attribute name="ansO"><xsl:value-of select="@ans"/></xsl:attribute>
-    </xsl:when>
-    <xsl:otherwise> <!-- unchanged! -->
-        <xsl:attribute name="ansO"><xsl:value-of select="@ansO"/></xsl:attribute>
-    </xsl:otherwise>
-</xsl:choose>
-            </xsl:element>
-
-
-        </xsl:when>
+        <!-- ******************************************************************* -->
         <!-- ******************************************************************* -->
 
+<xsl:when test="name(.) = 'v'">
+<!-- <IGNORE_v/> -->
+</xsl:when>
                  <!-- Ignore other emlements -->
                  <xsl:otherwise>
                     <xsl:copy-of select="." />
@@ -397,28 +436,13 @@
     <xsl:call-template name="makeVs"/>
 </xsl:variable>
 
-<fmdebug msg="the votes 11"/>
  <xsl:copy-of select="$theVs" />
-<fmdebug msg="the votes 22"/>
-
-    <!-- if ____ not exists add it -->
-<xsl:if test="not(./respLsFUCK)">
-<fmdebug msg="WAS NOT THEIR NEW NEW NEW NEW"/>
 
     <xsl:call-template name="makeRespLs">
         <xsl:with-param name="pVotes" select="$theVs"/>
     </xsl:call-template>
-<!--
- <xsl:template match="ssn/p[@idx=$Qidx+999]">
- <xsl:call-template name="makeRespLs" />
-  </xsl:template>
-  -->
-  <fmdebug msg="replace replace replace replace"/>
-
-</xsl:if>
 
 </xsl:element>
-</newsh_t>
 </makeSignificant01>
 
 </xsl:template>
