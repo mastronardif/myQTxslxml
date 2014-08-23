@@ -59,8 +59,8 @@ int main(int argc, char *argv[])
         QString sigchars = "2";
         //xslt00 = QString(xslt00).arg(sigchars, qIdx);
         //xslt00 = ReadfFileToString(fnxsl);
-        xslt00 = myXsltTemplates::GetXSLT_For_SignificantCharacters("SignificantCharacters.xslt");
-        xslt00 = QString(xslt00).arg(qIdx, sigchars);
+        //xslt00 = myXsltTemplates::GetXSLT_For_SignificantCharacters("SignificantCharacters.xslt");
+        //xslt00 = QString(xslt00).arg(qIdx, sigchars);
 
         int WriteStringToFile(const QString src, QString fp);
         WriteStringToFile(xslt00, "/Users/frank.mastronardi/myQTxslxml/runtimeFiles/L001.xsl.xml");
