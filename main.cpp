@@ -15,6 +15,7 @@ using namespace std;
 QString ReadfFileToString(QString fp);
 int main(int argc, char *argv[])
 {
+    int iRetval = 0;
 #ifndef FMTIMEANALYSIS
     QTime time;
     time.start();
@@ -40,7 +41,7 @@ int main(int argc, char *argv[])
     }
         //QString str = QString("\n %1 %2 %3 \n").arg(QString::number(argc), argv[1], argv[2]);
 
-    if (1==1)
+    if (1==101)
     {
          //QString xslt = myXsltTemplates::GetResource000(":/xsltTemplates/MarkQuestion.xslt");
          //QString xslt = myXsltTemplates::GetXSLT_For("MarkQuestion.xslt");
@@ -81,11 +82,36 @@ if (1==122)
 //return 0;
 }
 
-if (1==11)
+if (1==1)
  {
-        QString out = myxml::Find(fnxsl, fnxml,  "./theoutput.xml" );
+    QString out;
+        QString xpath = "/ssn/p[@idx='15']/.";
+        fnxml = "/Users/frank.mastronardi/myQTxslxml/runtimeFiles/Lq1406110746.xml";
+        iRetval = myxml::FindByXpathFromFile(fnxml,  xpath, out);
+        qDebug() << "************** FindByXpathFromFile **********************";
+qDebug() << iRetval << "out = " << out;
+qDebug() << "************************************";
 
-        qDebug() << "\n Find = " << fnxsl << "in " << fnxml << "\n" << out << "\n";
+qDebug() << "*************** FindByXpathFromString *********************";
+xpath = "/ssn/p[@idx='14']/.";
+out="";
+fnxml = ReadfFileToString(fnxml);
+iRetval = myxml::FindByXpathFromString(fnxml,  xpath, out);
+qDebug() << iRetval << "out = " << out;
+qDebug() << "************************************";
+
+
+        fnxml = ReadfFileToString(fnxml);
+        //myxml::Find();
+
+        out = myxml::Find(xpath, fnxml,  "./theoutput.xml" );
+
+        //
+        QString FindByXpath(QString srcXML, QString xpath);
+        QString results = FindByXpath(fnxml, xpath);
+        qDebug() << "results = " << results;
+
+        //qDebug() << "\n Find = " << fnxsl << "in " << fnxml << "\n" << out << "\n";
         qDebug() << "\n__________________________\n";
         qDebug() << "\n__________________________\n" << "\n"
                     ;

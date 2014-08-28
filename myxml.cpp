@@ -7,6 +7,19 @@
 #include <QtXmlPatterns>
 #include <exception>
 
+class ErrorHandler : public QAbstractMessageHandler
+{
+    public:
+        QString theError;
+
+    void handleMessage ( QtMsgType type, const QString & description, const QUrl & identifier, const QSourceLocation & sourceLocation )
+    {
+        theError += description;
+    }
+
+
+};
+
 myxml::myxml()
 {
 }
@@ -329,26 +342,203 @@ return retval;
 //QString myxml::xslxml_FromStringFile(QString xsl, QString fnxml, QString fout)
 QString myxml::Find(QString xpath, QString fnxml, QString fout)
 {
-    //QString xpath = "/ssn/p[@idx='27']/.";
     QString results = FindByXpath00(fnxml, xpath);
     return results;
 }
 
-QString FindByXpath(QString srcXML, QString xpath)
+int myxml::FindByXpathFromString(QString srcXML,    QString xpath, QString &parOut)
 {
+    QString out;
+    int iRetval = 0;  // success
+    QString dest;
+
     qDebug() <<  __FILE__ << __LINE__  << __func__;
+    qDebug() << "xpath = " <<xpath;
+    //qDebug() << "srcXML = " <<srcXML;
     // qDebug() << QString("\n%1 %2 %3\n").arg(__func__ , __LINE__, __FILE__);
     QString retval = "";   // Default found nothing.
     QBuffer device;
 //qDebug() << srcXML;
 //qDebug() << xpath;
+//srcXML = ReadfFileToString("/Users/frank.mastronardi/myQTxslxml/runtimeFiles/Lq1406110746.xml");
 
     device.setData(srcXML.toUtf8());
     device.open(QIODevice::ReadOnly);
-    QXmlQuery qq(QXmlQuery::XSLT20);
-    qq.bindVariable("inputDocument", &device);
-    QString xq = "doc($inputDocument)"+xpath;
-    qq.setQuery(xq);
+
+    //QXmlQuery qq;//(QXmlQuery::XSLT20);XPath20);
+    //QXmlQuery qq(QXmlQuery::XQuery10);
+    QXmlQuery qq;
+    ErrorHandler myMH;
+    qq.setMessageHandler(&myMH);
+
+qq.bindVariable("inputDocument", &device);
+    //QFile db("/Users/frank.mastronardi/myQTxslxml/runtimeFiles/Lq1406110746.xml");
+    //QFile db(srcFileName);
+    //if (!db.open(QIODevice::ReadOnly | QIODevice::Text))
+      //      return -1;
+    //qq.setFocus(&db);
+//qq.setQuery("/ssn/p[@idx='13']/.");
+    //qq.setQuery(xpath);
+
+QString xq = "doc($inputDocument)"+xpath;
+qq.setQuery(xq);
+    if (qq.isValid())
+    {
+        if (!qq.evaluateTo(&out))
+        {
+            iRetval = -101;
+            // get error string
+            ErrorHandler *eh = (ErrorHandler*)qq.messageHandler();
+            qDebug() << eh->theError;
+        }
+        //QXmlItem item(result.next());
+
+        //device.close();
+
+//    The error message is sent to the messageHandler().
+//    QXmlResultItems::hasError() will return true, or evaluateTo() will return false;
+//    The results of the evaluation are undefined
+//    if (query. ::hasError())
+//        query.messageHandler();
+       parOut = out;
+    }
+    else
+    {
+        iRetval = -100;
+        // get error string
+        ErrorHandler *eh = (ErrorHandler*)qq.messageHandler();
+        qDebug() << eh->theError;
+    }
+//db.close();
+    //qq.evaluateTo(&retval);
+
+    return iRetval;
+
+}
+int myxml::FindByXpathFromFile(QString srcFileName, QString xpath, QString &parOut)
+{
+    QString out;
+    int iRetval = 0;  // success
+    QString dest;
+
+    qDebug() <<  __FILE__ << __LINE__  << __func__;
+    qDebug() << "xpath = " <<xpath;
+    // qDebug() << QString("\n%1 %2 %3\n").arg(__func__ , __LINE__, __FILE__);
+    QString retval = "";   // Default found nothing.
+    //QBuffer device;
+//qDebug() << srcXML;
+//qDebug() << xpath;
+//srcXML = ReadfFileToString("/Users/frank.mastronardi/myQTxslxml/runtimeFiles/Lq1406110746.xml");
+
+    //evice.setData(srcXML.toUtf8());
+    //device.open(QIODevice::ReadOnly);
+
+    //QXmlQuery qq;//(QXmlQuery::XSLT20);XPath20);
+    //QXmlQuery qq(QXmlQuery::XQuery10);
+    QXmlQuery qq;
+    ErrorHandler myMH;
+    qq.setMessageHandler(&myMH);
+
+//qq.bindVariable("inputDocument", &device);
+    //QFile db("/Users/frank.mastronardi/myQTxslxml/runtimeFiles/Lq1406110746.xml");
+    QFile db(srcFileName);
+    if (!db.open(QIODevice::ReadOnly | QIODevice::Text))
+            return -1;
+    qq.setFocus(&db);
+      //qq.setQuery("/ssn/p[@idx='13']/.");
+    qq.setQuery(xpath);
+
+//QString xq = "doc($inputDocument)"+xpath;
+//qq.setQuery(xq);
+    if (qq.isValid())
+    {
+        if (!qq.evaluateTo(&out))
+        {
+            iRetval = -101;
+        }
+        //QXmlItem item(result.next());
+
+        //device.close();
+
+//    The error message is sent to the messageHandler().
+//    QXmlResultItems::hasError() will return true, or evaluateTo() will return false;
+//    The results of the evaluation are undefined
+    //if (query. ::hasError())
+        //query.messageHandler();
+        parOut = out;
+    }
+    else
+    {
+        iRetval = -100;
+        // get error string
+        ErrorHandler *eh = (ErrorHandler*)qq.messageHandler();
+        qDebug() << eh->theError;
+    }
+db.close();
+    qq.evaluateTo(&retval);
+
+    return iRetval;
+}
+
+QString FindByXpath(QString srcXML, QString xpath)
+{
+    QString out;
+    int iRetval = 0;  // success
+    QString dest;
+
+    qDebug() <<  __FILE__ << __LINE__  << __func__;
+    qDebug() << "xpath = " <<xpath;
+    // qDebug() << QString("\n%1 %2 %3\n").arg(__func__ , __LINE__, __FILE__);
+    QString retval = "";   // Default found nothing.
+    QBuffer device;
+//qDebug() << srcXML;
+//qDebug() << xpath;
+srcXML = ReadfFileToString("/Users/frank.mastronardi/myQTxslxml/runtimeFiles/Lq1406110746.xml");
+
+    device.setData(srcXML.toUtf8());
+    device.open(QIODevice::ReadOnly);
+
+    //QXmlQuery qq;//(QXmlQuery::XSLT20);XPath20);
+    //QXmlQuery qq(QXmlQuery::XQuery10);
+    QXmlQuery qq;
+    ErrorHandler myMH;
+    qq.setMessageHandler(&myMH);
+
+qq.bindVariable("inputDocument", &device);
+    QFile db("/Users/frank.mastronardi/myQTxslxml/runtimeFiles/Lq1406110746.xml");
+    if (!db.open(QIODevice::ReadOnly | QIODevice::Text))
+            return "";
+    //qq.setFocus(&db);
+      //qq.setQuery("/ssn/p[@idx='13']/.");
+    //qq.setQuery(xpath);
+
+QString xq = "doc($inputDocument)"+xpath;
+qq.setQuery(xq);
+    if (qq.isValid())
+    {
+        if (!qq.evaluateTo(&out))
+        {
+            iRetval = -101;
+        }
+        //QXmlItem item(result.next());
+
+        device.close();
+
+//    The error message is sent to the messageHandler().
+//    QXmlResultItems::hasError() will return true, or evaluateTo() will return false;
+//    The results of the evaluation are undefined
+    //if (query. ::hasError())
+        //query.messageHandler();
+        dest = out;
+    }
+    else
+    {
+        iRetval = -100;
+        // get error string
+        ErrorHandler *eh = (ErrorHandler*)qq.messageHandler();
+        qDebug() << eh->theError;
+    }
+
     bool rc1 = qq.evaluateTo(&retval);
 
     return retval;

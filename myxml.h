@@ -17,6 +17,8 @@ public:
 
     static  QString Find(QString fnxpath, QString fnxml, QString fout);
     static  QString xsl_xml(QString fnxsl, QString fnxml, QString fout);
+    static int FindByXpathFromString(QString srcXML,    QString xpath, QString &parOut);
+    static int FindByXpathFromFile(QString srcFileName, QString xpath, QString &parOut);
 
 private:
     static  QDomElement Find();
