@@ -1,0 +1,1113 @@
+#-------------------------------------------------
+#
+# Project created by QtCreator 2012-02-13T13:42:39
+#
+#-------------------------------------------------
+cache()
+
+
+# When changing application identifier names below, modify updateProcess.py and ChangeLogLib.py accordingly.
+# Don't forget to change, recompile and add to MainFolderWin the Windows launcher
+# See also below APPLICATIONFILENAME, FOLDERAPPNAME, PACKAGENAMEPREFIX
+
+# Identifying the application in Mac/Linux Settings or Windows Registry base
+# APPSIMPLENAME is used in the updater script as the prefix of the xml files (see the 'app' variable in updateProcess.py)
+APPSIMPLENAME=iclicker #no symbols, no space, only alphanum
+
+# Folder/Package/Application filenames - No escaping
+APPMARKETNAME="i>clicker" #see also ApplicationMarketName in iclickervariables.cpp ; because of this ">" character, the APPMARKETNAME cannot be not passed to the preprocessor and must be passed manually :-( (Windows)
+WINDOWNAME="iclicker" #rephrasing of the above APPMARKETNAME without the ">" symbol; will be used for folder/zip/application file names in Windows; you can use space without needing to escape it
+
+# Same as above but with all special characters (>, blank space) being escaped with a "\" !
+QMAKEAPPMARKETNAME="i\>clicker" #see also ApplicationMarketName in iclickervariables.cpp ; because of this ">" character, the APPMARKETNAME cannot be not passed to the preprocessor and must be passed manually :-( (Windows)
+QMAKEWINDOWNAME="iclicker" #rephrase the above APPMARKETNAME without the ">" symbol will be used for folder/zip/application file names in Windows
+
+
+COMPANYSIMPLENAME=macmillannewventures  #Don't change it for a given product, because Mac OS X identifies the application through this key
+COMPANYMARKETNAME="Macmillan New Ventures"
+
+# Don't change it unless signing certificate owner changed
+CERTIFICATEIDENTITY = "Holtzbrinck Publishers, LLC"
+CERTIFICATEIDENTITY_MAC = "Developer ID Application: HPHLP"
+
+#COMPANYNAME is used for
+# - identifying the application (for settings + APPSIMPLENAME)
+# - sharing signatures with oher bundles
+
+# Make mac os 10.6 available - in addition compile Qt with the -noc11 option (see Developer's Guide)
+QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.6
+
+
+CONFIG(release, debug|release):DEFINES += QT_NO_DEBUG_OUTPUT
+#DEFINES += QT_NO_DEBUG_OUTPUT
+
+# Remove unnecessary binary code (for static builds) \todo
+#LIBS+= -dead_strip # see comment about plugins callbacks http://stackoverflow.com/questions/5591846/avoid-linking-in-unused-symbols-when-linking-against-static-libs
+#CONFIG += static
+
+
+################################################
+
+# Defaults:
+APPLICATIONFILENAME = $$APPMARKETNAME
+FOLDERAPPNAME = "i>clicker" # $$APPMARKETNAME
+PACKAGENAMEPREFIX = "i>clicker" # $$APPMARKETNAME
+TARGET = $$QMAKEAPPMARKETNAME
+
+# change the above names for Windows
+win32 {
+    APPLICATIONFILENAME = $$WINDOWNAME
+    FOLDERAPPNAME = "iclicker" # $$WINDOWNAME
+    PACKAGENAMEPREFIX = $$FOLDERAPPNAME # $$WINDOWNAME
+    TARGET = $$QMAKEWINDOWNAME
+
+}
+
+# change the above filename on debug mode for mac (running in debug mode with ">" symbol doesn't work)
+macx {
+    CONFIG(debug, debug|release) {
+        APPLICATIONFILENAME = $$APPSIMPLENAME
+        TARGET = $$APPSIMPLENAME
+    }
+    CONFIG(release, debug|release) {
+        APPLICATIONFILENAME = "iclicker"
+        FOLDERAPPNAME = "iclicker" # $$WINDOWNAME
+        PACKAGENAMEPREFIX = $$FOLDERAPPNAME # $$WINDOWNAME
+        TARGET = $$QMAKEWINDOWNAME
+    }
+}
+
+unix {
+  !macx {
+    APPLICATIONFILENAME = "iclicker"
+    FOLDERAPPNAME = "iclicker" # $$WINDOWNAME
+    PACKAGENAMEPREFIX = $$FOLDERAPPNAME # $$WINDOWNAME
+    TARGET = $$QMAKEWINDOWNAME
+  }
+}
+
+
+################################################
+# Don't use "+=" operator here
+win32 {
+    APPLICATIONFILENAME = "$${APPLICATIONFILENAME}.exe"
+}
+macx {
+    APPLICATIONFILENAME = "$${APPLICATIONFILENAME}.app"
+}
+
+
+#only version 5
+#still no support in Qt for c++11
+contains(QT_VERSION, ^5..*) {
+    QT += widgets
+    QT += webkitwidgets
+    #QTPLUGIN += jpeg iconengines
+#    CONFIG += c++11
+}
+# end only version 5
+#only version 4
+contains(QT_VERSION, ^4..*) {
+    #QT += jpeg iconengines
+    QT += webkit
+}
+# end only version 4
+QT += core
+QT += declarative
+QT += xml svg
+QT += network
+QT += xmlpatterns
+# POC working window, working thread
+QT += concurrent widgets
+
+TEMPLATE = app
+
+
+#####################################################################################
+#################### !!! NEVER MODIFY THIS SECTION BY HAND !!! ######################
+############################# !!! AUTOMATIC SECTION !!! #############################
+### Section modified by "updateProcess.py" release script, see Developer's Guide ###
+#####################################################################################
+DEVREVISION = 100 #####AUTOMATIC
+VERSIONSTRING = "7.1.0" #####AUTOMATIC
+VERSIONSTRINGSTRIPPED = "7.1.0" #####AUTOMATIC
+BRANCH = "QA" #####AUTOMATIC
+SHORTVERSION = 7 #####AUTOMATIC
+MIDVERSION = $${SHORTVERSION}.1 #####AUTOMATIC
+LONGVERSION=$${VERSIONSTRING}
+#####################################################################################
+########################## !!! END OF AUTOMATIC SECTION !!! #########################
+#####################################################################################
+
+BUILDDATE = $$_DATE_
+
+VERSION=$$LONGVERSION
+
+message(date: $$BUILDDATE)
+
+DEFINES += APPSIMPLENAME=\"\\\"$${APPSIMPLENAME}\\\"\"
+DEFINES += COMPANYSIMPLENAME=\"\\\"$${COMPANYSIMPLENAME}\\\"\"
+DEFINES += COMPANYMARKETNAME=\"\\\"$${COMPANYMARKETNAME}\\\"\"
+DEFINES += APPLICATIONFILENAME=\"\\\"$${APPLICATIONFILENAME}\\\"\"
+DEFINES += SHORTVERSION=\"\\\"$${SHORTVERSION}\\\"\"
+DEFINES += MIDVERSION=\"\\\"$${MIDVERSION}\\\"\"
+DEFINES += LONGVERSION=\"\\\"$${LONGVERSION}\\\"\"
+DEFINES += BRANCH=\"\\\"$${BRANCH}\\\"\"
+DEFINES += BUILDDATE=\"\\\"$${BUILDDATE}\\\"\"
+DEFINES += VERSIONSTRING=\"\\\"$${VERSIONSTRING}\\\"\"
+DEFINES += VERSIONSTRINGSTRIPPED=\"\\\"$${VERSIONSTRINGSTRIPPED}\\\"\"
+DEFINES += DEVREVISION=\"\\\"$${DEVREVISION}\\\"\"
+
+INCLUDEPATH += ../Tools/boost/current \
+                ../Tools/xslt/include/libxml2 \
+                ../Tools/xslt/include \
+                ../Tools/quazip/include \
+                myhidapi/ \
+                ./Implementations/DerivedQtClasses \
+                ./iClickerAPI/Implementations/iclickerusbapi/include
+
+use_log4cxx_lib {
+    DEFINES += USE_LOG4CXX_LOGGER
+    INCLUDEPATH += ../Tools/log4cxx/include
+}
+
+# define for mingw Boost libraries
+DEFINES += BOOST_THREAD_USE_LIB
+
+#define for using iclicker usb api
+DEFINES += USING_ICLICKER_USB_API
+
+win32 {
+    # supports logging
+
+    #Libs for xml2 + xslt
+    LIBS += ..\Tools\xslt\lib\libxslt.a
+    LIBS += ..\Tools\xslt\lib\libexslt.a
+    LIBS += ..\Tools\xslt\lib\libxml2.a
+    LIBS += -lws2_32
+
+    #Libs for quazip
+    LIBS += ..\Tools\quazip\lib\libquazip.a
+
+#    QMAKE_CXXFLAGS[_RELEASE] = -static-libgcc -static-libstdc++
+
+    # for gSOAP with SSL see http://www.wittfella.com/openssl
+    # add flag to compiler for support SSL on gSOAP win
+    QMAKE_CXXFLAGS += -DWITH_OPENSSL
+
+    BOOSTPATH=../Tools/boost/current/stage/lib
+
+    exists($$BOOSTPATH/libboost_thread-mgw44-mt-1_49.a): LIBS += -L$$BOOSTPATH -lboost_thread-mgw44-mt-1_49 -lboost_date_time-mgw44-mt-1_49 -lboost_system-mgw44-mt-1_49 -lboost_filesystem-mgw44-mt-1_49
+#-lboost_chrono-mgw47-mt-1_54
+    exists($$BOOSTPATH/libboost_thread-mgw47-mt-1_54.a): LIBS += -L$$BOOSTPATH -lboost_thread-mgw47-mt-1_54 -lboost_date_time-mgw47-mt-1_54 -lboost_system-mgw47-mt-1_54 -lboost_filesystem-mgw47-mt-1_54
+
+    exists($$BOOSTPATH/libboost_thread-mgw48-mt-1_54.a): LIBS += -L$$BOOSTPATH -lboost_thread-mgw48-mt-1_54 -lboost_date_time-mgw48-mt-1_54 -lboost_system-mgw48-mt-1_54 -lboost_filesystem-mgw48-mt-1_54
+
+    #Needed for Boost Asio
+    LIBS += -lwsock32 -lpsapi
+    DEFINES += _WIN32_WINNT=0x0501
+    #DEFINES += _WIN32_WINNT=0x0502
+
+    #Libs for gSOAP + SSL
+    LIBS += ..\Tools\openssl\openssl-1.0.1c_static_w32_mingw\libssl.a
+    LIBS += ..\Tools\openssl\openssl-1.0.1c_static_w32_mingw\libcrypto.a
+    LIBS += C:\MinGW\lib\libws2_32.a
+    LIBS += C:\MinGW\lib\libgdi32.a
+}
+macx {
+    LIBS += -L../Tools/boost/current/stage/lib -lboost_thread -lboost_chrono -lboost_date_time -lboost_system -lboost_filesystem
+    #For sending keys event outside the OS
+    LIBS += -framework ApplicationServices
+    LIBS += -L../Tools/gsoap/current/lib -lgsoapssl++
+    # Libs for xml2 + xslt
+    LIBS += -L../Tools/xslt/lib -lxslt -lxml2
+    # Libs for quazip
+    LIBS += -L../Tools/quazip/lib -lquazip
+    # Libs for log4cxx
+    use_log4cxx_lib {
+        LIBS += -L../Tools/log4cxx/lib -llog4cxx -lapr-1 -laprutil-1
+    }
+    LIBS += -lssl -lcrypto -lz
+    LIBS += -framework Foundation -framework AppKit
+}
+unix {
+    !macx {
+    # header files for xml2 + xslt
+    INCLUDEPATH += /usr/include/libxml2
+    LIBS += -L/usr/lib64 -lboost_thread-mt -lboost_chrono -lboost_date_time-mt -lboost_system-mt -lboost_filesystem-mt
+    LIBS += -L/usr/local/lib -larchive -lz
+    LIBS += -L../Tools/gsoap/current/lib -lgsoapssl++
+    # Libs for xml2 + xslt
+    LIBS += -L/usr/lib/x86_64-linux-gnu -lxml2 -lxslt
+    # Libs for quazip
+    LIBS += -L../Tools/quazip/lib -lquazip
+    LIBS += -lssl -lcrypto -lz
+    LIBS += -lX11
+    }
+}
+
+
+OBJECTIVE_SOURCES += Implementations/cocoaalwaysontop.mm
+
+SOURCES += main.cpp\
+        iclickerlite.cpp \
+    statuswidget.cpp \
+    iclickerhid.cpp \
+    votecontrolwidget.cpp \
+    Interfaces/ialwaysontop.cpp \
+    Implementations/basemanagementeventsqt.cpp \
+    Implementations/basedataeventsqt.cpp \
+    voteresults.cpp \
+    iClickerAPI/Interfaces/ideviceid.cpp \
+    iClickerAPI/Interfaces/idevicereader.cpp \
+    iClickerAPI/Interfaces/ihid.cpp \
+    iClickerAPI/Interfaces/irawdataelement.cpp \
+    iClickerAPI/Interfaces/ispecificationcollection.cpp \
+    iClickerAPI/Interfaces/iusbspecifications.cpp \
+    iClickerAPI/Interfaces/ivotesession.cpp \
+    iClickerAPI/Implementations/connectbase.cpp \
+    iClickerAPI/Implementations/deviceidhid.cpp \
+    iClickerAPI/Implementations/devicereader.cpp \
+    iClickerAPI/Implementations/hidhidapi.cpp \
+    iClickerAPI/Implementations/inputreportsparser.cpp \
+    iClickerAPI/Implementations/protocoliclicker.cpp \
+    iClickerAPI/Implementations/rawdataelement.cpp \
+    iClickerAPI/Implementations/sleeperhid.cpp \
+    iClickerAPI/Implementations/specificationcollectioniclicker1479F03Rev7.cpp \
+    iClickerAPI/Implementations/votesession.cpp \
+    iClickerAPI/Implementations/voteelement.cpp \
+    iClickerAPI/Implementations/iclickerapi.cpp \
+    iClickerAPI/Implementations/sleeperboost.cpp \
+    iClickerAPI/Implementations/basemanagement.cpp \
+    iclickeridvalidator.cpp \
+    Implementations/votesessionstack.cpp \
+    votesessionstackexporter.cpp \
+    Implementations/voteconstantsqt.cpp \
+    Interfaces/settingswidget.cpp \
+    iclickersettings.cpp \
+    iclickeroptions.cpp \
+    Implementations/voteeventsqt.cpp \
+    iClickerAPI/Implementations/helpers.cpp \
+    iClickerAPI/Interfaces/isettingsapi.cpp \
+    iClickerAPI/Implementations/settingsapi.cpp \
+    Implementations/actionlist.cpp \
+    Implementations/statemachine.cpp \
+    Implementations/signalstriggeractions.cpp \
+    Implementations/States/statepollingvotes.cpp \
+    Implementations/votetimer.cpp \
+    iClickerAPI/Interfaces/ieventloop.cpp \
+    iClickerAPI/Implementations/eventloop.cpp \
+    pollingvotestatewidget.cpp \
+    pollingstoppedstatewidget.cpp \
+    Interfaces/isendkeys.cpp \
+    Implementations/sendkeysmacosx.cpp \
+    Implementations/sendkeyscrossplatform.cpp \
+    Implementations/sendkeyswindows.cpp \
+    Implementations/States/stateekeyaddsecondstotimer.cpp \
+    Implementations/States/stateekeyselectanswer.cpp \
+    Interfaces/totalanswers.cpp \
+    Implementations/States/statefinal.cpp \
+    Implementations/screenshot.cpp \
+    Interfaces/ilogmessagehandler.cpp \
+    Implementations/logmessagehandlertofile.cpp \
+    Implementations/coursemodel.cpp \
+    Interfaces/settingsWidgetPages/pollingpage.cpp \
+    Interfaces/settingsWidgetPages/scoringpage.cpp \
+    Interfaces/settingsWidgetPages/resultspage.cpp \
+    Interfaces/settingsWidgetPages/basedisplaypage.cpp \
+    Interfaces/settingsWidgetPages/generalpage.cpp \
+    Implementations/States/statelistenbase.cpp \
+    Implementations/resumesessionparser.cpp \
+    mainwindow.cpp \
+    createcoursedialog.cpp \
+    Implementations/States/statestandby.cpp \
+    Implementations/stylewhite.cpp \
+    votesessionstackprocess.cpp \
+    beepregexpvalidator.cpp \
+    Implementations/iclickervariables.cpp \
+    Implementations/States/statetoolbarshown.cpp \
+    Implementations/States/statefrequencyalert.cpp \
+    freqalertmessage.cpp \
+    error.cpp \
+    Implementations/richqclickeranswer.cpp \
+    Implementations/States/statepollingstopped.cpp \
+    Implementations/leftbar.cpp \
+    Interfaces/settingsWidgetPages/lmsmanagement.cpp \
+    Interfaces/iupdater.cpp \
+    updatergui.cpp \
+    updatedownloadmanager.cpp \
+    Implementations/States/stateupdater.cpp \
+    updatexmlparser.cpp \
+    winupdatedownloadmanager.cpp \
+    Implementations/remoteidwatcher.cpp \
+    Implementations/lmsentry.cpp \
+    Implementations/Rosters/rostergeneral.cpp \
+    Implementations/Rosters/rosterangel.cpp \
+    Implementations/Rosters/rostercanvas.cpp \
+    Implementations/Rosters/rosterdesire2learn.cpp \
+    Implementations/Rosters/rostermoodle.cpp \
+    Implementations/Rosters/rostersakai.cpp \
+    Implementations/Rosters/rosterblackboard.cpp \
+    Implementations/Rosters/rosterclass.cpp \
+    controller.cpp \
+    iclickerfilesystembase.cpp \
+    Implementations/iclickerwebbase.cpp \
+    SOAPeviroment/envC.cpp \
+    SOAPwebClickerProxyProd/WebVotingServiceProdServiceSoap12Proxy.cpp \
+    SOAPwebClickerProxyProd/WebVotingServiceProdC.cpp \
+    SOAPwebClickerProxyDev/WebVotingServiceDevServiceSoap12Proxy.cpp \
+    SOAPwebClickerProxyDev/WebVotingServiceDevC.cpp \
+    SOAPwebClickerProxyGoTest/WebVotingServiceGoTestServiceSoapProxy.cpp \
+    SOAPwebClickerProxyGoTest/WebVotingServiceGoTestC.cpp \
+    iclickerGO/iclickergomanager.cpp \
+    iclickerGO/allcoursesclickergosettings.cpp \
+    iclickerGO/WebConfig/webconfigmanager.cpp \
+    iclickerGO/WebConfig/WebVotingConfigC.cpp \
+    iclickerGO/WebConfig/base64.cpp \
+    rollcall/rollcallgui.cpp \
+    Implementations/States/staterollcall.cpp \
+    Implementations/lcdscreenmessage.cpp \
+    rollcall/rollcallmodel.cpp \
+    rollcall/rollcallsession.cpp \
+    rollcall/carddata.cpp \
+    Interfaces/settingsWidgetPages/iclickergopage.cpp \
+    iclickerGO/iclickergosettings.cpp \
+    webClickerAPI/Implementations/webbasemanagement.cpp \
+    webClickerAPI/Implementations/connectwebbase.cpp \
+    webClickerAPI/Implementations/protocolwebclickerdev.cpp \
+    Implementations/sendkeyslinux.cpp \
+    webClickerAPI/Implementations/protocolwebclickerprod.cpp \
+    webClickerAPI/Implementations/webclickerapi.cpp \
+    iclickerGO/webvotes.cpp \
+    webClickerAPI/Implementations/webclickerexception.cpp \
+    chartwebkit.cpp \
+    chartcontainer.cpp \
+    Implementations/States/statechartshown.cpp \
+    Implementations/histogramdata.cpp \
+    correctanswersdialog.cpp \
+    iClickerAPI/Implementations/writerbaseloop.cpp \
+    Implementations/States/statesearchingbase.cpp \
+    Implementations/States/stateconnectingbase.cpp \
+    aboutapp.cpp \
+    Implementations/updatefailwarning.cpp \
+    Implementations/updatefailcritical.cpp \
+    webClickerAPI/Implementations/protocolwebclickergotest.cpp \
+    Interfaces/settingsWidgetPages/onlypollingwarning.cpp \
+    Implementations/qactionhideshortcut.cpp \
+    Implementations/menunofocus.cpp \
+    Implementations/comboboxnofocus.cpp \
+    Implementations/remoteidfilehandler.cpp \
+    loanclicker.cpp \
+    capturecode/capturebasecodesession.cpp \
+    capturecode/capturebasecodemodel.cpp \
+    iclickerGO/sitelicense.cpp \
+    Implementations/States/statecheckingbase.cpp \
+    Diagnostics/sessionstatistics.cpp \
+    Diagnostics/activesessionstatistics.cpp \
+    Diagnostics/parsesessionstatistics.cpp \
+    selectlanguage.cpp \
+    Logger/Logger.cpp \
+    Implementations/XML/clsxml.cpp \
+    Implementations/XML/mod_xml.cpp \
+    Implementations/XML/csvprocessingthread.cpp \
+    Implementations/States/stategradebookwinshown.cpp \
+    Gradebook/gradebookwindow.cpp \
+    Gradebook/studentdetails.cpp \
+    Gradebook/exportsessiondata.cpp \
+    Gradebook/synchronize.cpp \
+    Gradebook/reports.cpp \
+    Implementations/XML/clssession.cpp \
+    Implementations/XML/clslectures.cpp \
+    Gradebook/sessionsummary.cpp \
+    Gradebook/sessionviewwindow.cpp \
+    Gradebook/iclickerID/addclickerid.cpp \
+    Gradebook/iclickerID/iclickerremoteidvalidator.cpp \
+    Gradebook/iclickerID/unregisteredclicker.cpp \
+    Gradebook/iclickerID/removedclickerid.cpp \
+    Gradebook/chart/gradebookresultschart.cpp \
+    Gradebook/sessionviewscoring.cpp \
+    Gradebook/sync/webregistration.cpp \
+    Gradebook/sync/clsregistrationdownload.cpp \
+    Gradebook/reports/myxslt.cpp \
+    Gradebook/reports/myexcelreport.cpp \
+    Implementations/myzip.cpp \
+    Gradebook/export/exportcustomization.cpp \
+    Implementations/CSV/csvfilehandler.cpp \
+    Gradebook/datalayer/dlexportdata.cpp \
+    Gradebook/datalayer/dlpointsdata.cpp \
+    Gradebook/datalayer/dlsessionsummary.cpp \
+    Gradebook/datalayer/dlstudentsummary.cpp \
+    Gradebook/datalayer/dloverallsummary.cpp \
+    Gradebook/lmsintegrator/lmsintegrator.cpp \
+    Gradebook/lmsintegrator/moodleintegrator.cpp \
+    Gradebook/lmsintegrator/sakaiintegrator.cpp \
+    Gradebook/lmsintegrator/d2lintegrator.cpp \
+    Gradebook/lmsintegrator/canvasintegrator.cpp \
+    Gradebook/lmsintegrator/bbintegrator.cpp \
+    Gradebook/lmsintegrator/httpcommunication.cpp \
+    Interfaces/settingsWidgetPages/lmsregistrationpage.cpp \
+    Interfaces/settingsWidgetPages/rollcallregistrationpage.cpp \
+    Interfaces/settingsWidgetPages/lmslogin.cpp \
+    Interfaces/settingsWidgetPages/lmsselectcourse.cpp \
+    Gradebook/lmsintegrator/lmsconfig.cpp \
+    Interfaces/settingsWidgetPages/lmslogind2l.cpp \
+    Interfaces/settingsWidgetPages/lmslogincanvas.cpp \
+    Interfaces/settingsWidgetPages/lmslogincanvas_whatisthis.cpp \
+    Interfaces/settingsWidgetPages/lmsloginbb_whatisthis.cpp \
+    Interfaces/settingsWidgetPages/lmsloginmoodle_whatisthis.cpp \
+    Gradebook/synclms.cpp \
+    Gradebook/sync/lms/uploadsessiondata.cpp \
+    Gradebook/sync/lms/uploadcustomization.cpp \
+    Gradebook/sync/lms/transmissionreport.cpp \
+    Implementations/Tables/gradebooktablewidgetitem.cpp \
+    Gradebook/listsessions.cpp \
+    iClickerAPI/Implementations/iclickerusbapi/src/iclicker_api.c \
+    iClickerAPI/Implementations/iclickerusbapi/src/iclicker_utils.c \
+    iClickerAPI/Implementations/iclickerusbapi/src/iclicker2_api.c \
+    iClickerAPI/Implementations/iclickerusbapi/src/iclicker2_hid.c \
+    iClickerAPI/Implementations/iclickerusbapi/src/iclicker24ghz_api.c \
+    iClickerAPI/Implementations/iclickerusbapi/src/iclicker24ghz_serial.c \
+    Implementations/XML/xmlfilehandler.cpp \
+    Implementations/XML/xslttemplates.cpp \
+    iClickerAPI/Implementations/usbclickerexception.cpp \
+    Gradebook/rosterimport/rosterimport.cpp \
+    myqprogressdialog.cpp \
+    Implementations/XML/loadsessionsthread.cpp \
+    Implementations/DerivedQtClasses/spinboxwithvalidator.cpp
+
+
+HEADERS  += iclickerlite.h \
+    statuswidget.h \
+    iclickerhid.h \
+    iclickerinterface.h \
+    votecontrolwidget.h \
+    Implementations/basemanagementeventsqt.h \
+    Implementations/basedataeventsqt.h \
+    Implementations/BaseManagementQtSignals.h \
+    Implementations/basedataeventsqtsignals.h \
+    Implementations/cocoalawaysontop.h \
+    voteresults.h \
+    iClickerAPI/Interfaces/ideviceid.h \
+    iClickerAPI/Interfaces/ihid.h \
+    iClickerAPI/Interfaces/iinputreportsparser.h \
+    iClickerAPI/Interfaces/iprotocol.h \
+    iClickerAPI/Interfaces/irawdata.h \
+    iClickerAPI/Interfaces/iconnectbase.h \
+    iClickerAPI/Interfaces/idevicereader.h \
+    iClickerAPI/Interfaces/irawdataelement.h \
+    iClickerAPI/Interfaces/isleeper.h \
+    iClickerAPI/Interfaces/iusbspecifications.h \
+    iClickerAPI/Interfaces/ivoteelement.h \
+    iClickerAPI/Interfaces/ivotesession.h \
+    iClickerAPI/Interfaces/ispecificationcollection.h \
+    iClickerAPI/Interfaces/ibasedataevents.h \
+    iClickerAPI/Interfaces/ibasemanagementevents.h \
+    iClickerAPI/Interfaces/iiclickerapi.h \
+    iClickerAPI/Interfaces/ivotesessionmutators.h \
+    iClickerAPI/Interfaces/ibasemanagement.h \
+    iClickerAPI/Implementations/connectbase.h \
+    iClickerAPI/Implementations/deviceidhid.h \
+    iClickerAPI/Implementations/devicereader.h \
+    iClickerAPI/Implementations/hidhidapi.h \
+    iClickerAPI/Implementations/inputreportsparser.h \
+    iClickerAPI/Implementations/protocoliclicker.h \
+    iClickerAPI/Implementations/rawdataelement.h \
+    iClickerAPI/Implementations/sleeperhid.h \
+    iClickerAPI/Implementations/specificationcollectioniclicker1479F03Rev7.h \
+    iClickerAPI/Implementations/voteelement.h \
+    iClickerAPI/Implementations/votesession.h \
+    iClickerAPI/Implementations/iclickerapi.h \
+    iClickerAPI/Implementations/sleeperboost.h \
+    iClickerAPI/Implementations/basemanagement.h \
+    iClickerAPI/Implementations/basedataevents.h \
+    iClickerAPI/Interfaces/API-Types.h \
+    iclickeridvalidator.h \
+    iClickerAPI/dlldef.h \
+    Implementations/votesessionstack.h \
+    Interfaces/ivotesessionstack.h \
+    Interfaces/ialwaysontop.h \
+    votesessionstackexporter.h \
+    iClickerAPI/Interfaces/ivoteconstants.h \
+    Implementations/voteconstantsqt.h \
+    Interfaces/settingswidget.h \
+    iclickersettings.h \
+    iclickeroptions.h \
+    Interfaces/ivoteevents.h \
+    Implementations/voteeventsqtsignals.h \
+    Implementations/voteeventsqt.h \
+    iClickerAPI/Implementations/helpers.h \
+    Interfaces/QiClicker-Types.h \
+    Interfaces/idesignstyle.h \
+    iClickerAPI/Interfaces/isettingsapi.h \
+    iClickerAPI/Implementations/settingsapi.h \
+    Implementations/actionlist.h \
+    Implementations/statemachine.h \
+    Implementations/signalstriggeractions.h \
+    Implementations/States/statepollingvotes.h \
+    Implementations/votetimer.h \
+    iClickerAPI/Interfaces/ieventloop.h \
+    iClickerAPI/Implementations/eventloop.h \
+    pollingvotestatewidget.h \
+    pollingstoppedstatewidget.h \
+    Interfaces/isendkeys.h \
+    Implementations/sendkeysmacosx.h \
+    Implementations/sendkeyscrossplatform.h \
+    Implementations/sendkeyswindows.h \
+    Implementations/States/stateekeyaddsecondstotimer.h \
+    Implementations/States/stateekeyselectanswer.h \
+    Interfaces/totalanswers.h \
+    Implementations/States/statefinal.h \
+    Interfaces/iscreenshot.h \
+    Implementations/screenshot.h \
+    Interfaces/ilogmessagehandler.h \
+    Implementations/logmessagehandlertofile.h \
+    Implementations/coursemodel.h \
+    Interfaces/ilcdscreenmessage.h \
+    Implementations/lcdscreenmessage.h \
+    Interfaces/settingsWidgetPages/pollingpage.h \
+    Interfaces/settingsWidgetPages/scoringpage.h \
+    Interfaces/settingsWidgetPages/resultspage.h \
+    Interfaces/settingsWidgetPages/basedisplaypage.h \
+    Interfaces/settingsWidgetPages/generalpage.h \
+    Implementations/States/statelistenbase.h \
+    Implementations/resumesessionparser.h \
+    mainwindow.h \
+    createcoursedialog.h \
+    Implementations/States/statestandby.h \
+    Implementations/stylewhite.h \
+    votesessionstackprocess.h \
+    beepregexpvalidator.h \
+    Implementations/iclickervariables.h \
+    Implementations/States/statetoolbarshown.h \
+    Implementations/States/statefrequencyalert.h \
+    freqalertmessage.h \
+    error.h \
+    resources/Icons/version.h \
+    Implementations/richqclickeranswer.h \
+    sessionsparameters.h \
+    Implementations/States/statepollingstopped.h \
+    Implementations/leftbar.h \
+    Interfaces/settingsWidgetPages/lmsmanagement.h \
+    Interfaces/iupdater.h \
+    updatergui.h \
+    updatedownloadmanager.h \
+    Implementations/States/stateupdater.h \
+    updatexmlparser.h \
+    winupdatedownloadmanager.h \
+    Implementations/remoteidwatcher.h \
+    Implementations/lmsentry.h \
+    Interfaces/Rosters/iroster.h \
+    Implementations/Rosters/rostergeneral.h \
+    Implementations/Rosters/rosterangel.h \
+    Implementations/Rosters/rostercanvas.h \
+    Implementations/Rosters/rosterdesire2learn.h \
+    Implementations/Rosters/rostermoodle.h \
+    Implementations/Rosters/rostersakai.h \
+    Implementations/Rosters/rosterblackboard.h \
+    Implementations/Rosters/rosterclass.h \
+    controller.h \
+    iclickerfilesystembase.h \
+    Implementations/iclickerwebbase.h \
+    iclickerGO/iclickergomanager.h \
+    iclickerGO/allcoursesclickergosettings.h \
+    iclickerGO/WebConfig/webconfigmanager.h \
+    webClickerAPI/Interfaces/IWebClickerAPI.h \
+    iclickerGO/WebConfig/base64.h \
+    rollcall/rollcallgui.h \
+    Implementations/States/staterollcall.h \
+    rollcall/rollcallmodel.h \
+    rollcall/rollcallsession.h \
+    rollcall/carddata.h \
+    Interfaces/settingsWidgetPages/iclickergopage.h \
+    iclickerGO/iclickergosettings.h \
+    iclickerGO/webservercourse.h \
+    webClickerAPI/Implementations/webbasemanagement.h \
+    webClickerAPI/Implementations/connectwebbase.h \
+    webClickerAPI/Implementations/protocolwebclickerdev.h \
+    Implementations/sendkeyslinux.h \
+    webClickerAPI/Implementations/protocolwebclickerprod.h \
+    webClickerAPI/Interfaces/iprotocolwebclicker.h \
+    webClickerAPI/Implementations/webclickerapi.h \
+    iclickerGO/webvotes.h \
+    webClickerAPI/Implementations/webclickerexception.h \
+    registerinstrparameters.h \
+    chartwebkit.h \
+    chartcontainer.h \
+    Implementations/States/statechartshown.h \
+    Implementations/histogramdata.h \
+    correctanswersdialog.h \
+    iClickerAPI/Implementations/writerbaseloop.h \
+    Implementations/States/statesearchingbase.h \
+    Implementations/States/stateconnectingbase.h \
+    aboutapp.h \
+    Implementations/updatefailwarning.h \
+    Implementations/updatefailcritical.h \
+    webClickerAPI/Implementations/protocolwebclickergotest.h \
+    Interfaces/settingsWidgetPages/onlypollingwarning.h \
+    Implementations/qactionhideshortcut.h \
+    Implementations/foreach.h \
+    Implementations/menunofocus.h \
+    Implementations/comboboxnofocus.h \
+    Implementations/remoteidfilehandler.h \
+    loanclicker.h \
+    capturecode/capturebasecodesession.h \
+    capturecode/capturebasecodemodel.h \
+    iclickerGO/sitelicense.h \
+    Implementations/States/statecheckingbase.h \
+    Diagnostics/sessionstatistics.h \
+    Diagnostics/activesessionstatistics.h \
+    Diagnostics/parsesessionstatistics.h \
+    selectlanguage.h \
+    Logger/Logger.h \
+    Implementations/XML/mod_xml.h \
+    Implementations/XML/csvprocessingthread.h \
+    Implementations/XML/clsxml.h \
+    Implementations/States/stategradebookwinshown.h \
+    Gradebook/gradebookwindow.h \
+    Gradebook/studentdetails.h \
+    Gradebook/exportsessiondata.h \
+    Gradebook/synchronize.h \
+    Gradebook/reports.h \
+    Implementations/XML/clssession.h \
+    Implementations/XML/clslectures.h \
+    Gradebook/sessionsummary.h \
+    Gradebook/sessionviewwindow.h \
+    Gradebook/iclickerID/addclickerid.h \
+    Gradebook/iclickerID/iclickerremoteidvalidator.h \
+    Gradebook/iclickerID/unregisteredclicker.h \
+    Gradebook/iclickerID/removedclickerid.h \
+    Gradebook/chart/gradebookresultschart.h \
+    Gradebook/sessionviewscoring.h \
+    Gradebook/sync/webregistration.h \
+    Gradebook/sync/clsregistrationdownload.h \
+    Gradebook/reports/myxslt.h \
+    Gradebook/reports/myexcelreport.h \
+    Implementations/myzip.h \
+    Gradebook/export/exportcustomization.h \
+    Implementations/CSV/csvfilehandler.h \
+    Gradebook/datalayer/dlexportdata.h \
+    Gradebook/datalayer/dlpointsdata.h \
+    Gradebook/datalayer/dlsessionsummary.h \
+    Gradebook/datalayer/dlstudentsummary.h \
+    Gradebook/datalayer/dloverallsummary.h \
+    Gradebook/lmsintegrator/lmsintegrator.h \
+    Gradebook/lmsintegrator/moodleintegrator.h \
+    Gradebook/lmsintegrator/sakaiintegrator.h \
+    Gradebook/lmsintegrator/d2lintegrator.h \
+    Gradebook/lmsintegrator/canvasintegrator.h \
+    Gradebook/lmsintegrator/bbintegrator.h \
+    Gradebook/lmsintegrator/httpcommunication.h \
+    Interfaces/settingsWidgetPages/lmsregistrationpage.h \
+    Interfaces/settingsWidgetPages/rollcallregistrationpage.h \
+    Interfaces/settingsWidgetPages/lmslogin.h \
+    Interfaces/settingsWidgetPages/lmsselectcourse.h \
+    Gradebook/lmsintegrator/lmsconfig.h \
+    Interfaces/settingsWidgetPages/lmslogind2l.h \
+    Interfaces/settingsWidgetPages/lmslogincanvas.h \
+    Interfaces/settingsWidgetPages/lmslogincanvas_whatisthis.h \
+    Interfaces/settingsWidgetPages/lmsloginbb_whatisthis.h \
+    Interfaces/settingsWidgetPages/lmsloginmoodle_whatisthis.h \
+    Gradebook/synclms.h \
+    Gradebook/sync/lms/uploadcustomization.h \
+    Gradebook/sync/lms/uploadsessiondata.h \
+    Gradebook/sync/lms/transmissionreport.h \
+    Implementations/Tables/gradebooktablewidgetitem.h \
+    Gradebook/listsessions.h \
+    iClickerAPI/Implementations/iclickerusbapi/include/iclickerapi/iclicker_api.h \
+    iClickerAPI/Implementations/iclickerusbapi/src/iclicker_ec.h \
+    iClickerAPI/Implementations/iclickerusbapi/src/iclicker_utils.h \
+    iClickerAPI/Implementations/iclickerusbapi/src/iclicker2_api.h \
+    iClickerAPI/Implementations/iclickerusbapi/src/iclicker2_cmds.h \
+    iClickerAPI/Implementations/iclickerusbapi/src/iclicker2_hid.h \
+    iClickerAPI/Implementations/iclickerusbapi/src/iclicker24ghz_api.h \
+    iClickerAPI/Implementations/iclickerusbapi/src/iclicker24ghz_cmds.h \
+    iClickerAPI/Implementations/iclickerusbapi/src/iclicker24ghz_serial.h \
+    Implementations/XML/xmlfilehandler.h \
+    Implementations/XML/xslttemplates.h \
+    iClickerAPI/Implementations/usbclickerexception.h \
+    Gradebook/rosterimport/rosterimport.h \
+    myqprogressdialog.h \
+    Implementations/XML/loadsessionsthread.h \
+    Implementations/DerivedQtClasses/spinboxwithvalidator.h
+
+
+FORMS    += iclickerlite.ui \
+    statuswidget.ui \
+    votecontrolwidget.ui \
+    pollingvotestatewidget.ui \
+    Interfaces/settingsWidgetPages/pollingpage.ui \
+    Interfaces/settingsWidgetPages/scoringpage.ui \
+    Interfaces/settingsWidgetPages/resultspage.ui \
+    Interfaces/settingsWidgetPages/basedisplaypage.ui \
+    Interfaces/settingsWidgetPages/generalpage.ui \
+    mainwindow.ui \
+    freqalertmessage.ui \
+    Implementations/leftbar.ui \
+    updatergui.ui \
+    iclickerGO/allcoursesclickergosettings.ui \
+    rollcall/rollcallgui.ui \
+    Interfaces/settingsWidgetPages/iclickergopage.ui \
+    iclickerGO/iclickergosettings.ui \
+    chartcontainer.ui \
+    chartwebkit.ui \
+    correctanswersdialog.ui \
+    aboutapp.ui \
+    Implementations/updatefailwarning.ui \
+    Implementations/updatefailcritical.ui \
+    Interfaces/settingsWidgetPages/onlypollingwarning.ui \
+    loanclicker.ui \
+    iclickerGO/sitelicense.ui \
+    Diagnostics/sessionstatistics.ui \
+    Diagnostics/activesessionstatistics.ui \
+    selectlanguage.ui \
+    Gradebook/gradebookwindow.ui \
+    Gradebook/studentdetails.ui \
+    Gradebook/exportsessiondata.ui \
+    Gradebook/synchronize.ui \
+    Gradebook/reports.ui \
+    Gradebook/sessionsummary.ui \
+    Gradebook/sessionviewwindow.ui \
+    Gradebook/iclickerID/addclickerid.ui \
+    Gradebook/iclickerID/unregisteredclicker.ui \
+    Gradebook/chart/gradebookresultschart.ui \
+    Gradebook/sessionviewscoring.ui \
+    Gradebook/sync/webregistration.ui \
+    Gradebook/export/exportcustomization.ui \
+    Interfaces/settingsWidgetPages/lmsregistrationpage.ui \
+    Interfaces/settingsWidgetPages/rollcallregistrationpage.ui \
+    Interfaces/settingsWidgetPages/lmslogin.ui \
+    Interfaces/settingsWidgetPages/lmsselectcourse.ui \
+    Interfaces/settingsWidgetPages/lmslogind2l.ui \
+    Interfaces/settingsWidgetPages/lmslogincanvas.ui \
+    Interfaces/settingsWidgetPages/lmslogincanvas_whatisthis.ui \
+    Interfaces/settingsWidgetPages/lmsloginbb_whatisthis.ui \
+    Interfaces/settingsWidgetPages/lmsloginmoodle_whatisthis.ui \
+    Gradebook/synclms.ui \
+    Gradebook/sync/lms/uploadsessiondata.ui \
+    Gradebook/sync/lms/uploadcustomization.ui \
+    Gradebook/sync/lms/transmissionreport.ui \
+    Gradebook/listsessions.ui \
+    Gradebook/rosterimport/rosterimport.ui
+
+OTHER_FILES += resources/Update/branches/* \
+    resources/Update/xsl-stylesheets/* \
+    resources/Update/scripts/* \
+    resources/Update/updateProcess.py \
+    rollcall/Grid.qml \
+    rollcall/rollcallLogic.js \
+    rollcall/Card.qml \
+    html/*.html \
+    html/css/* \
+    html/d3/* \
+    html/scripts/* \
+    rollcall/rollcallStyle.qss \
+    Styles/*.qss \
+    Styles/White/*.qss \
+    Styles/loanClicker-style.qss
+
+
+RESOURCES += \
+    translations.qrc \
+    styles.qrc \
+    rollcall.qrc \
+    WebChartResources.qrc \
+    LmsIntegrator_Images.qrc
+
+
+TRANSLATIONS =  translations/iClickerLite_en.ts \       # English
+                translations/iClickerLite_en_US.ts \    # United States English
+                translations/iClickerLite_pt_BR.ts \    # Brazilian Portuguese
+                translations/iClickerLite_es.ts \       # Spanish
+                translations/iClickerLite_fr.ts \       # French
+                translations/iClickerLite_fr_CA.ts      # Canadian french locale
+
+
+macx {
+    HEADERS += Implementations/updatermac.h
+    SOURCES += Implementations/updatermac.cpp
+}
+unix {
+    !macx {
+    HEADERS += Implementations/updaterlinux.h
+    SOURCES += Implementations/updaterlinux.cpp
+    }
+}
+win32 {
+    HEADERS += Implementations/updaterwin.h
+    SOURCES += SOAPeviroment/stdsoap2.cpp \
+               Implementations/updaterwin.cpp
+
+}
+
+####  HIDAPI
+win32 {
+    SOURCES += myhidapi/windows/hid.c
+    LIBS += -lsetupapi
+}
+macx {
+    SOURCES += myhidapi/mac/hid.c
+    LIBS +=-framework IOKit -framework CoreFoundation
+}
+unix {
+    !macx {
+        # sudo apt-get install libusb-1.0-0-dev libudev-dev
+        SOURCES += \
+        myhidapi/linux/hid-libusb.c
+        LIBS += `pkg-config libusb-1.0 libudev --libs` -lrt -lpthread
+        HEADERS += `pkg-config libusb-1.0 --cflags`
+    }
+}
+
+#!exists(translations/iClickerLite_fr.qm){
+#    message("Translation files not found, run lrelease (menu Tools > External > Linguist > Release)")
+#}
+
+# http://maxao.free.fr/telechargements/setfileicon.m
+
+macx:  ICON += resources/Icons/iclicker.icns
+
+RC_FILE += resources/Icons/iclicker.rc
+win32 {
+    ICON += resources/Icons/iclicker.ico
+}
+
+
+
+DEPLOYPATH = $$PWD/../Deploy
+ICLICKERDEPLOYPATH = $$DEPLOYPATH/$$FOLDERAPPNAME #PWD is where .pro is located
+CLASSES = $$ICLICKERDEPLOYPATH/Classes
+#################################
+# Create Doxygen documentation
+
+#doxDoc.extra = cd $$PWD && ./mydoxy.sh $$PWD/Doxyfile # ; cp -pr Documentation $$BUILDDOC
+#doxDoc.files = Documentation
+#doxDoc.path = $$ICLICKERDEPLOYPATH       #Rebuild Documentation only on cleaned/fresh build
+
+#################################
+# change when doing release for mac
+FOLDERNAME = $$FOLDERAPPNAME
+TMPCONTENTFOLDER=$$DEPLOYPATH/contentfolder
+FINALFOLDER=$$TMPCONTENTFOLDER/$$FOLDERNAME
+#################################
+# Copy API library files: binary and header files
+# These files are copied on "make install" command
+# unix:libAPI.extra = echo hello > yopla
+macx {
+    # advanced dmg script https://github.com/andreyvit/yoursway-create-dmg
+    # https://github.com/jirutka/macvim/blob/07b08c156291fead7107d29e8422744e7dff35f2/src/MacVim/dmg/create-dmg.sh
+
+    # icons for dmg:
+    # http://endrift.com/blog/2010/06/14/dmg-files-volume-icons-cli/
+    # http://c-command.com/dropdmg/
+    # or this makefile http://el-tramo.be/guides/fancy-dmg/
+
+    PlistBuddy=/usr/libexec/PlistBuddy
+    !exists($$PlistBuddy): error(Error: cannot find PlistBuddy)
+
+    COMCOMPANYNAME = com.$${COMPANYSIMPLENAME}.$${APPSIMPLENAME}
+
+    BUNDLENAMEIN = $${TARGET}.app
+    BUNDLENAME = $$APPLICATIONFILENAME
+    DMGNAME = $${PACKAGENAMEPREFIX}-$${VERSIONSTRINGSTRIPPED}-mac.dmg
+    DROPBOXPATH=~/Dropbox/iclicker
+
+    iclickerExec.extra = rm -rf \"$$TMPCONTENTFOLDER\" \"$$DEPLOYPATH/$$DMGNAME\" ; mkdir -p \"$$FINALFOLDER\" ;
+    iclickerExec.extra += $$PWD/resources/Icons/./setfileicon $$PWD/resources/Icons/CustomFolder.icns \"$$FINALFOLDER\" ;
+    iclickerExec.extra += cp -pr $$PWD/resources/Deployment/CommonFiles/* \"$$FINALFOLDER\"/. ; # Copy common files; not that files might be overrided by the platform MainFolder, see next command
+    iclickerExec.extra += cp -pr $$PWD/resources/Deployment/MainFolderQt521Mac/* \"$$FINALFOLDER\"/. ;
+    iclickerExec.extra += rm -f \"$$FINALFOLDER\"/Resources/DeletedCourses/empty.txt ; # trick: the empty.txt file needs to be there for ensuring the DeletedFolder is versioned
+
+    # trick because Windows doesn't support '>' character (when pulling MainFolderQt521Mac from repository on Windows)
+    #iclickerExec.extra += mv \"$$FINALFOLDER\"/igrader.app \"$$FINALFOLDER\"/i\>grader.app ;
+    #iclickerExec.extra += mv \"$$FINALFOLDER\"/i\>grader.app/Contents/MacOS/igrader \"$$FINALFOLDER\"/i\>grader.app/Contents/MacOS/i\>grader ;
+    #iclickerExec.extra += mv \"$$FINALFOLDER\"/i\>grader.app/Contents/Resources/igrader.icns \"$$FINALFOLDER\"/i\>grader.app/Contents/Resources/i\>grader.icns ;
+
+    # set icons
+    iclickerExec.extra += $$PWD/resources/Icons/./setfileicon $$PWD/resources/Icons/CustomFolder.icns \"$$FINALFOLDER\"/Resources ;
+    #iclickerExec.extra += $$PWD/resources/Icons/./setfileicon $$PWD/resources/Icons/CustomFolder.icns \"$$FINALFOLDER\"/\"iclicker Help\" ;
+    iclickerExec.extra += cp -pr $$BUNDLENAMEIN \"$$FINALFOLDER\"/. ; # no quotes for BUNDLENAMEIN because TARGET is already escaped
+
+
+    # Edit Info.plist
+    #  Available keys:
+    #   https://developer.apple.com/library/mac/#documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html
+    #   https://developer.apple.com/library/mac/#documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+    plist=$$FINALFOLDER/$$BUNDLENAME/Contents/Info.plist
+    iclickerExec.extra += $$PlistBuddy -c \"Delete :NOTE\" \"$$plist\" ;
+    iclickerExec.extra += $$PlistBuddy -c \"Delete :CFBundleGetInfoString\" \"$$plist\" ;
+    iclickerExec.extra += $$PlistBuddy -c \"Delete :CFBundleIdentifier\" \"$$plist\" ;
+
+    iclickerExec.extra += $$PlistBuddy -c \"Add :CFBundleInfoDictionaryVersion string 6.0\" \"$$plist\" ; #Apple revision numbering of the Info.plist format
+    iclickerExec.extra += $$PlistBuddy -c \"Add :CFBundleDevelopmentRegion string en\" \"$$plist\" ;
+    iclickerExec.extra += $$PlistBuddy -c \"Add :CFBundleName string $$APPMARKETNAME\" \"$$plist\" ;
+    iclickerExec.extra += $$PlistBuddy -c \"Add :CFBundleIdentifier string $$COMCOMPANYNAME\" \"$$plist\" ;
+
+    ## Retina compatibility
+    #iclickerExec.extra += $$PlistBuddy -c \"Add :NSPrincipalClass string NSApplication\" \"$$plist\" ; #Already added by Qt
+    iclickerExec.extra += $$PlistBuddy -c \"Add :NSHighResolutionCapable bool true\" \"$$plist\" ;
+
+    iclickerExec.extra += $$PlistBuddy -c \"Add :CFBundleVersion string $$VERSIONREV\" \"$$plist\" ;
+    iclickerExec.extra += $$PlistBuddy -c \"Add :CFBundleShortVersionString string $$LONGVERSION\" \"$$plist\" ;
+
+    ## If a 2nd instance is launched: raise previous instance
+    ## We don't set it anymore because it prevents self-launching application after update
+    #iclickerExec.extra += $$PlistBuddy -c \"Add :LSMultipleInstancesProhibited bool true\" \"$$plist\" ;
+
+    iclickerExec.extra += macdeployqt \"$$FINALFOLDER/$$BUNDLENAME\" -verbose=0 ; # copy Qt libs to Frameworks and relink binary against new libs location
+    iclickerExec.extra += xattr -dr com.apple.quarantine \"$$FINALFOLDER\" ; # remove any spurious quarantine attribute
+    iclickerExec.extra += codesign -f -s \"$$CERTIFICATEIDENTITY_MAC\" \"$$FINALFOLDER/$$BUNDLENAME\" ;
+    iclickerExec.extra += hdiutil create \"$$DEPLOYPATH/$$DMGNAME\" -megabytes 200 -volname \"$$FOLDERAPPNAME\" -fs HFS+ -srcfolder $$TMPCONTENTFOLDER ;
+}
+
+DLLDEPLOYFOLDER = $$ICLICKERDEPLOYPATH/Libs
+
+win32 {
+    # using Qt5.2.1
+    BUNDLENAMEIN = $$TARGET
+    BUNDLENAME = $$APPLICATIONFILENAME
+    ZIPNAME = $${PACKAGENAMEPREFIX}-$${VERSIONSTRINGSTRIPPED}-win.zip
+
+    appVeryFirst.files += $$BUNDLENAMEIN
+    appVeryFirst.extra = rmdir /S /Q \"..\i-clicker-7\..\Deploy\\$$FOLDERNAME\" & del /S /Q \"..\i-clicker-7\..\Deploy\\$$ZIPNAME\" & mkdir \"..\i-clicker-7\..\Deploy\\$${FOLDERNAME}\Libs\" & echo
+    appVeryFirst.path = $$DLLDEPLOYFOLDER
+
+
+    appFirst.files += release/$$BUNDLENAMEIN
+    appFirst.extra = echo "Should be copying target now"
+    appFirst.path = $$DLLDEPLOYFOLDER
+
+    iclickerExec.files += release/$$BUNDLENAME
+    #iclickerFinal.files += release/$$BUNDLENAME #same as iclickerExec, on purpose, trick to have Final as the last extra to be executed when everything is ready to be zipped
+    iclickerDLLs.files += $$[QT_INSTALL_BINS]/Qt5Core.dll $$[QT_INSTALL_BINS]/Qt5Gui.dll $$[QT_INSTALL_BINS]/Qt5Xml.dll
+    iclickerDLLs.files += $$[QT_INSTALL_BINS]/Qt5Svg.dll $$[QT_INSTALL_BINS]/Qt5Network.dll $$[QT_INSTALL_BINS]/Qt5Sensors.dll
+    iclickerDLLs.files += $$[QT_INSTALL_BINS]/Qt5XmlPatterns.dll $$[QT_INSTALL_BINS]/Qt5Declarative.dll
+    iclickerDLLs.files += $$[QT_INSTALL_BINS]/Qt5Script.dll $$[QT_INSTALL_BINS]/Qt5Sql.dll $$[QT_INSTALL_BINS]/Qt5WebKit.dll
+    iclickerDLLs.files += $$[QT_INSTALL_BINS]/Qt5WebKitWidgets.dll $$[QT_INSTALL_BINS]/Qt5Widgets.dll
+    iclickerDLLs.files += $$[QT_INSTALL_BINS]/icuin51.dll $$[QT_INSTALL_BINS]/icuuc51.dll $$[QT_INSTALL_BINS]/libgcc_s_dw2-1.dll $$[QT_INSTALL_BINS]/libgcc_s_sjlj-1.dll $$[QT_INSTALL_BINS]/libglesv2.dll $$[QT_INSTALL_BINS]/libwinpthread-1.dll
+    iclickerDLLs.files += $$[QT_INSTALL_BINS]/D3DCOMPILER_43.DLL $$[QT_INSTALL_BINS]/ICUDT51.DLL $$[QT_INSTALL_BINS]/LIBEGL.DLL $$[QT_INSTALL_BINS]/QT5MULTIMEDIA.DLL $$[QT_INSTALL_BINS]/QT5MULTIMEDIAWIDGETS.DLL $$[QT_INSTALL_BINS]/QT5OPENGL.DLL
+    iclickerDLLs.files += $$[QT_INSTALL_BINS]/QT5PRINTSUPPORT.DLL $$[QT_INSTALL_BINS]/QT5QML.DLL $$[QT_INSTALL_BINS]/QT5QUICK.DLL $$[QT_INSTALL_BINS]/Qt5V8.dll
+    iclickerDLLs.files += $$[QT_INSTALL_BINS]/Qt5Positioning.dll
+    iclickerDLLs.files += $$PWD/resources/Icons/CustomFolder.ico
+
+    iclickerPluginsImageFormats.files += $$[QT_INSTALL_PLUGINS]/imageformats/qjpeg.dll $$[QT_INSTALL_PLUGINS]/imageformats/qsvg.dll
+    iclickerPluginsIconEngines.files += $$[QT_INSTALL_PLUGINS]/iconengines/qsvgicon.dll
+
+    iclickerFinal.path = $$DLLDEPLOYFOLDER #note the destination is different from Mac (because of Libs and shortcut)
+    iclickerDLLs.path = $$DLLDEPLOYFOLDER
+    iclickerPluginsImageFormats.path = $$DLLDEPLOYFOLDER/imageformats
+    iclickerPluginsIconEngines.path = $$DLLDEPLOYFOLDER/iconengines
+
+    #todo Add libstdc++-6.dll to repository (strip + symbols) and add renaming command below
+    iclickerExec.extra += xcopy \"release/$$BUNDLENAME\" \"..\Deploy\\$${FOLDERNAME}\Libs\.\" &&
+    iclickerExec.extra += xcopy \"$$[QT_INSTALL_BINS]\libstdc++-6.dll\" \"..\Deploy\\$${FOLDERNAME}\Libs\.\" && xcopy /E \"..\i-clicker-7\resources\Deployment\MainFolderQt521Win\*\" \"..\Deploy\\$$FOLDERNAME\.\" && attrib +s \"..\Deploy\\$$FOLDERNAME\" &&
+    iclickerExec.extra += xcopy /E \"..\i-clicker-7\resources\Deployment\CommonFiles\*\" \"..\Deploy\\$$FOLDERNAME\.\" &&
+    #iclickerExec.extra += xcopy \"..\i-clicker-7\resources\Deployment\MainFolderQt521Win\Libs\quazip.dll\" \"..\Deploy\\$${FOLDERNAME}\Libs\.\" &&
+    iclickerExec.extra += del /S /Q \"..\Deploy\\$${FOLDERNAME}\Resources\DeletedCourses\empty.txt\" & # trick: the empty.txt file needs to be there for ensuring the DeletedFolder is versioned
+    #iclickerExec.extra += del /S /Q \"..\Deploy\\$${FOLDERNAME}\Libs\plugins\accessible\qtaccessiblequickd.dll\" & del /S /Q \"..\Deploy\\$${FOLDERNAME}\Libs\plugins\accessible\qtaccessiblewidgetsd.dll\" & del /S /Q \"..\Deploy\\$${FOLDERNAME}\Libs\plugins\bearer\qgenericbearerd.dll\" & del /S /Q \"..\Deploy\\$${FOLDERNAME}\Libs\plugins\bearer\qnativewifibearerd.dll\" & del /S /Q \"..\Deploy\\$${FOLDERNAME}\Libs\plugins\iconengines\qsvgicond.dll\" &
+    #iclickerExec.extra += del /S /Q \"..\Deploy\\$${FOLDERNAME}\Libs\plugins\imageformats\qgifd.dll\"& del /S /Q \"..\Deploy\\$${FOLDERNAME}\Libs\plugins\imageformats\qicod.dll\" & del /S /Q \"..\Deploy\\$${FOLDERNAME}\Libs\plugins\imageformats\qjpegd.dll\" & del /S /Q \"..\Deploy\\$${FOLDERNAME}\Libs\plugins\imageformats\qmngd.dll\" & del /S /Q \"..\Deploy\\$${FOLDERNAME}\Libs\plugins\imageformats\qsvgd.dll\" & del /S /Q \"..\Deploy\\$${FOLDERNAME}\Libs\plugins\imageformats\qtgad.dll\" &
+    #iclickerExec.extra += del /S /Q \"..\Deploy\\$${FOLDERNAME}\Libs\plugins\imageformats\qtiffd.dll\" & del /S /Q \"..\Deploy\\$${FOLDERNAME}\Libs\plugins\imageformats\qwbmpd.dll\" & del /S /Q \"..\Deploy\\$${FOLDERNAME}\Libs\plugins\mediaservice\dsengined.dll\" & del /S /Q \"..\Deploy\\$${FOLDERNAME}\Libs\plugins\mediaservice\qtmedia_audioengined.dll\" & del /S /Q \"..\Deploy\\$${FOLDERNAME}\Libs\plugins\platforms\qminimald.dll\" &
+    #iclickerExec.extra += del /S /Q \"..\Deploy\\$${FOLDERNAME}\Libs\plugins\platforms\qwindowsd.dll\" & del /S /Q \"..\Deploy\\$${FOLDERNAME}\Libs\plugins\playlistformats\qtmultimedia_m3ud.dll\"& del /S /Q \"..\Deploy\\$${FOLDERNAME}\Libs\plugins\printsupport\windowsprintersupportd.dll\" & del /S /Q \"..\Deploy\\$${FOLDERNAME}\Libs\plugins\qmltooling\qmldbg_inspectord.dll\" & del /S /Q \"..\Deploy\\$${FOLDERNAME}\Libs\plugins\qmltooling\qmldbg_qtquick2d.dll\" &
+    #iclickerExec.extra += del /S /Q \"..\Deploy\\$${FOLDERNAME}\Libs\plugins\qmltooling\qmldbg_tcpd.dll\" & del /S /Q \"..\Deploy\\$${FOLDERNAME}\Libs\plugins\qmltooling\qmldbg_tcp_qtdeclaratived.dll\" & del /S /Q \"..\Deploy\\$${FOLDERNAME}\Libs\plugins\sqldrivers\qsqlited.dll\" & del /S /Q \"..\Deploy\\$${FOLDERNAME}\Libs\plugins\sqldrivers\qsqlodbcd.dll\" &
+
+    # Must use here backslashes "\" because rmdir doesn't manage "/"
+    # Note: try with this:     DDIR ~= s,/,\\,g      as in http://www.qtcentre.org/threads/49484-Copying-OTHER_FILES-into-build-directory
+    iclickerDLLs.extra += rmdir /S /Q \"..\i-clicker-7\..\Deploy\\$$FOLDERNAME\Classes\" & echo #this echo is useful to avoid the previous returning an exit error code and prevent qmake/make stops
+
+
+    SIGNTOOL = "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\Bin\signtool.exe"
+    !exists($$SIGNTOOL) {
+        SIGNTOOL = "C:\Program Files (x86)\Windows Kits\8.0\bin\x64\signtool.exe"
+        !exists($$SIGNTOOL) {
+            SIGNTOOL = "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\signtool.exe"
+            !exists($$SIGNTOOL) {
+                SIGNTOOL = "C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\signtool.exe"
+                !exists($$SIGNTOOL) {
+                    error("Cannot find signtool.exe, part of Microsoft Windows SDK")
+                }
+            }
+        }
+    }
+    appCodeSign.path = $$DLLDEPLOYFOLDER
+    appCodeSign.extra += \"$$SIGNTOOL\" sign /t http://timestamp.digicert.com /n \"$$CERTIFICATEIDENTITY\" /a \"$$DLLDEPLOYFOLDER/$$BUNDLENAME\" &&
+    appCodeSign.extra += \"$$SIGNTOOL\" sign /t http://timestamp.digicert.com /n \"$$CERTIFICATEIDENTITY\" /a \"$$ICLICKERDEPLOYPATH/$$BUNDLENAME\"
+
+    ZIPCMD = C:\Program Files (x86)\7-Zip\7z.exe
+    !exists($$ZIPCMD) {
+        ZIPCMD = C:\Progra~1\7za920\7za.exe
+    }
+    exists($$ZIPCMD) {
+        # Must use here backslashes "\" because rmdir doesn't manage "/"
+        #Unable to make multiple command / line .extra
+        #iclickerPluginsImageFormats.extra = del /Q ..\i-clicker-7\..\Deploy\clicker7-git.zip &
+        #iclickerFinal.extra += $$ZIPCMD a -mx9 -tzip \"$$DEPLOYPATH/$$ZIPNAME\" \"$$ICLICKERDEPLOYPATH/*\"
+        iclickerFinal.extra += $$ZIPCMD a -tzip \"$$DEPLOYPATH/$$ZIPNAME\" \"$$ICLICKERDEPLOYPATH/*\"
+    }
+    !exists($$ZIPCMD): error(Unable to find 7-zip command line tool. Cannot package project. Download the 7za command line tool from http://7-zip.org/download.html)
+    INSTALLS += appVeryFirst appFirst iclickerPluginsImageFormats iclickerPluginsIconEngines iclickerDLLs
+}
+
+unix {
+    !macx {
+        ZIPNAME = $${PACKAGENAMEPREFIX}-$${VERSIONSTRINGSTRIPPED}-linux.zip
+        iclickerExec.files += $$APPLICATIONFILENAME
+        RESCUEFOLDER = $$DLLDEPLOYFOLDER/Rescue
+
+
+        #Clean previous deployment
+#        appFirst.files += $${TARGET}
+        appFirst.extra = rm -rf \"$$ICLICKERDEPLOYPATH\" \"$$DEPLOYPATH/$$ZIPNAME\"
+        appFirst.path = $$DEPLOYPATH
+
+
+        #Copy all dynamic libraries
+        #iclickerExec.extra += ldd $$TARGET $$[QT_INSTALL_LIBS]/libQt5Svg.so $$[QT_INSTALL_LIBS]/libQt5XmlPatterns.so $$[QT_INSTALL_PLUGINS]/imageformats/libqjpeg.so $$[QT_INSTALL_PLUGINS]/imageformats/libqsvg.so $$[QT_INSTALL_PLUGINS]/iconengines/libqsvgicon.so | awk \'{print \$\$3}\' | grep \"/\" | sort | uniq | xargs -L1 -i{} cp {} \"$$RESCUEFOLDER/.\" ;
+        iclickerExec.extra += ldd $$TARGET $$[QT_INSTALL_LIBS]/libQt5Svg.so $$[QT_INSTALL_LIBS]/libQt5XmlPatterns.so $$[QT_INSTALL_PLUGINS]/imageformats/libqjpeg.so $$[QT_INSTALL_PLUGINS]/imageformats/libqsvg.so $$[QT_INSTALL_PLUGINS]/iconengines/libqsvgicon.so | awk \'{print \$\$3}\' | grep \"/\" | sort | uniq | xargs -L1 -i{} echo @@@ {} ;
+        iclickerExec.extra += ldd $$TARGET $$[QT_INSTALL_LIBS]/libQt5Svg.so $$[QT_INSTALL_LIBS]/libQt5XmlPatterns.so $$[QT_INSTALL_PLUGINS]/imageformats/libqjpeg.so $$[QT_INSTALL_PLUGINS]/imageformats/libqsvg.so $$[QT_INSTALL_PLUGINS]/iconengines/libqsvgicon.so  | awk \'{print \$\$3}\' | grep \"/Qt\" | sort | uniq | xargs -L1 -i{} cp {} \"$$DLLDEPLOYFOLDER/.\" ;
+        iclickerExec.extra += cp $$[QT_INSTALL_PLUGINS]/platforms/* \"$$DLLDEPLOYFOLDER/.\" ;
+#        iclickerExec.extra += cp $$[QT_INSTALL_LIBS]/libQt5Svg.so \"$$DLLDEPLOYFOLDER/.\" ;
+        iclickerExec.extra += cp $$[QT_INSTALL_LIBS]/libQt5DBus.so \"$$DLLDEPLOYFOLDER/.\" ;
+        iclickerExec.extra += ldd $$TARGET | grep -iE \"boost|archive\" | awk \'{print \$\$3}\' | grep \"/\" | sort | uniq | xargs -L1 -i{} cp {} \"$$DLLDEPLOYFOLDER/.\" ;
+        #iclickerExec.extra += cp $$[QT_INSTALL_LIBS]/`readlink $$[QT_INSTALL_LIBS]/libQtSvg.so` \"$$RESCUEFOLDER/.\" ;
+        #iclickerExec.extra += cp $$[QT_INSTALL_LIBS]/`readlink $$[QT_INSTALL_LIBS]/libQtXml.so` \"$$RESCUEFOLDER/.\" ;
+        #iclickerExec.extra += cp -L $$[QT_INSTALL_LIBS]/libQt5Svg.so $$[QT_INSTALL_LIBS]/libQt5Xml.so \"$$RESCUEFOLDER/.\" ;
+        iclickerExec.extra += cp -pr $$PWD/resources/Deployment/CommonFiles/* \"$$ICLICKERDEPLOYPATH/.\" ;
+        iclickerExec.extra += cp -pr $$PWD/resources/Deployment/MainFolderQt521Linux/* \"$$ICLICKERDEPLOYPATH/.\" ;
+        iclickerExec.extra += rm -f \"$$ICLICKERDEPLOYPATH/Resources/DeletedCourses/empty.txt\" ; # trick: the empty.txt file needs to be there for ensuring the DeletedFolder is versioned
+
+
+        #iclickerPluginsImageFormats.files += $$[QT_INSTALL_PLUGINS]/imageformats/*qjpeg* $$[QT_INSTALL_PLUGINS]/imageformats/*qsvg*
+        #iclickerPluginsIconEngines.files += $$[QT_INSTALL_PLUGINS]/iconengines/*qsvgicon*
+
+        iclickerFinal.path = $$DLLDEPLOYFOLDER #note the destination is different from Mac (because of Libs and shortcut)
+        #iclickerPluginsImageFormats.path = \"$$RESCUEFOLDER/imageformats\"
+        #iclickerPluginsIconEngines.path = \"$$RESCUEFOLDER/iconengines\"
+
+        iclickerFinal.extra += oldpwd=`pwd`; cd \"$$DEPLOYPATH\"; zip -r \"$$ZIPNAME\" \"$$FOLDERNAME\"; cd \$\$oldpwd ;
+
+        INSTALLS += appFirst  #iclickerPluginsImageFormats iclickerPluginsIconEngines
+
+    }
+}
+
+
+
+iclickerExec.path = $$DLLDEPLOYFOLDER
+macx {
+    iclickerExec.path = $$ICLICKERDEPLOYPATH
+}
+
+
+#Ensure that the iclickerExec is added after all other deployment steps
+INSTALLS += commonFiles iclickerExec appCodeSign   #doxDoc
+unix {
+    !macx {
+        iclickerFinal.path = $$DLLDEPLOYFOLDER #note the destination is different from Mac (because of Libs and shortcut)
+        iclickerFinal.extra += oldpwd=`pwd`; cd \"$$DEPLOYPATH\"; zip -r \"$$ZIPNAME\" \"$$FOLDERNAME\"; cd \$\$oldpwd ;
+        INSTALLS += iclickerFinal
+    }
+}
+
+win32 {
+    INSTALLS += iclickerFinal
+}
+#################################
