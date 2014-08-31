@@ -14,7 +14,7 @@ using namespace std;
 // /Users/frank.mastronardi/Qt5.2.1/5.2.1/clang_64/bin/xmlpatterns  ./list01.xsl  ./di_vidoes.xml
 QString ReadfFileToString(QString fp);
 
-QString theRoot = "%1/runtimeFiles/mainifest.xml";
+QString theRoot = "%1/runtimeFiles/manifest.xml";
 //QString theRoot = "C:\\myworkspaces\\Dbg-myqtxslxml\\debug\\runtimeFiles\\mainifest.xml"; //Lq1406110746.xml";
 
 
