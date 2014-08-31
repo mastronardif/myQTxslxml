@@ -23,7 +23,7 @@ Purpose:  Used to create ____ for report ___,
 			<span> <xsl:value-of select="@n" /> </span>
 			</td>
                         <td>
-                        <span> <xsl:value-of select="@p" /> </span>
+                        <span> <xsl:value-of select="@path" /> </span>
                         </td>
 		</tr>		
     </xsl:for-each>

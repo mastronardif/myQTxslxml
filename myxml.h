@@ -11,7 +11,8 @@ class myxml
 public:
     myxml();
 
-    static  QString xsl_xml_FromStringFile(const QString xslt, QString fnxml, QString fout);
+    static int applyTemplate_xsl_xml_FromStringFile(const QString xslt, QString fnxml, QString &dest);
+
     static  QString xsl_xml_FromFiles(QString fnxsl, QString fnxml, QString fout);
 
 

@@ -91,4 +91,5 @@ QMAKE_EXTRA_TARGETS += first copydata copydata22
 
 OTHER_FILES += \
     runtimeFiles/bobo.txt \
-    runtimeFiles/mainifest.xml
+    runtimeFiles/mainifest.xml \
+    runtimeFiles/ListManifest.xslt

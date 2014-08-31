@@ -76,8 +76,8 @@ int main(int argc, char *argv[])
         WriteStringToFile(xslt00, "/Users/frank.mastronardi/myQTxslxml/runtimeFiles/L001.xsl.xml");
         xslt00 = ReadfFileToString(fnxsl);
         //WriteStringToFile(xslt00, "/Users/frank.mastronardi/myQTxslxml/runtimeFiles/r001.xml");
-
-        QString out = myxml::xsl_xml_FromStringFile(xslt00, fnxml,  "./theoutput.xml" );
+        QString out;
+        iRetval = myxml::applyTemplate_xsl_xml_FromStringFile(xslt00, fnxml,  out);
         // qDebug() << "\n xsl_xmlFromStrings = " << fnxsl << "in " << fnxml << "\n" << out << "\n";
         std::cout << out.toStdString() << "\n";
     }
@@ -95,9 +95,12 @@ if (1==1)
  {
      QString out;
     //iRetval =  myXsltTemplates::GetManifest(theRoot, out);
-    iRetval =   myXsltTemplates::get(theRoot, "SignificantFlowers.xslt", out);
+    //iRetval =   myXsltTemplates::get(theRoot, "SignificantFlowers.xslt", out);
 
     qDebug() << "get"<<iRetval<<"out("<<out<< ")";
+    myXsltTemplates::Test(theRoot, "ListManifest.xslt", out);
+    qDebug() << "___________"<<out;
+    std::cout << out.toStdString() << "\n";
     return iRetval;
 
 

@@ -1,9 +1,11 @@
 #include "myxslttemplates.h"
 #include <QTextStream>
 #include <QFile>
+#include <QDir>
 #include <QResource>
 #include <QDebug>
 #include <QRegularExpression>
+
 #include "myxml.h"
 
 QString ReadfFileToString(QString fp);
@@ -11,6 +13,31 @@ QString ReadfFileToString(QString fp);
 myXsltTemplates::myXsltTemplates()
 {
 
+}
+
+int myXsltTemplates::Test(const QString rootFilePath, const QString name, QString &out)
+{
+    int iRetval = 0; // success
+    QString fileName;
+    QString results;
+    QString xslt;
+
+    // find
+    iRetval =   myXsltTemplates::get(rootFilePath, name, fileName);
+    QString dirPath = QFileInfo(rootFilePath).absolutePath();
+    QString path = QDir(dirPath).filePath(fileName);
+
+    // apply
+    //GetManifest(mainifest,xslt);
+    //myxml::xsl_xml_FromFiles(path, rootFilePath, results);
+    xslt = ReadfFileToString(path);
+    iRetval =  myxml::applyTemplate_xsl_xml_FromStringFile(xslt, rootFilePath, results);
+
+    //myxml::xsl_xml_FromStringFile(xslt, rootFilePath, results);
+    // print
+    qDebug() << results;
+    out=results;
+    return iRetval;
 }
 
 int myXsltTemplates::get(const QString root, const QString name, QString &out)

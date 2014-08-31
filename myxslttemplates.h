@@ -16,6 +16,10 @@ public:
 
     static QString removeGetXSLT_For_SignificantCharacters(const QString XsltName);
     static QString GetXSLT_For(const QString name);
+
+    // test
+    static int Test(const QString rootFilePath, const QString name, QString &out);
+
 };
 
 #endif // MYXSLTTEMPLATES_H
