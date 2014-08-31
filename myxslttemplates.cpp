@@ -31,7 +31,8 @@ int myXsltTemplates::Test(const QString rootFilePath, const QString name, QStrin
     //GetManifest(mainifest,xslt);
     //myxml::xsl_xml_FromFiles(path, rootFilePath, results);
     xslt = ReadfFileToString(path);
-    iRetval =  myxml::applyTemplate_xsl_xml_FromStringFile(xslt, rootFilePath, results);
+    //iRetval =  myxml::applyTemplate_xsl_xml_FromStringFile(xslt, rootFilePath, results);
+    iRetval =  myxml::applyTemplate_xsl_xml_FromFiles(path, rootFilePath, results);
 
     //myxml::xsl_xml_FromStringFile(xslt, rootFilePath, results);
     // print

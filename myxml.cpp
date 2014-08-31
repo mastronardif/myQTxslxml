@@ -175,24 +175,6 @@ QString FindByXpath00(QString srcFN, QString xp)
 }
 
 
-QString myxml::xsl_xml_FromFiles(const QString fnxsl, QString fnxml, QString fout)
-{
-    //Find();
-    //return "I called find()";
-    QString str = QString("\n %1 %2 %3 \n").arg("fnxsl", "fnxml", "fout");
-    //myxml::xsl_xml(fnxsl, fnxml, fout);
-
-    // qDebug() << str;
-    QString out;
-    QXmlQuery query(QXmlQuery::XSLT20);
-    //QXmlQuery query(QXmlQuery::XQuery10);
-
-    query.setFocus(QUrl(fnxml));
-    query.setQuery(QUrl(fnxsl));
-    query.evaluateTo(&out);
-
-    return out;
-}
 
 
 QDomElement myxml::Find()
@@ -606,3 +588,48 @@ int myxml::applyTemplate_xsl_xml_FromStringFile(const QString xslt, QString fnxm
     return iRetval;
 }
 
+int myxml::applyTemplate_xsl_xml_FromFiles(const QString fnxsl, const QString fnxml, QString &dest)
+{
+    QString out;
+    //QBuffer device;
+    int iRetval = 0;  // success
+
+    //device.setData(xslt.toUtf8());
+    //device.open(QIODevice::ReadOnly);
+
+    QXmlQuery query(QXmlQuery::XSLT20);
+
+    ErrorHandler myMH;
+    query.setMessageHandler(&myMH);
+
+    //query.setFocus(QUrl(fnxml));
+    query.setFocus(QUrl::fromLocalFile(fnxml));
+    query.setQuery(QUrl(fnxsl));
+
+    if (query.isValid())
+    {
+        if (!query.evaluateTo(&out))
+        {
+            iRetval = -101;
+        }
+        //QXmlItem item(result.next());
+
+//    The error message is sent to the messageHandler().
+//    QXmlResultItems::hasError() will return true, or evaluateTo() will return false;
+//    The results of the evaluation are undefined
+    //if (query. ::hasError())
+        //query.messageHandler();
+        dest = out;
+    }
+    else
+    {
+        iRetval = -100;
+        // get error string
+        ErrorHandler *eh = (ErrorHandler*)query.messageHandler();
+        qDebug() << eh->theError;
+    }
+
+    return iRetval;
+
+
+}

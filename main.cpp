@@ -85,9 +85,9 @@ int main(int argc, char *argv[])
 
 if (1==122)
 {
-    QString out = myxml::xsl_xml_FromFiles(fnxsl, fnxml,  "./theoutput.xml" );
+    //QString out = myxml::xsl_xml_FromFiles(fnxsl, fnxml,  "./theoutput.xml" );
     //std::cout << "\n Find = " << fnxsl << "in " << fnxml << "\n" << out << "\n";
-    std::cout << out.toStdString() << "\n";
+    //std::cout << out.toStdString() << "\n";
 //return 0;
 }
 
