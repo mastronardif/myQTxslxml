@@ -3,9 +3,55 @@
 #include <QFile>
 #include <QResource>
 #include <QDebug>
+#include <QRegularExpression>
+#include "myxml.h"
+
+QString ReadfFileToString(QString fp);
 
 myXsltTemplates::myXsltTemplates()
 {
+
+}
+
+int myXsltTemplates::get(const QString root, const QString name, QString &out)
+{
+     int iRetval = 0; // Success
+
+     QString xpath = "/RCC/file[@n='%1']/.";
+     xpath = QString(xpath).arg(name);
+
+     //The XQuery actually ran correctly. It selected a bunch of xml:id attributes and put them in the result set.
+     //But then xmlpatterns sent the result set to a serializer, which tried to output it as well-formed XML.
+
+     QString fnxml = ReadfFileToString(root);
+     QString xml;
+     iRetval = myxml::FindByXpathFromString(fnxml,  xpath, xml);
+
+     QRegularExpression re("path=\"([^\"]*)\"");
+     QRegularExpressionMatch match = re.match(xml);
+     if (match.hasMatch() &&  (match.lastCapturedIndex() == 1) )
+     {
+        out = match.captured(1);
+     }
+     else
+     {
+         iRetval = -401;
+     }
+
+     return iRetval;
+}
+
+int myXsltTemplates::GetManifest(const QString root, QString &out)
+{
+    int iRetval = 0; // Success
+
+    //ssn/p[@idx='26']/@isDel
+   // QString xpath = "/RCC/file[@idx='26']/."; //"/ssn/p[@idx='15']/.";
+    QString xpath = "/RCC/file[@n='SearchReplace03.xsl']/.";
+    //return myxml::FindByXpathFromString(root,  xpath, out);
+    QString fnxml = ReadfFileToString(root);
+    iRetval = myxml::FindByXpathFromString(fnxml,  xpath, out);
+    return iRetval;
 
 }
 

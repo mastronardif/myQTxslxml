@@ -7,6 +7,8 @@ class myXsltTemplates
 {
 public:
     myXsltTemplates();
+    static int GetManifest(const QString root, QString &out);
+    static int         get(const QString root, const QString name, QString &out);
 
     static QString GetResource000(const QString name);
     static QString GetXSLT_For22(const QString XsltName);

@@ -13,6 +13,11 @@ using namespace std;
 // ./myqtxslxml   list01.xsl  di_vidoes.xml
 // /Users/frank.mastronardi/Qt5.2.1/5.2.1/clang_64/bin/xmlpatterns  ./list01.xsl  ./di_vidoes.xml
 QString ReadfFileToString(QString fp);
+
+//QString theRoot = ".\\runtime\\mainifest.xml";
+QString theRoot = "C:\\myworkspaces\\Dbg-myqtxslxml\\debug\\runtimeFiles\\mainifest.xml"; //Lq1406110746.xml";
+
+
 int main(int argc, char *argv[])
 {
     int iRetval = 0;
@@ -30,8 +35,8 @@ int main(int argc, char *argv[])
     //fnxsl = "C:\\myworkspaces\\myQTxslxml\\runtimeFiles\\SignificantFlowers.xsl";
     fnxsl = "/Users/frank.mastronardi/Dbg-myqtxslxml/SearchReplace03.xsl";
     //fnxsl = "/Users/frank.mastronardi/Dbg-myqtxslxml/test.xsl";
-    //fnxml = "C:\\myworkspaces\\myQTxslxml\\runtimeFiles\\sig_L1406270851.xml";
-    fnxml = "/Users/frank.mastronardi/Dbg-myqtxslxml/Lq1406110746.xml";
+    fnxml = "C:\\myworkspaces\\myQTxslxml\\runtimeFiles\\sig_L1406270851.xml";
+    //fnxml = "/Users/frank.mastronardi/Dbg-myqtxslxml/Lq1406110746.xml";
 
     if (argc>1)
     {
@@ -84,10 +89,18 @@ if (1==122)
 
 if (1==1)
  {
-    QString out;
+     QString out;
+    //iRetval =  myXsltTemplates::GetManifest(theRoot, out);
+    iRetval =   myXsltTemplates::get(theRoot, "SearchReplace03.xsl", out);
+
+    qDebug() << "get"<<iRetval<<"out("<<out<< ")";
+    return iRetval;
+
+
         QString xpath = "/ssn/p[@idx='15']/.";
         fnxml = "/Users/frank.mastronardi/myQTxslxml/runtimeFiles/Lq1406110746.xml";
         iRetval = myxml::FindByXpathFromFile(fnxml,  xpath, out);
+
         qDebug() << "************** FindByXpathFromFile **********************";
 qDebug() << iRetval << "out = " << out;
 qDebug() << "************************************";
