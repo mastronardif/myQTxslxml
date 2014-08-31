@@ -88,3 +88,7 @@ export(copydata.commands)
 QMAKE_EXTRA_TARGETS += first copydata copydata22
 }
 # new shit end
+
+OTHER_FILES += \
+    runtimeFiles/bobo.txt \
+    runtimeFiles/mainifest.xml
