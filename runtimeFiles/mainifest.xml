@@ -1,9 +1,10 @@
 
 <RCC>
- <file  n="SearchReplace03.xsl"  path="xsltTemplates/SearchReplace03.xsl"/>
- <file  n="MarkQuestion.xslt"     path="xsltTemplates/MarkQuestion.xslt"/>
- <file  n="MakeSimpleExcel.xslt"  path="xsltTemplates/MakeSimpleExcel.xslt"/>
- <file  n="Remove_Ids.xslt"       path="xsltTemplates/Remove_Ids.xslt"/>
+ <file  n="SignificantFlowers.xslt"  path="xsltTemplates/SignificantFlowers.xsl"/>
+ <file  n="SearchReplace03.xslt"     path="xsltTemplates/SearchReplace03.xsl"/>
+ <file  n="MarkQuestion.xslt"        path="xsltTemplates/MarkQuestion.xslt"/>
+ <file  n="MakeSimpleExcel.xslt"     path="xsltTemplates/MakeSimpleExcel.xslt"/>
+ <file  n="Remove_Ids.xslt"          path="xsltTemplates/Remove_Ids.xslt"/>
 
 </RCC>
 

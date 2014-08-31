@@ -14,8 +14,8 @@ using namespace std;
 // /Users/frank.mastronardi/Qt5.2.1/5.2.1/clang_64/bin/xmlpatterns  ./list01.xsl  ./di_vidoes.xml
 QString ReadfFileToString(QString fp);
 
-//QString theRoot = ".\\runtime\\mainifest.xml";
-QString theRoot = "C:\\myworkspaces\\Dbg-myqtxslxml\\debug\\runtimeFiles\\mainifest.xml"; //Lq1406110746.xml";
+QString theRoot = "%1/runtimeFiles/mainifest.xml";
+//QString theRoot = "C:\\myworkspaces\\Dbg-myqtxslxml\\debug\\runtimeFiles\\mainifest.xml"; //Lq1406110746.xml";
 
 
 int main(int argc, char *argv[])
@@ -29,6 +29,10 @@ int main(int argc, char *argv[])
     QString fnxsl;
     QCoreApplication a(argc, argv);
 
+    qDebug() << QCoreApplication::applicationDirPath();
+    qDebug() << a.applicationFilePath();
+    theRoot = QString(theRoot).arg(a.applicationDirPath());
+    qDebug() << "theRoot= " << theRoot;
     //fnxsl = "/ssn/p[@idx='27']/.";
 
     //fnxml = "/Users/frank.mastronardi/Dbg-myqtxslxml/Lq1406110746.xml";
@@ -91,7 +95,7 @@ if (1==1)
  {
      QString out;
     //iRetval =  myXsltTemplates::GetManifest(theRoot, out);
-    iRetval =   myXsltTemplates::get(theRoot, "SearchReplace03.xsl", out);
+    iRetval =   myXsltTemplates::get(theRoot, "SignificantFlowers.xslt", out);
 
     qDebug() << "get"<<iRetval<<"out("<<out<< ")";
     return iRetval;
