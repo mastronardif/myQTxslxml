@@ -18,14 +18,13 @@ myXsltTemplates::myXsltTemplates()
 int myXsltTemplates::Test(const QString rootFilePath, const QString name, QString &out)
 {
     int iRetval = 0; // success
-    QString fileName;
+    QString path;
     QString results;
     QString xslt;
 
     // find
-    iRetval =   myXsltTemplates::get(rootFilePath, name, fileName);
-    QString dirPath = QFileInfo(rootFilePath).absolutePath();
-    QString path = QDir(dirPath).filePath(fileName);
+    //iRetval =   myXsltTemplates::get(rootFilePath, name, fileName);
+    iRetval =   myXsltTemplates::getFilePath(rootFilePath, name, path);
 
     // apply
     //GetManifest(mainifest,xslt);
@@ -41,35 +40,37 @@ int myXsltTemplates::Test(const QString rootFilePath, const QString name, QStrin
     return iRetval;
 }
 
-int myXsltTemplates::get(const QString root, const QString name, QString &out)
+int myXsltTemplates::getFilePath(const QString rootFilePath, const QString name, QString &out)
 {
-     int iRetval = 0; // Success
+    int iRetval = 0; // Success
 
-     QString xpath = "/RCC/file[@n='%1']/.";
-     xpath = QString(xpath).arg(name);
+    QString xpath = "/RCC/file[@n='%1']/.";
+    xpath = QString(xpath).arg(name);
 
-     //The XQuery actually ran correctly. It selected a bunch of xml:id attributes and put them in the result set.
-     //But then xmlpatterns sent the result set to a serializer, which tried to output it as well-formed XML.
+    //The XQuery actually ran correctly. It selected a bunch of xml:id attributes and put them in the result set.
+    //But then xmlpatterns sent the result set to a serializer, which tried to output it as well-formed XML.
 
-     QString fnxml = ReadfFileToString(root);
-     QString xml;
-     iRetval = myxml::FindByXpathFromString(fnxml,  xpath, xml);
+    QString fnxml = ReadfFileToString(rootFilePath);
+    QString xml;
+    iRetval = myxml::FindByXpathFromString(fnxml,  xpath, xml);
 
-     QRegularExpression re("path=\"([^\"]*)\"");
-     QRegularExpressionMatch match = re.match(xml);
-     if (match.hasMatch() &&  (match.lastCapturedIndex() == 1) )
-     {
-        out = match.captured(1);
-     }
-     else
-     {
-         iRetval = -401;
-     }
+    QRegularExpression re("path=\"([^\"]*)\"");
+    QRegularExpressionMatch match = re.match(xml);
+    if (match.hasMatch() &&  (match.lastCapturedIndex() == 1) )
+    {
+        QString fileName = match.captured(1);
+        QString dirPath = QFileInfo(rootFilePath).absolutePath();
+        out = QDir(dirPath).filePath(fileName);
+    }
+    else
+    {
+        iRetval = -401;
+    }
 
-     return iRetval;
+    return iRetval;
 }
 
-int myXsltTemplates::GetManifest(const QString root, QString &out)
+int myXsltTemplates::getManifest(const QString rootFilePath, QString &out)
 {
     int iRetval = 0; // Success
 
@@ -77,7 +78,7 @@ int myXsltTemplates::GetManifest(const QString root, QString &out)
    // QString xpath = "/RCC/file[@idx='26']/."; //"/ssn/p[@idx='15']/.";
     QString xpath = "/RCC/file[@n='SearchReplace03.xsl']/.";
     //return myxml::FindByXpathFromString(root,  xpath, out);
-    QString fnxml = ReadfFileToString(root);
+    QString fnxml = ReadfFileToString(rootFilePath);
     iRetval = myxml::FindByXpathFromString(fnxml,  xpath, out);
     return iRetval;
 

@@ -93,4 +93,5 @@ OTHER_FILES += \
     runtimeFiles/bobo.txt \
     runtimeFiles/ListManifest.xslt \
     runtimeFiles/maniifest.xml \
-    runtimeFiles/manifest.xml
+    runtimeFiles/manifest.xml \
+    runtimeFiles/xml2csv101.xsl

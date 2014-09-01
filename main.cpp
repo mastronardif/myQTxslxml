@@ -49,7 +49,26 @@ int main(int argc, char *argv[])
                 fnxml = argv[2];
     }
         //QString str = QString("\n %1 %2 %3 \n").arg(QString::number(argc), argv[1], argv[2]);
+if (1==1)
+{
+    QString path;
+   //iRetval =  myXsltTemplates::GetManifest(theRoot, out);
+   iRetval =   myXsltTemplates::getFilePath(theRoot, "xml2csv101.xsl", path);
+   //getFilePath//
+    if (0 == iRetval)
+    {
+        QString results;
+        //iRetval =  myxml::applyTemplate_xsl_xml_FromStringFile(out, fnxml, results);
+        iRetval =  myxml::applyTemplate_xsl_xml_FromFiles(path, fnxml, results);
+        std::cout << results.toStdString() << "\n";
+    }
+//   qDebug() << "get"<<iRetval<<"out("<<out<< ")";
+//   myXsltTemplates::Test(theRoot, "ListManifest.xslt", out);
+//   qDebug() << "___________"<<out;
+//   std::cout << out.toStdString() << "\n";
 
+    return iRetval;
+}
     if (1==101)
     {
          //QString xslt = myXsltTemplates::GetResource000(":/xsltTemplates/MarkQuestion.xslt");
