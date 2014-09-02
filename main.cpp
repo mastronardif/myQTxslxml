@@ -36,11 +36,15 @@ int main(int argc, char *argv[])
     //fnxsl = "/ssn/p[@idx='27']/.";
 
     //fnxml = "/Users/frank.mastronardi/Dbg-myqtxslxml/Lq1406110746.xml";
-    //fnxsl = "C:\\myworkspaces\\myQTxslxml\\runtimeFiles\\SignificantFlowers.xsl";
-    fnxsl = "/Users/frank.mastronardi/Dbg-myqtxslxml/SearchReplace03.xsl";
+    fnxsl = "C:\\myworkspaces\\myQTxslxml\\runtimeFiles\\xml2csv101.xsl";
+    //fnxsl = "/Users/frank.mastronardi/Dbg-myqtxslxml/SearchReplace03.xsl";
     //fnxsl = "/Users/frank.mastronardi/Dbg-myqtxslxml/test.xsl";
-    fnxml = "C:\\myworkspaces\\myQTxslxml\\runtimeFiles\\sig_L1406270851.xml";
+
     //fnxml = "/Users/frank.mastronardi/Dbg-myqtxslxml/Lq1406110746.xml";
+    if (myXsltTemplates::getFilePath(theRoot, "LargeSet01.xml", fnxml) != 0)
+    {
+        fnxml = "C:\\myworkspaces\\myQTxslxml\\runtimeFiles\\sig_L1406270851.xml";
+    }
 
     if (argc>1)
     {
@@ -58,8 +62,13 @@ if (1==1)
     if (0 == iRetval)
     {
         QString results;
-        //iRetval =  myxml::applyTemplate_xsl_xml_FromStringFile(out, fnxml, results);
-        iRetval =  myxml::applyTemplate_xsl_xml_FromFiles(path, fnxml, results);
+        QString xslt00 = ReadfFileToString(path);
+        iRetval =  myxml::applyTemplate_xsl_xml_FromStringFile(xslt00, fnxml, results);
+        std::cout << results.toStdString() << "\n";
+        qDebug() << "___________";
+        iRetval =  myxml::applyTemplate_xsl_xml_FromFiles     (path, fnxml, results);
+        qDebug() << "_z_z_z_z_z_z_z_z_z_z_";
+        //iRetval =  myxml::applyTemplate_xsl_xml_FromFiles(path, fnxml, results);
         std::cout << results.toStdString() << "\n";
     }
 //   qDebug() << "get"<<iRetval<<"out("<<out<< ")";
@@ -67,7 +76,7 @@ if (1==1)
 //   qDebug() << "___________"<<out;
 //   std::cout << out.toStdString() << "\n";
 
-    return iRetval;
+    //return iRetval;
 }
     if (1==101)
     {
@@ -110,7 +119,7 @@ if (1==122)
 //return 0;
 }
 
-if (1==1)
+if (1==91)
  {
      QString out;
     //iRetval =  myXsltTemplates::GetManifest(theRoot, out);
