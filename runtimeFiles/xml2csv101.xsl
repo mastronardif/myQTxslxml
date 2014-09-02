@@ -65,32 +65,6 @@
 
         <xsl:variable name="p" select="." />
 
-        <!-- Loop through the columns in order -->
-        <xsl:for-each select="document('')/*/csv:columnsXXX/*">
-            <!-- Extract the column name and value -->
-            <xsl:variable name="column" select="." />
-            <xsl:variable name="value" select="$p/*[name() = $column]" />
-
-            <!-- Quote the value if required -->
-            <xsl:choose>
-                <xsl:when test="contains($value, '&quot;')">
-                    <xsl:variable name="x" select="replace($value, '&quot;',  '&quot;&quot;')"/>
-                    <xsl:value-of select="concat('&quot;', $x, '&quot;')"/>
-                </xsl:when>
-                <xsl:when test="contains($value, $delimiter)">
-                    <xsl:value-of select="concat('&quot;', $value, '&quot;')"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:value-of select="$value"/>
-                </xsl:otherwise>
-            </xsl:choose>
-
-            <!-- Add the delimiter unless we are the last expression -->
-            <xsl:if test="position() != last()">
-                <xsl:value-of select="$delimiter"/>
-            </xsl:if>
-        </xsl:for-each>
-
         <!-- Add a newline at the end of the record
         <xsl:text>&#xa;</xsl:text>
         -->
