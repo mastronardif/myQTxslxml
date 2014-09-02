@@ -8,7 +8,7 @@
  <file  n="MarkQuestion.xslt"        path="xsltTemplates/MarkQuestion.xslt"/>
  <file  n="MakeSimpleExcel.xslt"     path="xsltTemplates/MakeSimpleExcel.xslt"/>
  <file  n="Remove_Ids.xslt"          path="xsltTemplates/Remove_Ids.xslt"/>
-
- <file  n="LargeSet01.xml"           path="LargeSet01.xml"/>
+<file  n="LargeSet01.xml"           path="xsltTemplates/LargeSet01.xml"/>
+ <file  n="sLargeSet01.xml"           path="LargeSet01.xml"/>
 </RCC>
 
