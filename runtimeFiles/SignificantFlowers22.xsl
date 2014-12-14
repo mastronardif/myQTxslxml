@@ -22,7 +22,7 @@
   </xsl:template>
   
 
- <xsl:template match="ssn/p[@idx=$Qidx+999]">
+ <xsl:template match="ssn/p[@idx=99]">
  <xsl:call-template name="makeRespLs" />
   </xsl:template>
  <!-- <xsl:template match="ssn/makeSignificant01/Original/p[@idx='6']">

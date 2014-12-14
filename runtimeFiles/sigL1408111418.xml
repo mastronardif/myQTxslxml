@@ -38,6 +38,10 @@
 <!--02 - Minute-->
 <!--******************************************-->
 <ssn MinPart_S="at least 75% of the questions" part="0" ssnn="Session 5" perf="-1" minrep="4">
+ <p qn="Question 1123" isDel="N" qType="MC" isspp="N" anspt="1" resp_a="0,0.00" anypt="0" resp_b="0,0.00" idx="1123" stp="14:18:57" resp_c="0,0.00" resp_d="0,0.00" resp_e="0,0.00" strt="14:18:34" cans="" isap="N" sig="16">
+  <v fans="a" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27EFBA72"/>
+</p>
+
  <p qn="Question 1" isDel="N" qType="MC" isspp="N" anspt="1" resp_a="0,0.00" anypt="0" resp_b="0,0.00" idx="1" stp="14:18:57" resp_c="0,0.00" resp_d="0,0.00" resp_e="0,0.00" strt="14:18:34" cans="" isap="N" sig="16">
   <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27EFB971"/>
   <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27EFBA72"/>
@@ -79,14 +83,14 @@
   <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27EFDE16"/>
   <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27EFDF17"/>
   <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27EFE028"/>
-  <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27EFE129"/>
+  <v fans="12a64" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27EFE129"/>
   <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27EFE22A"/>
   <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27EFE32B"/>
   <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27EFE42C"/>
   <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27EFE52D"/>
   <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27EFE62E"/>
   <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27EFE72F"/>
-  <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27EFE820"/>
+  <v fans="12a94" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27EFE820"/>
   <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27EFE921"/>
   <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27EFEA22"/>
   <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27EFEB23"/>
@@ -972,21 +976,21 @@
   <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27F35B8F"/>
   <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27F35C88"/>
   <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27F35D89"/>
-  <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27F35E8A"/>
+  <v fans="rabitn 101 975" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27F35E8A"/>
   <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27F35F8B"/>
-  <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27F360B4"/>
-  <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27F361B5"/>
-  <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27F362B6"/>
+  <v fans="z" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27F360B4"/>
+  <v fans="z" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27F361B5"/>
+  <v fans="rabitn 101 975" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27F362B6"/>
   <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27F363B7"/>
   <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27F364B0"/>
   <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27F365B1"/>
   <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27F366B2"/>
-  <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27F367B3"/>
+  <v fans="123" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27F367B3"/>
   <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27F368BC"/>
   <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27F369BD"/>
   <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27F36ABE"/>
   <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27F36BBF"/>
-  <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27F36CB8"/>
+  <v fans="Z" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27F36CB8"/>
   <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27F36DB9"/>
   <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27F36EBA"/>
   <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27F36FBB"/>
@@ -2057,7 +2061,7 @@
   <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27F3A276"/>
   <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27F3A377"/>
   <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27F3A470"/>
-  <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27F3A571"/>
+  <v fans="12a54" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27F3A571"/>
   <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27F3A672"/>
   <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27F3A773"/>
   <v fans="" tscr="0" ans="" att="" tm="" fanst="" scr="" lto="" id="#27F3A87C"/>
@@ -5123,6 +5127,12 @@
   </cansLs>
  </p>
  <p qn="Question 6" isDel="N" qType="AN" isspp="N" anspt="1" anypt="0" idx="6" stp="14:32:24" strt="14:25:49" cans="" isap="N" sig="16">
+  
+       <cansLs_IMNEW>
+            <cansR cans="30"/>
+            <cansR cans="4"/>
+        </cansLs_IMNEW>
+
   <respLs>
    <respR respCP="2,0.00" respS="AAAA1234" respLS="aaaa1234"/>
    <respR respCP="2,0.00" respS="AAAB1234" respLS="aaab1234"/>
@@ -5750,9 +5760,9 @@
    <respR respCP="2,0.00" respS="EEED1234" respLS="eeed1234"/>
    <respR respCP="2,0.00" respS="EEEE1234" respLS="eeee1234"/>
   </respLs>
-  <v fans="BBCD1234" tscr="0" ans="BEDA1234" att="5" tm="243.88" fanst="284.28" scr="0.00" lto="" id="#27EFB971"/>
+  <v fans="BBCD1234" tscr="0" ans="BedA1234" att="5" tm="243.88" fanst="284.28" scr="0.00" lto="" id="#27EFB971"/>
   <v fans="CBCD1234" tscr="0" ans="CEDA1234" att="5" tm="243.89" fanst="284.29" scr="0.00" lto="" id="#27EFBA72"/>
-  <v fans="DBCD1234" tscr="0" ans="DEDA1234" att="5" tm="243.90" fanst="284.30" scr="0.00" lto="" id="#27EFBB73"/>
+  <v fans="DBCD1234" tscr="0" ans="i am origianal" att="5" tm="243.90" fanst="284.30" scr="0.00" lto="" id="#27EFBB73"/>
   <v fans="EBCD1234" tscr="0" ans="EEDA1234" att="5" tm="243.91" fanst="284.31" scr="0.00" lto="" id="#27EFBC74"/>
   <v fans="ACCD1234" tscr="0" ans="AAEA1234" att="5" tm="243.92" fanst="284.32" scr="0.00" lto="" id="#27EFBD75"/>
   <v fans="BCCD1234" tscr="0" ans="BAEA1234" att="5" tm="243.93" fanst="284.33" scr="0.00" lto="" id="#27EFBE76"/>
@@ -6155,12 +6165,12 @@
   <v fans="DBDB1234" tscr="0" ans="DEED1234" att="5" tm="247.90" fanst="288.30" scr="0.00" lto="" id="#27F14B9D"/>
   <v fans="EBDB1234" tscr="0" ans="EEED1234" att="5" tm="247.91" fanst="288.31" scr="0.00" lto="" id="#27F14C9A"/>
   <v fans="ACDB1234" tscr="0" ans="AAAE1234" att="5" tm="247.92" fanst="288.32" scr="0.00" lto="" id="#27F14D9B"/>
-  <v fans="BCDB1234" tscr="0" ans="BAAE1234" att="5" tm="247.93" fanst="288.33" scr="0.00" lto="" id="#27F14E98"/>
-  <v fans="CCDB1234" tscr="0" ans="CAAE1234" att="5" tm="247.94" fanst="288.34" scr="0.00" lto="" id="#27F14F99"/>
+  <v fans="0_BCDB1234" tscr="0" ans="BAAE1234" att="5" tm="247.93" fanst="288.33" scr="0.00" lto="" id="#27F14E98"/>
+  <v fans="x_CCDB1234" tscr="0" ans="CAAE1234" att="5" tm="247.94" fanst="288.34" scr="0.00" lto="" id="#27F14F99"/>
   <v fans="DCDB1234" tscr="0" ans="DAAE1234" att="5" tm="247.95" fanst="288.35" scr="0.00" lto="" id="#27F15086"/>
   <v fans="ECDB1234" tscr="0" ans="EAAE1234" att="5" tm="247.96" fanst="288.36" scr="0.00" lto="" id="#27F15187"/>
   <v fans="ADDB1234" tscr="0" ans="ABAE1234" att="5" tm="247.97" fanst="288.37" scr="0.00" lto="" id="#27F15284"/>
-  <v fans="BDDB1234" tscr="0" ans="BBAE1234" att="5" tm="247.98" fanst="288.38" scr="0.00" lto="" id="#27F15385"/>
+  <v fans="_BDDB1234" tscr="0" ans="BBAE1234" att="5" tm="247.98" fanst="288.38" scr="0.00" lto="" id="#27F15385"/>
   <v fans="CDDB1234" tscr="0" ans="CBAE1234" att="5" tm="247.99" fanst="288.39" scr="0.00" lto="" id="#27F15482"/>
   <v fans="DDDB1234" tscr="0" ans="DBAE1234" att="5" tm="248.10" fanst="288.40" scr="0.00" lto="" id="#27F15583"/>
   <v fans="EDDB1234" tscr="0" ans="EBAE1234" att="5" tm="248.10" fanst="288.41" scr="0.00" lto="" id="#27F15680"/>
@@ -6319,7 +6329,7 @@
   <v fans="CEEC1234" tscr="0" ans="CCBA1234" att="5" tm="249.54" fanst="289.95" scr="0.00" lto="" id="#27F1EF39"/>
   <v fans="DEEC1234" tscr="0" ans="DCBA1234" att="5" tm="249.55" fanst="289.95" scr="0.00" lto="" id="#27F1F026"/>
   <v fans="EEEC1234" tscr="0" ans="ECBA1234" att="5" tm="249.56" fanst="289.96" scr="0.00" lto="" id="#27F1F127"/>
-  <v fans="AAAD1234" tscr="0" ans="ADBA1234" att="5" tm="249.57" fanst="289.98" scr="0.00" lto="" id="#27F1F224"/>
+  <v fans="A_AD1234" tscr="0" ans="ADBA1234" att="5" tm="249.57" fanst="289.98" scr="0.00" lto="" id="#27F1F224"/>
   <v fans="BAAD1234" tscr="0" ans="BDBA1234" att="5" tm="249.58" fanst="289.98" scr="0.00" lto="" id="#27F1F325"/>
   <v fans="CAAD1234" tscr="0" ans="CDBA1234" att="5" tm="249.59" fanst="290.05" scr="0.00" lto="" id="#27F1F422"/>
   <v fans="DAAD1234" tscr="0" ans="DDBA1234" att="5" tm="249.60" fanst="290.10" scr="0.00" lto="" id="#27F1F523"/>

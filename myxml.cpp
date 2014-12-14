@@ -541,6 +541,58 @@ QString myxml::xsl_xml(QString fnxsl, QString fnxml, QString fout)
     return "";
 }
 
+int myxml::applyTemplate_xsl_xml_FromStrings(const QString xslt, QString xml, QString &dest)
+{
+    int iRetval = 0;  // success
+    qDebug() << xslt;
+    QString out;
+    QBuffer device;
+    QBuffer device2;
+
+    device.setData(xslt.toUtf8());
+    device.open(QIODevice::ReadOnly);
+
+    device2.setData(xml.toUtf8());
+    device2.open(QIODevice::ReadOnly);
+
+    QXmlQuery query(QXmlQuery::XSLT20);
+
+    ErrorHandler myMH;
+    query.setMessageHandler(&myMH);
+
+    //query.setFocus(QUrl(fnxml));
+    query.setFocus(&device2);
+
+    query.setQuery(&device);
+    if (query.isValid())
+    {
+        if (!query.evaluateTo(&out))
+        {
+            iRetval = -101;
+        }
+        //QXmlItem item(result.next());
+
+        device.close();
+        device2.close();
+
+//    The error message is sent to the messageHandler().
+//    QXmlResultItems::hasError() will return true, or evaluateTo() will return false;
+//    The results of the evaluation are undefined
+    //if (query. ::hasError())
+        //query.messageHandler();
+        dest = out;
+    }
+    else
+    {
+        iRetval = -100;
+        // get error string
+        ErrorHandler *eh = (ErrorHandler*)query.messageHandler();
+        qDebug() << eh->theError;
+    }
+
+    return iRetval;
+}
+
 int myxml::applyTemplate_xsl_xml_FromStringFile(const QString xslt, QString fnxml, QString &dest)
 {
     qDebug() << xslt;

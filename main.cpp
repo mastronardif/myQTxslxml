@@ -35,16 +35,16 @@ int main(int argc, char *argv[])
     qDebug() << "theRoot= " << theRoot;
     //fnxsl = "/ssn/p[@idx='27']/.";
 
-    //fnxml = "/Users/frank.mastronardi/Dbg-myqtxslxml/Lq1406110746.xml";
-    fnxsl = "C:\\myworkspaces\\myQTxslxml\\runtimeFiles\\xml2csv101.xsl";
-    //fnxsl = "/Users/frank.mastronardi/Dbg-myqtxslxml/SearchReplace03.xsl";
+    fnxml = "/Users/frank.mastronardi/myQTxslxml/runtimeFiles/input.xml";
+    //fnxsl = "C:\\myworkspaces\\myQTxslxml\\runtimeFiles\\xml2csv101.xsl";
+    fnxsl = "/Users/frank.mastronardi/myQTxslxml/runtimeFiles/calc_minrep_for.xslt";
     //fnxsl = "/Users/frank.mastronardi/Dbg-myqtxslxml/test.xsl";
 
     //fnxml = "/Users/frank.mastronardi/Dbg-myqtxslxml/Lq1406110746.xml";
-    if (myXsltTemplates::getFilePath(theRoot, "LargeSet01.xml", fnxml) != 0)
-    {
-        fnxml = "C:\\myworkspaces\\myQTxslxml\\runtimeFiles\\sig_L1406270851.xml";
-    }
+    //if (myXsltTemplates::getFilePath(theRoot, "LargeSet01.xml", fnxml) != 0)
+    //{
+    //    fnxml = "C:\\myworkspaces\\myQTxslxml\\runtimeFiles\\sig_L1406270851.xml";
+    //}
 
     if (argc>1)
     {
@@ -53,11 +53,35 @@ int main(int argc, char *argv[])
                 fnxml = argv[2];
     }
         //QString str = QString("\n %1 %2 %3 \n").arg(QString::number(argc), argv[1], argv[2]);
-if (1==1)
-{
+
+    if (1==1)
+    {
+        QString results;
+        QString xslt00 = ReadfFileToString(fnxsl);
+        QString xml00  = ReadfFileToString(fnxml);
+
+        QString out;
+        //iRetval = myxml::applyTemplate_xsl_xml_FromStringFile(xslt00, fnxml, out);
+        iRetval = myxml::applyTemplate_xsl_xml_FromStrings(xslt00, xml00, out);
+        iRetval = myxml::applyTemplate_xsl_xml_FromStrings(xslt00, out, out);
+        if(iRetval == 0)
+        {
+            std::cout << out.toStdString() << "\n";
+        }
+
+        //qDebug() << fnxsl << fnxml;
+        //std::cout << xslt00.toStdString() << "\n";
+        //std::cout << xml00.toStdString() << "\n";
+
+        return 0;
+
+    }
+
+    if (1==167)
+    {
     QString path;
    //iRetval =  myXsltTemplates::GetManifest(theRoot, out);
-   iRetval =   myXsltTemplates::getFilePath(theRoot, "xml2csv101.xsl", path);
+   //iRetval =   myXsltTemplates::getFilePath(theRoot, "xml2csv101.xsl", path);
    //getFilePath//
     if (0 == iRetval)
     {
