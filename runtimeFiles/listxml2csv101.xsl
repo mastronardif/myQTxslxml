@@ -8,54 +8,54 @@
 Purpose:  Used to ____ ,
 -->
 
-<xsl:template match="/">
- <xsl:for-each select="ssn">
+    <xsl:template match="/">
 
-    <xsl:if test="1 = 1">
-        <xsl:text>&#xa;</xsl:text>
+    <xsl:text>BEGIN SSN </xsl:text> count(<xsl:value-of select="count(ssn)"/>)<xsl:text>&#xa;</xsl:text>
+    <xsl:call-template name="LIST"> <xsl:with-param name="match" select="ssn"/>  </xsl:call-template>
+    <xsl:text>END SSN&#xa;</xsl:text>
 
-        <xsl:text>row,</xsl:text>
-        <xsl:for-each select="./@*">
-            <xsl:value-of select="name(.)"/><xsl:text>,</xsl:text>
-        </xsl:for-each>
-        <xsl:text>&#xa;</xsl:text>
-    </xsl:if>
+    <xsl:text>BEGIN SSN/P </xsl:text> count(<xsl:value-of select="count(ssn/p)"/>)<xsl:text>&#xa;</xsl:text>
+    <xsl:call-template name="LIST"> <xsl:with-param name="match" select="ssn/p"/>  </xsl:call-template>
+    <xsl:text>END SSN/P&#xa;</xsl:text>
 
-    <xsl:value-of select="position()"/> <xsl:text>,</xsl:text>
-    <xsl:for-each select="./@*">
-        <xsl:text>"</xsl:text><xsl:value-of select="."/><xsl:text>",</xsl:text>
-    </xsl:for-each>
-
-    </xsl:for-each>
-
-
-<xsl:variable name="makeRespLs00">
-
- <xsl:for-each select="ssn/p/v">
-
-    <xsl:if test="position() = 1">
-        <xsl:text>&#xa;</xsl:text>
-        <xsl:text>row,</xsl:text>
-        <xsl:for-each select="./@*">
-            <xsl:value-of select="name(.)"/><xsl:text>,</xsl:text>
-        </xsl:for-each>
-        <xsl:text>p_id,</xsl:text>
-        <xsl:text>&#xa;</xsl:text>
-    </xsl:if>
-
-<xsl:value-of select="position()"/> <xsl:text>,</xsl:text>
- 	<xsl:for-each select="./@*">
-        <xsl:text>"</xsl:text><xsl:value-of select="."/><xsl:text>",</xsl:text>
-    </xsl:for-each>
-    <xsl:value-of select="count(../preceding-sibling::*)+1"/><xsl:text>",</xsl:text>
-
-    <xsl:text>&#xa;</xsl:text>
-
- </xsl:for-each>
-
-</xsl:variable>
-<xsl:copy-of select="$makeRespLs00"/>
+    <xsl:text>BEGIN SSN/P/V </xsl:text> count(<xsl:value-of select="count(ssn/p/v)"/>)<xsl:text>&#xa;</xsl:text>
+    <xsl:call-template name="LIST"> <xsl:with-param name="match" select="ssn/p/v"/></xsl:call-template>
+    <xsl:text>END SSN/P/V&#xa;</xsl:text>
 
   </xsl:template>
+
+    
+
+<xsl:template name="LIST">
+    <xsl:param name="match"/>
+
+    <xsl:for-each select="$match">
+        <!-- Header -->
+        <xsl:if test="position() = 1">
+
+        <xsl:value-of select="concat(name(.),'_id', ',')"/>
+
+        <xsl:for-each select="./@*">
+            <xsl:value-of select="name(.)"/><xsl:text>,</xsl:text>
+        </xsl:for-each>
+
+        <!-- Parenet ID-->       
+        <xsl:value-of select="concat(name(parent::*),'_id', ',')"/>
+
+        <xsl:text>&#xa;</xsl:text>
+        </xsl:if>
+
+        <!-- Rows -->
+        <xsl:value-of select="position()"/> <xsl:text>,</xsl:text>
+        <xsl:for-each select="./@*">
+            <xsl:text>"</xsl:text><xsl:value-of select="."/><xsl:text>",</xsl:text>
+        </xsl:for-each>
+        <!-- Parenet ID-->   
+        <xsl:text>"</xsl:text><xsl:value-of select="count(../preceding-sibling::*)+1"/><xsl:text>",</xsl:text>
+
+        <xsl:text>&#xa;</xsl:text>
+
+    </xsl:for-each>
+</xsl:template>    
 
 </xsl:stylesheet>
