@@ -35,9 +35,9 @@ int main(int argc, char *argv[])
     qDebug() << "theRoot= " << theRoot;
     //fnxsl = "/ssn/p[@idx='27']/.";
 
-    fnxml = "/Users/frank.mastronardi/myQTxslxml/runtimeFiles/input.xml";
+    fnxml = "/Users/frank.mastronardi/myQTxslxml/runtimeFiles/L1501291001.xml";
     //fnxsl = "C:\\myworkspaces\\myQTxslxml\\runtimeFiles\\xml2csv101.xsl";
-    fnxsl = "/Users/frank.mastronardi/myQTxslxml/runtimeFiles/calc_minrep_for.xslt";
+    fnxsl = "/Users/frank.mastronardi/myQTxslxml/runtimeFiles/listxml2csv101.xsl";
     //fnxsl = "/Users/frank.mastronardi/Dbg-myqtxslxml/test.xsl";
 
     //fnxml = "/Users/frank.mastronardi/Dbg-myqtxslxml/Lq1406110746.xml";
