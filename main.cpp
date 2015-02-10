@@ -4,6 +4,7 @@
 #include <QTime>
 #include "myxml.h"
 #include "myxslttemplates.h"
+#include "mylist.h"
 
 using namespace std;
 
@@ -66,7 +67,11 @@ int main(int argc, char *argv[])
         //iRetval = myxml::applyTemplate_xsl_xml_FromStrings(xslt00, out, out);
         if(iRetval == 0)
         {
-            std::cout << out.toStdString() << "\n";
+            //std::cout << out.toStdString() << "\n";
+
+            // list to csv memory thing.
+            iRetval = myList::makeList(out);
+
         }
 
         //qDebug() << fnxsl << fnxml;
