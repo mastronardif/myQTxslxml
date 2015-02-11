@@ -8,6 +8,7 @@
 
 using namespace std;
 
+#define FMTIMEANALYSIS
 // http://www.dpawson.co.uk/xsl/sect2/identity.html#d5916e13
 //xsltproc   myexcelCols.xsl L1406021139.csv
 // /Users/frank.mastronardi/Qt5.2.1/5.2.1/clang_64/bin/xmlpatterns -help
@@ -22,7 +23,7 @@ QString theRoot = "%1/runtimeFiles/manifest.xml";
 int main(int argc, char *argv[])
 {
     int iRetval = 0;
-#ifndef FMTIMEANALYSIS
+#ifdef FMTIMEANALYSIS
     QTime time;
     time.start();
 #endif
@@ -70,15 +71,16 @@ int main(int argc, char *argv[])
             //std::cout << out.toStdString() << "\n";
 
             // list to csv memory thing.
-            iRetval = myList::makeList(out);
-
+            myList  theCourse;
+            iRetval = theCourse.makeList(out);
+            myList::printList(theCourse.m_course);
         }
 
         //qDebug() << fnxsl << fnxml;
         //std::cout << xslt00.toStdString() << "\n";
         //std::cout << xml00.toStdString() << "\n";
 
-        return 0;
+        //return 0;
 
     }
 
@@ -219,7 +221,7 @@ qDebug() << "************************************";
 //    qDebug() << "\nUsage: exe xsl  xml";
 
 
-#ifndef FMTIMEANALYSIS
+#ifdef FMTIMEANALYSIS
     int difference = time.elapsed();
     QString str = QString("\n[%1] Func(%2) took %3 msec \n").arg(QDateTime::currentDateTime().toString("MM-dd-yy hh:mm:ss.zzz"), __FUNCTION__, QString::number(difference));
     qDebug() << str;

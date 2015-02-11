@@ -18,8 +18,7 @@ Purpose:  Used to ____ ,
        cnt_P( <xsl:value-of select="$cnt_P"/> )
        cntVs( <xsl:value-of select="$cntVs"/> ) -->
 
-
-    <xsl:text>BEGIN SSN </xsl:text> count(<xsl:value-of select="count(ssn)"/>)<xsl:text>&#xa;</xsl:text>
+    <xsl:text>BEGIN [SSN] </xsl:text> count(<xsl:value-of select="count(ssn)"/>)<xsl:text>&#xa;</xsl:text>
     <xsl:call-template  name="LIST"> 
         <xsl:with-param name="match" select="ssn"/>  
         <xsl:with-param name="cntPElems"  select="1"/>
@@ -27,22 +26,21 @@ Purpose:  Used to ____ ,
     </xsl:call-template>
 
     <xsl:text>END SSN&#xa;</xsl:text>
-
-    <xsl:text>BEGIN SSN/P </xsl:text> count(<xsl:value-of select="count(ssn/p)"/>)<xsl:text>&#xa;</xsl:text>
-    <xsl:call-template name="LIST"> 
+    <xsl:text>BEGIN [SSN/P] </xsl:text> count(<xsl:value-of select="count(ssn/p)"/>)
+    <xsl:call-template name="LIST">
         <xsl:with-param name="match" select="ssn/p"/>
         <xsl:with-param name="cntPElems"   select="$cnt_S"/>
         <xsl:with-param name="cntElems"   select="$cnt_P"/>  
     </xsl:call-template>
     <xsl:text>END SSN/P&#xa;</xsl:text>
 
-    <xsl:text>BEGIN SSN/P/V </xsl:text> count(<xsl:value-of select="count(ssn/p/v)"/>)<xsl:text>&#xa;</xsl:text>
+    <xsl:text>BEGIN [SSN/P/V] </xsl:text> count(<xsl:value-of select="count(ssn/p/v)"/>)
     <xsl:call-template name="LIST"> 
         <xsl:with-param name="match"      select="ssn/p/v"/>
         <xsl:with-param name="cntPElems"  select="$cnt_P"/>
         <xsl:with-param name="cntElems"   select="$cntVs"/>
     </xsl:call-template>
-    <xsl:text>END SSN/P/V&#xa;</xsl:text>
+    <xsl:text>END [SSN/P/V]&#xa;</xsl:text>
 
   </xsl:template>
 
