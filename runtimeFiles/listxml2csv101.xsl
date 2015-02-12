@@ -73,7 +73,7 @@ Purpose:  Used to ____ ,
         </xsl:if>
 
         <!-- Rows -->     
-        <xsl:value-of select="position()-1"/> <xsl:text>,</xsl:text>
+        <xsl:text>"</xsl:text><xsl:value-of select="position()-1"/><xsl:text>"</xsl:text><xsl:text>,</xsl:text>
         <xsl:for-each select="./@*">
             <xsl:text>"</xsl:text><xsl:value-of select="."/><xsl:text>"</xsl:text><xsl:value-of select="$delimiter"/>
         </xsl:for-each>
