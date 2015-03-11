@@ -5,6 +5,7 @@
 #include "myxml.h"
 #include "myxslttemplates.h"
 #include "mylist.h"
+#include "mycoursexml.h"
 
 using namespace std;
 
@@ -74,6 +75,9 @@ int main(int argc, char *argv[])
             myList  theCourse;
             iRetval = theCourse.makeList(out);
             myList::printList(theCourse.m_course);
+
+            myCourseXml theCourseXml(theCourse);
+            iRetval =  theCourseXml.printSession();
         }
 
         //qDebug() << fnxsl << fnxml;

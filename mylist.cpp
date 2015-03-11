@@ -62,7 +62,7 @@ int myList::makeList(QString src)
     printListToFile("./m_ssn.csv", m_ssn);
     printListToFile("./m_p.csv",   m_p);
 
-    qSort(m_v.begin(), m_v.end(), qGreater<QString>());
+    //qSort(m_v.begin(), m_v.end(), qGreater<QString>());
     //m_v.sort(Qt::CaseInsensitive);
     printListToFile("./m_v.csv",   m_v);
 

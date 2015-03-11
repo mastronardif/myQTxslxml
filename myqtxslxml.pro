@@ -20,12 +20,16 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     myxml.cpp \
-    myxslttemplates.cpp
+    myxslttemplates.cpp \
+    mylist.cpp \
+    mycoursexml.cpp
 
 
 HEADERS += \
     myxml.h \
-    myxslttemplates.h
+    myxslttemplates.h \
+    mylist.h \
+    mycoursexml.h
 
 RESOURCES += \
     Resources/Resources.qrc
@@ -44,9 +48,9 @@ copydata22.commands = $$quote(cmd /c xcopy /y /f /i /E $${PWD_WIN}\\runtimeFiles
 
 message(XCopy /E /Y  $$PWD_WIN\\runtimeFiles to $$DESTDIR_WIN)
 
-#first.depends = $(first)  copydata copydata22
-#export(first.depends)
-#export(copydata.commands)
+first.depends = $(first)  copydata copydata22
+export(first.depends)
+export(copydata.commands)
 QMAKE_EXTRA_TARGETS += copydata copydata22
 POST_TARGETDEPS += copydata copydata22
 }
@@ -83,9 +87,9 @@ unix{
 copydata22.commands = $(COPY_DIR) $$PWD/Resources $$OUT_PWD
 copydata.commands = $(COPY_DIR) $$PWD/runtimeFiles $$OUT_PWD
 first.depends = $(first) copydata copydata22
-export(first.depends)
-export(copydata.commands)
-QMAKE_EXTRA_TARGETS += first copydata copydata22
+#export(first.depends)
+#export(copydata.commands)
+#QMAKE_EXTRA_TARGETS += first copydata copydata22
 }
 # new shit end
 

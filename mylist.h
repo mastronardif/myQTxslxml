@@ -14,6 +14,7 @@ public:
 
     static int printList(QStringList list);
     static int printListToFile(QString fn, QStringList list);
+
 public:
     QStringList m_course;
     QStringList m_ssn;
