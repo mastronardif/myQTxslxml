@@ -9,6 +9,30 @@ myList::myList()
 
 }
 
+bool caseInsensitiveLessThan(const QString &s1, const QString &s2)
+{
+    return s1.toLower() < s2.toLower();
+}
+bool caseInsensitiveLessThan_5ThCol(const QString &s1, const QString &s2)
+{
+    QString ss1, ss2;
+    //QRegExp rx("(\\ |\\,|\\.|\\:|\\t)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
+    QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
+
+    QStringList query = s1.split(rx);
+    ss1 = (query.length() > 4) ? query[4] : query[0];
+
+    query = s2.split(rx);
+    ss2 = (query.length() > 4) ? query[4] : query[0];
+
+//    qDebug() << "ss1 = " << ss1;
+//    qDebug() << "ss2 = " << ss2;
+
+    //return s1.toLower() < s2.toLower();
+    return ss1.toLower() < ss2.toLower();
+
+}
+
 int myList::makeList(QString src)
 {
     int iRetval = 0;
@@ -40,7 +64,7 @@ int myList::makeList(QString src)
 
         *ptrList << line;
 
-        qDebug() << line;
+        //qDebug() << line;
 
     } while(!line.isNull());
 
@@ -52,17 +76,20 @@ int myList::makeList(QString src)
 //    } while(!line.isNull());
 
     // test list
-    qDebug() << "m_course BEGIN"; printList(m_course); qDebug() << "m_course END";
+    //qDebug() << "m_course BEGIN"; printList(m_course); qDebug() << "m_course END";
 
     //printList(m_p);printList(m_p);printList(m_v);
-    qDebug() << "m_ssn BEGIN"; printList(m_ssn); qDebug() << "m_ssn END";
-    qDebug() << "m_p BEGIN"; printList(m_p); qDebug() << "m_p END";
-    qDebug() << "m_v BEGIN"; printList(m_v); qDebug() << "m_v END";
+//    qDebug() << "m_ssn BEGIN"; printList(m_ssn); qDebug() << "m_ssn END";
+//    qDebug() << "m_p BEGIN"; printList(m_p); qDebug() << "m_p END";
+//    qDebug() << "m_v BEGIN"; printList(m_v); qDebug() << "m_v END";
 
     printListToFile("./m_ssn.csv", m_ssn);
     printListToFile("./m_p.csv",   m_p);
 
     //qSort(m_v.begin(), m_v.end(), qGreater<QString>());
+    //qSort(m_v.begin(), m_v.end(), caseInsensitiveLessThan);
+    qSort(m_v.begin(), m_v.end(), caseInsensitiveLessThan_5ThCol);
+
     //m_v.sort(Qt::CaseInsensitive);
     printListToFile("./m_v.csv",   m_v);
 

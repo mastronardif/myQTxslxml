@@ -1,6 +1,7 @@
 #include "mycoursexml.h"
 #include <QFile>
 #include <QDebug>
+#include <QString>
 
 
 myCourseXml::myCourseXml(myList &courseList) : m_courseList(courseList)
@@ -53,11 +54,46 @@ int myCourseXml::printSession()
     return iRetval;
 }
 
-int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter)
+int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter /* m_v.csv */)
 {
     //xmlWriter->writeStartElement("STUDENTS");   // <STUDENTS>
 
     // foreach student
+
+    QRegExp rx3("(BEGIN|END)");
+    rx3.setMinimal(true);
+    rx3.setCaseSensitivity(Qt::CaseInsensitive);
+
+    QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
+    bool bEnd = false;
+    QStringList list  = this->m_courseList.m_v;
+    int total = list.count();
+    QStringList query = list[0].split(rx);
+    QString lastKnown = (query.length() > 4) ? query[4] : "null";
+
+    int iCnt = 1;
+    foreach (const QString &line, list)
+    {
+        if (iCnt == 1) {qDebug() << "BBBBBBBB________" << iCnt << total;}
+
+        query = line.split(rx);
+        QString ss1 = (query.length() > 4) ? query[4] : "null";
+
+        if (QString::compare(ss1, lastKnown, Qt::CaseInsensitive) != 0)
+        {
+            bEnd = true;
+            lastKnown = ss1;
+            qDebug() << "EEEEEEEE________" << iCnt << total;
+            if (iCnt <= total) { qDebug() << "BBBBBBBB________" << iCnt << total; }
+        }
+
+        qDebug() << "ss1 = " << ss1;
+
+        if (iCnt == total) {qDebug() << "EEEEEEEE________" << iCnt << total;}
+
+        iCnt++;
+    }
+
     xmlWriter->writeStartElement("student");   // <student>
 
     xmlWriter->writeAttribute("ClassAveragePerformancePercentage",  "Calc");
