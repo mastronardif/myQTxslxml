@@ -136,10 +136,10 @@ int myCourseXml::writeStudentAttributes(QXmlStreamWriter* xmlWriter, const QStri
     xmlWriter->writeAttribute("ClassAveragePerformancePercentage ", "TBD");
 }
 
-const QStringList myCourseXml::helperGetHeaderLabels(QStringList &list)
+const QStringList myCourseXml::helperGetHeaderLabels(const QString list)
 {
     QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
-    QStringList query = list[0].split(rx);
+    QStringList query = list.split(rx);
     for(int idx = 0; idx < query.length(); idx++)
     {
         query[idx].remove('"');
@@ -165,7 +165,7 @@ int myCourseXml::forEachStudent00(QXmlStreamWriter* xmlWriter, const QStringList
     QStringList coloumns = list[0].split(rx);
     QString lastKnown = (coloumns.length() > 4) ? coloumns[4] : "null";
 
-    const QStringList labels = helperGetHeaderLabels(list);
+    const QStringList labels = helperGetHeaderLabels(votes[0]);
     //helperGetHeaderLabels(votes);
     //int index= labels["sid"];
     QString ddd = list[1]; //.[labels.indexOf("id")];
@@ -217,6 +217,7 @@ int myCourseXml::forEachStudent00(QXmlStreamWriter* xmlWriter, const QStringList
 
 int myCourseXml::forEachStudentVote(int &idx, const QString argStudent, const QStringList &list, QXmlStreamWriter* xmlWriter)
 {
+    const QStringList labels = helperGetHeaderLabels(list[0]);
     QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
     QString clean;
     QString student = argStudent;
@@ -226,11 +227,16 @@ int myCourseXml::forEachStudentVote(int &idx, const QString argStudent, const QS
     {
         QString line = list[idx];
 
-        QStringList query = line.split(rx);
-        QString ss1 = (query.length() > 3) ? query[4]  : "null";
-        QString qid = (query.length() > 9) ? query[10] : "null";
-        QString scr = (query.length() > 5) ? query[6]  : "null";
-        QString ans = (query.length() > 8) ? query[9]  : "null";
+        QStringList cols = line.split(rx);
+        //QString ss1 = (coloumns.length() > 3) ? coloumns[4]  : "null";
+        QString ss1 = (cols.length() == labels.length()) ? cols[labels.indexOf("id")]   : "null";
+        QString qid = (cols.length() == labels.length()) ? cols[labels.indexOf("p_id")] : "null";
+        QString scr = (cols.length() == labels.length()) ? cols[labels.indexOf("scr")]  : "null";
+        QString ans = (cols.length() == labels.length()) ? cols[labels.indexOf("ans")]  : "null";
+
+//        QString qid = (cols.length() > 9) ? cols[10] : "null";
+//        QString scr = (cols.length() > 5) ? cols[6]  : "null";
+//        QString ans = (cols.length() > 8) ? cols[9]  : "null";
 
         ss1.remove('"');
         qid.remove('"');
