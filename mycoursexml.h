@@ -26,7 +26,9 @@ private:
     int forEachStudent(QXmlStreamWriter* xmlWriter);
     static int forEachStudent00(QXmlStreamWriter* xmlWriter, const QStringList &votes);
     static int forEachStudentVote(int &idx, const QString student, const QStringList &list, QXmlStreamWriter* xmlWriter);
+    static int writeStudentAttributes(QXmlStreamWriter* xmlWriter, const QString sid);
 
+    static  const QStringList helperGetHeaderLabels(QStringList &list);
 private:
     myList m_courseList;
 };

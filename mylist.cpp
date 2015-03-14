@@ -60,6 +60,7 @@ int myList::makeList(QString src)
         if(line.contains(QRegExp("BEGIN \\[SSN/P/v\\]", Qt::CaseInsensitive)))
         {
             ptrList = &m_v;
+            continue;   // skip BEGIN line
         }
 
         *ptrList << line;
@@ -88,7 +89,11 @@ int myList::makeList(QString src)
 
     //qSort(m_v.begin(), m_v.end(), qGreater<QString>());
     //qSort(m_v.begin(), m_v.end(), caseInsensitiveLessThan);
-    qSort(m_v.begin(), m_v.end(), caseInsensitiveLessThan_5ThCol);
+    //qSort(m_v.begin(), m_v.end(), caseInsensitiveLessThan_5ThCol);
+    //Keep header at the top
+    QList<QString>::iterator itr = m_v.begin();
+    if (m_v.length() > 1) { itr = m_v.begin()+1;}
+    qSort(itr, m_v.end(), caseInsensitiveLessThan_5ThCol);
 
     //m_v.sort(Qt::CaseInsensitive);
     printListToFile("./m_v.csv",   m_v);
