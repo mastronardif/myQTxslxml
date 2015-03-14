@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
             // list to csv memory thing.
             myList  theCourse;
             iRetval = theCourse.makeList(out);
-            myList::printList(theCourse.m_v); // m_course);
+            //myList::printList(theCourse.m_v); // m_course);
 
             myCourseXml theCourseXml(theCourse);
             iRetval =  theCourseXml.printSession();

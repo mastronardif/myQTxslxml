@@ -24,6 +24,8 @@ public:
 
 private:
     int forEachStudent(QXmlStreamWriter* xmlWriter);
+    static int forEachStudent00(QXmlStreamWriter* xmlWriter, const QStringList &votes);
+    static int forEachStudentVote(int &idx, const QString student, const QStringList &list, QXmlStreamWriter* xmlWriter);
 
 private:
     myList m_courseList;

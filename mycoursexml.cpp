@@ -41,7 +41,8 @@ int myCourseXml::printSession()
     xmlWriter->writeStartElement("STUDENTS");   // <STUDENTS>
 
     // foreach student
-    forEachStudent(xmlWriter);
+    forEachStudent00(xmlWriter, this->m_courseList.m_v);
+    //forEachStudent(xmlWriter);
 
     xmlWriter->writeEndElement();   // </STUDENTS>
 
@@ -74,7 +75,11 @@ int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter /* m_v.csv */)
     int iCnt = 1;
     foreach (const QString &line, list)
     {
-        if (iCnt == 1) {qDebug() << "BBBBBBBB________" << iCnt << total;}
+        if (iCnt == 1)
+        {
+            xmlWriter->writeStartElement("student");   // <student>
+            qDebug() << "BBBBBBBB________" << iCnt << total;
+        }
 
         query = line.split(rx);
         QString ss1 = (query.length() > 4) ? query[4] : "null";
@@ -83,13 +88,26 @@ int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter /* m_v.csv */)
         {
             bEnd = true;
             lastKnown = ss1;
+            xmlWriter->writeEndElement();   // </student>
             qDebug() << "EEEEEEEE________" << iCnt << total;
-            if (iCnt <= total) { qDebug() << "BBBBBBBB________" << iCnt << total; }
+            if (iCnt <= total)
+            {
+                xmlWriter->writeStartElement("student");   // <student>
+                qDebug() << "BBBBBBBB________" << iCnt << total;
+            }
         }
 
+        QString cleanSs1 = ss1.remove('"');
+        xmlWriter->writeAttribute("sid",  ss1);
         qDebug() << "ss1 = " << ss1;
 
-        if (iCnt == total) {qDebug() << "EEEEEEEE________" << iCnt << total;}
+
+
+        if (iCnt == total)
+        {
+            xmlWriter->writeEndElement();   // </student>
+            qDebug() << "EEEEEEEE________" << iCnt << total;
+        }
 
         iCnt++;
     }
@@ -108,4 +126,129 @@ int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter /* m_v.csv */)
     xmlWriter->writeEndElement();   // </student>
 
     //xmlWriter->writeEndElement();   // </STUDENTS>
+}
+
+int myCourseXml::forEachStudent00(QXmlStreamWriter* xmlWriter, const QStringList &votes)
+{
+    //xmlWriter->writeStartElement("STUDENTS");   // <STUDENTS>
+
+    // foreach student
+
+    QRegExp rx3("(BEGIN|END)");
+    rx3.setMinimal(true);
+    rx3.setCaseSensitivity(Qt::CaseInsensitive);
+
+    QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
+    bool bEnd = false;
+    QStringList list  = votes; //this->m_courseList.m_v;
+    int total = list.count();
+    QStringList query = list[0].split(rx);
+    QString lastKnown = (query.length() > 4) ? query[4] : "null";
+
+    int iCnt = 1;
+    //foreach (const QString &line, list)
+    for(int idx = 0; idx < list.length(); )//idx++)
+    {
+        QString line = list[idx];
+
+        query = line.split(rx);
+        QString ss1 = (query.length() > 4) ? query[4] : "null";
+        ss1.remove('"');
+        //if (iCnt == 1)
+        {
+            xmlWriter->writeStartElement("student");   // <student>
+            xmlWriter->writeAttribute("sid",  ss1);
+
+            xmlWriter->writeStartElement("qr");   // <student>
+            forEachStudentVote(idx, ss1, list, xmlWriter);
+            xmlWriter->writeEndElement();   // </student>
+
+            xmlWriter->writeEndElement();   // </student>
+            qDebug() << "BBBBBBBB________" << iCnt << total;
+        }
+
+        qDebug() << "idx = " << idx;
+        continue;
+
+
+        if (QString::compare(ss1, lastKnown, Qt::CaseInsensitive) != 0)
+        {
+            bEnd = true;
+            lastKnown = ss1;
+            xmlWriter->writeEndElement();   // </student>
+            qDebug() << "EEEEEEEE________" << iCnt << total;
+            if (iCnt <= total)
+            {
+                xmlWriter->writeStartElement("student");   // <student>
+                qDebug() << "BBBBBBBB________" << iCnt << total;
+            }
+        }
+
+        QString cleanSs1 = ss1.remove('"');
+        xmlWriter->writeAttribute("sid",  ss1);
+        qDebug() << "ss1 = " << ss1;
+
+
+
+        if (iCnt == total)
+        {
+            xmlWriter->writeEndElement();   // </student>
+            qDebug() << "EEEEEEEE________" << iCnt << total;
+        }
+
+        iCnt++;
+    }
+
+    xmlWriter->writeStartElement("student");   // <student>
+
+    xmlWriter->writeAttribute("ClassAveragePerformancePercentage",  "Calc");
+
+    xmlWriter->writeAttribute("RemoteId",  "rrr");
+    xmlWriter->writeAttribute("StudentId", "sid");
+
+    xmlWriter->writeEndElement();
+
+    // foreach qr
+    // forEachQr
+    xmlWriter->writeEndElement();   // </student>
+
+    //xmlWriter->writeEndElement();   // </STUDENTS>
+}
+
+int myCourseXml::forEachStudentVote(int &idx, const QString argStudent, const QStringList &list, QXmlStreamWriter* xmlWriter)
+{
+    QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
+    QString clean;
+    QString student = argStudent;
+    student.remove('"');
+
+    for(; idx < list.length(); idx++)
+    {
+        QString line = list[idx];
+
+        QStringList query = line.split(rx);
+        QString ss1 = (query.length() > 3) ? query[4]  : "null";
+        QString qid = (query.length() > 9) ? query[10] : "null";
+        QString scr = (query.length() > 5) ? query[6]  : "null";
+        QString ans = (query.length() > 8) ? query[9]  : "null";
+
+        ss1.remove('"');
+        qid.remove('"');
+        scr.remove('"');
+        ans.remove('"');
+
+ if (QString::compare(ss1, student, Qt::CaseInsensitive) != 0) { break; }
+
+        qDebug() << student << ss1 << qid << "ss1 = " << ss1 << "qid = " << qid << "scr = " << scr;
+        xmlWriter->writeStartElement("q");   // <q>
+        //xmlWriter->writeAttribute("sid",  ss1);
+        xmlWriter->writeAttribute("qid",  qid);
+        xmlWriter->writeAttribute("scr",  scr);
+        xmlWriter->writeAttribute("vote", ans);
+        xmlWriter->writeAttribute("response", ans);
+        xmlWriter->writeAttribute("icr", "tbd");
+        xmlWriter->writeEndElement();
+
+    }
+
 }
