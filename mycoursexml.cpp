@@ -41,92 +41,17 @@ int myCourseXml::printSession()
     xmlWriter->writeStartElement("STUDENTS");   // <STUDENTS>
 
     // foreach student
-    forEachStudent00(xmlWriter, this->m_courseList.m_v);
-    //forEachStudent(xmlWriter);
+    forEachStudent(xmlWriter, this->m_courseList.m_v);
 
     xmlWriter->writeEndElement();   // </STUDENTS>
 
     xmlWriter->writeEndElement();   // </SESSION>
 
-
     xmlWriter->writeEndElement();   // </ROOT>
-
 
     return iRetval;
 }
 
-int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter /* m_v.csv */)
-{
-    //xmlWriter->writeStartElement("STUDENTS");   // <STUDENTS>
-
-    // foreach student
-
-    QRegExp rx3("(BEGIN|END)");
-    rx3.setMinimal(true);
-    rx3.setCaseSensitivity(Qt::CaseInsensitive);
-
-    QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
-    bool bEnd = false;
-    QStringList list  = this->m_courseList.m_v;
-    int total = list.count();
-    QStringList query = list[0].split(rx);
-    QString lastKnown = (query.length() > 4) ? query[4] : "null";
-
-    int iCnt = 1;
-    foreach (const QString &line, list)
-    {
-        if (iCnt == 1)
-        {
-            xmlWriter->writeStartElement("student");   // <student>
-            qDebug() << "BBBBBBBB________" << iCnt << total;
-        }
-
-        query = line.split(rx);
-        QString ss1 = (query.length() > 4) ? query[4] : "null";
-
-        if (QString::compare(ss1, lastKnown, Qt::CaseInsensitive) != 0)
-        {
-            bEnd = true;
-            lastKnown = ss1;
-            xmlWriter->writeEndElement();   // </student>
-            qDebug() << "EEEEEEEE________" << iCnt << total;
-            if (iCnt <= total)
-            {
-                xmlWriter->writeStartElement("student");   // <student>
-                qDebug() << "BBBBBBBB________" << iCnt << total;
-            }
-        }
-
-        QString cleanSs1 = ss1.remove('"');
-        xmlWriter->writeAttribute("sid",  ss1);
-        qDebug() << "ss1 = " << ss1;
-
-
-
-        if (iCnt == total)
-        {
-            xmlWriter->writeEndElement();   // </student>
-            qDebug() << "EEEEEEEE________" << iCnt << total;
-        }
-
-        iCnt++;
-    }
-
-    xmlWriter->writeStartElement("student");   // <student>
-
-    xmlWriter->writeAttribute("ClassAveragePerformancePercentage",  "Calc");
-
-    xmlWriter->writeAttribute("RemoteId",  "rrr");
-    xmlWriter->writeAttribute("StudentId", "sid");
-
-    xmlWriter->writeEndElement();
-
-    // foreach qr
-    // forEachQr
-    xmlWriter->writeEndElement();   // </student>
-
-    //xmlWriter->writeEndElement();   // </STUDENTS>
-}
 
 int myCourseXml::writeStudentAttributes(QXmlStreamWriter* xmlWriter, const QString sid)
 {
@@ -148,33 +73,20 @@ const QStringList myCourseXml::helperGetHeaderLabels(const QString list)
     return query;
 }
 
-int myCourseXml::forEachStudent00(QXmlStreamWriter* xmlWriter, const QStringList &votes)
+int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter, const QStringList &votes)
 {
-    //xmlWriter->writeStartElement("STUDENTS");   // <STUDENTS>
-
-    // foreach student
-
     QRegExp rx3("(BEGIN|END)");
     rx3.setMinimal(true);
     rx3.setCaseSensitivity(Qt::CaseInsensitive);
 
     QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
-    bool bEnd = false;
     QStringList list  = votes; //this->m_courseList.m_v;
     int total = list.count();
     QStringList coloumns = list[0].split(rx);
-    QString lastKnown = (coloumns.length() > 4) ? coloumns[4] : "null";
 
     const QStringList labels = helperGetHeaderLabels(votes[0]);
-    //helperGetHeaderLabels(votes);
-    //int index= labels["sid"];
-    QString ddd = list[1]; //.[labels.indexOf("id")];
     coloumns = list[1].split(rx);
 
-    QString lastKnown22 = (coloumns.length() == labels.length()) ? coloumns[labels.indexOf("id")] : "null";
-
-    int iCnt = 1;
-    //foreach (const QString &line, list)
     for(int idx = 0; idx < list.length(); )//idx++)
     {
         QString line = list[idx];
@@ -182,37 +94,20 @@ int myCourseXml::forEachStudent00(QXmlStreamWriter* xmlWriter, const QStringList
         coloumns = line.split(rx);
         QString ss1 = (coloumns.length() == labels.length()) ? coloumns[labels.indexOf("id")] : "null";
 
-        //QString ss1 = (coloumns.length() > 4) ? coloumns[4] : "null";
         ss1.remove('"');
-        //if (iCnt == 1)
-        {
-            writeStudentAttributes(xmlWriter, ss1);
 
-            xmlWriter->writeStartElement("qr");   // <student>
-            forEachStudentVote(idx, ss1, list, xmlWriter);
-            xmlWriter->writeEndElement();   // </student>
+        xmlWriter->writeStartElement("student");   //<student>
+        writeStudentAttributes(xmlWriter, ss1);
 
-            xmlWriter->writeEndElement();   // </student>
-            qDebug() << "BBBBBBBB________" << iCnt << total;
-        }
+        xmlWriter->writeStartElement("qr");   //<qr>
+        forEachStudentVote(idx, ss1, list, xmlWriter);
+        xmlWriter->writeEndElement();        // </qr>
+
+        xmlWriter->writeEndElement();  // </student>
+        qDebug() << "BBBBBBBB________" << idx << total;
 
         qDebug() << "idx = " << idx;
     }
-
-    xmlWriter->writeStartElement("student");   // <student>
-
-    xmlWriter->writeAttribute("ClassAveragePerformancePercentage",  "Calc");
-
-    xmlWriter->writeAttribute("RemoteId",  "rrr");
-    xmlWriter->writeAttribute("StudentId", "sid");
-
-    xmlWriter->writeEndElement();
-
-    // foreach qr
-    // forEachQr
-    xmlWriter->writeEndElement();   // </student>
-
-    //xmlWriter->writeEndElement();   // </STUDENTS>
 }
 
 int myCourseXml::forEachStudentVote(int &idx, const QString argStudent, const QStringList &list, QXmlStreamWriter* xmlWriter)
@@ -234,10 +129,6 @@ int myCourseXml::forEachStudentVote(int &idx, const QString argStudent, const QS
         QString scr = (cols.length() == labels.length()) ? cols[labels.indexOf("scr")]  : "null";
         QString ans = (cols.length() == labels.length()) ? cols[labels.indexOf("ans")]  : "null";
 
-//        QString qid = (cols.length() > 9) ? cols[10] : "null";
-//        QString scr = (cols.length() > 5) ? cols[6]  : "null";
-//        QString ans = (cols.length() > 8) ? cols[9]  : "null";
-
         ss1.remove('"');
         qid.remove('"');
         scr.remove('"');
@@ -253,7 +144,7 @@ int myCourseXml::forEachStudentVote(int &idx, const QString argStudent, const QS
         xmlWriter->writeAttribute("vote", ans);
         xmlWriter->writeAttribute("response", ans);
         xmlWriter->writeAttribute("icr", "tbd");
-        xmlWriter->writeEndElement();
+        xmlWriter->writeEndElement(); // </q>
 
     }
 
