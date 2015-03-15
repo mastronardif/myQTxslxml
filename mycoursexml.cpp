@@ -1,4 +1,4 @@
-#include "mycoursexml.h"
+﻿#include "mycoursexml.h"
 #include <QFile>
 #include <QDebug>
 #include <QString>
@@ -38,6 +38,13 @@ int myCourseXml::printSession()
     xmlWriter->writeStartElement("ROOT"); xmlWriter->writeAttribute("SSR",   "makeThistheRootTag");
     xmlWriter->writeStartElement("SESSION");
 
+    // Questions
+    xmlWriter->writeStartElement("QUESTIONS");   // <QUESTIONS>
+
+    forEachQuestion(xmlWriter, this->m_courseList.m_p);
+
+    xmlWriter->writeEndElement();   // </QUESTIONS>
+
     xmlWriter->writeStartElement("STUDENTS");   // <STUDENTS>
 
     // foreach student
@@ -73,6 +80,45 @@ const QStringList myCourseXml::helperGetHeaderLabels(const QString list)
     return query;
 }
 
+int myCourseXml::forEachQuestion(QXmlStreamWriter* xmlWriter, const QStringList &questions)
+{
+    QRegExp rx3("(BEGIN|END)");
+    rx3.setMinimal(true);
+    rx3.setCaseSensitivity(Qt::CaseInsensitive);
+
+    QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
+    QStringList list  = questions; //this->m_courseList.m_p;
+    //int total = list.count();
+    //QStringList coloumns = list[0].split(rx);
+
+    const QStringList labels = helperGetHeaderLabels(questions[0]);
+    QStringList cols = list[1].split(rx);
+
+    for(int idx = 1; idx < list.length(); idx++)
+    {
+        QString line = list[idx];
+
+        cols = line.split(rx);
+        if (cols.length() != labels.length())
+        {
+            //skip bad rows.
+            continue;
+        }
+
+        QString qn   = (labels.indexOf("qn")   != -1) ? cols[labels.indexOf("qn")]   : "null";
+        QString cans = (labels.indexOf("cans") != -1) ? cols[labels.indexOf("cans")] : "null";
+        qn.remove('"'); cans.remove('"');
+        xmlWriter->writeStartElement("question");
+        xmlWriter->writeAttribute("name", qn);
+        xmlWriter->writeAttribute("AveragePercent", "TBD");
+        xmlWriter->writeAttribute("CorrectAnswer",   cans);
+        xmlWriter->writeEndElement(); // </question>
+        //qDebug() << "BBBBBBBB________" << idx << total;
+
+        //qDebug() << "idx = " << idx;
+    }
+}
+
 int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter, const QStringList &votes)
 {
     QRegExp rx3("(BEGIN|END)");
@@ -81,11 +127,11 @@ int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter, const QStringList &
 
     QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
     QStringList list  = votes; //this->m_courseList.m_v;
-    int total = list.count();
-    QStringList coloumns = list[0].split(rx);
+    //int total = list.count();
+    //QStringList coloumns = list[0].split(rx);
 
     const QStringList labels = helperGetHeaderLabels(votes[0]);
-    coloumns = list[1].split(rx);
+    QStringList coloumns = list[1].split(rx);
 
     for(int idx = 0; idx < list.length(); )//idx++)
     {
@@ -104,7 +150,7 @@ int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter, const QStringList &
         xmlWriter->writeEndElement();        // </qr>
 
         xmlWriter->writeEndElement();  // </student>
-        qDebug() << "BBBBBBBB________" << idx << total;
+        qDebug() << "BBBBBBBB________" << idx; // << total;
 
         qDebug() << "idx = " << idx;
     }
@@ -134,9 +180,11 @@ int myCourseXml::forEachStudentVote(int &idx, const QString argStudent, const QS
         scr.remove('"');
         ans.remove('"');
 
- if (QString::compare(ss1, student, Qt::CaseInsensitive) != 0) { break; }
+        if (QString::compare(ss1, student, Qt::CaseInsensitive) != 0) { break; }
 
         qDebug() << student << ss1 << qid << "ss1 = " << ss1 << "qid = " << qid << "scr = " << scr;
+
+
         xmlWriter->writeStartElement("q");   // <q>
         //xmlWriter->writeAttribute("sid",  ss1);
         xmlWriter->writeAttribute("qid",  qid);

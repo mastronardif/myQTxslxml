@@ -56,6 +56,7 @@ int myList::makeList(QString src)
         if(line.contains(QRegExp("BEGIN \\[SSN/P\\]")))
         {
             ptrList = &m_p;
+            continue;   // skip BEGIN line
         }
         if(line.contains(QRegExp("BEGIN \\[SSN/P/v\\]", Qt::CaseInsensitive)))
         {

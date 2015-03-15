@@ -26,7 +26,7 @@ Purpose:  Used to ____ ,
     </xsl:call-template>
 
     <xsl:text>END SSN&#xa;</xsl:text>
-    <xsl:text>BEGIN [SSN/P] </xsl:text> count(<xsl:value-of select="count(ssn/p)"/>)
+    <xsl:text>BEGIN [SSN/P] </xsl:text> count(<xsl:value-of select="count(ssn/p)"/>)<xsl:text>&#xa;</xsl:text>
     <xsl:call-template name="LIST">
         <xsl:with-param name="match" select="ssn/p"/>
         <xsl:with-param name="cntPElems"   select="$cnt_S"/>
@@ -34,7 +34,7 @@ Purpose:  Used to ____ ,
     </xsl:call-template>
     <xsl:text>END SSN/P&#xa;</xsl:text>
 
-    <xsl:text>BEGIN [SSN/P/V] </xsl:text> count(<xsl:value-of select="count(ssn/p/v)"/>)
+    <xsl:text>BEGIN [SSN/P/V] </xsl:text> count(<xsl:value-of select="count(ssn/p/v)"/>)<xsl:text>&#xa;</xsl:text>
     <xsl:call-template name="LIST"> 
         <xsl:with-param name="match"      select="ssn/p/v"/>
         <xsl:with-param name="cntPElems"  select="$cnt_P"/>

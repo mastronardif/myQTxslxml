@@ -23,7 +23,8 @@ public:
     int printSession();
 
 private:
-    static int forEachStudent(QXmlStreamWriter* xmlWriter, const QStringList &votes);
+    static int forEachQuestion(QXmlStreamWriter* xmlWriter, const QStringList &questions);
+    static int forEachStudent (QXmlStreamWriter* xmlWriter, const QStringList &votes);
     static int forEachStudentVote(int &idx, const QString student, const QStringList &list, QXmlStreamWriter* xmlWriter);
     static int writeStudentAttributes(QXmlStreamWriter* xmlWriter, const QString sid);
 
