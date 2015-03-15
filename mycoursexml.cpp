@@ -36,7 +36,10 @@ int myCourseXml::printSession()
     xmlWriter->writeStartDocument();
 
     xmlWriter->writeStartElement("ROOT"); xmlWriter->writeAttribute("SSR",   "makeThistheRootTag");
+
     xmlWriter->writeStartElement("SESSION");
+    writeSessionAttributes(xmlWriter, this->m_courseList.m_ssn);
+    //writeSessionAttributes(QXmlStreamWriter* xmlWriter, const QStringList &session);
 
     // Questions
     xmlWriter->writeStartElement("QUESTIONS");   // <QUESTIONS>
@@ -59,7 +62,36 @@ int myCourseXml::printSession()
     return iRetval;
 }
 
+int myCourseXml::writeSessionAttributes(QXmlStreamWriter* xmlWriter, const QStringList &session)
+{
+    QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
+    QStringList list  = session;
 
+    const QStringList labels = helperGetHeaderLabels(session[0]);
+    QStringList cols = list[1].split(rx);
+
+    // skip 1st row aka the header
+    for(int idx = 1; idx < list.length(); idx++)
+    {
+        QString line = list[idx];
+
+        cols = line.split(rx);
+        if (cols.length() != labels.length())
+        {
+            //skip bad rows.
+            continue;
+        }
+
+        QString name   = (labels.indexOf("ssnn")   != -1) ? cols[labels.indexOf("ssnn")]   : "null";
+        QString part = (labels.indexOf("part") != -1) ? cols[labels.indexOf("part")] : "null";
+        name.remove('"'); part.remove('"');
+
+        xmlWriter->writeAttribute("part", part);
+        xmlWriter->writeAttribute("sppp", "TBD");
+    }
+
+
+}
 int myCourseXml::writeStudentAttributes(QXmlStreamWriter* xmlWriter, const QString sid)
 {
     xmlWriter->writeAttribute("sid",  sid);
@@ -82,14 +114,8 @@ const QStringList myCourseXml::helperGetHeaderLabels(const QString list)
 
 int myCourseXml::forEachQuestion(QXmlStreamWriter* xmlWriter, const QStringList &questions)
 {
-    QRegExp rx3("(BEGIN|END)");
-    rx3.setMinimal(true);
-    rx3.setCaseSensitivity(Qt::CaseInsensitive);
-
     QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
     QStringList list  = questions; //this->m_courseList.m_p;
-    //int total = list.count();
-    //QStringList coloumns = list[0].split(rx);
 
     const QStringList labels = helperGetHeaderLabels(questions[0]);
     QStringList cols = list[1].split(rx);
@@ -113,22 +139,13 @@ int myCourseXml::forEachQuestion(QXmlStreamWriter* xmlWriter, const QStringList 
         xmlWriter->writeAttribute("AveragePercent", "TBD");
         xmlWriter->writeAttribute("CorrectAnswer",   cans);
         xmlWriter->writeEndElement(); // </question>
-        //qDebug() << "BBBBBBBB________" << idx << total;
-
-        //qDebug() << "idx = " << idx;
     }
 }
 
 int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter, const QStringList &votes)
 {
-    QRegExp rx3("(BEGIN|END)");
-    rx3.setMinimal(true);
-    rx3.setCaseSensitivity(Qt::CaseInsensitive);
-
     QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
     QStringList list  = votes; //this->m_courseList.m_v;
-    //int total = list.count();
-    //QStringList coloumns = list[0].split(rx);
 
     const QStringList labels = helperGetHeaderLabels(votes[0]);
     QStringList coloumns = list[1].split(rx);
