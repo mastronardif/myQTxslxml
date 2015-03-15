@@ -106,8 +106,62 @@ int myList::makeList(QString src)
     wtf.prepend(m_v[1]);
     printListToFile("970F6BF3.csv",  wtf);
 
+    //CreateListForRoster(m_roster);
+
+    // create aggregated lists
+    createAggregatedListForStudents(m_v, m_roster, m_aggregatesForStudents);
+    printListToFile("./m_aggregatesForStudents.csv",   m_aggregatesForStudents);
+    //static int createAggregatedListForStudents(const QStringList list& m_v, const QStringList list& m_roster,  QStringList list m_aggregatesForStudents);
+
+    //createAggregatedListForSession(m_aggregatesForSession);
+
 
     return iRetval;
+}
+
+const QString kStudentAggregatesCols   = "%1,%2,%3";
+const QString kStudentAggregatesHeader = "StudentId,RemoteId,name";
+
+int myList::createAggregatedListForStudents(const QStringList& votes, const QStringList& roster,  QStringList &aggregatesForStudents)
+{
+    // this is equivalent to a letf outer join.
+    QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
+    QStringList list  = votes; //this->m_courseList.m_v;
+
+    // Header row
+    aggregatesForStudents.append(kStudentAggregatesHeader);
+
+
+    // sid, name, ...
+    QString sId, remoteId, sname;
+
+    const QStringList labels = helperGetHeaderLabels(votes[0]);
+    QStringList cols; // = list[1].split(rx);
+
+    //foreach (const QString &line, list)
+    for(int idx = 1; idx < list.length(); idx++)
+    {
+        // source
+        QString line = list[idx];
+        cols = line.split(rx);
+
+        if (cols.length() < labels.length())
+        {
+            // skip bad rows
+            continue;
+        }
+
+        sname   = (labels.indexOf("ssnn")   != -1) ? cols[labels.indexOf("ssnn")]   : "null";
+        QString sId = (cols.length() == labels.length()) ? cols[labels.indexOf("id")] : "null";
+        QString rId = (cols.length() == labels.length()) ? cols[labels.indexOf("id")] : "null";
+        sname.remove('"');sId.remove('"');rId.remove('"');
+
+        QString row = QString(kStudentAggregatesCols).arg(sId, rId, sname);
+
+        aggregatesForStudents.append(row);
+    }
+
+
 }
 
 int myList::printListToFile(QString fn, QStringList list)
@@ -150,3 +204,14 @@ int myList::printList(QStringList list)
     return iCnt;
 }
 
+const QStringList myList::helperGetHeaderLabels(const QString list)
+{
+    QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
+    QStringList query = list.split(rx);
+    for(int idx = 0; idx < query.length(); idx++)
+    {
+        query[idx].remove('"');
+    }
+
+    return query;
+}

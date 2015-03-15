@@ -72,7 +72,7 @@ int myCourseXml::writeTitleElement(QXmlStreamWriter* xmlWriter, const QStringLis
     QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
     QStringList list  = session;
 
-    const QStringList labels = helperGetHeaderLabels(session[0]);
+    const QStringList labels = myList::helperGetHeaderLabels(session[0]);
     QStringList cols = list[1].split(rx);
 
     // skip 1st row aka the header
@@ -108,7 +108,7 @@ int myCourseXml::writeSessionAttributes(QXmlStreamWriter* xmlWriter, const QStri
     QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
     QStringList list  = session;
 
-    const QStringList labels = helperGetHeaderLabels(session[0]);
+    const QStringList labels = myList::helperGetHeaderLabels(session[0]);
     QStringList cols = list[1].split(rx);
 
     // skip 1st row aka the header
@@ -151,24 +151,24 @@ int myCourseXml::writeStudentAttributes(QXmlStreamWriter* xmlWriter, const QStri
     xmlWriter->writeAttribute("ClassAveragePerformancePercentage", "TBD");
 }
 
-const QStringList myCourseXml::helperGetHeaderLabels(const QString list)
-{
-    QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
-    QStringList query = list.split(rx);
-    for(int idx = 0; idx < query.length(); idx++)
-    {
-        query[idx].remove('"');
-    }
+//const QStringList myCourseXml::helperGetHeaderLabels(const QString list)
+//{
+//    QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
+//    QStringList query = list.split(rx);
+//    for(int idx = 0; idx < query.length(); idx++)
+//    {
+//        query[idx].remove('"');
+//    }
 
-    return query;
-}
+//    return query;
+//}
 
 int myCourseXml::forEachQuestion(QXmlStreamWriter* xmlWriter, const QStringList &questions)
 {
     QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
     QStringList list  = questions; //this->m_courseList.m_p;
 
-    const QStringList labels = helperGetHeaderLabels(questions[0]);
+    const QStringList labels = myList::helperGetHeaderLabels(questions[0]);
     QStringList cols = list[1].split(rx);
 
     for(int idx = 1; idx < list.length(); idx++)
@@ -198,7 +198,7 @@ int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter, const QStringList &
     QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
     QStringList list  = votes; //this->m_courseList.m_v;
 
-    const QStringList labels = helperGetHeaderLabels(votes[0]);
+    const QStringList labels = myList::helperGetHeaderLabels(votes[0]);
     QStringList coloumns = list[1].split(rx);
 
     for(int idx = 0; idx < list.length(); )//idx++)
@@ -234,7 +234,7 @@ int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter, const QStringList &
 
 int myCourseXml::forEachStudentVote(int &idx, const QString argStudent, const QStringList &list, QXmlStreamWriter* xmlWriter)
 {
-    const QStringList labels = helperGetHeaderLabels(list[0]);
+    const QStringList labels = myList::helperGetHeaderLabels(list[0]);
     QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
     QString clean;
     QString student = argStudent;
