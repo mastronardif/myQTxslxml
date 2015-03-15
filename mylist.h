@@ -20,6 +20,10 @@ public:
     QStringList m_ssn;
     QStringList m_p;
     QStringList m_v;
+
+    // agreagtes
+    QStringList m_aggregatesForSession;
+    QStringList m_aggregatesForStudents;
 };
 
 #endif // MYLIST_H

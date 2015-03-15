@@ -133,12 +133,22 @@ int myCourseXml::writeSessionAttributes(QXmlStreamWriter* xmlWriter, const QStri
 
 
 }
+
+int myCourseXml::writeAggregatesForStudent(QXmlStreamWriter* xmlWriter, const QString sid, const QStringList &list)
+{
+    xmlWriter->writeAttribute("PossiblePointsPerformance",           "TBD_agr");
+    xmlWriter->writeAttribute("StudentPointsPerformancePercentage",  "TBD_agr");
+    xmlWriter->writeAttribute("StudentPointsTotalPercentage",        "TBD_agr");
+    xmlWriter->writeAttribute("studentperf",                         "TBD_agr");
+    xmlWriter->writeAttribute("studentperfpercent",                  "TBD_agr");
+}
+
 int myCourseXml::writeStudentAttributes(QXmlStreamWriter* xmlWriter, const QString sid)
 {
     xmlWriter->writeAttribute("sid",  sid);
     xmlWriter->writeAttribute("RemoteId",  sid);
     xmlWriter->writeAttribute("name",  "TBD");
-    xmlWriter->writeAttribute("ClassAveragePerformancePercentage ", "TBD");
+    xmlWriter->writeAttribute("ClassAveragePerformancePercentage", "TBD");
 }
 
 const QStringList myCourseXml::helperGetHeaderLabels(const QString list)
@@ -202,6 +212,14 @@ int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter, const QStringList &
 
         xmlWriter->writeStartElement("student");   //<student>
         writeStudentAttributes(xmlWriter, ss1);
+
+        {
+            QStringList studentAgregates;  // calc agregates
+            writeAggregatesForStudent(xmlWriter, ss1, studentAgregates);
+            //writeStudentAggregatesForStudent(sid); // BySession
+            //writeSessionAggregatesForSession(thisSession);
+        }
+
 
         xmlWriter->writeStartElement("qr");   //<qr>
         forEachStudentVote(idx, ss1, list, xmlWriter);
