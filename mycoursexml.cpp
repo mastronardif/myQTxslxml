@@ -39,7 +39,12 @@ int myCourseXml::printSession()
 
     xmlWriter->writeStartElement("SESSION");
     writeSessionAttributes(xmlWriter, this->m_courseList.m_ssn);
-    //writeSessionAttributes(QXmlStreamWriter* xmlWriter, const QStringList &session);
+
+    // Title
+
+    //xmlWriter->writeAttribute("NAME",
+    writeTitleElement(xmlWriter, this->m_courseList.m_ssn);
+
 
     // Questions
     xmlWriter->writeStartElement("QUESTIONS");   // <QUESTIONS>
@@ -60,6 +65,42 @@ int myCourseXml::printSession()
     xmlWriter->writeEndElement();   // </ROOT>
 
     return iRetval;
+}
+
+int myCourseXml::writeTitleElement(QXmlStreamWriter* xmlWriter, const QStringList &session)
+{
+    QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
+    QStringList list  = session;
+
+    const QStringList labels = helperGetHeaderLabels(session[0]);
+    QStringList cols = list[1].split(rx);
+
+    // skip 1st row aka the header
+    QString name   = (labels.indexOf("ssnn")   != -1) ? cols[labels.indexOf("ssnn")]   : "null";
+    name.remove('"');
+
+    xmlWriter->writeStartElement("TITLE");
+
+    xmlWriter->writeAttribute("NAME", name);
+
+    xmlWriter->writeTextElement("SESSION", "TBD");
+    QString sd = "Generated: "+ QDateTime::currentDateTime().toString("MM/dd/yyyy h:m:s");
+
+    xmlWriter->writeTextElement("sdate", sd);
+
+//    <TITLE NAME="Q2 1/29 and 2/3">
+//        <SESSION>0Large_PHIL 102</SESSION>
+//        <sdate>Generated: 03/11/2015 16:55:25</sdate>
+//        <Hdr>
+//            <col attrib="@name" n="Name"/>
+//            <col attrib="@StudentId" n="Student ID"/>
+//            <col attrib="@RemoteId" n="Remote or GO ID"/>
+//        </Hdr>
+//        <DATE>1/29/15 10:01 AM</DATE>
+//        <SESSIONID>sessionIndex-0</SESSIONID>
+//    </TITLE>
+
+    xmlWriter->writeEndElement(); // </TITLE>
 }
 
 int myCourseXml::writeSessionAttributes(QXmlStreamWriter* xmlWriter, const QStringList &session)
