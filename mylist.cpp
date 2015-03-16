@@ -2,11 +2,23 @@
 #include <QTextStream>
 #include <QDebug>
 
+const QString kStudentAggregatesCols   = "%1,%2,%3,%4";
+S_StudentAggregatesHeader myList::StudentAggregateTableDef =
+{
+    "sid", "StudentId", "RemoteId","name","StudentPointsTotalPercentage"
+};
+
+QString myList::kStudentAggregatesHeader =
+             myList::StudentAggregateTableDef.StudentId
+        +","+myList::StudentAggregateTableDef.RemoteId
+        +","+myList::StudentAggregateTableDef.name
+        +","+myList::StudentAggregateTableDef.StudentPointsTotalPercentage
+        ;
 
 myList::myList()
 {
     this->m_course = QStringList();
-
+ //   qDebug() << myList::StudentAggregateTableDef.sid << myList::StudentAggregateTableDef.StudentId;
 }
 
 bool caseInsensitiveLessThan(const QString &s1, const QString &s2)
@@ -119,14 +131,15 @@ int myList::makeList(QString src)
     return iRetval;
 }
 
-const QString kStudentAggregatesCols   = "%1,%2,%3";
-const QString kStudentAggregatesHeader = "StudentId,RemoteId,name";
+
 
 int myList::createAggregatedListForStudents(const QStringList& votes, const QStringList& roster,  QStringList &aggregatesForStudents)
 {
     // this is equivalent to a letf outer join.
     QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
     QStringList list  = votes; //this->m_courseList.m_v;
+
+    struct S_StudentAggregatesHeader source;
 
     // Header row
     aggregatesForStudents.append(kStudentAggregatesHeader);
@@ -138,6 +151,7 @@ int myList::createAggregatedListForStudents(const QStringList& votes, const QStr
     const QStringList labels = helperGetHeaderLabels(votes[0]);
     QStringList cols; // = list[1].split(rx);
 
+    QString lastKnown = "";
     //foreach (const QString &line, list)
     for(int idx = 1; idx < list.length(); idx++)
     {
@@ -151,12 +165,25 @@ int myList::createAggregatedListForStudents(const QStringList& votes, const QStr
             continue;
         }
 
-        sname   = (labels.indexOf("ssnn")   != -1) ? cols[labels.indexOf("ssnn")]   : "null";
-        QString sId = (cols.length() == labels.length()) ? cols[labels.indexOf("id")] : "null";
-        QString rId = (cols.length() == labels.length()) ? cols[labels.indexOf("id")] : "null";
-        sname.remove('"');sId.remove('"');rId.remove('"');
 
-        QString row = QString(kStudentAggregatesCols).arg(sId, rId, sname);
+        source.StudentId = (cols.length() == labels.length()) ? cols[labels.indexOf("id")] : "null";
+        source.RemoteId  = (cols.length() == labels.length()) ? cols[labels.indexOf("id")] : "null";
+        source.name      = (labels.indexOf("ssnn")   != -1) ? cols[labels.indexOf("ssnn")]   : "null";
+        source.StudentId.remove('"'); source.RemoteId.remove('"'); source.name.remove('"');
+  //"StudentId", "RemoteId", "name", "StudentPointsTotalPercentage" // ....
+
+        if (lastKnown.compare(source.StudentId, Qt::CaseInsensitive) == 0)
+        {
+            // get distinct rows
+            lastKnown = source.StudentId;
+            continue;
+        }
+
+        lastKnown = source.StudentId;
+
+        QString row = QString(kStudentAggregatesCols).arg(
+                    source.StudentId, source.RemoteId,
+                    source.name, "TBD");
 
         aggregatesForStudents.append(row);
     }

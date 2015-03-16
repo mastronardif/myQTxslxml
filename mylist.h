@@ -3,9 +3,22 @@
 #include <QString>
 #include <QStringList>
 #include <QFile>
+#include <QHash>
+
+struct S_StudentAggregatesHeader
+{
+    QString sid;
+    QString StudentId;
+    QString RemoteId;
+    QString name;
+    QString StudentPointsTotalPercentage;
+};
+//// helper
 
 class myList
 {
+    static struct S_StudentAggregatesHeader StudentAggregateTableDef;
+    static QString                   kStudentAggregatesHeader;
 
 public:
     myList();
