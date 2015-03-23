@@ -79,8 +79,11 @@ Purpose:  Used to ____ ,
         </xsl:for-each>
 
         <!-- Parenet ID -->  
-        <xsl:text>"</xsl:text><xsl:value-of select="floor(position() div (1+$cntElems) ) mod $cntPElems"/><xsl:text>"</xsl:text><xsl:value-of select="$delimiter"/> 
+        <xsl:text>"</xsl:text><xsl:value-of select="ceiling(position() div ($cntElems))"/><xsl:text>"</xsl:text><xsl:value-of select="$delimiter"/>
         <!--
+        floor(position() div ($cntElems))
+        <xsl:text>"</xsl:text><xsl:value-of select="floor(position() div (1+$cntElems) ) mod $cntPElems"/><xsl:text>"</xsl:text><xsl:value-of select="$delimiter"/>
+
         <xsl:text>"</xsl:text><xsl:value-of select="count(../preceding-sibling::*)+1"/><xsl:text>"</xsl:text><xsl:value-of select="$delimiter"/>
         -->
         <xsl:text>&#xa;</xsl:text>

@@ -118,7 +118,7 @@ int myList::makeList(QString src)
     //qSort(m_v.begin(), m_v.end(), caseInsensitiveLessThan);
     //qSort(m_v.begin(), m_v.end(), caseInsensitiveLessThan_5ThCol);
     //Keep header at the top
-    if(9==0) // skip sort
+    //if(9==0) // skip sort
     {
     QList<QString>::iterator itr = m_v.begin();
     if (m_v.length() > 1) { itr = m_v.begin()+1;}
