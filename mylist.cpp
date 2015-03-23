@@ -77,6 +77,19 @@ int myList::makeList(QString src)
             continue;   // skip BEGIN line
         }
 
+        // skip blanks, and END marker
+        if ((line.contains(QRegExp("END \\[SSN\\]", Qt::CaseInsensitive)))  ||
+            (line.contains(QRegExp("END \\[SSN/P\\]", Qt::CaseInsensitive)))||
+            (line.contains(QRegExp("END \\[SSN/P/v\\]", Qt::CaseInsensitive))) )
+        {
+            continue;   // skip BEGIN line
+        }
+
+        if (0 == line.trimmed().length())
+        {
+            continue; // skip blank lines
+        }
+
         *ptrList << line;
 
         //qDebug() << line;
@@ -105,9 +118,12 @@ int myList::makeList(QString src)
     //qSort(m_v.begin(), m_v.end(), caseInsensitiveLessThan);
     //qSort(m_v.begin(), m_v.end(), caseInsensitiveLessThan_5ThCol);
     //Keep header at the top
+    if(9==0) // skip sort
+    {
     QList<QString>::iterator itr = m_v.begin();
     if (m_v.length() > 1) { itr = m_v.begin()+1;}
     qSort(itr, m_v.end(), caseInsensitiveLessThan_5ThCol);
+    }
 
     //m_v.sort(Qt::CaseInsensitive);
     printListToFile("./m_v.csv",   m_v);

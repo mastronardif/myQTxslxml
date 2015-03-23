@@ -69,7 +69,7 @@ int main(int argc, char *argv[])
         //iRetval = myxml::applyTemplate_xsl_xml_FromStrings(xslt00, out, out);
         if(iRetval == 0)
         {
-            //std::cout << out.toStdString() << "\n";
+            //std::cout << "YY" << out.toStdString() << "ZZ\n"; return 1;
 
             // list to csv memory thing.
             myList  theCourse;

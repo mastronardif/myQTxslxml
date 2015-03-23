@@ -189,6 +189,12 @@ int myCourseXml::forEachQuestion(QXmlStreamWriter* xmlWriter, const QStringList 
         xmlWriter->writeAttribute("name", qn);
         xmlWriter->writeAttribute("AveragePercent", "TBD");
         xmlWriter->writeAttribute("CorrectAnswer",   cans);
+
+        QString questionFileName = QString("%1_Q%2.jpg").arg("sfn", QString::number(idx));
+        QString path = QString("%1/%2").arg("Root", questionFileName);
+        xmlWriter->writeAttribute("desktopImage",  path);
+        xmlWriter->writeAttribute("file",          questionFileName);
+
         xmlWriter->writeEndElement(); // </question>
     }
 }
