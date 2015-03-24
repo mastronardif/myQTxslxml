@@ -24,7 +24,7 @@ public:
 
 private:
     static int writeTitleElement(QXmlStreamWriter* xmlWriter, const QStringList &session);
-    static int forEachQuestion(QXmlStreamWriter* xmlWriter, const QStringList &questions);
+    static int forEachQuestion(QXmlStreamWriter* xmlWriter, const QStringList &questions, const QString srcPathImageFolder, const QString srcFileName);
     static int forEachStudent (QXmlStreamWriter* xmlWriter, const QStringList &votes);
     static int forEachStudentVote(int &idx, const QString student, const QStringList &list, QXmlStreamWriter* xmlWriter);
     static int writeStudentAttributes(QXmlStreamWriter* xmlWriter, const QString sid);
@@ -34,6 +34,10 @@ private:
     //static  const QStringList helperGetHeaderLabels(const QString list);
 private:
     myList m_courseList;
+    QString srcPathFolder;
+    QString srcPathImageFolder;
+    QString srcFolderName;
+    QString srcFileName;
 };
 
 #endif // MYCOURSEXML_H

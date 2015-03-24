@@ -6,6 +6,11 @@
 
 myCourseXml::myCourseXml(myList &courseList) : m_courseList(courseList)
 {
+    // TBD pass these in the constructor.
+    srcPathFolder = "/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes";
+    srcFolderName = "0Large_PHIL 102";
+    srcFileName   = "L1501291001.xml";
+    srcPathImageFolder = QString("%1/%2/").arg(srcPathFolder, "Images");
 }
 
 
@@ -49,7 +54,10 @@ int myCourseXml::printSession()
     // Questions
     xmlWriter->writeStartElement("QUESTIONS");   // <QUESTIONS>
 
-    forEachQuestion(xmlWriter, this->m_courseList.m_p);
+    QStringList partList = srcFileName.split(".");
+    QString withoutExtension = partList[0];
+
+    forEachQuestion(xmlWriter, this->m_courseList.m_p, srcPathImageFolder, withoutExtension);
 
     xmlWriter->writeEndElement();   // </QUESTIONS>
 
@@ -128,7 +136,14 @@ int myCourseXml::writeSessionAttributes(QXmlStreamWriter* xmlWriter, const QStri
         name.remove('"'); part.remove('"');
 
         xmlWriter->writeAttribute("part", part);
-        xmlWriter->writeAttribute("sppp", "TBD");
+        //Partic="0.00" ap="0.71" avg="2.85" part="0.00" perf="4.00" pp="4.00" sppp="4.00"
+        xmlWriter->writeAttribute("Partic", "0.00");
+        xmlWriter->writeAttribute("ap", "0.71");
+        xmlWriter->writeAttribute("avg", "2.85");
+        xmlWriter->writeAttribute("part", "0.00");
+        xmlWriter->writeAttribute("perf", "4.00");
+        xmlWriter->writeAttribute("pp", "4.00");
+        xmlWriter->writeAttribute("sppp", "4.00");
     }
 
 
@@ -163,7 +178,7 @@ int myCourseXml::writeStudentAttributes(QXmlStreamWriter* xmlWriter, const QStri
 //    return query;
 //}
 
-int myCourseXml::forEachQuestion(QXmlStreamWriter* xmlWriter, const QStringList &questions)
+int myCourseXml::forEachQuestion(QXmlStreamWriter* xmlWriter, const QStringList &questions, const QString srcPathImageFolder, const QString srcFileName)
 {
     QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
     QStringList list  = questions; //this->m_courseList.m_p;
@@ -187,13 +202,29 @@ int myCourseXml::forEachQuestion(QXmlStreamWriter* xmlWriter, const QStringList 
         qn.remove('"'); cans.remove('"');
         xmlWriter->writeStartElement("question");
         xmlWriter->writeAttribute("name", qn);
-        xmlWriter->writeAttribute("AveragePercent", "TBD");
         xmlWriter->writeAttribute("CorrectAnswer",   cans);
 
-        QString questionFileName = QString("%1_Q%2.jpg").arg("sfn", QString::number(idx));
-        QString path = QString("%1/%2").arg("Root", questionFileName);
+        QString id = QString("q%1").arg(QString::number(idx));
+        xmlWriter->writeAttribute("id", id);
+
+        QString questionFileName = QString("%1_Q%2.jpg").arg(srcFileName, QString::number(idx));
+        QString path = QString("%1%2").arg(srcPathImageFolder, questionFileName);
         xmlWriter->writeAttribute("desktopImage",  path);
         xmlWriter->writeAttribute("file",          questionFileName);
+
+        // TBD write question attributes
+        //<question AveragePercent="0.00" AveragePoints="0.00" CorrectAnswer="" CorrectResponses="0"
+        //IncorrectResponses="0" NoResponses="0" Responses="262" desktopImage="/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/0Large_PHIL 102/Images/L1501291001_Q1.jpg" file="L1501291001_Q1.jpg"
+        //id="q1" name="Question 1" possiblePoints="1.00" pp="1.00"/>
+        xmlWriter->writeAttribute("AveragePercent",  "0.00");
+        xmlWriter->writeAttribute("AveragePoints",  "0.00");
+        xmlWriter->writeAttribute("CorrectResponses",  "0");
+        xmlWriter->writeAttribute("IncorrectResponses",  "0");
+        xmlWriter->writeAttribute("NoResponses",  "0");
+        xmlWriter->writeAttribute("Responses",  "262");
+        xmlWriter->writeAttribute("possiblePoints",  "1.00");
+        xmlWriter->writeAttribute("pp",  "1.00");
+
 
         xmlWriter->writeEndElement(); // </question>
     }
