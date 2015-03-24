@@ -24,6 +24,7 @@ public:
 
 private:
     static int writeTitleElement(QXmlStreamWriter* xmlWriter, const QStringList &session);
+    static int writeHdrElement(QXmlStreamWriter* xmlWriter, QStringList ColsToShow);
     static int forEachQuestion(QXmlStreamWriter* xmlWriter, const QStringList &questions, const QString srcPathImageFolder, const QString srcFileName);
     static int forEachStudent (QXmlStreamWriter* xmlWriter, const QStringList &votes);
     static int forEachStudentVote(int &idx, const QString student, const QStringList &list, QXmlStreamWriter* xmlWriter);

@@ -75,6 +75,36 @@ int myCourseXml::printSession()
     return iRetval;
 }
 
+int myCourseXml::writeHdrElement(QXmlStreamWriter* xmlWriter, QStringList ColsToShow)
+{
+    //ColsToShow << "@name" << "@StudentId" << "@RemoteId";
+    xmlWriter->writeStartElement("Hdr"); // <Hdr>
+        if (ColsToShow.contains("@name", Qt::CaseInsensitive))
+        {
+            xmlWriter->writeStartElement("col"); // <col>
+                xmlWriter->writeAttribute("attrib", "@name");
+                xmlWriter->writeAttribute("n", "Name");
+            xmlWriter->writeEndElement(); // </col>
+        }
+        if (ColsToShow.contains("@StudentId", Qt::CaseInsensitive))
+        {
+            xmlWriter->writeStartElement("col"); // <col>
+                xmlWriter->writeAttribute("attrib", "@StudentId");
+                xmlWriter->writeAttribute("n", "Student ID");
+            xmlWriter->writeEndElement(); // </col>
+        }
+
+        if (ColsToShow.contains("@RemoteId", Qt::CaseInsensitive))
+        {
+            xmlWriter->writeStartElement("col"); // <col>
+                xmlWriter->writeAttribute("attrib", "@RemoteId");
+                xmlWriter->writeAttribute("n", "Remote or GO ID");
+            xmlWriter->writeEndElement(); // </col>
+        }
+
+    xmlWriter->writeEndElement(); // </Hdr>
+}
+
 int myCourseXml::writeTitleElement(QXmlStreamWriter* xmlWriter, const QStringList &session)
 {
     QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
@@ -95,6 +125,11 @@ int myCourseXml::writeTitleElement(QXmlStreamWriter* xmlWriter, const QStringLis
     QString sd = "Generated: "+ QDateTime::currentDateTime().toString("MM/dd/yyyy h:m:s");
 
     xmlWriter->writeTextElement("sdate", sd);
+
+    // Write HdrElement
+    QStringList ColsToShow;
+    ColsToShow << "@name" << "@StudentId" << "@RemoteId";
+    myCourseXml::writeHdrElement(xmlWriter, ColsToShow);
 
 //    <TITLE NAME="Q2 1/29 and 2/3">
 //        <SESSION>0Large_PHIL 102</SESSION>
