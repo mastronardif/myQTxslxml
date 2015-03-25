@@ -74,13 +74,17 @@ int main(int argc, char *argv[])
             // list to csv memory thing.
             myList  theCourse;
             S_CourseEntities courseInfo;
-            courseInfo.srcPathFolder      = "/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/0Large_PHIL 102";
-            courseInfo.m_srcPathRemoteIds =  courseInfo.srcPathFolder + "/SessionData/" + "RemoteID.csv";
+            courseInfo.srcPathFolder         = "/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/0Large_PHIL 102";
+            courseInfo.m_srcPathRemoteIds    =  courseInfo.srcPathFolder + "/SessionData/" + "RemoteID.csv";
+            courseInfo.m_srcPathStudentNames =  courseInfo.srcPathFolder + "/gb_export.csv";
+
             iRetval = theCourse.makeList(courseInfo, out);
             //myList::printList(theCourse.m_v); // m_course);
 
             myCourseXml theCourseXml(theCourse);
+
             iRetval =  theCourseXml.printSession();
+
         }
 
         //qDebug() << fnxsl << fnxml;

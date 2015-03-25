@@ -18,6 +18,7 @@ struct S_CourseEntities
 {
     QString srcPathFolder;
     QString m_srcPathRemoteIds;
+    QString m_srcPathStudentNames;
     QString srcPathImageFolder;
     QString srcFolderName;
     QString srcFileName;
@@ -38,14 +39,18 @@ public:
     static int printListToFile(QString fn, QStringList list);
 
     static int createAggregatedListForStudents(const QStringList& leftVotes, const QStringList& roster,  QStringList& aggregatesForStudents);
-    static int createListForRoster(const QString pathRemoteIds, QStringList& destRoster);
+    static int createListForRemoteIds   (const QString pathRemoteIds,    QStringList& destRemoteIds);
+    static int createListForStudentNames(const QString pathStudentNames, QStringList &destStudentNames);
+
 public:
     QStringList m_course;
     QStringList m_ssn;
     QStringList m_p;
     QStringList m_v;
 
-    QStringList m_roster;   // roster for course
+    QStringList m_roster;   // roster contains names and clickerId's.
+    QStringList m_remoteIds;   // remote ID's
+    QStringList m_StudentNames;   // student names for course
 
     static  const QStringList helperGetHeaderLabels(const QString list);
 

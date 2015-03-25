@@ -134,8 +134,11 @@ int myList::makeList(S_CourseEntities courseEntities, QString src)
     wtf.prepend(m_v[1]);
     printListToFile("970F6BF3.csv",  wtf);
 
-    createListForRoster(courseEntities.m_srcPathRemoteIds, m_roster);
-    printListToFile("./m_roster.csv", m_roster);
+    createListForRemoteIds(courseEntities.m_srcPathRemoteIds, m_remoteIds);
+    printListToFile("./m_remoteIds.csv", m_remoteIds);
+
+    createListForStudentNames(courseEntities.m_srcPathStudentNames, m_StudentNames);
+    printListToFile("./m_studentNames.csv", m_StudentNames);
 
     // create aggregated lists
     createAggregatedListForStudents(m_v, m_roster, m_aggregatesForStudents);
@@ -208,7 +211,7 @@ int myList::createAggregatedListForStudents(const QStringList& votes, const QStr
 
 }
 
-int myList::createListForRoster(const QString pathRemoteIds, QStringList &destRoster)
+int myList::createListForRemoteIds(const QString pathRemoteIds, QStringList &destRoster)
 {
     int iRetval = 0; // default success
 
@@ -234,8 +237,36 @@ int myList::createListForRoster(const QString pathRemoteIds, QStringList &destRo
     file.close();
 
     return iRetval;
-
 }
+
+int myList::createListForStudentNames(const QString pathStudentNames, QStringList &destStudentNames)
+{
+    int iRetval = 0; // default success
+
+    qDebug() << "pathRemoteIds = " << pathStudentNames;
+
+    QFile file(pathStudentNames);
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
+
+    //foreach (const QString &line, list)
+    QTextStream in(&file);
+    //destRoster << "RemoteId,StudentId";
+    while (!in.atEnd())
+    {
+        QString line = in.readLine();
+ //       if (line.contains(rx3))
+        {
+            destStudentNames << line;
+            //qDebug() << line;
+        }
+    }
+
+    // optional, as QFile destructor will already do it:
+    file.close();
+
+    return iRetval;
+}
+
 
 int myList::printListToFile(QString fn, QStringList list)
 {
