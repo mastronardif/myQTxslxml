@@ -7,7 +7,7 @@
 myCourseXml::myCourseXml(myList &courseList) : m_courseList(courseList)
 {
     // TBD pass these in the constructor.
-    srcPathFolder = "/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes";
+    srcPathFolder = "/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/0Large_PHIL 102";
     srcFolderName = "0Large_PHIL 102";
     srcFileName   = "L1501291001.xml";
     srcPathImageFolder = QString("%1/%2/").arg(srcPathFolder, "Images");
@@ -17,7 +17,7 @@ myCourseXml::myCourseXml(myList &courseList) : m_courseList(courseList)
 int myCourseXml::printSession()
 {
     int iRetval = 0; // default success
-    QString outFN = "./session.xml";
+    QString outFN = "./poc_01.xml";
     struct helperMyCourseXmlErr err;
     QFile::FileError eErr;
 
@@ -131,6 +131,8 @@ int myCourseXml::writeTitleElement(QXmlStreamWriter* xmlWriter, const QStringLis
     ColsToShow << "@name" << "@StudentId" << "@RemoteId";
     myCourseXml::writeHdrElement(xmlWriter, ColsToShow);
 
+    xmlWriter->writeTextElement("DATE", "3/24/15 10:01 AM");
+    xmlWriter->writeTextElement("SESSIONID", "sessionIndex-0");
 //    <TITLE NAME="Q2 1/29 and 2/3">
 //        <SESSION>0Large_PHIL 102</SESSION>
 //        <sdate>Generated: 03/11/2015 16:55:25</sdate>
@@ -175,7 +177,7 @@ int myCourseXml::writeSessionAttributes(QXmlStreamWriter* xmlWriter, const QStri
         xmlWriter->writeAttribute("Partic", "0.00");
         xmlWriter->writeAttribute("ap", "0.71");
         xmlWriter->writeAttribute("avg", "2.85");
-        xmlWriter->writeAttribute("part", "0.00");
+        //xmlWriter->writeAttribute("part", "0.00");
         xmlWriter->writeAttribute("perf", "4.00");
         xmlWriter->writeAttribute("pp", "4.00");
         xmlWriter->writeAttribute("sppp", "4.00");
@@ -185,20 +187,38 @@ int myCourseXml::writeSessionAttributes(QXmlStreamWriter* xmlWriter, const QStri
 }
 
 int myCourseXml::writeAggregatesForStudent(QXmlStreamWriter* xmlWriter, const QString sid, const QStringList &list)
-{
-    xmlWriter->writeAttribute("PossiblePointsPerformance",           "TBD_agr");
-    xmlWriter->writeAttribute("StudentPointsPerformancePercentage",  "TBD_agr");
-    xmlWriter->writeAttribute("StudentPointsTotalPercentage",        "TBD_agr");
-    xmlWriter->writeAttribute("studentperf",                         "TBD_agr");
-    xmlWriter->writeAttribute("studentperfpercent",                  "TBD_agr");
+{    
+    xmlWriter->writeAttribute("ClassAveragePerformancePercentage", "0,00");
+    xmlWriter->writeAttribute("ClassAveragePointsPerformance",       "15.64");
+    xmlWriter->writeAttribute("ClassAveragePointsTotal",       "45.99");
+    xmlWriter->writeAttribute("ClassAveragePointsTotalPercentage",       "15.64");
+    xmlWriter->writeAttribute("Partic",       "0.00");
+    xmlWriter->writeAttribute("Perform",       "4,707.00");
+    xmlWriter->writeAttribute("PossiblePointsParticipation",       "0.00");
+    xmlWriter->writeAttribute("PossiblePointsPerformance",       "9.00");
+    xmlWriter->writeAttribute("PossiblePointsTotal",       "34.00");
+    xmlWriter->writeAttribute("StudentPointsParticipation",       "0.00");
+    xmlWriter->writeAttribute("StudentPointsPerformance",       "34.00");
+    xmlWriter->writeAttribute("StudentPointsPerformancePercentage",       "45.99");
+    xmlWriter->writeAttribute("StudentPointsTotalPercentage",       "9.00");
+    xmlWriter->writeAttribute("Total",       "4,707.00");
+
+    xmlWriter->writeAttribute("n",       "look up name");
+    //xmlWriter->writeAttribute("name",       "tbd");
+
+    xmlWriter->writeAttribute("partipationtotal",       "0.00");
+    xmlWriter->writeAttribute("rid",       "");
+    xmlWriter->writeAttribute("scorepercent",       "999.99");
+    xmlWriter->writeAttribute("studentperf",                         "16.00");
+    xmlWriter->writeAttribute("studentperfpercent",                  "47.06");
 }
 
 int myCourseXml::writeStudentAttributes(QXmlStreamWriter* xmlWriter, const QString sid)
 {
     xmlWriter->writeAttribute("sid",  sid);
+    xmlWriter->writeAttribute("StudentId",  sid);
     xmlWriter->writeAttribute("RemoteId",  sid);
     xmlWriter->writeAttribute("name",  "TBD");
-    xmlWriter->writeAttribute("ClassAveragePerformancePercentage", "TBD");
 }
 
 //const QStringList myCourseXml::helperGetHeaderLabels(const QString list)
@@ -273,7 +293,8 @@ int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter, const QStringList &
     const QStringList labels = myList::helperGetHeaderLabels(votes[0]);
     QStringList coloumns = list[1].split(rx);
 
-    for(int idx = 0; idx < list.length(); )//idx++)
+    int studentCount=1;
+    for(int idx = 1; idx < list.length();)//idx++)
     {
         QString line = list[idx];
 
@@ -284,7 +305,7 @@ int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter, const QStringList &
 
         xmlWriter->writeStartElement("student");   //<student>
         writeStudentAttributes(xmlWriter, ss1);
-
+        xmlWriter->writeAttribute("idx",  QString::number(studentCount++));
         {
             QStringList studentAgregates;  // calc agregates
             writeAggregatesForStudent(xmlWriter, ss1, studentAgregates);
@@ -325,6 +346,7 @@ int myCourseXml::forEachStudentVote(int &idx, const QString argStudent, const QS
 
         ss1.remove('"');
         qid.remove('"');
+        qid = QString("q%1").arg(qid);
         scr.remove('"');
         ans.remove('"');
 
@@ -335,10 +357,11 @@ int myCourseXml::forEachStudentVote(int &idx, const QString argStudent, const QS
 
         xmlWriter->writeStartElement("q");   // <q>
         //xmlWriter->writeAttribute("sid",  ss1);
-        xmlWriter->writeAttribute("qid",  qid);
-        xmlWriter->writeAttribute("scr",  scr);
+        xmlWriter->writeAttribute("id",  qid);
+        //xmlWriter->writeAttribute("scr",  scr);
+        xmlWriter->writeAttribute("score",  "0");
         xmlWriter->writeAttribute("vote", ans);
-        xmlWriter->writeAttribute("response", ans);
+        xmlWriter->writeAttribute("Response", ans);
         xmlWriter->writeAttribute("icr", "tbd");
         xmlWriter->writeEndElement(); // </q>
 
