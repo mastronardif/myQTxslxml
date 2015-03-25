@@ -13,6 +13,15 @@ struct S_StudentAggregatesHeader
     QString name;
     QString StudentPointsTotalPercentage;
 };
+
+struct S_CourseEntities
+{
+    QString srcPathFolder;
+    QString m_srcPathRemoteIds;
+    QString srcPathImageFolder;
+    QString srcFolderName;
+    QString srcFileName;
+};
 //// helper
 
 class myList
@@ -23,13 +32,13 @@ class myList
 public:
     myList();
 
-    int makeList(QString src);
+    int makeList(S_CourseEntities courseEntities, QString src);
 
     static int printList(QStringList list);
     static int printListToFile(QString fn, QStringList list);
 
     static int createAggregatedListForStudents(const QStringList& leftVotes, const QStringList& roster,  QStringList& aggregatesForStudents);
-
+    static int createListForRoster(const QString pathRemoteIds, QStringList m_roster);
 public:
     QStringList m_course;
     QStringList m_ssn;

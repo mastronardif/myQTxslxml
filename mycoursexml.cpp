@@ -7,7 +7,8 @@
 myCourseXml::myCourseXml(myList &courseList) : m_courseList(courseList)
 {
     // TBD pass these in the constructor.
-    srcPathFolder = "/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/0Large_PHIL 102";
+    srcPathFolder      = "/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/0Large_PHIL 102";
+    //m_srcPathRemoteIds =  srcPathFolder + "/SessionData/" + "RemoteID.csv";
     srcFolderName = "0Large_PHIL 102";
     srcFileName   = "L1501291001.xml";
     srcPathImageFolder = QString("%1/%2/").arg(srcPathFolder, "Images");

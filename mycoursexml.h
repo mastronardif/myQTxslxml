@@ -35,7 +35,9 @@ private:
     //static  const QStringList helperGetHeaderLabels(const QString list);
 private:
     myList m_courseList;
+
     QString srcPathFolder;
+    //QString m_srcPathRemoteIds;
     QString srcPathImageFolder;
     QString srcFolderName;
     QString srcFileName;

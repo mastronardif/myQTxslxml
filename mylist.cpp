@@ -45,7 +45,7 @@ bool caseInsensitiveLessThan_5ThCol(const QString &s1, const QString &s2)
 
 }
 
-int myList::makeList(QString src)
+int myList::makeList(S_CourseEntities courseEntities, QString src)
 {
     int iRetval = 0;
     QTextStream stream(&src);
@@ -134,7 +134,8 @@ int myList::makeList(QString src)
     wtf.prepend(m_v[1]);
     printListToFile("970F6BF3.csv",  wtf);
 
-    //CreateListForRoster(m_roster);
+    createListForRoster(courseEntities.m_srcPathRemoteIds, m_roster);
+    printListToFile("./m_roster.csv", m_roster);
 
     // create aggregated lists
     createAggregatedListForStudents(m_v, m_roster, m_aggregatesForStudents);
@@ -204,6 +205,16 @@ int myList::createAggregatedListForStudents(const QStringList& votes, const QStr
         aggregatesForStudents.append(row);
     }
 
+
+}
+
+int myList::createListForRoster(const QString pathRemoteIds, QStringList m_roster)
+{
+    int iRetval = 0; // default success
+
+    qDebug() << "pathRemoteIds = " << pathRemoteIds;
+
+    return iRetval;
 
 }
 
