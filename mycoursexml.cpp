@@ -320,9 +320,8 @@ int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter, const QStringList &
         xmlWriter->writeEndElement();        // </qr>
 
         xmlWriter->writeEndElement();  // </student>
-        qDebug() << "BBBBBBBB________" << idx; // << total;
-
-        qDebug() << "idx = " << idx;
+//        qDebug() << "BBBBBBBB________" << idx; // << total;
+//        qDebug() << "idx = " << idx;
     }
 }
 
@@ -353,7 +352,7 @@ int myCourseXml::forEachStudentVote(int &idx, const QString argStudent, const QS
 
         if (QString::compare(ss1, student, Qt::CaseInsensitive) != 0) { break; }
 
-        qDebug() << student << ss1 << qid << "ss1 = " << ss1 << "qid = " << qid << "scr = " << scr;
+        //qDebug() << student << ss1 << qid << "ss1 = " << ss1 << "qid = " << qid << "scr = " << scr;
 
 
         xmlWriter->writeStartElement("q");   // <q>

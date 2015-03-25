@@ -208,11 +208,30 @@ int myList::createAggregatedListForStudents(const QStringList& votes, const QStr
 
 }
 
-int myList::createListForRoster(const QString pathRemoteIds, QStringList m_roster)
+int myList::createListForRoster(const QString pathRemoteIds, QStringList &destRoster)
 {
     int iRetval = 0; // default success
 
     qDebug() << "pathRemoteIds = " << pathRemoteIds;
+
+    QFile file(pathRemoteIds);
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
+
+    //foreach (const QString &line, list)
+    QTextStream in(&file);
+    destRoster << "RemoteId,StudentId";
+    while (!in.atEnd())
+    {
+        QString line = in.readLine();
+ //       if (line.contains(rx3))
+        {
+            destRoster << line;
+            //qDebug() << line;
+        }
+    }
+
+    // optional, as QFile destructor will already do it:
+    file.close();
 
     return iRetval;
 
