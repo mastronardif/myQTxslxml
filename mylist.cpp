@@ -247,10 +247,32 @@ int myList::createListForRemoteStudents(const QStringList& remoteIds, const QStr
 {
     int iRetval = 0; // default success
 
-    //qDebug() << "remoteIds = " << remoteIds;
+    // RemoteId,StudentId,Last Name, First Name, Username
     destRosterRemotesStudents << remoteIds[0] + "," + studentNames[0];
+    QStringList newRows;
 
-    // for each ..
+    // fix destinaton.
+    for(int idx = 1; idx < remoteIds.length(); idx++)
+    {
+        destRosterRemotesStudents << remoteIds[idx] + "," + "null,null,null";
+    }
+
+    // find and update.
+    for(int idx = 1; idx < studentNames.length(); idx++)
+    {
+        // find and update.
+        if(NOTFOUND == helperFindAndUpdate(destRosterRemotesStudents, studentNames[idx]))
+        {
+            newRows.append("null,null," + studentNames[idx]);
+        }
+    }
+
+    // append newRows
+    if(!newRows.isEmpty())
+    {
+        destRosterRemotesStudents.append(newRows);
+    }
+
     return iRetval;
 }
 
@@ -281,6 +303,14 @@ int myList::createListForStudentNames(const QString pathStudentNames, QStringLis
 
     return iRetval;
 }
+
+myList::eTerms myList::helperFindAndUpdate(QStringList& destRosterRemotesStudents, const QString studentNames)
+{
+    eTerms eRetval = NOTFOUND;
+
+    return eRetval;
+}
+
 
 
 int myList::printListToFile(QString fn, QStringList list)

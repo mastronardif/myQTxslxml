@@ -27,6 +27,11 @@ struct S_CourseEntities
 
 class myList
 {
+    enum eTerms{
+        FOUND    = 1,
+        NOTFOUND = 2,
+    };
+
     static struct S_StudentAggregatesHeader StudentAggregateTableDef;
     static QString                   kStudentAggregatesHeader;
 
@@ -43,6 +48,9 @@ public:
     static int createListForRemoteStudents(const QStringList& remoteIds, const QStringList& studentNames, QStringList& destRosterRemotesStudents);
 
     static int createListForStudentNames(const QString pathStudentNames, QStringList &destStudentNames);
+
+    // helpers
+    static eTerms helperFindAndUpdate(QStringList& destRosterRemotesStudents, const QString studentNames);
 
 public:
     QStringList m_course;
