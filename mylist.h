@@ -51,7 +51,7 @@ public:
 
     // helpers
     static eTerms helperFindAndUpdate(QStringList& destRosterRemotesStudents, const QString studentNames);
-
+    static void   helperTrimmed(QStringList& list);
 public:
     QStringList m_course;
     QStringList m_ssn;

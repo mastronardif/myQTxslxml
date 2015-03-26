@@ -267,7 +267,7 @@ int myList::createListForRemoteStudents(const QStringList& remoteIds, const QStr
         }
     }
 
-    // append newRows
+    // append newRows if any
     if(!newRows.isEmpty())
     {
         destRosterRemotesStudents.append(newRows);
@@ -304,9 +304,35 @@ int myList::createListForStudentNames(const QString pathStudentNames, QStringLis
     return iRetval;
 }
 
+void myList::helperTrimmed(QStringList& list)
+{
+    for (int idx = 0; idx < list.length(); idx++)
+    {
+        list[idx].remove('"');
+        list[idx] = list[idx].trimmed();
+    }
+}
+
 myList::eTerms myList::helperFindAndUpdate(QStringList& destRosterRemotesStudents, const QString studentNames)
 {
     eTerms eRetval = NOTFOUND;
+
+    QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
+
+    // "Last Name, First Name, Username"
+    const QString labelsStudentNames = "Last Name, First Name, Username";
+    QStringList labels = myList::helperGetHeaderLabels(labelsStudentNames);
+    helperTrimmed(labels);
+
+    QStringList cols = studentNames.split(rx);
+    helperTrimmed(cols);
+
+    QString rid = (labels.indexOf("Username")   != -1) ? cols[labels.indexOf("Username")]   : "null";
+
+    qDebug() << rid;
+
+    // find rid in _____. //this may be slow if so do it another way.
+    destRosterRemotesStudents.
 
     return eRetval;
 }
