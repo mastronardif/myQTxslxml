@@ -39,7 +39,9 @@ public:
     static int printListToFile(QString fn, QStringList list);
 
     static int createAggregatedListForStudents(const QStringList& leftVotes, const QStringList& roster,  QStringList& aggregatesForStudents);
-    static int createListForRemoteIds   (const QString pathRemoteIds,    QStringList& destRemoteIds);
+    static int createListForRemoteIds(const QString pathRemoteIds,    QStringList& destRemoteIds);
+    static int createListForRemoteStudents(const QStringList& remoteIds, const QStringList& studentNames, QStringList& destRosterRemotesStudents);
+
     static int createListForStudentNames(const QString pathStudentNames, QStringList &destStudentNames);
 
 public:
@@ -51,6 +53,7 @@ public:
     QStringList m_roster;   // roster contains names and clickerId's.
     QStringList m_remoteIds;   // remote ID's
     QStringList m_StudentNames;   // student names for course
+    QStringList m_rosterRemotesStudents; // the outter join of __ and __.
 
     static  const QStringList helperGetHeaderLabels(const QString list);
 

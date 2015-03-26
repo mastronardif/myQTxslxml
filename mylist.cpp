@@ -140,6 +140,10 @@ int myList::makeList(S_CourseEntities courseEntities, QString src)
     createListForStudentNames(courseEntities.m_srcPathStudentNames, m_StudentNames);
     printListToFile("./m_studentNames.csv", m_StudentNames);
 
+    // create roster of remotes/students
+    createListForRemoteStudents(m_remoteIds, m_StudentNames, m_rosterRemotesStudents);
+    printListToFile("./m_rosterRemotesStudents.csv", m_rosterRemotesStudents);
+
     // create aggregated lists
     createAggregatedListForStudents(m_v, m_roster, m_aggregatesForStudents);
     printListToFile("./m_aggregatesForStudents.csv",   m_aggregatesForStudents);
@@ -236,6 +240,17 @@ int myList::createListForRemoteIds(const QString pathRemoteIds, QStringList &des
     // optional, as QFile destructor will already do it:
     file.close();
 
+    return iRetval;
+}
+
+int myList::createListForRemoteStudents(const QStringList& remoteIds, const QStringList& studentNames, QStringList& destRosterRemotesStudents)
+{
+    int iRetval = 0; // default success
+
+    //qDebug() << "remoteIds = " << remoteIds;
+    destRosterRemotesStudents << remoteIds[0] + "," + studentNames[0];
+
+    // for each ..
     return iRetval;
 }
 

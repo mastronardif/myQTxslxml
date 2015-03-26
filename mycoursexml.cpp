@@ -15,7 +15,7 @@ myCourseXml::myCourseXml(myList &courseList) : m_courseList(courseList)
 
     srcFileName   = "L1501291001.xml";
 
-    srcPathImageFolder = QString("%1/%2/").arg(srcPathFolder, "Images");
+    m_pathImageFolder = QString("%1/%2/").arg(srcPathFolder, "Images");
 }
 
 
@@ -62,7 +62,7 @@ int myCourseXml::printSession()
     QStringList partList = srcFileName.split(".");
     QString withoutExtension = partList[0];
 
-    forEachQuestion(xmlWriter, this->m_courseList.m_p, srcPathImageFolder, withoutExtension);
+    forEachQuestion(xmlWriter, this->m_courseList.m_p, m_pathImageFolder, withoutExtension);
 
     xmlWriter->writeEndElement();   // </QUESTIONS>
 
