@@ -261,9 +261,13 @@ int myList::createListForRemoteStudents(const QStringList& remoteIds, const QStr
     for(int idx = 1; idx < studentNames.length(); idx++)
     {
         // find and update.
-        if(NOTFOUND == helperFindAndUpdate(destRosterRemotesStudents, studentNames[idx]))
+        if(eNOTFOUND == helperFindAndUpdate(destRosterRemotesStudents, studentNames[idx]))
         {
-            newRows.append("null,null," + studentNames[idx]);
+            QStringList list = helperGetColsFromList(studentNames[idx]);
+            QString studentNames = list.join(',');
+
+            helperTrimmed(list);
+            newRows.append("null,null," + studentNames); //studentNames[idx]);
         }
     }
 
@@ -313,26 +317,62 @@ void myList::helperTrimmed(QStringList& list)
     }
 }
 
+QStringList myList::helperGetColsFromList(const QString comaList)
+{
+    QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
+
+    // "Last Name, First Name, Username"
+    const QString labelsStudentNames = "Last Name, First Name, Username";
+    QStringList cols = myList::helperGetHeaderLabels(comaList);
+
+    return cols;
+}
+
+
 myList::eTerms myList::helperFindAndUpdate(QStringList& destRosterRemotesStudents, const QString studentNames)
 {
-    eTerms eRetval = NOTFOUND;
+    eTerms eRetval = eNOTFOUND;
 
     QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
 
     // "Last Name, First Name, Username"
     const QString labelsStudentNames = "Last Name, First Name, Username";
-    QStringList labels = myList::helperGetHeaderLabels(labelsStudentNames);
-    helperTrimmed(labels);
+    QStringList srcLabels = myList::helperGetHeaderLabels(labelsStudentNames);
+    //helperTrimmed(srcLabels);
 
-    QStringList cols = studentNames.split(rx);
-    helperTrimmed(cols);
+    QStringList srcCols = studentNames.split(rx);
+    helperTrimmed(srcCols);
 
-    QString rid = (labels.indexOf("Username")   != -1) ? cols[labels.indexOf("Username")]   : "null";
+    QString Uname = (srcLabels.indexOf("Username")   != -1) ? srcCols[srcLabels.indexOf("Username")]   : "null";
 
-    qDebug() << rid;
+    //qDebug() << rid;
 
     // find rid in _____. //this may be slow if so do it another way.
-    destRosterRemotesStudents.
+    //labels.clear();
+    QStringList destLabels;
+    QStringList destCols;
+    destLabels = myList::helperGetHeaderLabels(destRosterRemotesStudents[0]);
+    for (int idx = 1; idx < destRosterRemotesStudents.length(); idx++)
+    {
+        destCols = destRosterRemotesStudents[idx].split(rx);
+        helperTrimmed(destCols);
+
+        QString StudentId = destCols[destLabels.indexOf("StudentId")];
+        //qDebug() << "RemoteId = " << RemoteId;
+        if (0 == StudentId.compare(Uname))
+        {
+            eRetval = eFOUND;
+            qDebug() << "*** match RemoteId = " << StudentId
+                     << destCols
+                     << studentNames;
+            destCols[destLabels.indexOf("Username")]   = srcCols[srcLabels.indexOf("Username")];
+            destCols[destLabels.indexOf("First Name")] = srcCols[srcLabels.indexOf("First Name")];
+            destCols[destLabels.indexOf("Last Name")]  = srcCols[srcLabels.indexOf("Last Name")];
+            destRosterRemotesStudents[idx] = destCols.join(',');
+
+            //qDebug() << " destRosterRemotesStudents[idx] = " <<  destRosterRemotesStudents[idx];
+        }
+    }
 
     return eRetval;
 }
@@ -387,6 +427,8 @@ const QStringList myList::helperGetHeaderLabels(const QString list)
     {
         query[idx].remove('"');
     }
+
+    helperTrimmed(query);
 
     return query;
 }

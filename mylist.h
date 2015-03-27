@@ -28,8 +28,8 @@ struct S_CourseEntities
 class myList
 {
     enum eTerms{
-        FOUND    = 1,
-        NOTFOUND = 2,
+        eFOUND    = 1,
+        eNOTFOUND = 2,
     };
 
     static struct S_StudentAggregatesHeader StudentAggregateTableDef;
@@ -50,8 +50,9 @@ public:
     static int createListForStudentNames(const QString pathStudentNames, QStringList &destStudentNames);
 
     // helpers
-    static eTerms helperFindAndUpdate(QStringList& destRosterRemotesStudents, const QString studentNames);
-    static void   helperTrimmed(QStringList& list);
+    static QStringList helperGetColsFromList(const QString comaList);
+    static eTerms      helperFindAndUpdate(QStringList& destRosterRemotesStudents, const QString studentNames);
+    static void        helperTrimmed(QStringList& list);
 public:
     QStringList m_course;
     QStringList m_ssn;
