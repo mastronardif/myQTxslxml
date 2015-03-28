@@ -96,21 +96,6 @@ int myList::makeList(S_CourseEntities courseEntities, QString src)
 
     } while(!line.isNull());
 
-//    do
-//    {
-//        line = stream.readLine();
-//        m_course << line;
-//        qDebug() << line;
-//    } while(!line.isNull());
-
-    // test list
-    //qDebug() << "m_course BEGIN"; printList(m_course); qDebug() << "m_course END";
-
-    //printList(m_p);printList(m_p);printList(m_v);
-//    qDebug() << "m_ssn BEGIN"; printList(m_ssn); qDebug() << "m_ssn END";
-//    qDebug() << "m_p BEGIN"; printList(m_p); qDebug() << "m_p END";
-//    qDebug() << "m_v BEGIN"; printList(m_v); qDebug() << "m_v END";
-
     printListToFile("./m_ssn.csv", m_ssn);
     printListToFile("./m_p.csv",   m_p);
 
@@ -321,8 +306,6 @@ QStringList myList::helperGetColsFromList(const QString comaList)
 {
     QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
 
-    // "Last Name, First Name, Username"
-    const QString labelsStudentNames = "Last Name, First Name, Username";
     QStringList cols = myList::helperGetHeaderLabels(comaList);
 
     return cols;
@@ -338,7 +321,6 @@ myList::eTerms myList::helperFindAndUpdate(QStringList& destRosterRemotesStudent
     // "Last Name, First Name, Username"
     const QString labelsStudentNames = "Last Name, First Name, Username";
     QStringList srcLabels = myList::helperGetHeaderLabels(labelsStudentNames);
-    //helperTrimmed(srcLabels);
 
     QStringList srcCols = studentNames.split(rx);
     helperTrimmed(srcCols);
