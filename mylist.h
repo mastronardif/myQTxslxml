@@ -34,6 +34,7 @@ class myList
 
     static struct S_StudentAggregatesHeader StudentAggregateTableDef;
     static QString                   kStudentAggregatesHeader;
+    static const QRegExp kRx;
 
 public:
     myList();
@@ -52,6 +53,7 @@ public:
     // helpers
     static QStringList helperGetColsFromList(const QString comaList);
     static eTerms      helperFindAndUpdate(QStringList& destRosterRemotesStudents, const QString studentNames);
+    static QStringList helperFindByKeyValue(const QStringList list, const QStringList whatToFind, const QString keyName, const QString keyValue);
     static void        helperTrimmed(QStringList& list);
 public:
     QStringList m_course;

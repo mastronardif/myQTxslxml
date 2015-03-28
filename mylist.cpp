@@ -2,6 +2,8 @@
 #include <QTextStream>
 #include <QDebug>
 
+
+const QRegExp myList::kRx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
 const QString kStudentAggregatesCols   = "%1,%2,%3,%4";
 S_StudentAggregatesHeader myList::StudentAggregateTableDef =
 {
@@ -302,6 +304,20 @@ void myList::helperTrimmed(QStringList& list)
     }
 }
 
+const QStringList myList::helperGetHeaderLabels(const QString list)
+{
+    QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
+    QStringList query = list.split(rx);
+    for(int idx = 0; idx < query.length(); idx++)
+    {
+        query[idx].remove('"');
+    }
+
+    helperTrimmed(query);
+
+    return query;
+}
+
 QStringList myList::helperGetColsFromList(const QString comaList)
 {
     QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
@@ -344,9 +360,9 @@ myList::eTerms myList::helperFindAndUpdate(QStringList& destRosterRemotesStudent
         if (0 == StudentId.compare(Uname))
         {
             eRetval = eFOUND;
-            qDebug() << "*** match RemoteId = " << StudentId
-                     << destCols
-                     << studentNames;
+//            qDebug() << "*** match RemoteId = " << StudentId
+//                     << destCols
+//                     << studentNames;
             destCols[destLabels.indexOf("Username")]   = srcCols[srcLabels.indexOf("Username")];
             destCols[destLabels.indexOf("First Name")] = srcCols[srcLabels.indexOf("First Name")];
             destCols[destLabels.indexOf("Last Name")]  = srcCols[srcLabels.indexOf("Last Name")];
@@ -359,7 +375,49 @@ myList::eTerms myList::helperFindAndUpdate(QStringList& destRosterRemotesStudent
     return eRetval;
 }
 
+QStringList myList::helperFindByKeyValue(const QStringList list, const QStringList whatToFind, const QString keyName, const QString keyValue)
+{
+    QStringList retval;
+    QStringList labels = myList::helperGetColsFromList(list[0]);
+//qDebug() << "whatToFind = "<< whatToFind;
+    foreach (QString findWhat,  whatToFind)
+    {
+        if (labels.indexOf(findWhat) == -1)
+        {
+           return retval;
+        }
+    }
 
+    if (labels.indexOf(keyName) == -1)
+    {
+        return retval;
+    }
+
+//qDebug() << "whatToFind = " << whatToFind;
+//qDebug() << "keyName = "    << keyName;
+//qDebug() << "keyValue = "   << keyValue;
+
+    QStringList cols;
+    for (int idx = 1; idx < list.length(); idx++)
+    {
+        cols = list[idx].split(kRx);
+        helperTrimmed(cols);
+
+        QString value = cols[labels.indexOf(keyName)];
+        if (value.compare(keyValue, Qt::CaseInsensitive) == 0)
+        {
+            foreach (QString findWhat,  whatToFind)
+            {
+                value = cols[labels.indexOf(findWhat)];
+                retval.append(value);
+            }
+        }
+    }
+
+    //list.filter()
+
+    return retval;
+}
 
 int myList::printListToFile(QString fn, QStringList list)
 {
@@ -401,16 +459,4 @@ int myList::printList(QStringList list)
     return iCnt;
 }
 
-const QStringList myList::helperGetHeaderLabels(const QString list)
-{
-    QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
-    QStringList query = list.split(rx);
-    for(int idx = 0; idx < query.length(); idx++)
-    {
-        query[idx].remove('"');
-    }
 
-    helperTrimmed(query);
-
-    return query;
-}

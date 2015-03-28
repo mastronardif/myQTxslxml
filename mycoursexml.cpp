@@ -69,7 +69,8 @@ int myCourseXml::printSession()
     xmlWriter->writeStartElement("STUDENTS");   // <STUDENTS>
 
     // foreach student
-    forEachStudent(xmlWriter, this->m_courseList.m_v);
+    //forEachStudent(xmlWriter, this->m_courseList.m_v);
+    forEachStudent(xmlWriter, this->m_courseList, this->m_courseList.m_v);
 
     xmlWriter->writeEndElement();   // </STUDENTS>
 
@@ -218,25 +219,27 @@ int myCourseXml::writeAggregatesForStudent(QXmlStreamWriter* xmlWriter, const QS
     xmlWriter->writeAttribute("studentperfpercent",                  "47.06");
 }
 
-int myCourseXml::writeStudentAttributes(QXmlStreamWriter* xmlWriter, const QString sid)
+int myCourseXml::writeStudentAttributes(QXmlStreamWriter* xmlWriter, const myList& ssnData, const QString rId)
 {
-    xmlWriter->writeAttribute("sid",  sid);
-    xmlWriter->writeAttribute("StudentId",  sid);
-    xmlWriter->writeAttribute("RemoteId",  sid);
-    xmlWriter->writeAttribute("name",  "TBD");
+    xmlWriter->writeAttribute("sid",  rId);
+
+    xmlWriter->writeAttribute("RemoteId",  rId);
+
+    // lookup name by studentId.
+    QStringList find;
+    find << "StudentId" << "First Name" << "Last Name";
+    QStringList results = myList::helperFindByKeyValue(ssnData.m_rosterRemotesStudents, find, "RemoteId", rId);
+    QString name;
+    QString studentId;
+    if (results.length() == 3)
+    {
+        studentId = results[0];
+        name = results[1] + ' ' + results[2];
+    }
+
+    xmlWriter->writeAttribute("StudentId",  studentId);
+    xmlWriter->writeAttribute("name", name);
 }
-
-//const QStringList myCourseXml::helperGetHeaderLabels(const QString list)
-//{
-//    QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
-//    QStringList query = list.split(rx);
-//    for(int idx = 0; idx < query.length(); idx++)
-//    {
-//        query[idx].remove('"');
-//    }
-
-//    return query;
-//}
 
 int myCourseXml::forEachQuestion(QXmlStreamWriter* xmlWriter, const QStringList &questions, const QString srcPathImageFolder, const QString srcFileName)
 {
@@ -290,7 +293,8 @@ int myCourseXml::forEachQuestion(QXmlStreamWriter* xmlWriter, const QStringList 
     }
 }
 
-int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter, const QStringList &votes)
+//int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter, const QStringList &votes)
+int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter,  const myList& ssnData, const QStringList &votes)
 {
     QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
     QStringList list  = votes; //this->m_courseList.m_v;
@@ -304,23 +308,24 @@ int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter, const QStringList &
         QString line = list[idx];
 
         coloumns = line.split(rx);
-        QString ss1 = (coloumns.length() == labels.length()) ? coloumns[labels.indexOf("id")] : "null";
+        QString rId = (coloumns.length() == labels.length()) ? coloumns[labels.indexOf("id")] : "null";
 
-        ss1.remove('"');
+        rId.remove('"');
 
         xmlWriter->writeStartElement("student");   //<student>
-        writeStudentAttributes(xmlWriter, ss1);
+        writeStudentAttributes(xmlWriter, ssnData, rId);
+        //writeStudentAttributes(xmlWriter, ss1);
         xmlWriter->writeAttribute("idx",  QString::number(studentCount++));
         {
             QStringList studentAgregates;  // calc agregates
-            writeAggregatesForStudent(xmlWriter, ss1, studentAgregates);
+            writeAggregatesForStudent(xmlWriter, rId, studentAgregates);
             //writeStudentAggregatesForStudent(sid); // BySession
             //writeSessionAggregatesForSession(thisSession);
         }
 
 
         xmlWriter->writeStartElement("qr");   //<qr>
-        forEachStudentVote(idx, ss1, list, xmlWriter);
+        forEachStudentVote(idx, rId, list, xmlWriter);
         xmlWriter->writeEndElement();        // </qr>
 
         xmlWriter->writeEndElement();  // </student>
