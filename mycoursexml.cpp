@@ -227,7 +227,7 @@ int myCourseXml::writeStudentAttributes(QXmlStreamWriter* xmlWriter, const myLis
 
     // lookup name by studentId.
     QStringList find;
-    find << "StudentId" << "First Name" << "Last Name";
+    find << "StudentId" << "Last Name" << "First Name";
     QStringList results = myList::helperFindByKeyValue(ssnData.m_rosterRemotesStudents, find, "RemoteId", rId);
     QString name;
     QString studentId;
