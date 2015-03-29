@@ -49,6 +49,8 @@ public:
     static int createListForRemoteStudents(const QStringList& remoteIds, const QStringList& studentNames, QStringList& destRosterRemotesStudents);
 
     static int createListForStudentNames(const QString pathStudentNames, QStringList &destStudentNames);
+    static int createListForStudentVotes(const QStringList& students, const QStringList& rosterRemotesStudents, const QStringList& votes,  QStringList& StudentVotes);
+    static int createListOfStudentsAbscent(const QStringList& students, const QStringList& rosterRemotesStudents, const QMap<QString, int> uniqueClickerIds, QStringList& studentsAbscent);
 
     // helpers
     static QStringList helperGetColsFromList(const QString comaList);
@@ -65,6 +67,7 @@ public:
     QStringList m_remoteIds;   // remote ID's
     QStringList m_StudentNames;   // student names for course
     QStringList m_rosterRemotesStudents; // the outter join of __ and __.
+    QStringList m_StudentVotes;   // student names and votes includes abscenses.
 
     static  const QStringList helperGetHeaderLabels(const QString list);
 

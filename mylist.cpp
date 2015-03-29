@@ -129,7 +129,16 @@ int myList::makeList(S_CourseEntities courseEntities, QString src)
 
     // create roster of remotes/students
     createListForRemoteStudents(m_remoteIds, m_StudentNames, m_rosterRemotesStudents);
+    {
+    QList<QString>::iterator itr = m_rosterRemotesStudents.begin();
+    if (m_rosterRemotesStudents.length() > 1) { itr = m_rosterRemotesStudents.begin()+1;}
+    qSort(itr, m_rosterRemotesStudents.end(), caseInsensitiveLessThan_5ThCol);
+    }
     printListToFile("./m_rosterRemotesStudents.csv", m_rosterRemotesStudents);
+
+    // create - select student votes outter join where student.id=vote.id
+    createListForStudentVotes(m_StudentNames, m_rosterRemotesStudents, m_v, m_StudentVotes);
+    printListToFile("./m_StudentVotes.csv", m_StudentVotes);
 
     // create aggregated lists
     createAggregatedListForStudents(m_v, m_roster, m_aggregatesForStudents);
@@ -198,8 +207,6 @@ int myList::createAggregatedListForStudents(const QStringList& votes, const QStr
 
         aggregatesForStudents.append(row);
     }
-
-
 }
 
 int myList::createListForRemoteIds(const QString pathRemoteIds, QStringList &destRoster)
@@ -293,6 +300,105 @@ int myList::createListForStudentNames(const QString pathStudentNames, QStringLis
     file.close();
 
     return iRetval;
+}
+
+int myList::createListOfStudentsAbscent(const QStringList& students, const QStringList& rosterRemotesStudents, const QMap<QString, int> uniqueClickerIds,
+                                        QStringList& studentsAbscent)
+{
+    // list students that did not vote.
+
+    studentsAbscent.clear();
+
+    // For each student in the roster that did NOT vote.  You were abscent.
+    const QStringList labels = helperGetHeaderLabels(students[0]);
+    for (int idx = 1; idx < students.length(); idx++)
+    {
+        QString line = students[idx];
+        QStringList cols = helperGetColsFromList(line);
+
+        if (cols.length() < labels.length())  // be safe
+        {
+            // skip bad rows
+            continue;
+        }
+
+        QString sid = cols[labels.indexOf("Username")];
+        QStringList find;
+        find << "RemoteId";
+
+        QStringList studentClickers = helperFindByKeyValue(rosterRemotesStudents, find, "Username", sid);
+
+        // list = find matches in roster/students table.
+        bool bVoted = false;
+        foreach(QString sid, studentClickers)
+        {
+            if(uniqueClickerIds.contains(sid))
+            {
+                bVoted = true;
+                break;
+            }
+        }
+
+        if (!bVoted)
+        {
+            studentsAbscent.append(line + "," + studentClickers.join(','));
+        }
+    }
+
+    return studentsAbscent.count();
+}
+
+int myList::createListForStudentVotes(const QStringList& students, const QStringList& rosterRemotesStudents, const QStringList& votes,
+                                      QStringList& StudentVotes)
+{
+    int iCount = 0; // count of students votes includes unregiste votes.
+    StudentVotes.clear();
+
+    QMap<QString, int> uniqueClickerIds;
+
+    const QStringList labels = helperGetHeaderLabels(votes[0]);
+    QStringList cols;
+
+    for(int idx = 1; idx < votes.length(); idx++)
+    {
+        QString line = votes[idx];
+        cols = helperGetColsFromList(line); //line.split(myList::kRx);
+
+        if (cols.length() < labels.length())
+        {
+            // skip bad rows
+            continue;
+        }
+
+        QString clickerId = cols[labels.indexOf("id")];
+        uniqueClickerIds.insert(clickerId, idx);
+    }
+
+    StudentVotes.append("Last Name,First Name,StudentId,RemoteId");
+    foreach(QString clickerId, uniqueClickerIds.keys())
+    {
+        QStringList find;
+        find << "Last Name" << "First Name" << "StudentId" << "RemoteId";
+        QStringList results = helperFindByKeyValue(rosterRemotesStudents, find, "RemoteId", clickerId);
+
+        if (results.length() == 0)
+        {
+            // not found in the roster.
+            results << "null" << "null" << "null" << clickerId;
+        }
+
+        StudentVotes.append(results.join(','));
+    }
+
+    // list students that did not vote.
+
+    QStringList studentsAbscent;
+
+    createListOfStudentsAbscent(students, rosterRemotesStudents, uniqueClickerIds, studentsAbscent);
+
+    StudentVotes << studentsAbscent;
+
+    return iCount;
 }
 
 void myList::helperTrimmed(QStringList& list)
