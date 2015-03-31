@@ -395,7 +395,8 @@ int myList::createListForStudentVotes(const QStringList& students, const QString
     QStringList studentsAbscent;
 
     createListOfStudentsAbscent(students, rosterRemotesStudents, uniqueClickerIds, studentsAbscent);
-
+//qDebug() << "abscenties:\n" << studentsAbscent;
+StudentVotes << "abscent(s)";
     StudentVotes << studentsAbscent;
 
     return iCount;

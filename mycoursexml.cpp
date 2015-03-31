@@ -71,6 +71,9 @@ int myCourseXml::printSession()
     // foreach student
     //forEachStudent(xmlWriter, this->m_courseList.m_v);
     forEachStudent(xmlWriter, this->m_courseList, this->m_courseList.m_v);
+    qDebug() << "report on these students:";
+    //myList::printList(this->m_courseList.m_StudentVotes);
+    //forEachStudent(xmlWriter, this->m_courseList, this->m_courseList.m_StudentNames, this->m_courseList.m_v);
 
     xmlWriter->writeEndElement();   // </STUDENTS>
 
@@ -326,6 +329,7 @@ int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter,  const myList& ssnD
 
         xmlWriter->writeStartElement("qr");   //<qr>
         forEachStudentVote(idx, rId, list, xmlWriter);
+        //orEachStudentVote(idx, rId, list, xmlWriter);
         xmlWriter->writeEndElement();        // </qr>
 
         xmlWriter->writeEndElement();  // </student>
