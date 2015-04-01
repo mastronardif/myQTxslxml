@@ -427,7 +427,7 @@ const QStringList myList::helperGetHeaderLabels(const QString list)
 
 QStringList myList::helperGetColsFromList(const QString comaList)
 {
-    QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
+    //QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
 
     QStringList cols = myList::helperGetHeaderLabels(comaList);
 
