@@ -53,7 +53,8 @@ public:
     static int createListOfStudentsAbscent(const QStringList& students, const QStringList& rosterRemotesStudents, const QMap<QString, int> uniqueClickerIds, QStringList& studentsAbscent);
 
     // helpers
-    static QStringList helperGetColsFromList(const QString comaList);
+        //static  const QStringList helperGetHeaderLabels(const QString comaList);
+    static const QStringList helperGetColsFromList(const QString comaList);
     static eTerms      helperFindAndUpdate(QStringList& destRosterRemotesStudents, const QString studentNames);
     static QStringList helperFindByKeyValue(const QStringList list, const QStringList whatToFind, const QString keyName, const QString keyValue);
     static void        helperTrimmed(QStringList& list);
@@ -68,8 +69,6 @@ public:
     QStringList m_StudentNames;   // student names for course
     QStringList m_rosterRemotesStudents; // the outter join of __ and __.
     QStringList m_StudentVotes;   // student names and votes includes abscenses.
-
-    static  const QStringList helperGetHeaderLabels(const QString list);
 
     // agreagtes
     QStringList m_aggregatesForSession;

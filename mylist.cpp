@@ -168,7 +168,7 @@ int myList::createAggregatedListForStudents(const QStringList& votes, const QStr
     // sid, name, ...
     QString sId, remoteId, sname;
 
-    const QStringList labels = helperGetHeaderLabels(votes[0]);
+    const QStringList labels = helperGetColsFromList(votes[0]);
     QStringList cols; // = list[1].split(rx);
 
     QString lastKnown = "";
@@ -310,7 +310,7 @@ int myList::createListOfStudentsAbscent(const QStringList& students, const QStri
     studentsAbscent.clear();
 
     // For each student in the roster that did NOT vote.  You were abscent.
-    const QStringList labels = helperGetHeaderLabels(students[0]);
+    const QStringList labels = helperGetColsFromList(students[0]);
     for (int idx = 1; idx < students.length(); idx++)
     {
         QString line = students[idx];
@@ -356,7 +356,7 @@ int myList::createListForStudentVotes(const QStringList& students, const QString
 
     QMap<QString, int> uniqueClickerIds;
 
-    const QStringList labels = helperGetHeaderLabels(votes[0]);
+    const QStringList labels = helperGetColsFromList(votes[0]);
     QStringList cols;
 
     for(int idx = 1; idx < votes.length(); idx++)
@@ -411,10 +411,10 @@ void myList::helperTrimmed(QStringList& list)
     }
 }
 
-const QStringList myList::helperGetHeaderLabels(const QString list)
+const QStringList myList::helperGetColsFromList(const QString comaList)
 {
     QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
-    QStringList query = list.split(rx);
+    QStringList query = comaList.split(rx);
     for(int idx = 0; idx < query.length(); idx++)
     {
         query[idx].remove('"');
@@ -422,17 +422,19 @@ const QStringList myList::helperGetHeaderLabels(const QString list)
 
     helperTrimmed(query);
 
+    //const QStringList bobo=query;
+
     return query;
 }
 
-QStringList myList::helperGetColsFromList(const QString comaList)
-{
-    //QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
+//QStringList myList::helperGetColsFromList(const QString comaList)
+//{
+//    //QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
 
-    QStringList cols = myList::helperGetHeaderLabels(comaList);
+//    QStringList cols = myList::helperGetHeaderLabels(comaList);
 
-    return cols;
-}
+//    return cols;
+//}
 
 
 myList::eTerms myList::helperFindAndUpdate(QStringList& destRosterRemotesStudents, const QString studentNames)
@@ -443,7 +445,7 @@ myList::eTerms myList::helperFindAndUpdate(QStringList& destRosterRemotesStudent
 
     // "Last Name, First Name, Username"
     const QString labelsStudentNames = "Last Name, First Name, Username";
-    QStringList srcLabels = myList::helperGetHeaderLabels(labelsStudentNames);
+    QStringList srcLabels = myList::helperGetColsFromList(labelsStudentNames);
 
     QStringList srcCols = studentNames.split(rx);
     helperTrimmed(srcCols);
@@ -456,7 +458,7 @@ myList::eTerms myList::helperFindAndUpdate(QStringList& destRosterRemotesStudent
     //labels.clear();
     QStringList destLabels;
     QStringList destCols;
-    destLabels = myList::helperGetHeaderLabels(destRosterRemotesStudents[0]);
+    destLabels = myList::helperGetColsFromList(destRosterRemotesStudents[0]);
     for (int idx = 1; idx < destRosterRemotesStudents.length(); idx++)
     {
         destCols = destRosterRemotesStudents[idx].split(rx);

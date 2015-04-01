@@ -119,7 +119,7 @@ int myCourseXml::writeTitleElement(QXmlStreamWriter* xmlWriter, const QStringLis
     QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
     QStringList list  = session;
 
-    const QStringList labels = myList::helperGetHeaderLabels(session[0]);
+    const QStringList labels = myList::helperGetColsFromList(session[0]);
     QStringList cols = list[1].split(rx);
 
     // skip 1st row aka the header
@@ -162,7 +162,7 @@ int myCourseXml::writeSessionAttributes(QXmlStreamWriter* xmlWriter, const QStri
     QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
     QStringList list  = session;
 
-    const QStringList labels = myList::helperGetHeaderLabels(session[0]);
+    const QStringList labels = myList::helperGetColsFromList(session[0]);
     QStringList cols = list[1].split(rx);
 
     // skip 1st row aka the header
@@ -249,7 +249,7 @@ int myCourseXml::forEachQuestion(QXmlStreamWriter* xmlWriter, const QStringList 
     QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
     QStringList list  = questions; //this->m_courseList.m_p;
 
-    const QStringList labels = myList::helperGetHeaderLabels(questions[0]);
+    const QStringList labels = myList::helperGetColsFromList(questions[0]);
     QStringList cols = list[1].split(rx);
 
     for(int idx = 1; idx < list.length(); idx++)
@@ -302,7 +302,7 @@ int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter,  const myList& ssnD
     QStringList listVotes  = votes; //this->m_courseList.m_v;
     QStringList listStudents = ssnData.m_StudentVotes;
 
-    const QStringList labels = myList::helperGetHeaderLabels(listStudents[0]); //votes[0]);
+    const QStringList labels = myList::helperGetColsFromList(listStudents[0]); //votes[0]);
     QStringList cols; // = myList::helperGetHeaderLabels(); //list[1].split(rx);
 
     int studentCount=1;
@@ -311,7 +311,7 @@ int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter,  const myList& ssnD
     {
         QString line = listStudents[idx];
 
-        cols = myList::helperGetHeaderLabels(line); //line.split(rx);
+        cols = myList::helperGetColsFromList(line); //line.split(rx);
 
         if (cols.length() < labels.length())  // be safe
         {
@@ -389,7 +389,7 @@ int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter,  const myList& ssnD
 
 int myCourseXml::forEachStudentVote(int idx, const QString argRid, const QStringList &votes, QXmlStreamWriter* xmlWriter)
 {
-    const QStringList labels = myList::helperGetHeaderLabels(votes[0]);
+    const QStringList labels = myList::helperGetColsFromList(votes[0]);
     QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
     //QString clean;
     QString rId = argRid;
@@ -398,7 +398,7 @@ int myCourseXml::forEachStudentVote(int idx, const QString argRid, const QString
     // find by RemoteId
     for(idx = 1; idx < votes.length(); idx++)
     {
-        QStringList cols = myList::helperGetHeaderLabels(votes[idx]);
+        QStringList cols = myList::helperGetColsFromList(votes[idx]);
         if (cols.length() < labels.length())  // be safe
         {
             // skip ignorable rows
