@@ -28,7 +28,7 @@ private:
     static int forEachQuestion(QXmlStreamWriter* xmlWriter, const QStringList &questions, const QString m_pathImageFolder, const QString srcFileName);
     static int forEachStudent (QXmlStreamWriter* xmlWriter, const myList& ssnData, const QStringList &votes);
 
-    static int forEachStudentVote(int idx, const QString student, const QStringList &list, QXmlStreamWriter* xmlWriter);
+    static int forStudentVote(int& idxVote, const QString student, const QStringList &list, QXmlStreamWriter* xmlWriter);
     static int writeStudentAttributes(QXmlStreamWriter* xmlWriter, const myList& ssnData, const QString sid);
     static int writeSessionAttributes(QXmlStreamWriter* xmlWriter, const QStringList &session);
     static int writeAggregatesForStudent(QXmlStreamWriter* xmlWriter, const QString sid, const QStringList &list);

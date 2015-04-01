@@ -298,7 +298,12 @@ int myCourseXml::forEachQuestion(QXmlStreamWriter* xmlWriter, const QStringList 
 
 int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter,  const myList& ssnData, const QStringList &votes)
 {
-    QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
+    //** Note both students and votes are sorted by remoteId
+    //** so you do NOT have to search all the votes every time.
+    //** this makes it faster, But relies on it beeing sorted and in sync.
+    //** If this becomes a problem go back to the linear search.
+
+    //QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
     QStringList listVotes  = votes; //this->m_courseList.m_v;
     QStringList listStudents = ssnData.m_StudentVotes;
 
@@ -307,6 +312,7 @@ int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter,  const myList& ssnD
 
     int studentCount=1;
     //for(int idx = 1; idx < list.length();)//idx++)
+    int idxVote = 1;
     for(int idx = 1; idx < listStudents.length(); idx++)
     {
         QString line = listStudents[idx];
@@ -334,10 +340,10 @@ int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter,  const myList& ssnD
             //writeSessionAggregatesForSession(thisSession);
         }
 
-
         xmlWriter->writeStartElement("qr");   //<qr>
-        forEachStudentVote(idx, rId, listVotes, xmlWriter);
-        //orEachStudentVote(idx, rId, list, xmlWriter);
+
+        forStudentVote(idxVote, rId, listVotes, xmlWriter);
+
         xmlWriter->writeEndElement();        // </qr>
 
         xmlWriter->writeEndElement();  // </student>
@@ -387,7 +393,7 @@ int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter,  const myList& ssnD
 //    }
 //}
 
-int myCourseXml::forEachStudentVote(int idx, const QString argRid, const QStringList &votes, QXmlStreamWriter* xmlWriter)
+int myCourseXml::forStudentVote(int& idxVote, const QString argRid, const QStringList &votes, QXmlStreamWriter* xmlWriter)
 {
     const QStringList labels = myList::helperGetColsFromList(votes[0]);
     QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
@@ -396,9 +402,9 @@ int myCourseXml::forEachStudentVote(int idx, const QString argRid, const QString
     //rId.remove('"');
 
     // find by RemoteId
-    for(idx = 1; idx < votes.length(); idx++)
+    for(; idxVote < votes.length(); idxVote++)
     {
-        QStringList cols = myList::helperGetColsFromList(votes[idx]);
+        QStringList cols = myList::helperGetColsFromList(votes[idxVote]);
         if (cols.length() < labels.length())  // be safe
         {
             // skip ignorable rows
@@ -411,9 +417,9 @@ int myCourseXml::forEachStudentVote(int idx, const QString argRid, const QString
         if (QString::compare(ss1, rId, Qt::CaseInsensitive) == 0) { break; }
     }
 
-    for(; idx < votes.length(); idx++)
+    for(; idxVote < votes.length(); idxVote++)
     {
-        QString line = votes[idx];
+        QString line = votes[idxVote];
 
         QStringList cols = line.split(rx);
         //QString ss1 = (coloumns.length() > 3) ? coloumns[4]  : "null";
