@@ -76,6 +76,22 @@ QString myCourseXml::calculateScore(const QStringList &listPolls, const QString 
     return score;
 }
 
+QString myCourseXml::calculateSessionPerformancePoints(const QStringList &listSession)
+{
+    QString perf = "5.99";  // default;
+
+    const QStringList labels = myList::helperGetColsFromList(listSession[0]);
+    const QStringList cols = myList::helperGetColsFromList(listSession[1]);
+
+    QString part = cols[labels.indexOf("part")];
+    //QString perf = cols[labels.indexOf("perf")];
+
+    //dReturnPoints = pointsPossible - participationPoints;
+
+    return perf;
+
+}
+
 int myCourseXml::printSession()
 {
     int iRetval = 0; // default success
@@ -223,8 +239,6 @@ int myCourseXml::writeSessionAttributes(QXmlStreamWriter* xmlWriter, const QStri
     // skip 1st row aka the header
     for(int idx = 1; idx < list.length(); idx++)
     {
-        //QString line = list[idx];
-
         cols = myList::helperGetColsFromList(session[idx]); //line.split(rx);
         if (cols.length() != labels.length())
         {
@@ -241,12 +255,13 @@ int myCourseXml::writeSessionAttributes(QXmlStreamWriter* xmlWriter, const QStri
         xmlWriter->writeAttribute("ap", "0.71");
         xmlWriter->writeAttribute("avg", "2.85");
         //xmlWriter->writeAttribute("part", "0.00");
-        xmlWriter->writeAttribute("perf", "4.00");
+
+        // QString::number(Session->getPerformancePoints(), 'f',2));
+        QString perf = calculateSessionPerformancePoints(session);
+        xmlWriter->writeAttribute("perf", perf); // "4.99");
         xmlWriter->writeAttribute("pp", "4.00");
         xmlWriter->writeAttribute("sppp", "4.00");
     }
-
-
 }
 
 int myCourseXml::writeAggregatesForStudent(QXmlStreamWriter* xmlWriter, const QString sid, const QStringList &list)
