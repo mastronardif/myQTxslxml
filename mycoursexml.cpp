@@ -16,11 +16,13 @@ myCourseXml::myCourseXml(myList &courseList) : m_courseList(courseList)
     srcFileName   = "L1501291001.xml";
 
     m_pathImageFolder = QString("%1/%2/").arg(srcPathFolder, "Images");
+
+    // Get session date from file time stamp.
 }
 
 QString myCourseXml::calculateScore(const QStringList &listPolls, const QString qid, const QString ans)
 {
-    QString retval = "";
+    QString score = "(NR)"; // default
 
     const QStringList labels = myList::helperGetColsFromList(listPolls[0]);
     QStringList cols;
@@ -38,13 +40,18 @@ QString myCourseXml::calculateScore(const QStringList &listPolls, const QString 
     }
 
     QString cans = cols[labels.indexOf("cans")];
-    if (!ans.isEmpty() && (cans == ans) )
+    if (!ans.isEmpty())
     {
-        // calculate scrore
-        retval = "1";
-    }
+         score = (cans == ans) ? "1" : "0";
 
-    return retval;
+    }
+//    if (!ans.isEmpty() && (cans == ans) )
+//    {
+//        // calculate scrore
+//        retval = "1";
+//    }
+
+    return score;
 }
 
 int myCourseXml::printSession()
@@ -168,7 +175,7 @@ int myCourseXml::writeTitleElement(QXmlStreamWriter* xmlWriter, const QStringLis
     ColsToShow << "@name" << "@StudentId" << "@RemoteId";
     myCourseXml::writeHdrElement(xmlWriter, ColsToShow);
 
-    xmlWriter->writeTextElement("DATE", "3/24/15 10:01 AM");
+    xmlWriter->writeTextElement("DATE", "4/6/15 10:01 AM  TBD from session file stamp.");
     xmlWriter->writeTextElement("SESSIONID", "sessionIndex-0");
 //    <TITLE NAME="Q2 1/29 and 2/3">
 //        <SESSION>0Large_PHIL 102</SESSION>
@@ -448,7 +455,7 @@ int myCourseXml::forStudentVote(int& idxVote, const QString argRid, const QStrin
 
     for(; idxVote < votes.length(); idxVote++)
     {
-        const QString line = votes[idxVote];
+        //const QString line = votes[idxVote];
 
         QStringList cols = myList::helperGetColsFromList(votes[idxVote]);
         if (cols.length() < labels.length())  // be safe
@@ -457,37 +464,61 @@ int myCourseXml::forStudentVote(int& idxVote, const QString argRid, const QStrin
             continue;
         }
 
-        //QStringList cols = line.split(myList::kRx);
-        //const QStringList cols = myList::helperGetColsFromList(line);
-
-        //QString score = cols[labels.indexOf("scr")]; //  : "null";
-
-        //QString ss1 = (coloumns.length() > 3) ? coloumns[4]  : "null";
-        QString ss1 = (cols.length() == labels.length()) ? cols[labels.indexOf("id")]   : "null";
-        QString qid = (cols.length() == labels.length()) ? cols[labels.indexOf("p_id")] : "null";
-        QString scr = (cols.length() == labels.length()) ? cols[labels.indexOf("scr")]  : "null";
+        QString pid = cols[labels.indexOf("p_id")];
+        QString ss1 = cols[labels.indexOf("id")];
+        QString qid = cols[labels.indexOf("p_id")];
         QString ans = cols[labels.indexOf("ans")];
 
         QString score = calculateScore(listPolls, qid, ans);
 
-        ss1.remove('"');
-        qid.remove('"');
         qid = QString("q%1").arg(qid);
-        scr.remove('"');
+
         ans.remove('"');
 
         if (QString::compare(ss1, rId, Qt::CaseInsensitive) != 0) { break; }
 
-        //qDebug() << student << ss1 << qid << "ss1 = " << ss1 << "qid = " << qid << "scr = " << scr;
-
         xmlWriter->writeStartElement("q");   // <q>
-        //xmlWriter->writeAttribute("sid",  ss1);
+
         xmlWriter->writeAttribute("id",  qid);
-        //xmlWriter->writeAttribute("scr",  scr);
+
         xmlWriter->writeAttribute("score",  score); //"0");
+
+        QStringList find;
+        find << "cans";
+        QStringList cans = myList::helperFindByKeyValue(listPolls, find, "idx", pid);
+        QString strCans = cans.isEmpty() ? "" : cans[0];
+        // yes, no, indetermined.
+        QString icr = strCans.isEmpty() ? "-1" :
+                     (strCans.compare(ans, Qt::CaseInsensitive) == 0) ? "1" : "0";
+
+        xmlWriter->writeAttribute("icr", icr);
+
         xmlWriter->writeAttribute("vote", ans);
         xmlWriter->writeAttribute("Response", ans);
-        xmlWriter->writeAttribute("icr", "tbd");
+
         xmlWriter->writeEndElement(); // </q>
     }
 }
+
+QString myCourseXml::helperGetSessionDateFromFile()
+{
+    return "4/5/15 10:01 AM";
+}
+//QString clsSession::getSessionDateFromFile(){
+//    readXmlFile();
+//    xEle = xDoc->documentElement();
+//    QString retValue = xEle.attribute(ClsXml::qRoot_CreatedDateAndTimeSignature_TG, "");
+//    if (retValue.trimmed() == "") {
+//        QFileInfo info(sessionFileName);
+//        QString fDate = "";
+
+//        fDate = info.fileName();
+//        fDate = fDate.mid(1,fDate.indexOf(QString(".")) - 1);
+//        fDate = fDate.left(6);
+//        retValue = fDate;
+
+//    } else {
+//        retValue = retValue.left(6);
+//    }
+//    return retValue;
+//}

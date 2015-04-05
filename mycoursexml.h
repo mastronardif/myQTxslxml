@@ -35,6 +35,9 @@ private:
 
     static QString calculateScore(const QStringList &listPolls, const QString qid, const QString ans);
 
+    // helpers
+    static QString helperGetSessionDateFromFile();
+
 private:
     myList m_courseList;
 
