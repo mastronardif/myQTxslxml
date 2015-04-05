@@ -34,6 +34,7 @@ private:
     static int writeAggregatesForStudent(QXmlStreamWriter* xmlWriter, const QString sid, const QStringList &list);
 
     static QString calculateScore(const QStringList &listPolls, const QString qid, const QString ans);
+    static QString calculatePossiblePointsForQuestionN(const QStringList &listPolls, const QString idxPoll);
 
     // helpers
     static QString helperGetSessionDateFromFile();

@@ -20,6 +20,28 @@ myCourseXml::myCourseXml(myList &courseList) : m_courseList(courseList)
     // Get session date from file time stamp.
 }
 
+QString myCourseXml::calculatePossiblePointsForQuestionN(const QStringList &listPolls, const QString idxPoll)
+{
+    // See spec for how to calculate this.
+    //"anspt";  // Correct answer points
+
+    QString anspt;
+    QStringList results;
+    QStringList find;
+    find << "anspt";
+
+    results = myList::helperFindByKeyValue(listPolls, find, "idx", idxPoll);
+
+    if (!results.isEmpty())
+    {
+        anspt = results[0];
+    }
+
+    QString pp = anspt; //"1.99"; // default
+
+    return pp;
+}
+
 QString myCourseXml::calculateScore(const QStringList &listPolls, const QString qid, const QString ans)
 {
     QString score = "(NR)"; // default
@@ -152,14 +174,12 @@ int myCourseXml::writeHdrElement(QXmlStreamWriter* xmlWriter, QStringList ColsTo
 int myCourseXml::writeTitleElement(QXmlStreamWriter* xmlWriter, const QStringList &session)
 {
     QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
-    QStringList list  = session;
 
     const QStringList labels = myList::helperGetColsFromList(session[0]);
-    QStringList cols = list[1].split(rx);
+    QStringList cols =  myList::helperGetColsFromList(session[1]); //list[1].split(rx);
 
     // skip 1st row aka the header
-    QString name   = (labels.indexOf("ssnn")   != -1) ? cols[labels.indexOf("ssnn")]   : "null";
-    name.remove('"');
+    QString name = cols[labels.indexOf("ssnn")]; //(labels.indexOf("ssnn")   != -1) ? cols[labels.indexOf("ssnn")]   : "null";
 
     xmlWriter->writeStartElement("TITLE");
 
@@ -203,18 +223,17 @@ int myCourseXml::writeSessionAttributes(QXmlStreamWriter* xmlWriter, const QStri
     // skip 1st row aka the header
     for(int idx = 1; idx < list.length(); idx++)
     {
-        QString line = list[idx];
+        //QString line = list[idx];
 
-        cols = line.split(rx);
+        cols = myList::helperGetColsFromList(session[idx]); //line.split(rx);
         if (cols.length() != labels.length())
         {
             //skip bad rows.
             continue;
         }
 
-        QString name   = (labels.indexOf("ssnn")   != -1) ? cols[labels.indexOf("ssnn")]   : "null";
-        QString part = (labels.indexOf("part") != -1) ? cols[labels.indexOf("part")] : "null";
-        name.remove('"'); part.remove('"');
+        QString name = cols[labels.indexOf("ssnn")];
+        QString part = cols[labels.indexOf("part")];
 
         xmlWriter->writeAttribute("part", part);
         //Partic="0.00" ap="0.71" avg="2.85" part="0.00" perf="4.00" pp="4.00" sppp="4.00"
@@ -290,17 +309,20 @@ int myCourseXml::forEachQuestion(QXmlStreamWriter* xmlWriter, const QStringList 
     for(int idx = 1; idx < list.length(); idx++)
     {
         QString line = list[idx];
+        cols = myList::helperGetColsFromList(questions[idx]);
 
-        cols = line.split(rx);
+        //cols = line.split(rx);
         if (cols.length() != labels.length())
         {
             //skip bad rows.
             continue;
         }
 
-        QString qn   = (labels.indexOf("qn")   != -1) ? cols[labels.indexOf("qn")]   : "null";
-        QString cans = (labels.indexOf("cans") != -1) ? cols[labels.indexOf("cans")] : "null";
-        qn.remove('"'); cans.remove('"');
+        QString pollIdx = cols[labels.indexOf("idx")];
+
+        QString qn   = cols[labels.indexOf("qn")];
+        QString cans = cols[labels.indexOf("cans")];
+
         xmlWriter->writeStartElement("question");
         xmlWriter->writeAttribute("name", qn);
         xmlWriter->writeAttribute("CorrectAnswer",   cans);
@@ -323,8 +345,12 @@ int myCourseXml::forEachQuestion(QXmlStreamWriter* xmlWriter, const QStringList 
         xmlWriter->writeAttribute("IncorrectResponses",  "0");
         xmlWriter->writeAttribute("NoResponses",  "0");
         xmlWriter->writeAttribute("Responses",  "262");
-        xmlWriter->writeAttribute("possiblePoints",  "1.00");
-        xmlWriter->writeAttribute("pp",  "1.00");
+
+        //mlWriter->writeAttribute("possiblePoints", ql.toString(Session->getCorrectAnswerPoints() +  Session->getResponseAnyChoicePoints(),'f',2));
+
+        QString possiblePoints = calculatePossiblePointsForQuestionN(questions, pollIdx);
+        xmlWriter->writeAttribute("possiblePoints",  possiblePoints);
+        //xmlWriter->writeAttribute("pp",  "1.23");
 
 
         xmlWriter->writeEndElement(); // </question>
@@ -360,9 +386,7 @@ int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter,  const myList& ssnD
             continue;
         }
 
-        QString rId = cols[labels.indexOf("RemoteId")]; //(cols.length() == labels.length()) ? cols[labels.indexOf("id")] : "null";
-
-        //rId.remove('"');
+        QString rId = cols[labels.indexOf("RemoteId")];
 
         xmlWriter->writeStartElement("student");   //<student>
         writeStudentAttributes(xmlWriter, ssnData, rId);
@@ -435,7 +459,6 @@ int myCourseXml::forStudentVote(int& idxVote, const QString argRid, const QStrin
     //QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
     //QString clean;
     QString rId = argRid;
-    //rId.remove('"');
 
     // find by RemoteId
     for(; idxVote < votes.length(); idxVote++)
@@ -472,8 +495,6 @@ int myCourseXml::forStudentVote(int& idxVote, const QString argRid, const QStrin
         QString score = calculateScore(listPolls, qid, ans);
 
         qid = QString("q%1").arg(qid);
-
-        ans.remove('"');
 
         if (QString::compare(ss1, rId, Qt::CaseInsensitive) != 0) { break; }
 
