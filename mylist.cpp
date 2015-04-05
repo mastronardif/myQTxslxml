@@ -27,23 +27,98 @@ bool caseInsensitiveLessThan(const QString &s1, const QString &s2)
 {
     return s1.toLower() < s2.toLower();
 }
+
+
+bool caseLessThan_11thCol(const QString &s1, const QString &s2)
+{
+    // Sort on Cols[E][K] aka [5-1][11-1]
+    QRegExp rx("(\\,)");
+
+    QString ss1, ss2,  ss31, ss32;
+    QStringList query = s1.split(rx);  //(myList::kRx);
+    query = myList::helperGetColsFromList(s1);
+
+    ss1  = query[4];
+    ss31 = query[10];
+
+    //query = s2.split(rx);
+    query = myList::helperGetColsFromList(s2);
+    ss2  = query[4];
+    ss32 = query[10];
+    //return ((ss31.toLower() < ss32.toLower()) );
+    double d1 = ss31.toDouble();
+    double d2 = ss32.toDouble();
+    //return (d1 < d2);
+    QString  left   = ss1.toLower() + "-A-" + ss31.toLower();
+    QString  right  = ss2.toLower() + "-A-" + ss32.toLower();
+    //return (left < right );
+    return (d1 < d2);
+}
+
+bool caseInsensitiveLessThan_5ThColAnd11thCol(const QString &s1, const QString &s2)
+{
+    // Sort on Cols[E][K] aka [5-1][11-1]
+    QRegExp rx("(\\,)");
+
+    QString ss1, ss2,  ss31, ss32;
+    QStringList query = s1.split(rx);  //(myList::kRx);
+    query = myList::helperGetColsFromList(s1);
+
+    ss1  = query[4];
+    ss31 = query[10];
+
+    //query = s2.split(rx);
+    query = myList::helperGetColsFromList(s2);
+    ss2  = query[4];
+    ss32 = query[10];
+    //return ((ss31.toLower() < ss32.toLower()) );
+    int d1 = ss31.toInt();
+    int d2 = ss32.toInt();
+    //return (d1 < d2);
+
+    QString strD1("a");
+    strD1 = strD1.repeated(d1);
+    QString strD2("a");
+    strD2 = strD2.repeated(d2);
+
+    QString  left   = ss1.toLower() + "-A-" + strD1;
+    QString  right  = ss2.toLower() + "-A-" + strD2;
+    return (left < right );
+//    if (d1 == d2)
+//    {
+//        return (ss1.toLower() < ss2.toLower() );
+//    }
+//    else
+//        false;
+//    else
+//    {
+//        ss1.toLower() < ss2.toLower();
+//    }
+    //return (ss1.toLower() < ss2.toLower()) && (ss31.toLower() < ss32.toLower());
+
+}
+
 bool caseInsensitiveLessThan_5ThCol(const QString &s1, const QString &s2)
 {
     QString ss1, ss2;
     //QRegExp rx("(\\ |\\,|\\.|\\:|\\t)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
     QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
 
-    QStringList query = s1.split(rx);
-    ss1 = (query.length() > 4) ? query[4] : query[0];
+    //QStringList query = s1.split(rx);
+    QStringList query = myList::helperGetColsFromList(s1);
+    ss1 = query[4];
 
-    query = s2.split(rx);
-    ss2 = (query.length() > 4) ? query[4] : query[0];
+    //query = s2.split(rx);
+    query = myList::helperGetColsFromList(s2);
+    ss2 = query[4];
 
 //    qDebug() << "ss1 = " << ss1;
 //    qDebug() << "ss2 = " << ss2;
 
     //return s1.toLower() < s2.toLower();
-    return ss1.toLower() < ss2.toLower();
+    //return ss1.toLower() < ss2.toLower();
+    //return ss1.toLower() == ss2.toLower();
+    return ss1.toLower() > ss2.toLower();
 
 }
 
@@ -101,6 +176,12 @@ int myList::makeList(S_CourseEntities courseEntities, QString src)
     printListToFile("./m_ssn.csv", m_ssn);
     printListToFile("./m_p.csv",   m_p);
 
+    // filter test
+    //QStringList QStringList::filter ( const QRegExp & rx ) const
+    QStringList wtf = m_v.filter(QRegExp("#801FF16E"));
+    wtf.prepend(m_v[0]);
+    printListToFile("801FF16E.csv",  wtf);
+
     //qSort(m_v.begin(), m_v.end(), qGreater<QString>());
     //qSort(m_v.begin(), m_v.end(), caseInsensitiveLessThan);
     //qSort(m_v.begin(), m_v.end(), caseInsensitiveLessThan_5ThCol);
@@ -109,17 +190,25 @@ int myList::makeList(S_CourseEntities courseEntities, QString src)
     {
     QList<QString>::iterator itr = m_v.begin();
     if (m_v.length() > 1) { itr = m_v.begin()+1;}
-    qSort(itr, m_v.end(), caseInsensitiveLessThan_5ThCol);
+printListToFile("./m_v0.csv",   m_v);
+    //qSort(itr, m_v.end(), caseLessThan_11thCol);
+    //printListToFile("./m_v1.csv",   m_v);
+
+    //qSort(itr, m_v.end(), caseInsensitiveLessThan_5ThCol);
+
+    qSort(itr, m_v.end(), caseInsensitiveLessThan_5ThColAnd11thCol);
+
+
+//itr = m_v.begin()+1;
+    //qSort(itr, m_v.end(), caseInsensitiveLessThan_5ThCol);
+
+    //itr = m_v.begin();
+
+    //qSort(itr, m_v.end(), caseInsensitiveLessThan_5ThCol);
     }
 
     //m_v.sort(Qt::CaseInsensitive);
     printListToFile("./m_v.csv",   m_v);
-
-    // filter test
-    //QStringList QStringList::filter ( const QRegExp & rx ) const
-    QStringList wtf = m_v.filter(QRegExp("#970F6BF3"));
-    wtf.prepend(m_v[1]);
-    printListToFile("970F6BF3.csv",  wtf);
 
     createListForRemoteIds(courseEntities.m_srcPathRemoteIds, m_remoteIds);
     printListToFile("./m_remoteIds.csv", m_remoteIds);

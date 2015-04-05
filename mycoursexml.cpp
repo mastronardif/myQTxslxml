@@ -18,6 +18,34 @@ myCourseXml::myCourseXml(myList &courseList) : m_courseList(courseList)
     m_pathImageFolder = QString("%1/%2/").arg(srcPathFolder, "Images");
 }
 
+QString myCourseXml::calculateScore(const QStringList &listPolls, const QString qid, const QString ans)
+{
+    QString retval = "";
+
+    const QStringList labels = myList::helperGetColsFromList(listPolls[0]);
+    QStringList cols;
+
+    for (int idx = 1; idx < listPolls.length(); idx++)
+    {
+        cols = myList::helperGetColsFromList(listPolls[idx]);
+
+        QString pid = cols[labels.indexOf("idx")];
+        if (pid == qid)
+        {
+            // Found
+            break;
+        }
+    }
+
+    QString cans = cols[labels.indexOf("cans")];
+    if (!ans.isEmpty() && (cans == ans) )
+    {
+        // calculate scrore
+        retval = "1";
+    }
+
+    return retval;
+}
 
 int myCourseXml::printSession()
 {
@@ -342,7 +370,8 @@ int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter,  const myList& ssnD
 
         xmlWriter->writeStartElement("qr");   //<qr>
 
-        forStudentVote(idxVote, rId, listVotes, xmlWriter);
+        //forStudentVote(idxVote, rId, listVotes, xmlWriter);
+        forStudentVote(idxVote, rId, listVotes, ssnData.m_p, xmlWriter);
 
         xmlWriter->writeEndElement();        // </qr>
 
@@ -393,10 +422,10 @@ int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter,  const myList& ssnD
 //    }
 //}
 
-int myCourseXml::forStudentVote(int& idxVote, const QString argRid, const QStringList &votes, QXmlStreamWriter* xmlWriter)
+int myCourseXml::forStudentVote(int& idxVote, const QString argRid, const QStringList &votes, const QStringList &listPolls, QXmlStreamWriter* xmlWriter)
 {
     const QStringList labels = myList::helperGetColsFromList(votes[0]);
-    QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
+    //QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
     //QString clean;
     QString rId = argRid;
     //rId.remove('"');
@@ -419,14 +448,27 @@ int myCourseXml::forStudentVote(int& idxVote, const QString argRid, const QStrin
 
     for(; idxVote < votes.length(); idxVote++)
     {
-        QString line = votes[idxVote];
+        const QString line = votes[idxVote];
 
-        QStringList cols = line.split(rx);
+        QStringList cols = myList::helperGetColsFromList(votes[idxVote]);
+        if (cols.length() < labels.length())  // be safe
+        {
+            // skip ignorable rows
+            continue;
+        }
+
+        //QStringList cols = line.split(myList::kRx);
+        //const QStringList cols = myList::helperGetColsFromList(line);
+
+        //QString score = cols[labels.indexOf("scr")]; //  : "null";
+
         //QString ss1 = (coloumns.length() > 3) ? coloumns[4]  : "null";
         QString ss1 = (cols.length() == labels.length()) ? cols[labels.indexOf("id")]   : "null";
         QString qid = (cols.length() == labels.length()) ? cols[labels.indexOf("p_id")] : "null";
         QString scr = (cols.length() == labels.length()) ? cols[labels.indexOf("scr")]  : "null";
-        QString ans = (cols.length() == labels.length()) ? cols[labels.indexOf("ans")]  : "null";
+        QString ans = cols[labels.indexOf("ans")];
+
+        QString score = calculateScore(listPolls, qid, ans);
 
         ss1.remove('"');
         qid.remove('"');
@@ -442,7 +484,7 @@ int myCourseXml::forStudentVote(int& idxVote, const QString argRid, const QStrin
         //xmlWriter->writeAttribute("sid",  ss1);
         xmlWriter->writeAttribute("id",  qid);
         //xmlWriter->writeAttribute("scr",  scr);
-        xmlWriter->writeAttribute("score",  "0");
+        xmlWriter->writeAttribute("score",  score); //"0");
         xmlWriter->writeAttribute("vote", ans);
         xmlWriter->writeAttribute("Response", ans);
         xmlWriter->writeAttribute("icr", "tbd");
