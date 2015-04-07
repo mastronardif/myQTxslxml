@@ -3,6 +3,7 @@
 #include <QDebug>
 #include <QTime>
 #include "myxml.h"
+#include "myxslt.h"
 #include "myxslttemplates.h"
 #include "mylist.h"
 #include "mycoursexml.h"
@@ -38,7 +39,11 @@ int main(int argc, char *argv[])
     qDebug() << "theRoot= " << theRoot;
     //fnxsl = "/ssn/p[@idx='27']/.";
 
-    fnxml = "/Users/frank.mastronardi/myQTxslxml/runtimeFiles/L1501291001.xml";
+    QString xmlFN = "L1504031332.xml";  // very large test file.
+    //QString xmlFN = "L1501291001.xml";
+    fnxml = "/Users/frank.mastronardi/myQTxslxml/runtimeFiles/"+xmlFN;
+
+
     //fnxsl = "C:\\myworkspaces\\myQTxslxml\\runtimeFiles\\xml2csv101.xsl";
     fnxsl = "/Users/frank.mastronardi/myQTxslxml/runtimeFiles/listxml2csv101.xsl";
     //fnxsl = "/Users/frank.mastronardi/Dbg-myqtxslxml/test.xsl";
@@ -64,9 +69,24 @@ int main(int argc, char *argv[])
         QString xml00  = ReadfFileToString(fnxml);
 
         QString out;
-        //iRetval = myxml::applyTemplate_xsl_xml_FromStringFile(xslt00, fnxml, out);
-        iRetval = myxml::applyTemplate_xsl_xml_FromStrings(xslt00, xml00, out);
-        //iRetval = myxml::applyTemplate_xsl_xml_FromStrings(xslt00, out, out);
+
+        // use xml lib version.
+        {
+            QString fnOut = "./wtf.csv";
+            extern int my_xslt_main(const char *fnXslt, const char *theParamsArg, const char *fnSrcXml, const char *fnOut);
+            iRetval = my_xslt_main(fnxsl.toStdString().c_str(),
+                                   "", fnxml.toStdString().c_str(),
+                                   fnOut.toStdString().c_str());
+            if (0 == iRetval)
+            {
+                out = ReadfFileToString(fnOut);
+                std::cout << out.toStdString() << "\n";
+            }
+            //return 123;
+        }
+        //iRetval = myxml::applyTemplate_xsl_xml_FromStrings(xslt00, xml00, out);
+         //iRetval = myxml::applyTemplate_xsl_xml_FromStringFile(xslt00, fnxml, out);
+         //iRetval = myxml::applyTemplate_xsl_xml_FromStrings(xslt00, out, out);
         if(iRetval == 0)
         {
             //std::cout << "YY" << out.toStdString() << "ZZ\n"; return 1;

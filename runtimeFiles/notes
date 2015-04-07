@@ -1,5 +1,12 @@
 
-/Users/frank.mastronardi/Qt5.2.1/5.2.1/clang_64/bin/xmlpatterns 
+xsltproc RemoveEmptyVs.xsl  L1504031332.xml
+
+xsltproc listxml2csv101.xsl  L1501291001.xml
+/Users/frank.mastronardi/Qt5.2.1/5.2.1/clang_64/bin/xmlpatterns
+
+                    ../Tools/win/xslt/include/libxml2 \
+                    ../Tools/win/xslt/include \
+                     
 	
 find  /Users/frank.mastronardi/workspace/iclicker710Qt521Sources/dbg-iclicker/Classes     -name L1408111418.xml
 
