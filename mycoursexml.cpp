@@ -79,12 +79,38 @@ QString myCourseXml::calculateScore(const QStringList &listPolls, const QString 
 QString myCourseXml::calculateSessionPerformancePoints(const QStringList &listSession, const QStringList &polls)
 {
     QString perf = "5.99";  // default;
+    int iCans = 0;
     // Count cans, and not deleted from polls.
+    const QStringList labels = myList::helperGetColsFromList(polls[0]);
+    const QStringList cols = myList::helperGetColsFromList(polls[1]);
 
-    const QStringList labels = myList::helperGetColsFromList(listSession[0]);
-    const QStringList cols = myList::helperGetColsFromList(listSession[1]);
+    for (int idx = 1; idx < polls.length(); idx++)
+    {
+        const QStringList cols = myList::helperGetColsFromList(polls[idx]);
 
-    QString part = cols[labels.indexOf("part")];
+        if (cols.length() != labels.length())
+        {
+            //skip bad rows.
+            continue;
+        }
+        QString isDel = cols[labels.indexOf("isDel")];
+        QString cans = cols[labels.indexOf("cans")];
+        if (isDel.compare("N", Qt::CaseInsensitive) == 0)
+        {
+            if (!cans.isEmpty())
+            {
+                iCans++;
+            }
+        }
+    }
+
+    perf = QString::number(iCans);
+
+
+//    QStringList labels = myList::helperGetColsFromList(listSession[0]);
+//    QStringList cols = myList::helperGetColsFromList(listSession[1]);
+
+//    QString part = cols[labels.indexOf("part")];
     //QString perf = cols[labels.indexOf("perf")];
 
     //dReturnPoints = pointsPossible - participationPoints;
