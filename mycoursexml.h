@@ -30,11 +30,11 @@ private:
 
     static int forStudentVote(int& idxVote, const QString student, const QStringList &list, const QStringList &listPolls, QXmlStreamWriter* xmlWriter);
     static int writeStudentAttributes(QXmlStreamWriter* xmlWriter, const myList& ssnData, const QString sid);
-    static int writeSessionAttributes(QXmlStreamWriter* xmlWriter, const QStringList &session);
+    static int writeSessionAttributes(QXmlStreamWriter* xmlWriter, const QStringList &session, const QStringList &polls);
     static int writeAggregatesForStudent(QXmlStreamWriter* xmlWriter, const QString sid, const QStringList &list);
 
     static QString calculateScore(const QStringList &listPolls, const QString qid, const QString ans);
-    static QString calculateSessionPerformancePoints(const QStringList &listSession);
+    static QString calculateSessionPerformancePoints(const QStringList &listSession, const QStringList &polls);
     static QString calculatePossiblePointsForQuestionN(const QStringList &listPolls, const QString idxPoll);
 
     // helpers

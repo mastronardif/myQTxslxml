@@ -22,14 +22,16 @@ SOURCES += main.cpp \
     myxml.cpp \
     myxslttemplates.cpp \
     mylist.cpp \
-    mycoursexml.cpp
+    mycoursexml.cpp \
+    myxslt.cpp
 
 
 HEADERS += \
     myxml.h \
     myxslttemplates.h \
     mylist.h \
-    mycoursexml.h
+    mycoursexml.h \
+    myxslt.h
 
 RESOURCES += \
     Resources/Resources.qrc
@@ -100,3 +102,18 @@ OTHER_FILES += \
     runtimeFiles/manifest.xml \
     runtimeFiles/xml2csv101.xsl \
     runtimeFiles/listxml2csv101.xsl
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../workspace/iclicker740Sources/Tools/mac/xslt/lib/release/ -lexslt
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../workspace/iclicker740Sources/Tools/mac/xslt/lib/debug/ -lexslt
+else:unix: LIBS += -L../workspace/iclicker740Sources/Tools/mac/xslt/lib -lxslt -lxml2
+
+INCLUDEPATH += ../workspace/iclicker740Sources/Tools/mac/xslt/include/libxml2 \
+               ../Tools/mac/xslt/include
+DEPENDPATH +=  ../workspace/iclicker740Sources/Tools/mac/xslt/include/libxml2 \
+               ../workspace/iclicker740Sources/Tools/mac/xslt/include
+
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../workspace/iclicker740Sources/Tools/mac/xslt/lib/release/libexslt.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../workspace/iclicker740Sources/Tools/mac/xslt/lib/debug/libexslt.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../workspace/iclicker740Sources/Tools/mac/xslt/lib/release/exslt.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../workspace/iclicker740Sources/Tools/mac/xslt/lib/debug/exslt.lib
+else:unix: PRE_TARGETDEPS += $$PWD/../workspace/iclicker740Sources/Tools/mac/xslt/lib/libexslt.a

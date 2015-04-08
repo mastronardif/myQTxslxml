@@ -39,8 +39,8 @@ int main(int argc, char *argv[])
     qDebug() << "theRoot= " << theRoot;
     //fnxsl = "/ssn/p[@idx='27']/.";
 
-    QString xmlFN = "L1504031332.xml";  // very large test file.
-    //QString xmlFN = "L1501291001.xml";
+    //QString xmlFN = "L1504031332.xml";  // very large test file.
+    QString xmlFN = "L1501291001.xml";
     fnxml = "/Users/frank.mastronardi/myQTxslxml/runtimeFiles/"+xmlFN;
 
 

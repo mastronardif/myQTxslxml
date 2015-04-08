@@ -76,9 +76,10 @@ QString myCourseXml::calculateScore(const QStringList &listPolls, const QString 
     return score;
 }
 
-QString myCourseXml::calculateSessionPerformancePoints(const QStringList &listSession)
+QString myCourseXml::calculateSessionPerformancePoints(const QStringList &listSession, const QStringList &polls)
 {
     QString perf = "5.99";  // default;
+    // Count cans, and not deleted from polls.
 
     const QStringList labels = myList::helperGetColsFromList(listSession[0]);
     const QStringList cols = myList::helperGetColsFromList(listSession[1]);
@@ -121,7 +122,7 @@ int myCourseXml::printSession()
     xmlWriter->writeStartElement("ROOT"); xmlWriter->writeAttribute("SSR",   "makeThistheRootTag");
 
     xmlWriter->writeStartElement("SESSION");
-    writeSessionAttributes(xmlWriter, this->m_courseList.m_ssn);
+    writeSessionAttributes(xmlWriter, this->m_courseList.m_ssn, this->m_courseList.m_p);
 
     // Title
 
@@ -228,7 +229,7 @@ int myCourseXml::writeTitleElement(QXmlStreamWriter* xmlWriter, const QStringLis
     xmlWriter->writeEndElement(); // </TITLE>
 }
 
-int myCourseXml::writeSessionAttributes(QXmlStreamWriter* xmlWriter, const QStringList &session)
+int myCourseXml::writeSessionAttributes(QXmlStreamWriter* xmlWriter, const QStringList &session,  const QStringList &polls)
 {
     QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
     QStringList list  = session;
@@ -257,7 +258,7 @@ int myCourseXml::writeSessionAttributes(QXmlStreamWriter* xmlWriter, const QStri
         //xmlWriter->writeAttribute("part", "0.00");
 
         // QString::number(Session->getPerformancePoints(), 'f',2));
-        QString perf = calculateSessionPerformancePoints(session);
+        QString perf = calculateSessionPerformancePoints(session, polls);
         xmlWriter->writeAttribute("perf", perf); // "4.99");
         xmlWriter->writeAttribute("pp", "4.00");
         xmlWriter->writeAttribute("sppp", "4.00");
