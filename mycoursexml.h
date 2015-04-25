@@ -20,7 +20,7 @@ public:
     myCourseXml(myList &m_courseList);
 
     //static int printCourse(QStringList list);
-    int printSession();
+    int printSession(QString outFN);
 
 private:
     static int writeTitleElement(QXmlStreamWriter* xmlWriter, const QStringList &session);

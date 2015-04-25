@@ -119,10 +119,10 @@ QString myCourseXml::calculateSessionPerformancePoints(const QStringList &listSe
 
 }
 
-int myCourseXml::printSession()
+int myCourseXml::printSession(QString outFN)
 {
     int iRetval = 0; // default success
-    QString outFN = "./poc_01.xml";
+    //QString outFN = "./poc_01.xml";
     struct helperMyCourseXmlErr err;
     QFile::FileError eErr;
 
