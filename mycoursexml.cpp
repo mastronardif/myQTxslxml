@@ -3,6 +3,7 @@
 #include <QDebug>
 #include <QString>
 
+
 QString myCourseXml::kQuestionAggregatesHeader = "idx,AveragePercent,AveragePoints"
         ",CorrectResponses,IncorrectResponses,NoResponses,Responses";
 
@@ -22,7 +23,7 @@ myCourseXml::myCourseXml(myList &courseList) : m_courseList(courseList)
     // Get session date from file time stamp.
 }
 
-QStringList myCourseXml::aggregatesForVotes(const QStringList &listPolls, const QStringList &listVotes)
+QList<S_QuestionAggregatesHeader> myCourseXml::aggregatesForVotes(const QStringList &listPolls, const QStringList &listVotes)
 {
     QStringList aggs;
 
@@ -88,10 +89,6 @@ QStringList myCourseXml::aggregatesForVotes(const QStringList &listPolls, const 
         {
             aggregates[iQidx].NoResponses  += 1;
         }
-
-//        aggregates[iQidx].AveragePoints  +=1;
-//        aggregates[iQidx].AveragePercent +=1;
-
     }
 /*
     QString myCourseXml::kQuestionAggregatesHeader =
@@ -108,13 +105,15 @@ QStringList myCourseXml::aggregatesForVotes(const QStringList &listPolls, const 
                      ,QString::number(aggregates[idx].AveragePoints)
                      ,QString::number(aggregates[idx].CorrectResponses)
                      ,QString::number(aggregates[idx].IncorrectResponses)
-                     ,QString::number(aggregates[idx].Responses)
-                     ,QString::number(aggregates[idx].NoResponses));
+                     ,QString::number(aggregates[idx].NoResponses)
+                     ,QString::number(aggregates[idx].Responses));
 
         aggs.append(row);
 
     }
-    return aggs;
+    myList::printListToFile("aggs.csv", aggs);
+    //return aggs;
+    return aggregates;
 }
 
 QString myCourseXml::calculatePossiblePointsForQuestionN(const QStringList &listPolls, const QString idxPoll)
@@ -260,10 +259,12 @@ int myCourseXml::printSession(QString outFN)
     QString withoutExtension = partList[0];
 
     // calculate aggregates.
-    QStringList aggsQs = aggregatesForVotes(this->m_courseList.m_p, this->m_courseList.m_v);
-    myList::printListToFile("aggs.csv", aggsQs);
+    //QStringList aggsQs = aggregatesForVotes(this->m_courseList.m_p, this->m_courseList.m_v);
+    QList<S_QuestionAggregatesHeader> aggsQs = aggregatesForVotes(this->m_courseList.m_p, this->m_courseList.m_v);
 
-    forEachQuestion(xmlWriter, this->m_courseList.m_p, m_pathImageFolder, withoutExtension);
+    //myList::printListToFile("aggs.csv", aggsQs);
+
+    forEachQuestion(xmlWriter, this->m_courseList.m_p, aggsQs, m_pathImageFolder, withoutExtension);
 
     xmlWriter->writeEndElement();   // </QUESTIONS>
 
@@ -441,7 +442,7 @@ int myCourseXml::writeStudentAttributes(QXmlStreamWriter* xmlWriter, const myLis
     xmlWriter->writeAttribute("name", name);
 }
 
-int myCourseXml::forEachQuestion(QXmlStreamWriter* xmlWriter, const QStringList &questions, const QString srcPathImageFolder, const QString srcFileName)
+int myCourseXml::forEachQuestion(QXmlStreamWriter* xmlWriter, const QStringList &questions, const QList<S_QuestionAggregatesHeader> &aggs, const QString srcPathImageFolder, const QString srcFileName)
 {
     QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
     QStringList list  = questions; //this->m_courseList.m_p;
@@ -482,13 +483,14 @@ int myCourseXml::forEachQuestion(QXmlStreamWriter* xmlWriter, const QStringList 
         //<question AveragePercent="0.00" AveragePoints="0.00" CorrectAnswer="" CorrectResponses="0"
         //IncorrectResponses="0" NoResponses="0" Responses="262" desktopImage="/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/0Large_PHIL 102/Images/L1501291001_Q1.jpg" file="L1501291001_Q1.jpg"
         //id="q1" name="Question 1" possiblePoints="1.00" pp="1.00"/>
+        double averagePercent =  aggs[idx].Responses ? (static_cast<double>(aggs[idx].CorrectResponses) /  aggs[idx].Responses) : 0;
 
-        xmlWriter->writeAttribute("AveragePercent",  "0.00");
-        xmlWriter->writeAttribute("AveragePoints",  "0.00");
-        xmlWriter->writeAttribute("CorrectResponses",  "0");
-        xmlWriter->writeAttribute("IncorrectResponses",  "0");
-        xmlWriter->writeAttribute("NoResponses",  "0");
-        xmlWriter->writeAttribute("Responses",  "262");
+        xmlWriter->writeAttribute("AveragePercent",     QString::number(averagePercent, 'f', 2));
+        xmlWriter->writeAttribute("AveragePoints",      QString::number(aggs[idx].AveragePoints));
+        xmlWriter->writeAttribute("CorrectResponses",   QString::number(aggs[idx].CorrectResponses));
+        xmlWriter->writeAttribute("IncorrectResponses", QString::number(aggs[idx].IncorrectResponses));
+        xmlWriter->writeAttribute("NoResponses",        QString::number(aggs[idx].NoResponses));
+        xmlWriter->writeAttribute("Responses",          QString::number(aggs[idx].Responses));
 
         //mlWriter->writeAttribute("possiblePoints", ql.toString(Session->getCorrectAnswerPoints() +  Session->getResponseAnyChoicePoints(),'f',2));
 

@@ -38,7 +38,7 @@ public:
 private:
     static int writeTitleElement(QXmlStreamWriter* xmlWriter, const QStringList &session);
     static int writeHdrElement(QXmlStreamWriter* xmlWriter, QStringList ColsToShow);
-    static int forEachQuestion(QXmlStreamWriter* xmlWriter, const QStringList &questions, const QString m_pathImageFolder, const QString srcFileName);
+    static int forEachQuestion(QXmlStreamWriter* xmlWriter, const QStringList &questions, const QList<S_QuestionAggregatesHeader> &aggs, const QString m_pathImageFolder, const QString srcFileName);
     static int forEachStudent (QXmlStreamWriter* xmlWriter, const myList& ssnData, const QStringList &votes);
 
     static int forStudentVote(int& idxVote, const QString student, const QStringList &list, const QStringList &listPolls, QXmlStreamWriter* xmlWriter);
@@ -50,7 +50,8 @@ private:
     static QString calculateSessionPerformancePoints(const QStringList &listSession, const QStringList &polls);
     static QString calculatePossiblePointsForQuestionN(const QStringList &listPolls, const QString idxPoll);
 
-    static QStringList aggregatesForVotes(const QStringList &listPolls, const QStringList &listVotes);
+    //static QStringList aggregatesForVotes(const QStringList &listPolls, const QStringList &listVotes);
+    static QList<S_QuestionAggregatesHeader> aggregatesForVotes(const QStringList &listPolls, const QStringList &listVotes);
 
     // helpers
     static QString helperGetSessionDateFromFile();
