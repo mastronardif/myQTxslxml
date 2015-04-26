@@ -14,6 +14,19 @@ struct helperMyCourseXmlErr {
     QString msg;
 };
 
+// as seen in the xml file.
+struct S_QuestionAggregatesHeader
+{
+    int idx;
+    int AveragePercent;
+    int AveragePoints;
+    QString CorrectAnswer;
+    int CorrectResponses;
+    int IncorrectResponses;
+    int NoResponses;
+    int Responses;
+};
+
 class myCourseXml
 {
 public:
@@ -37,10 +50,13 @@ private:
     static QString calculateSessionPerformancePoints(const QStringList &listSession, const QStringList &polls);
     static QString calculatePossiblePointsForQuestionN(const QStringList &listPolls, const QString idxPoll);
 
+    static QStringList aggregatesForVotes(const QStringList &listPolls, const QStringList &listVotes);
+
     // helpers
     static QString helperGetSessionDateFromFile();
 
 private:
+    static QString kQuestionAggregatesHeader;
     myList m_courseList;
 
     QString srcPathFolder;

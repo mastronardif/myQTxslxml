@@ -3,6 +3,8 @@
 #include <QDebug>
 #include <QString>
 
+QString myCourseXml::kQuestionAggregatesHeader = "idx,AveragePercent,AveragePoints"
+        ",CorrectResponses,IncorrectResponses,NoResponses,Responses";
 
 myCourseXml::myCourseXml(myList &courseList) : m_courseList(courseList)
 {
@@ -18,6 +20,101 @@ myCourseXml::myCourseXml(myList &courseList) : m_courseList(courseList)
     m_pathImageFolder = QString("%1/%2/").arg(srcPathFolder, "Images");
 
     // Get session date from file time stamp.
+}
+
+QStringList myCourseXml::aggregatesForVotes(const QStringList &listPolls, const QStringList &listVotes)
+{
+    QStringList aggs;
+
+    QList<S_QuestionAggregatesHeader> aggregates;
+
+    const QStringList labelsPolls = myList::helperGetColsFromList(listPolls[0]);
+    QStringList cols;
+    QString  fans;
+    QString line;
+
+
+    S_QuestionAggregatesHeader question;
+    for (int idx = 0; idx < listPolls.size(); idx++)
+    {
+        cols = myList::helperGetColsFromList(listPolls[idx]);
+        QString qidx = cols[labelsPolls.indexOf("idx")];
+        int iQidx = qidx.toInt();
+
+        question.idx = iQidx;
+        question.CorrectAnswer      = cols[labelsPolls.indexOf("cans")];
+        question.AveragePoints      = 0;
+        question.AveragePercent     = 0;
+        question.CorrectResponses   = 0;
+        question.IncorrectResponses = 0;
+        question.Responses          = 0;
+        question.NoResponses        = 0;
+
+        aggregates.append(question);
+    }
+
+    const QStringList labelVotes = myList::helperGetColsFromList(listVotes[0]);
+    for (int idx = 1; idx < listVotes.length(); idx++)
+    {
+        line = listVotes[idx];
+        cols = myList::helperGetColsFromList(line);
+
+        // CorrectResponses
+        QString qidx = cols[labelVotes.indexOf("p_id")];
+        int iQidx = qidx.toInt();
+        //cols = myList::helperGetColsFromList(listPolls[qidx.toInt()]);
+        fans = cols[labelVotes.indexOf("fans")];
+        //cans = myList::helperGetColsFromList(listPolls[qidx.toInt()])[labelVotes.indexOf("cans")];
+
+        if (aggregates[iQidx].CorrectAnswer.length() &&
+            (0 == QString::compare(aggregates[iQidx].CorrectAnswer, fans, Qt::CaseInsensitive)) )
+        {
+            aggregates[iQidx].CorrectResponses += 1;
+        }
+
+        if (aggregates[iQidx].CorrectAnswer.length() &&
+            (0 != QString::compare(aggregates[iQidx].CorrectAnswer, fans, Qt::CaseInsensitive)) )
+        {
+
+            aggregates[iQidx].IncorrectResponses += 1;
+        }
+
+        //
+        if (fans.length())
+        {
+            aggregates[iQidx].Responses    += 1;
+        }
+        else
+        {
+            aggregates[iQidx].NoResponses  += 1;
+        }
+
+//        aggregates[iQidx].AveragePoints  +=1;
+//        aggregates[iQidx].AveragePercent +=1;
+
+    }
+/*
+    QString myCourseXml::kQuestionAggregatesHeader =
+"idx,AveragePercent,AveragePoints"
+            ",CorrectResponses,IncorrectResponses,NoResponses,Responses";
+*/
+    aggs.append(kQuestionAggregatesHeader);
+    for (int idx = 1; idx < listPolls.size(); idx++)
+    {
+        double averagePercent =  aggregates[idx].Responses ? static_cast<double>(aggregates[idx].CorrectResponses) /  aggregates[idx].Responses : 0;
+        QString row = QString("%1,%2,%3,%4,%5,%6,%7").arg(
+                      QString::number(aggregates[idx].idx)
+                     ,QString::number(averagePercent, 'f', 2)
+                     ,QString::number(aggregates[idx].AveragePoints)
+                     ,QString::number(aggregates[idx].CorrectResponses)
+                     ,QString::number(aggregates[idx].IncorrectResponses)
+                     ,QString::number(aggregates[idx].Responses)
+                     ,QString::number(aggregates[idx].NoResponses));
+
+        aggs.append(row);
+
+    }
+    return aggs;
 }
 
 QString myCourseXml::calculatePossiblePointsForQuestionN(const QStringList &listPolls, const QString idxPoll)
@@ -161,6 +258,10 @@ int myCourseXml::printSession(QString outFN)
 
     QStringList partList = srcFileName.split(".");
     QString withoutExtension = partList[0];
+
+    // calculate aggregates.
+    QStringList aggsQs = aggregatesForVotes(this->m_courseList.m_p, this->m_courseList.m_v);
+    myList::printListToFile("aggs.csv", aggsQs);
 
     forEachQuestion(xmlWriter, this->m_courseList.m_p, m_pathImageFolder, withoutExtension);
 
@@ -381,6 +482,7 @@ int myCourseXml::forEachQuestion(QXmlStreamWriter* xmlWriter, const QStringList 
         //<question AveragePercent="0.00" AveragePoints="0.00" CorrectAnswer="" CorrectResponses="0"
         //IncorrectResponses="0" NoResponses="0" Responses="262" desktopImage="/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/0Large_PHIL 102/Images/L1501291001_Q1.jpg" file="L1501291001_Q1.jpg"
         //id="q1" name="Question 1" possiblePoints="1.00" pp="1.00"/>
+
         xmlWriter->writeAttribute("AveragePercent",  "0.00");
         xmlWriter->writeAttribute("AveragePoints",  "0.00");
         xmlWriter->writeAttribute("CorrectResponses",  "0");
