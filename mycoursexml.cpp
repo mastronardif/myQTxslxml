@@ -483,10 +483,10 @@ int myCourseXml::forEachQuestion(QXmlStreamWriter* xmlWriter, const QStringList 
         //<question AveragePercent="0.00" AveragePoints="0.00" CorrectAnswer="" CorrectResponses="0"
         //IncorrectResponses="0" NoResponses="0" Responses="262" desktopImage="/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/0Large_PHIL 102/Images/L1501291001_Q1.jpg" file="L1501291001_Q1.jpg"
         //id="q1" name="Question 1" possiblePoints="1.00" pp="1.00"/>
-        double averagePercent =  aggs[idx].Responses ? (static_cast<double>(aggs[idx].CorrectResponses) /  aggs[idx].Responses) : 0;
+        double averagePoints =  aggs[idx].Responses ? (static_cast<double>(aggs[idx].CorrectResponses) /  aggs[idx].Responses) : 0;
 
-        xmlWriter->writeAttribute("AveragePercent",     QString::number(averagePercent, 'f', 2));
-        xmlWriter->writeAttribute("AveragePoints",      QString::number(aggs[idx].AveragePoints));
+        xmlWriter->writeAttribute("AveragePercent",     QString::number(aggs[idx].AveragePercent));
+        xmlWriter->writeAttribute("AveragePoints",      QString::number(averagePoints, 'f', 2));
         xmlWriter->writeAttribute("CorrectResponses",   QString::number(aggs[idx].CorrectResponses));
         xmlWriter->writeAttribute("IncorrectResponses", QString::number(aggs[idx].IncorrectResponses));
         xmlWriter->writeAttribute("NoResponses",        QString::number(aggs[idx].NoResponses));
@@ -496,7 +496,7 @@ int myCourseXml::forEachQuestion(QXmlStreamWriter* xmlWriter, const QStringList 
 
         QString possiblePoints = calculatePossiblePointsForQuestionN(questions, pollIdx);
         xmlWriter->writeAttribute("possiblePoints",  possiblePoints);
-        //xmlWriter->writeAttribute("pp",  "1.23");
+        xmlWriter->writeAttribute("pp",  possiblePoints);
 
 
         xmlWriter->writeEndElement(); // </question>
