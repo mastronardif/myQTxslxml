@@ -11,12 +11,12 @@ myCourseXml::myCourseXml(myList &courseList) : m_courseList(courseList)
 {
 
     // TBD pass these in the constructor.
-    srcPathFolder      = "/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/0Large_PHIL 102";
-
+    //srcPathFolder      = "/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/0Large_PHIL 102";
+    srcPathFolder      = m_courseList.m_courseEntities.srcPathFolder;
     //m_srcPathRemoteIds =  srcPathFolder + "/SessionData/" + "RemoteID.csv";
     srcFolderName = "0Large_PHIL 102";
 
-    srcFileName   = "L1501291001.xml";
+    srcFileName   = m_courseList.m_courseEntities.srcFileName; //"L1501291001.xml";
 
     m_pathImageFolder = QString("%1/%2/").arg(srcPathFolder, "Images");
 
@@ -318,7 +318,7 @@ int myCourseXml::writeHdrElement(QXmlStreamWriter* xmlWriter, QStringList ColsTo
 
 int myCourseXml::writeTitleElement(QXmlStreamWriter* xmlWriter, const QStringList &session)
 {
-    QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
+    //QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
 
     const QStringList labels = myList::helperGetColsFromList(session[0]);
     QStringList cols =  myList::helperGetColsFromList(session[1]); //list[1].split(rx);
@@ -363,7 +363,7 @@ int myCourseXml::writeSessionAttributes(QXmlStreamWriter* xmlWriter, const QStri
     QStringList list  = session;
 
     const QStringList labels = myList::helperGetColsFromList(session[0]);
-    QStringList cols = list[1].split(rx);
+    QStringList cols; // = list[1].split(rx);
 
     // skip 1st row aka the header
     for(int idx = 1; idx < list.length(); idx++)
@@ -448,7 +448,7 @@ int myCourseXml::forEachQuestion(QXmlStreamWriter* xmlWriter, const QStringList 
     QStringList list  = questions; //this->m_courseList.m_p;
 
     const QStringList labels = myList::helperGetColsFromList(questions[0]);
-    QStringList cols = list[1].split(rx);
+    QStringList cols; // = list[1].split(rx);
 
     for(int idx = 1; idx < list.length(); idx++)
     {

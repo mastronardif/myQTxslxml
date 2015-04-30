@@ -32,10 +32,10 @@ bool caseInsensitiveLessThan(const QString &s1, const QString &s2)
 bool caseLessThan_11thCol(const QString &s1, const QString &s2)
 {
     // Sort on Cols[E][K] aka [5-1][11-1]
-    QRegExp rx("(\\,)");
+    //QRegExp rx("(\\,)");
 
     QString ss1, ss2,  ss31, ss32;
-    QStringList query = s1.split(rx);  //(myList::kRx);
+    QStringList query; // = s1.split(myList::kRx); //s1.split(rx);  //(myList::kRx);
     query = myList::helperGetColsFromList(s1);
 
     ss1  = query[4];
@@ -61,7 +61,7 @@ bool caseInsensitiveLessThan_5ThColAnd11thCol(const QString &s1, const QString &
     QRegExp rx("(\\,)");
 
     QString ss1, ss2,  ss31, ss32;
-    QStringList query = s1.split(rx);  //(myList::kRx);
+    QStringList query; // = s1.split(rx);  //(myList::kRx);
     query = myList::helperGetColsFromList(s1);
 
     ss1  = query[4];
@@ -102,7 +102,7 @@ bool caseInsensitiveLessThan_5ThCol(const QString &s1, const QString &s2)
 {
     QString ss1, ss2;
     //QRegExp rx("(\\ |\\,|\\.|\\:|\\t)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
-    QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
+    //QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
 
     //QStringList query = s1.split(rx);
     QStringList query = myList::helperGetColsFromList(s1);
@@ -266,7 +266,8 @@ int myList::createAggregatedListForStudents(const QStringList& votes, const QStr
     {
         // source
         QString line = list[idx];
-        cols = line.split(rx);
+        //cols = line.split(rx);
+        cols = myList::helperGetColsFromList(line);
 
         if (cols.length() < labels.length())
         {
@@ -371,6 +372,12 @@ int myList::createListForStudentNames(const QString pathStudentNames, QStringLis
 
     QFile file(pathStudentNames);
     file.open(QIODevice::ReadOnly | QIODevice::Text);
+
+    if (!file.exists())
+    {
+        destStudentNames <<  "Last Name, First Name, Username";
+        return 1;
+    }
 
     //foreach (const QString &line, list)
     QTextStream in(&file);
@@ -600,6 +607,7 @@ QStringList myList::helperFindByKeyValue(const QStringList list, const QStringLi
     {
         cols = list[idx].split(kRx);
         helperTrimmed(cols);
+        cols = myList::helperGetColsFromList(list[idx]);
 
         QString value = cols[labels.indexOf(keyName)];
         if (value.compare(keyValue, Qt::CaseInsensitive) == 0)

@@ -39,10 +39,14 @@ int main(int argc, char *argv[])
     theRoot = QString(theRoot).arg(a.applicationDirPath());
     qDebug() << "theRoot= " << theRoot;
     //fnxsl = "/ssn/p[@idx='27']/.";
-    QString srcPathFolder = "/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/0Large_PHIL 102";
+  //QString srcPathFolder = "/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/0Large_PHIL 102";
+    QString srcPathFolder = "/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/iclicker-REEF integration Test 3";
     //QString xmlFN = "L1504031332.xml";  // very large test file.
     QString xmlFN = "L1501291001.xml";
-    fnxml = "/Users/frank.mastronardi/myQTxslxml/runtimeFiles/"+xmlFN;
+
+
+  //fnxml = "/Users/frank.mastronardi/myQTxslxml/runtimeFiles/"+xmlFN;
+    fnxml= "/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/iclicker-REEF integration Test 3/SessionData/L1504281548.xml";
     fnOut = QString("%1.%2.xml").arg(fnxml, "POC");
 
     //fnxsl = "C:\\myworkspaces\\myQTxslxml\\runtimeFiles\\xml2csv101.xsl";
@@ -61,6 +65,7 @@ int main(int argc, char *argv[])
         if (argc > 2)
         {
                 fnxml = argv[2];
+                fnxml.remove('"');
                 fnOut = QString("%1.%2.xml").arg(fnxml, "POC");
                 if (argc > 3)
                 {
@@ -110,6 +115,9 @@ int main(int argc, char *argv[])
             courseInfo.srcPathFolder         =  srcPathFolder; //"/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/0Large_PHIL 102";
             courseInfo.m_srcPathRemoteIds    =  courseInfo.srcPathFolder + "/SessionData/" + "RemoteID.csv";
             courseInfo.m_srcPathStudentNames =  courseInfo.srcPathFolder + "/gb_export.csv";
+            courseInfo.srcFileName = xmlFN;
+
+            theCourse.m_courseEntities = courseInfo;
 
             iRetval = theCourse.makeList(courseInfo, out);
             //myList::printList(theCourse.m_v); // m_course);
