@@ -243,6 +243,8 @@ int myCourseXml::printSession(QString outFN)
     xmlWriter->setAutoFormatting(true);
     xmlWriter->writeStartDocument();
 
+//    xmlWriter->writeComment("wtf xml file outFN = " + outFN + " " +
+//                            this->m_courseList.m_courseEntities.srcPathFolder);
     xmlWriter->writeStartElement("ROOT"); xmlWriter->writeAttribute("SSR",   "makeThistheRootTag");
 
     xmlWriter->writeStartElement("SESSION");

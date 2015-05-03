@@ -78,6 +78,7 @@ int main(int argc, char *argv[])
         //fnxsl = argv[1];
         if (argc > 2)
         {
+                xmlFN = argv[2];
                 fnxml = argv[2];
                 fnxml.remove('"');
                 fnOut = QString("%1.%2.xml").arg(fnxml, "POC");
@@ -109,6 +110,7 @@ int main(int argc, char *argv[])
             iRetval = my_xslt_main(fnxsl.toStdString().c_str(),
                                    "", fnxml.toStdString().c_str(),
                                    fnOut.toStdString().c_str());
+
             if (0 == iRetval)
             {
                 out = ReadfFileToString(fnOut);
@@ -152,7 +154,7 @@ int main(int argc, char *argv[])
         //std::cout << xml00.toStdString() << "\n";
 
         //return 0;
-
+//sleep(1);
     }
 
     if (1==167)
