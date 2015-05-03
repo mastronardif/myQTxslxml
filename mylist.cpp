@@ -232,7 +232,7 @@ int myList::makeList(S_CourseEntities courseEntities, QString src)
     {
     QList<QString>::iterator itr = m_v.begin();
     if (m_v.length() > 1) { itr = m_v.begin()+1;}
-printListToFile("./m_v0.csv",   m_v);
+    printListToFile("./m_v0.csv",   m_v);
     //qSort(itr, m_v.end(), caseLessThan_11thCol);
     //printListToFile("./m_v1.csv",   m_v);
 
@@ -240,19 +240,10 @@ printListToFile("./m_v0.csv",   m_v);
 
     //qSort(itr, m_v.end(), caseInsensitiveLessThan_5ThColAnd11thCol);
     const QStringList labels = helperGetColsFromList(m_v[0]);
-    //gIDCol   = labels.indexOf("id");
     gSortCols.col1 = labels.indexOf("id");
-    //gP_IDCol = labels.indexOf("p_id");
     gSortCols.col2 = labels.indexOf("p_id");
     qSort(itr, m_v.end(), caseInsensitiveLessThan_IDandP_ID);
 
-
-//itr = m_v.begin()+1;
-    //qSort(itr, m_v.end(), caseInsensitiveLessThan_5ThCol);
-
-    //itr = m_v.begin();
-
-    //qSort(itr, m_v.end(), caseInsensitiveLessThan_5ThCol);
     }
 
     //m_v.sort(Qt::CaseInsensitive);
@@ -586,64 +577,10 @@ QStringList countQuotedStrings(const QString comaList)
 
 const QStringList myList::helperGetColsFromList(const QString comaList)
 {
-    //bool bIsQuotedCSV = false;
-//    int cntComas;       // "col1,col2,..."
-//    int cntQuotesComas; // "col1","col2",..."
-//    int cntQuotedCells;
-
-
-    //QRegExp rx3("(\".+?\")");
-    //QRegExp rx3("\"([^\"]*)\"");
-
-    //QString str = comaList;
-    //qDebug() << "str = " << str;
-    //int pos = rx3.indexIn(str);
-
-//    QStringList list;
-//    int pos = 0;
-
-//    while ((pos = rx3.indexIn(str, pos)) != -1) {
-//        list << rx3.cap(1);
-//        pos += rx3.matchedLength();
-//    }
-
-//    //QStringList list = rx3.capturedTexts();
-//    qDebug() << "list = "<< list;
-
-   // QRegExp rx2("(\"\\,)");
     QRegExp  rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
-//    cntComas       = comaList.count( rx);
-//    cntQuotesComas = comaList.count(rx2);
 
     QStringList list;
     list = countQuotedStrings(comaList);
-
-//    QString str;
-//    str = "623,0.00,18.36,,18.36,D,#9D5A72B5,0,D,1,12,";
-//    //"623","0.00","18.36","","18.36","D","#9D5A72B5","0","D","1","12",
-//    list = countQuotedStrings(str);
-
-//    str = "\"623\",        \"0.00\",\"18.36\",\"\",\"18.36\",\"D\",\"#9D5A72B5\",\"0\",\"D\",\"1\",\"12\",";
-//    list = countQuotedStrings(str);
-
-//    str = "\"623\"";
-//    list = countQuotedStrings(str);
-//    str = "\"\"";
-//    list = countQuotedStrings(str);
-
-//    str = "";
-//    list = countQuotedStrings(str);
-
-//    str = "\"623\",\"0.00\",\"111,222\",\"\",\"18.36\",\"D\",\"#9D5A72B5\",\"0\",\"D\",\"1\",\"12\",";
-//    list = countQuotedStrings(str);
-
-//    qDebug() << comaList;
-//qDebug() << "      cntComas = " << cntComas;
-//qDebug() << "cntQuotesComas = " << cntQuotesComas;
-//qDebug() << "cntQuotedCells = " << cntQuotedCells;
-    //QStringList query2 = comaList.split(rx2);
-
-
 
     QStringList query;// = comaList.split(rx);
 
@@ -654,11 +591,6 @@ const QStringList myList::helperGetColsFromList(const QString comaList)
     else {
         query = comaList.split(rx);
     }
-
-//    for(int idx = 0; idx < query.length(); idx++)
-//    {
-//        query[idx].remove('"');
-//    }
 
     helperTrimmed(query);
 
@@ -815,7 +747,7 @@ int myList::printList(QStringList list)
     foreach (const QString &line, list) {
  //       if (line.contains(rx3))
         {
-            ; //qDebug() << line;
+            qDebug() << line;
         }
         iCnt++;
     }
