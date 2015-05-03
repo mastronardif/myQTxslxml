@@ -59,15 +59,15 @@ Purpose:  Used to ____ ,
         
         <xsl:if test="position() = 1">
 
-            <xsl:value-of select="concat(name(.),'_id', $delimiter)"/>
+            <xsl:text>"</xsl:text><xsl:value-of select="concat(name(.),'_id')"/><xsl:text>"</xsl:text><xsl:value-of select="$delimiter"/>
 
             <xsl:for-each select="./@*">
-                <xsl:value-of select="name(.)"/><xsl:value-of select="$delimiter"/>
+                <xsl:text>"</xsl:text><xsl:value-of select="name(.)"/><xsl:text>"</xsl:text><xsl:value-of select="$delimiter"/>
             </xsl:for-each>
 
             <!-- Parenet ID-->  
 
-            <xsl:value-of select="concat(name(./..),'_id', $delimiter)"/>
+            <xsl:text>"</xsl:text><xsl:value-of select="concat(name(./..),'_id')"/><xsl:text>"</xsl:text>
             <xsl:text>&#xa;</xsl:text>
     
         </xsl:if>
@@ -79,7 +79,7 @@ Purpose:  Used to ____ ,
         </xsl:for-each>
 
         <!-- Parenet ID -->  
-        <xsl:text>"</xsl:text><xsl:value-of select="ceiling(position() div ($cntElems))"/><xsl:text>"</xsl:text><xsl:value-of select="$delimiter"/>
+        <xsl:text>"</xsl:text><xsl:value-of select="ceiling(position() div ($cntElems))"/><xsl:text>"</xsl:text>
         <!--
         floor(position() div ($cntElems))
         <xsl:text>"</xsl:text><xsl:value-of select="floor(position() div (1+$cntElems) ) mod $cntPElems"/><xsl:text>"</xsl:text><xsl:value-of select="$delimiter"/>

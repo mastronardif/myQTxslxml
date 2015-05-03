@@ -55,6 +55,48 @@ bool caseLessThan_11thCol(const QString &s1, const QString &s2)
     return (d1 < d2);
 }
 
+struct sortcols
+{
+    int col1;
+    int col2;
+} gSortCols;
+
+int gIDCol;
+int gP_IDCol;
+bool caseInsensitiveLessThan_IDandP_ID(const QString &s1, const QString &s2)
+{
+    // Sort on Cols[E][K] aka [5-1][11-1]
+
+
+    //QRegExp rx("(\\,)");
+
+    QString ss11, ss12,  ss21, ss22;
+    QStringList query; // = s1.split(rx);  //(myList::kRx);
+    query = myList::helperGetColsFromList(s1);
+
+    ss11 = query[gSortCols.col1];
+    ss12 = query[gSortCols.col2];
+
+    //query = s2.split(rx);
+    query = myList::helperGetColsFromList(s2);
+    ss21 = query[gSortCols.col1];
+    ss22 = query[gSortCols.col2];
+    //return ((ss31.toLower() < ss32.toLower()) );
+    int d1 = ss12.toInt();
+    int d2 = ss22.toInt();
+    //return (d1 < d2);
+
+    QString strD1("a");
+    strD1 = strD1.repeated(d1);
+    QString strD2("a");
+    strD2 = strD2.repeated(d2);
+
+    QString  left   = ss11.toLower() + "-A-" + strD1;
+    QString  right  = ss21.toLower() + "-A-" + strD2;
+
+    return (left < right );
+}
+
 bool caseInsensitiveLessThan_5ThColAnd11thCol(const QString &s1, const QString &s2)
 {
     // Sort on Cols[E][K] aka [5-1][11-1]
@@ -196,7 +238,13 @@ printListToFile("./m_v0.csv",   m_v);
 
     //qSort(itr, m_v.end(), caseInsensitiveLessThan_5ThCol);
 
-    qSort(itr, m_v.end(), caseInsensitiveLessThan_5ThColAnd11thCol);
+    //qSort(itr, m_v.end(), caseInsensitiveLessThan_5ThColAnd11thCol);
+    const QStringList labels = helperGetColsFromList(m_v[0]);
+    //gIDCol   = labels.indexOf("id");
+    gSortCols.col1 = labels.indexOf("id");
+    //gP_IDCol = labels.indexOf("p_id");
+    gSortCols.col2 = labels.indexOf("p_id");
+    qSort(itr, m_v.end(), caseInsensitiveLessThan_IDandP_ID);
 
 
 //itr = m_v.begin()+1;
@@ -332,13 +380,20 @@ int myList::createListForRemoteStudents(const QStringList& remoteIds, const QStr
     int iRetval = 0; // default success
 
     // RemoteId,StudentId,Last Name, First Name, Username
-    destRosterRemotesStudents << remoteIds[0] + "," + studentNames[0];
+    //destRosterRemotesStudents << remoteIds[0] + "," + studentNames[0];
+    QString strRids = helperGetColsFromList(remoteIds[0]).join(',');
+    QString strSids = helperGetColsFromList(studentNames[0]).join(',');
+    destRosterRemotesStudents << strRids + "," + strSids;
+    //destRosterRemotesStudents << remoteIds[0] + "," + studentNames[0];
+       
     QStringList newRows;
 
     // fix destinaton.
     for(int idx = 1; idx < remoteIds.length(); idx++)
     {
-        destRosterRemotesStudents << remoteIds[idx] + "," + "null,null,null";
+        strRids = helperGetColsFromList(remoteIds[idx]).join(',');
+        destRosterRemotesStudents << strRids + "," + "null,null,null";
+        //destRosterRemotesStudents << remoteIds[idx] + "," + "null,null,null";
     }
 
     // find and update.
@@ -507,21 +562,124 @@ void myList::helperTrimmed(QStringList& list)
     }
 }
 
+QStringList countQuotedStrings(const QString comaList)
+{
+    QString str = comaList;
+    QRegExp rx3("\"([^\"]*)\",*");
+
+    //qDebug() << "str = " << str;
+    //int pos = rx3.indexIn(str);
+
+    QStringList list;
+    int pos = 0;
+
+    while ((pos = rx3.indexIn(str, pos)) != -1) {
+        list << rx3.cap(1);
+        pos += rx3.matchedLength();
+    }
+
+    //QStringList list = rx3.capturedTexts();
+    //qDebug() << "list = "<< list;
+
+    return list; //.count();
+}
+
 const QStringList myList::helperGetColsFromList(const QString comaList)
 {
-    QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
-    QStringList query = comaList.split(rx);
-    for(int idx = 0; idx < query.length(); idx++)
-    {
-        query[idx].remove('"');
+    //bool bIsQuotedCSV = false;
+//    int cntComas;       // "col1,col2,..."
+//    int cntQuotesComas; // "col1","col2",..."
+//    int cntQuotedCells;
+
+
+    //QRegExp rx3("(\".+?\")");
+    //QRegExp rx3("\"([^\"]*)\"");
+
+    //QString str = comaList;
+    //qDebug() << "str = " << str;
+    //int pos = rx3.indexIn(str);
+
+//    QStringList list;
+//    int pos = 0;
+
+//    while ((pos = rx3.indexIn(str, pos)) != -1) {
+//        list << rx3.cap(1);
+//        pos += rx3.matchedLength();
+//    }
+
+//    //QStringList list = rx3.capturedTexts();
+//    qDebug() << "list = "<< list;
+
+   // QRegExp rx2("(\"\\,)");
+    QRegExp  rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
+//    cntComas       = comaList.count( rx);
+//    cntQuotesComas = comaList.count(rx2);
+
+    QStringList list;
+    list = countQuotedStrings(comaList);
+
+//    QString str;
+//    str = "623,0.00,18.36,,18.36,D,#9D5A72B5,0,D,1,12,";
+//    //"623","0.00","18.36","","18.36","D","#9D5A72B5","0","D","1","12",
+//    list = countQuotedStrings(str);
+
+//    str = "\"623\",        \"0.00\",\"18.36\",\"\",\"18.36\",\"D\",\"#9D5A72B5\",\"0\",\"D\",\"1\",\"12\",";
+//    list = countQuotedStrings(str);
+
+//    str = "\"623\"";
+//    list = countQuotedStrings(str);
+//    str = "\"\"";
+//    list = countQuotedStrings(str);
+
+//    str = "";
+//    list = countQuotedStrings(str);
+
+//    str = "\"623\",\"0.00\",\"111,222\",\"\",\"18.36\",\"D\",\"#9D5A72B5\",\"0\",\"D\",\"1\",\"12\",";
+//    list = countQuotedStrings(str);
+
+//    qDebug() << comaList;
+//qDebug() << "      cntComas = " << cntComas;
+//qDebug() << "cntQuotesComas = " << cntQuotesComas;
+//qDebug() << "cntQuotedCells = " << cntQuotedCells;
+    //QStringList query2 = comaList.split(rx2);
+
+
+
+    QStringList query;// = comaList.split(rx);
+
+    //query = comaList.split(rx);
+    if (list.count() > 0) {
+        query = list;
     }
+    else {
+        query = comaList.split(rx);
+    }
+
+//    for(int idx = 0; idx < query.length(); idx++)
+//    {
+//        query[idx].remove('"');
+//    }
 
     helperTrimmed(query);
 
-    //const QStringList bobo=query;
-
     return query;
 }
+
+//const QStringList myList::helperGetColsFromList(const QString comaList)
+//{
+//    QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
+//    QStringList query = comaList.split(rx);
+//    for(int idx = 0; idx < query.length(); idx++)
+//    {
+//        query[idx].remove('"');
+//    }
+
+//    helperTrimmed(query);
+
+//    //const QStringList bobo=query;
+
+//    return query;
+//}
 
 //QStringList myList::helperGetColsFromList(const QString comaList)
 //{
@@ -657,7 +815,7 @@ int myList::printList(QStringList list)
     foreach (const QString &line, list) {
  //       if (line.contains(rx3))
         {
-            qDebug() << line;
+            ; //qDebug() << line;
         }
         iCnt++;
     }

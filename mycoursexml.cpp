@@ -222,8 +222,9 @@ int myCourseXml::printSession(QString outFN)
     struct helperMyCourseXmlErr err;
     QFile::FileError eErr;
 
-    QFile file(outFN);
-
+    QString reportxmlFN = QString("%1/Reports/%2.POC.xml").arg(srcPathFolder, srcFileName);
+    //QFile file(outFN);
+    QFile file(reportxmlFN);
 
     if (!file.open(QIODevice::WriteOnly))
     {
@@ -444,7 +445,7 @@ int myCourseXml::writeStudentAttributes(QXmlStreamWriter* xmlWriter, const myLis
 
 int myCourseXml::forEachQuestion(QXmlStreamWriter* xmlWriter, const QStringList &questions, const QList<S_QuestionAggregatesHeader> &aggs, const QString srcPathImageFolder, const QString srcFileName)
 {
-    QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
+    //QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
     QStringList list  = questions; //this->m_courseList.m_p;
 
     const QStringList labels = myList::helperGetColsFromList(questions[0]);
