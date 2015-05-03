@@ -220,8 +220,10 @@ int myList::makeList(S_CourseEntities courseEntities, QString src)
 
     // filter test
     //QStringList QStringList::filter ( const QRegExp & rx ) const
-    QStringList wtf = m_v.filter(QRegExp("#801FF16E"));
-    wtf.prepend(m_v[0]);
+    //QStringList wtf = m_v.filter(QRegExp("#801FF16E"));
+    QStringList wtf;
+    if (m_v.size() > 0) { wtf.prepend(m_v[0]); }
+
     printListToFile("801FF16E.csv",  wtf);
 
     //qSort(m_v.begin(), m_v.end(), qGreater<QString>());
@@ -239,10 +241,13 @@ int myList::makeList(S_CourseEntities courseEntities, QString src)
     //qSort(itr, m_v.end(), caseInsensitiveLessThan_5ThCol);
 
     //qSort(itr, m_v.end(), caseInsensitiveLessThan_5ThColAnd11thCol);
-    const QStringList labels = helperGetColsFromList(m_v[0]);
-    gSortCols.col1 = labels.indexOf("id");
-    gSortCols.col2 = labels.indexOf("p_id");
-    qSort(itr, m_v.end(), caseInsensitiveLessThan_IDandP_ID);
+    if (m_v.length() > 0)
+    {
+        const QStringList labels = helperGetColsFromList(m_v[0]);
+        gSortCols.col1 = labels.indexOf("id");
+        gSortCols.col2 = labels.indexOf("p_id");
+        qSort(itr, m_v.end(), caseInsensitiveLessThan_IDandP_ID);
+    }
 
     }
 
@@ -296,7 +301,11 @@ int myList::createAggregatedListForStudents(const QStringList& votes, const QStr
     // sid, name, ...
     QString sId, remoteId, sname;
 
-    const QStringList labels = helperGetColsFromList(votes[0]);
+    QStringList labels;
+    if (votes.size() > 0)
+    {
+        labels = helperGetColsFromList(votes[0]);
+    }
     QStringList cols; // = list[1].split(rx);
 
     QString lastKnown = "";
@@ -498,7 +507,10 @@ int myList::createListForStudentVotes(const QStringList& students, const QString
 
     QMap<QString, int> uniqueClickerIds;
 
-    const QStringList labels = helperGetColsFromList(votes[0]);
+    QStringList labels;
+    if (votes.length() > 0) {
+        labels = helperGetColsFromList(votes[0]);
+    }
     QStringList cols;
 
     for(int idx = 1; idx < votes.length(); idx++)

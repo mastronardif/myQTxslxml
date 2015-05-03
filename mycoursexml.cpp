@@ -54,6 +54,8 @@ QList<S_QuestionAggregatesHeader> myCourseXml::aggregatesForVotes(const QStringL
         aggregates.append(question);
     }
 
+    if (listVotes.size() > 0)
+    {
     const QStringList labelVotes = myList::helperGetColsFromList(listVotes[0]);
     for (int idx = 1; idx < listVotes.length(); idx++)
     {
@@ -89,6 +91,7 @@ QList<S_QuestionAggregatesHeader> myCourseXml::aggregatesForVotes(const QStringL
         {
             aggregates[iQidx].NoResponses  += 1;
         }
+    }
     }
 /*
     QString myCourseXml::kQuestionAggregatesHeader =

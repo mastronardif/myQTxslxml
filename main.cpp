@@ -40,11 +40,15 @@ int main(int argc, char *argv[])
     qDebug() << "theRoot= " << theRoot;
     //fnxsl = "/ssn/p[@idx='27']/.";
 
-  QString srcPathFolder = "/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/0Large_PHIL 102";
-  QString xmlFN = "L1501291001.xml";
+//  QString srcPathFolder = "/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/0Large_PHIL 102";
+//  QString xmlFN = "L1501291001.xml";
 
 //  QString srcPathFolder = "/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/CH102-1 S2015";
 //  QString xmlFN = "L1502040749.xml";
+
+
+  QString srcPathFolder = "/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/test_deleteQ001";
+  QString         xmlFN = "L1504291321.xml";
 
   //QString srcPathFolder = "/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/iclicker-REEF integration Test 3";
     //QString srcPathFolder = "/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/CH102-1 S2015";

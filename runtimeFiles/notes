@@ -3,9 +3,18 @@
 ./myqtxslxml n/a  L1502040749.xml "/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/CH102-1 S2015"
 
 
-./myqtxslxml n/a  L1502040749.xml L1504281548.xml
+/Users/frank.mastronardi/myQTxslxml/myqtxslxml n/a  L1502040749.xml L1504281548.xml
 ./myqtxslxml n/a  L1504281548.xml "/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/iclicker-REEF integration Test 3"
 L1501291001.xml "/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/0Large_PHIL 102"
+
+
+//
+/Users/frank.mastronardi/myQTxslxml/myqtxslxml n/a  L1504281548.xml "/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/iclicker-REEF integration Test 3"
+/Users/frank.mastronardi/myQTxslxml/myqtxslxml n/a  L1501291001.xml "/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/0Large_PHIL 102"
+
+/Users/frank.mastronardi/myQTxslxml/myqtxslxml n/a   L1504291321.xml "/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/test_deleteQ001"
+
+
 xsltproc RemoveEmptyVs.xsl  L1504031332.xml
 
 xsltproc listxml2csv101.xsl  L1501291001.xml
