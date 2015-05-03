@@ -115,7 +115,7 @@ QList<S_QuestionAggregatesHeader> myCourseXml::aggregatesForVotes(const QStringL
 
     }
     myList::printListToFile("aggs.csv", aggs);
-    //return aggs;
+
     return aggregates;
 }
 
@@ -221,12 +221,10 @@ QString myCourseXml::calculateSessionPerformancePoints(const QStringList &listSe
 int myCourseXml::printSession(QString outFN)
 {
     int iRetval = 0; // default success
-    //QString outFN = "./poc_01.xml";
     struct helperMyCourseXmlErr err;
     QFile::FileError eErr;
 
     QString reportxmlFN = QString("%1/Reports/%2.POC.xml").arg(srcPathFolder, srcFileName);
-    //QFile file(outFN);
     QFile file(reportxmlFN);
 
     if (!file.open(QIODevice::WriteOnly))
@@ -252,8 +250,7 @@ int myCourseXml::printSession(QString outFN)
 
     // Title
 
-    //xmlWriter->writeAttribute("NAME",
-    writeTitleElement(xmlWriter, this->m_courseList.m_ssn);
+     writeTitleElement(xmlWriter, this->m_courseList.m_ssn);
 
 
     // Questions
@@ -263,7 +260,6 @@ int myCourseXml::printSession(QString outFN)
     QString withoutExtension = partList[0];
 
     // calculate aggregates.
-    //QStringList aggsQs = aggregatesForVotes(this->m_courseList.m_p, this->m_courseList.m_v);
     QList<S_QuestionAggregatesHeader> aggsQs = aggregatesForVotes(this->m_courseList.m_p, this->m_courseList.m_v);
 
     //myList::printListToFile("aggs.csv", aggsQs);
@@ -274,12 +270,8 @@ int myCourseXml::printSession(QString outFN)
 
     xmlWriter->writeStartElement("STUDENTS");   // <STUDENTS>
 
-    // foreach student
-    //forEachStudent(xmlWriter, this->m_courseList, this->m_courseList.m_v);
     forEachStudent(xmlWriter, this->m_courseList, this->m_courseList.m_v);
     qDebug() << "report on these students:";
-    //myList::printList(this->m_courseList.m_StudentVotes);
-    //forEachStudent(xmlWriter, this->m_courseList, this->m_courseList.m_StudentNames, this->m_courseList.m_v);
 
     xmlWriter->writeEndElement();   // </STUDENTS>
 
@@ -322,8 +314,6 @@ int myCourseXml::writeHdrElement(QXmlStreamWriter* xmlWriter, QStringList ColsTo
 
 int myCourseXml::writeTitleElement(QXmlStreamWriter* xmlWriter, const QStringList &session)
 {
-    //QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
-
     const QStringList labels = myList::helperGetColsFromList(session[0]);
     QStringList cols =  myList::helperGetColsFromList(session[1]); //list[1].split(rx);
 
@@ -448,7 +438,6 @@ int myCourseXml::writeStudentAttributes(QXmlStreamWriter* xmlWriter, const myLis
 
 int myCourseXml::forEachQuestion(QXmlStreamWriter* xmlWriter, const QStringList &questions, const QList<S_QuestionAggregatesHeader> &aggs, const QString srcPathImageFolder, const QString srcFileName)
 {
-    //QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
     QStringList list  = questions; //this->m_courseList.m_p;
 
     const QStringList labels = myList::helperGetColsFromList(questions[0]);
@@ -514,7 +503,6 @@ int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter,  const myList& ssnD
     //** this makes it faster, But relies on it beeing sorted and in sync.
     //** If this becomes a problem go back to the linear search.
 
-    //QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
     QStringList listVotes  = votes; //this->m_courseList.m_v;
     QStringList listStudents = ssnData.m_StudentVotes;
 
@@ -522,7 +510,6 @@ int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter,  const myList& ssnD
     QStringList cols; // = myList::helperGetHeaderLabels(); //list[1].split(rx);
 
     int studentCount=1;
-    //for(int idx = 1; idx < list.length();)//idx++)
     int idxVote = 1;
     for(int idx = 1; idx < listStudents.length(); idx++)
     {
@@ -540,7 +527,7 @@ int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter,  const myList& ssnD
 
         xmlWriter->writeStartElement("student");   //<student>
         writeStudentAttributes(xmlWriter, ssnData, rId);
-        //writeStudentAttributes(xmlWriter, ss1);
+
         xmlWriter->writeAttribute("idx",  QString::number(studentCount++));
         {
             QStringList studentAgregates;  // calc agregates
@@ -557,56 +544,13 @@ int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter,  const myList& ssnD
         xmlWriter->writeEndElement();        // </qr>
 
         xmlWriter->writeEndElement();  // </student>
-//        qDebug() << "BBBBBBBB________" << idx; // << total;
-//        qDebug() << "idx = " << idx;
     }
 }
-
-//int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter,  const myList& ssnData, const QStringList &votes)
-//{
-//    QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
-//    QStringList list  = votes; //this->m_courseList.m_v;
-
-//    const QStringList labels = myList::helperGetHeaderLabels(votes[0]);
-//    QStringList coloumns = list[1].split(rx);
-
-//    int studentCount=1;
-//    for(int idx = 1; idx < list.length();)//idx++)
-//    {
-//        QString line = list[idx];
-
-//        coloumns = line.split(rx);
-//        QString rId = (coloumns.length() == labels.length()) ? coloumns[labels.indexOf("id")] : "null";
-
-//        rId.remove('"');
-
-//        xmlWriter->writeStartElement("student");   //<student>
-//        writeStudentAttributes(xmlWriter, ssnData, rId);
-//        //writeStudentAttributes(xmlWriter, ss1);
-//        xmlWriter->writeAttribute("idx",  QString::number(studentCount++));
-//        {
-//            QStringList studentAgregates;  // calc agregates
-//            writeAggregatesForStudent(xmlWriter, rId, studentAgregates);
-//            //writeStudentAggregatesForStudent(sid); // BySession
-//            //writeSessionAggregatesForSession(thisSession);
-//        }
-
-
-//        xmlWriter->writeStartElement("qr");   //<qr>
-//        forEachStudentVote(idx, rId, list, xmlWriter);
-//        //orEachStudentVote(idx, rId, list, xmlWriter);
-//        xmlWriter->writeEndElement();        // </qr>
-
-//        xmlWriter->writeEndElement();  // </student>
-////        qDebug() << "BBBBBBBB________" << idx; // << total;
-////        qDebug() << "idx = " << idx;
-//    }
-//}
 
 int myCourseXml::forStudentVote(int& idxVote, const QString argRid, const QStringList &votes, const QStringList &listPolls, QXmlStreamWriter* xmlWriter)
 {
     const QStringList labels = myList::helperGetColsFromList(votes[0]);
-    //QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
+
     //QString clean;
     QString rId = argRid;
 

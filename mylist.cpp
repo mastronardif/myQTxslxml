@@ -309,12 +309,12 @@ int myList::createAggregatedListForStudents(const QStringList& votes, const QStr
     QStringList cols; // = list[1].split(rx);
 
     QString lastKnown = "";
-    //foreach (const QString &line, list)
+
     for(int idx = 1; idx < list.length(); idx++)
     {
         // source
         QString line = list[idx];
-        //cols = line.split(rx);
+
         cols = myList::helperGetColsFromList(line);
 
         if (cols.length() < labels.length())
@@ -608,32 +608,6 @@ const QStringList myList::helperGetColsFromList(const QString comaList)
 
     return query;
 }
-
-//const QStringList myList::helperGetColsFromList(const QString comaList)
-//{
-//    QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
-//    QStringList query = comaList.split(rx);
-//    for(int idx = 0; idx < query.length(); idx++)
-//    {
-//        query[idx].remove('"');
-//    }
-
-//    helperTrimmed(query);
-
-//    //const QStringList bobo=query;
-
-//    return query;
-//}
-
-//QStringList myList::helperGetColsFromList(const QString comaList)
-//{
-//    //QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
-
-//    QStringList cols = myList::helperGetHeaderLabels(comaList);
-
-//    return cols;
-//}
-
 
 myList::eTerms myList::helperFindAndUpdate(QStringList& destRosterRemotesStudents, const QString studentNames)
 {
