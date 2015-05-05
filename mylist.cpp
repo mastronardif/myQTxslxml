@@ -422,15 +422,15 @@ int myList::createListForRemoteStudents(const QStringList& remoteIds, const QStr
 int myList::createListForStudentNames(const QString pathStudentNames, QStringList &destStudentNames)
 {
     int iRetval = 0; // default success
-
-    qDebug() << "pathRemoteIds = " << pathStudentNames;
+    destStudentNames <<  "Last Name, First Name, Username";
+    qDebug() << "pathStudentNames = " << pathStudentNames;
 
     QFile file(pathStudentNames);
     file.open(QIODevice::ReadOnly | QIODevice::Text);
 
     if (!file.exists())
     {
-        destStudentNames <<  "Last Name, First Name, Username";
+        //destStudentNames <<  "Last Name, First Name, Username";
         return 1;
     }
 
@@ -439,12 +439,11 @@ int myList::createListForStudentNames(const QString pathStudentNames, QStringLis
     //destRoster << "RemoteId,StudentId";
     while (!in.atEnd())
     {
-        QString line = in.readLine();
- //       if (line.contains(rx3))
-        {
-            destStudentNames << line;
-            //qDebug() << line;
-        }
+        QString line = in.readLine().trimmed();
+
+        if (line.startsWith('!')) {continue;}
+
+        destStudentNames << line;
     }
 
     // optional, as QFile destructor will already do it:

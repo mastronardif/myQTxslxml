@@ -46,9 +46,12 @@ int main(int argc, char *argv[])
 //  QString srcPathFolder = "/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/CH102-1 S2015";
 //  QString xmlFN = "L1502040749.xml";
 
+//  QString srcPathFolder = "/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/test_deleteQ001";
+//  QString         xmlFN = "L1504291321.xml";
 
-  QString srcPathFolder = "/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/test_deleteQ001";
-  QString         xmlFN = "L1504291321.xml";
+  QString         xmlFN = "L1505011353.xml";
+  QString srcPathFolder = "/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/iclicker-REEF integration Test 4";
+
 
   //QString srcPathFolder = "/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/iclicker-REEF integration Test 3";
     //QString srcPathFolder = "/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/CH102-1 S2015";
@@ -131,6 +134,42 @@ int main(int argc, char *argv[])
             courseInfo.srcPathFolder         =  srcPathFolder; //"/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/0Large_PHIL 102";
             courseInfo.m_srcPathRemoteIds    =  courseInfo.srcPathFolder + "/SessionData/" + "RemoteID.csv";
             courseInfo.m_srcPathStudentNames =  courseInfo.srcPathFolder + "/gb_export.csv";
+
+            // check for gb or roster.txt
+            //QFile file(courseInfo.srcPathFolder + "/roster.txt");
+            QFile file;
+
+//            //file.open(QIODevice::ReadOnly | QIODevice::Text);
+//            if (file.exists())
+//            {
+//                courseInfo.m_srcPathStudentNames =  courseInfo.srcPathFolder + "/roster.txt";
+//            }
+
+//            file.setFileName(courseInfo.srcPathFolder + "/roster.txt");
+//            if (file.exists())
+//            {
+//                courseInfo.m_srcPathStudentNames =  courseInfo.srcPathFolder + "/roster.txt";
+//            }
+
+            QStringList listRosters;
+            listRosters << courseInfo.srcPathFolder + "/roster.txt";
+            listRosters << courseInfo.srcPathFolder + "/gb_export.csv";
+            foreach (QString roster, listRosters)
+            {
+                file.setFileName(roster);
+                if (file.exists())
+                {
+                    courseInfo.m_srcPathStudentNames =  roster;
+                }
+            }
+
+
+//            QFile file2(courseInfo.srcPathFolder + "/gb_export.csv");
+//            if (file2.exists())
+//            {
+//                courseInfo.m_srcPathStudentNames =  courseInfo.srcPathFolder + "/gb_export.csv";
+//            }
+
             courseInfo.srcFileName = xmlFN;
 
             theCourse.m_courseEntities = courseInfo;
