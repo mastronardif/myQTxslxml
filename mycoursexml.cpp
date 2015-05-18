@@ -119,27 +119,44 @@ QList<S_QuestionAggregatesHeader> myCourseXml::aggregatesForVotes(const QStringL
     return aggregates;
 }
 
-QString myCourseXml::calculatePossiblePointsForQuestionN(const QStringList &listPolls, const QString idxPoll)
+double myCourseXml::calculatePossiblePointsForQuestion(const QStringList &listPolls, int iPollNumber)
 {
-    // See spec for how to calculate this.
-    //"anspt";  // Correct answer points
+    const QStringList labels = myList::helperGetColsFromList(listPolls[0]);
+    QStringList cols         = myList::helperGetColsFromList(listPolls[iPollNumber]);
 
-    QString anspt;
-    QStringList results;
-    QStringList find;
-    find << "anspt";
-
-    results = myList::helperFindByKeyValue(listPolls, find, "idx", idxPoll);
-
-    if (!results.isEmpty())
+    if (labels.length() != cols.length())
     {
-        anspt = results[0];
+        return -1;
     }
 
-    QString pp = anspt; //"1.99"; // default
+    double dAnypt = cols[labels.indexOf("anypt")].toDouble();
+    double dAnspt = cols[labels.indexOf("anspt")].toDouble();
+    double dPossiblePoints = dAnypt + dAnspt;
 
-    return pp;
+    return dPossiblePoints;
 }
+
+//QString myCourseXml::calculatePossiblePointsForQuestionN(const QStringList &listPolls, const QString idxPoll)
+//{
+//    // See spec for how to calculate this.
+//    //"anspt";  // Correct answer points
+
+//    QString anspt;
+//    QStringList results;
+//    QStringList find;
+//    find << "anspt";
+
+//    results = myList::helperFindByKeyValue(listPolls, find, "idx", idxPoll);
+
+//    if (!results.isEmpty())
+//    {
+//        anspt = results[0];
+//    }
+
+//    QString pp = anspt; //"1.99"; // default
+
+//    return pp;
+//}
 
 QString myCourseXml::calculateScore(const QStringList &listPolls, const QString qid, const QString ans)
 {
@@ -181,7 +198,7 @@ QString myCourseXml::calculateSessionPerformancePoints(const QStringList &listSe
     int iCans = 0;
     // Count cans, and not deleted from polls.
     const QStringList labels = myList::helperGetColsFromList(polls[0]);
-    const QStringList cols = myList::helperGetColsFromList(polls[1]);
+    //const QStringList cols = myList::helperGetColsFromList(polls[1]);
 
     for (int idx = 1; idx < polls.length(); idx++)
     {
@@ -216,6 +233,29 @@ QString myCourseXml::calculateSessionPerformancePoints(const QStringList &listSe
 
     return perf;
 
+}
+
+double myCourseXml::calculateSessionPossiblePoints(const QStringList &session, int idxSession,  const QStringList &polls)
+{
+    double dSessionPossiblePoints;
+
+    const QStringList labels = myList::helperGetColsFromList(session[0]);
+    const QStringList cols   = myList::helperGetColsFromList(session[idxSession]);;
+    if (cols.length() != labels.length())
+    {
+        return -1;
+    }
+
+    double dPart      = cols[labels.indexOf("part")].toDouble();
+    double dMinrep    = cols[labels.indexOf("minrep")].toDouble();
+    double dMinPart_S = 1; //cols[labels.indexOf("MinPart_S")].toDouble();
+    double dPossiblePoints = dPart + dMinrep + dMinPart_S;
+
+    double dQpp = calculatePossiblePointsForQuestion(polls, 1);
+
+    dSessionPossiblePoints = dPossiblePoints + dQpp;
+
+    return dSessionPossiblePoints;
 }
 
 int myCourseXml::printSession(QString outFN)
@@ -384,8 +424,12 @@ int myCourseXml::writeSessionAttributes(QXmlStreamWriter* xmlWriter, const QStri
         // QString::number(Session->getPerformancePoints(), 'f',2));
         QString perf = calculateSessionPerformancePoints(session, polls);
         xmlWriter->writeAttribute("perf", perf); // "4.99");
-        xmlWriter->writeAttribute("pp", "4.00");
-        xmlWriter->writeAttribute("sppp", "4.00");
+
+        double dSessionPossiblePoints = calculateSessionPossiblePoints(session, idx, polls);
+        QString sessionPossiblePoints = QString::number(dSessionPossiblePoints, 'f', 2);
+
+        xmlWriter->writeAttribute("pp",   sessionPossiblePoints);
+        xmlWriter->writeAttribute("sppp", sessionPossiblePoints);
     }
 }
 
@@ -489,7 +533,12 @@ int myCourseXml::forEachQuestion(QXmlStreamWriter* xmlWriter, const QStringList 
 
         //mlWriter->writeAttribute("possiblePoints", ql.toString(Session->getCorrectAnswerPoints() +  Session->getResponseAnyChoicePoints(),'f',2));
 
-        QString possiblePoints = calculatePossiblePointsForQuestionN(questions, pollIdx);
+        //QString possiblePoints = calculatePossiblePointsForQuestionN(questions, pollIdx);
+        //QString possiblePoints = calculatePossiblePointsForQuestionN(questions, pollIdx);
+        double  dPossiblePoints = calculatePossiblePointsForQuestion(questions, idx);
+
+        QString possiblePoints = QString::number(dPossiblePoints, 'f', 2);
+
         xmlWriter->writeAttribute("possiblePoints",  possiblePoints);
         xmlWriter->writeAttribute("pp",  possiblePoints);
 

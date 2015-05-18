@@ -48,7 +48,9 @@ private:
 
     static QString calculateScore(const QStringList &listPolls, const QString qid, const QString ans);
     static QString calculateSessionPerformancePoints(const QStringList &listSession, const QStringList &polls);
-    static QString calculatePossiblePointsForQuestionN(const QStringList &listPolls, const QString idxPoll);
+    //static QString calculatePossiblePointsForQuestionN(const QStringList &listPolls, const QString idxPoll);
+    static double  calculatePossiblePointsForQuestion(const QStringList &listPolls, int iPollNumber);
+    static double  calculateSessionPossiblePoints(const QStringList &session, int idxSession,  const QStringList &polls);
 
     //static QStringList aggregatesForVotes(const QStringList &listPolls, const QStringList &listVotes);
     static QList<S_QuestionAggregatesHeader> aggregatesForVotes(const QStringList &listPolls, const QStringList &listVotes);
