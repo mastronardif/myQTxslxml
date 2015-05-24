@@ -439,7 +439,7 @@ int myCourseXml::writeAggregatesForStudent(QXmlStreamWriter* xmlWriter, const QS
     xmlWriter->writeAttribute("ClassAveragePointsPerformance",       "15.64");
     xmlWriter->writeAttribute("ClassAveragePointsTotal",       "45.99");
     xmlWriter->writeAttribute("ClassAveragePointsTotalPercentage",       "15.64");
-    xmlWriter->writeAttribute("Partic",       "0.00");
+    xmlWriter->writeAttribute("Partic",       "30.00");
     xmlWriter->writeAttribute("Perform",       "4,707.00");
     xmlWriter->writeAttribute("PossiblePointsParticipation",       "0.00");
     xmlWriter->writeAttribute("PossiblePointsPerformance",       "9.00");

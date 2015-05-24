@@ -52,8 +52,11 @@ int main(int argc, char *argv[])
 //  QString         xmlFN = "L1505011353.xml";
 //  QString srcPathFolder = "/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/iclicker-REEF integration Test 4";
 
-  QString         xmlFN = "L1505151448.xml";
-  QString srcPathFolder = "/Users/frank.mastronardi/workspace/iclicker741Sources/Debug/Classes/icl_2841_case2";
+//  QString         xmlFN = "L1505151448.xml";
+//  QString srcPathFolder = "/Users/frank.mastronardi/workspace/iclicker741Sources/Debug/Classes/icl_2841_case2";
+
+  QString         xmlFN = "L1505221112.xml";
+  QString srcPathFolder = "/Users/frank.mastronardi/workspace/iclicker741Sources/Debug/Classes/icl_2841big";
 
   //QString srcPathFolder = "/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/iclicker-REEF integration Test 3";
     //QString srcPathFolder = "/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/CH102-1 S2015";
