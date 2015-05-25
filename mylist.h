@@ -12,6 +12,9 @@ struct S_StudentAggregatesHeader
     QString RemoteId;
     QString name;
     QString StudentPointsTotalPercentage;
+    QString partic;
+
+    static int appendOrUpdate(const QString StudentId, const S_StudentAggregatesHeader &source, QStringList &dest);
 };
 
 struct S_CourseEntities

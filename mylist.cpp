@@ -4,10 +4,10 @@
 
 
 const QRegExp myList::kRx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
-const QString kStudentAggregatesCols   = "%1,%2,%3,%4";
+const QString kStudentAggregatesCols   = "%1,%2,%3,%4,%5";
 S_StudentAggregatesHeader myList::StudentAggregateTableDef =
 {
-    "sid", "StudentId", "RemoteId","name","StudentPointsTotalPercentage"
+    "sid", "StudentId", "RemoteId","name","StudentPointsTotalPercentage", "partic"
 };
 
 QString myList::kStudentAggregatesHeader =
@@ -15,6 +15,7 @@ QString myList::kStudentAggregatesHeader =
         +","+myList::StudentAggregateTableDef.RemoteId
         +","+myList::StudentAggregateTableDef.name
         +","+myList::StudentAggregateTableDef.StudentPointsTotalPercentage
+        +","+myList::StudentAggregateTableDef.partic
         ;
 
 myList::myList()
@@ -289,7 +290,7 @@ int myList::makeList(S_CourseEntities courseEntities, QString src)
 int myList::createAggregatedListForStudents(const QStringList& votes, const QStringList& roster,  QStringList &aggregatesForStudents)
 {
     // this is equivalent to a letf outer join.
-    QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
+    //QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
     QStringList list  = votes; //this->m_courseList.m_v;
 
     struct S_StudentAggregatesHeader source;
@@ -309,6 +310,7 @@ int myList::createAggregatedListForStudents(const QStringList& votes, const QStr
     QStringList cols; // = list[1].split(rx);
 
     QString lastKnown = "";
+    int iResponses = 0;
 
     for(int idx = 1; idx < list.length(); idx++)
     {
@@ -323,27 +325,40 @@ int myList::createAggregatedListForStudents(const QStringList& votes, const QStr
             continue;
         }
 
+        source.StudentId = cols[labels.indexOf("id")];
+        source.RemoteId  = cols[labels.indexOf("id")];
+        //source.name      = cols[labels.indexOf("ssnn")];
 
-        source.StudentId = (cols.length() == labels.length()) ? cols[labels.indexOf("id")] : "null";
-        source.RemoteId  = (cols.length() == labels.length()) ? cols[labels.indexOf("id")] : "null";
-        source.name      = (labels.indexOf("ssnn")   != -1) ? cols[labels.indexOf("ssnn")]   : "null";
-        source.StudentId.remove('"'); source.RemoteId.remove('"'); source.name.remove('"');
-  //"StudentId", "RemoteId", "name", "StudentPointsTotalPercentage" // ....
-
-        if (lastKnown.compare(source.StudentId, Qt::CaseInsensitive) == 0)
+        //"StudentId", "RemoteId", "name", "StudentPointsTotalPercentage" // ....
+        if (lastKnown.compare(source.StudentId, Qt::CaseInsensitive) != 0)
         {
             // get distinct rows
             lastKnown = source.StudentId;
-            continue;
+
+            // clear
+            {
+                iResponses = 0;
+                source.partic = "";// iResponses;
+            }
         }
 
+        // calc participation.  How many question responded to.
+        QString fans = cols[labels.indexOf("fans")];
+
+        if (fans.length() > 0)
+        {
+            iResponses++;
+            source.partic = QString::number(iResponses);
+        }
+
+//        QString row = QString(kStudentAggregatesCols).arg(
+//                    source.StudentId, source.RemoteId,
+//                    source.name, "TBD", source.partic);
+
+        //aggregatesForStudents.append(row);
+        S_StudentAggregatesHeader::appendOrUpdate(source.RemoteId, source, aggregatesForStudents);
+
         lastKnown = source.StudentId;
-
-        QString row = QString(kStudentAggregatesCols).arg(
-                    source.StudentId, source.RemoteId,
-                    source.name, "TBD");
-
-        aggregatesForStudents.append(row);
     }
 }
 
@@ -740,4 +755,46 @@ int myList::printList(QStringList list)
     return iCnt;
 }
 
+int S_StudentAggregatesHeader::appendOrUpdate(const QString inRemoteID, const S_StudentAggregatesHeader &source, QStringList &dest)
+{
+   int idx = 0;
+
+   QString row = QString(kStudentAggregatesCols).arg(
+               source.StudentId, source.RemoteId,
+               source.name, "TBD", source.partic);
+
+   QStringList labels;
+   if (dest.size() > 0)
+   {
+       labels = myList::helperGetColsFromList(dest[0]);
+   }
+
+   QStringList cols;
+
+   // find and update
+   for (idx = 1; idx < dest.length(); idx++)
+   {
+       cols = myList::helperGetColsFromList(dest[idx]);
+
+       if (cols.length() < labels.length())
+       {
+           // skip bad rows
+           continue;
+       }
+
+       QString remoteID = cols[labels.indexOf("RemoteId")];
+
+       if (remoteID.compare(inRemoteID, Qt::CaseInsensitive) == 0)
+       {
+           dest[idx] = row;
+           return idx;
+       }
+   }
+
+   // not found
+   dest.append(row);
+
+   return idx;
+
+}
 
