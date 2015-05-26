@@ -61,6 +61,7 @@ public:
     static const QStringList helperGetColsFromList(const QString comaList);
     static eTerms      helperFindAndUpdate(QStringList& destRosterRemotesStudents, const QString studentNames);
     static QStringList helperFindByKeyValue(const QStringList list, const QStringList whatToFind, const QString keyName, const QString keyValue);
+    static int         helperFindIndexByKey( const QStringList list, const QString keyName, const QString keyValue);
     static void        helperTrimmed(QStringList& list);
 public:
     S_CourseEntities m_courseEntities;

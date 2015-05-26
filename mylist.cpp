@@ -309,7 +309,7 @@ int myList::createAggregatedListForStudents(const QStringList& votes, const QStr
     }
     QStringList cols; // = list[1].split(rx);
 
-    QString lastKnown = "";
+    QString previousID = "";
     int iResponses = 0;
 
     for(int idx = 1; idx < list.length(); idx++)
@@ -330,10 +330,10 @@ int myList::createAggregatedListForStudents(const QStringList& votes, const QStr
         //source.name      = cols[labels.indexOf("ssnn")];
 
         //"StudentId", "RemoteId", "name", "StudentPointsTotalPercentage" // ....
-        if (lastKnown.compare(source.StudentId, Qt::CaseInsensitive) != 0)
+        if (previousID.compare(source.StudentId, Qt::CaseInsensitive) != 0)
         {
             // get distinct rows
-            lastKnown = source.StudentId;
+            previousID = source.StudentId;
 
             // clear
             {
@@ -358,7 +358,7 @@ int myList::createAggregatedListForStudents(const QStringList& votes, const QStr
         //aggregatesForStudents.append(row);
         S_StudentAggregatesHeader::appendOrUpdate(source.RemoteId, source, aggregatesForStudents);
 
-        lastKnown = source.StudentId;
+        previousID = source.StudentId;
     }
 }
 
@@ -715,6 +715,34 @@ QStringList myList::helperFindByKeyValue(const QStringList list, const QStringLi
     return retval;
 }
 
+int myList::helperFindIndexByKey( const QStringList list, const QString keyName, const QString keyValue)
+{
+    int iIndex = -1;
+
+    QStringList labels = myList::helperGetColsFromList(list[0]);
+
+    if (list.length() < 1) { return iIndex; }
+
+    for (int idx = 1; idx < list.length(); idx++)
+    {
+        QStringList cols = myList::helperGetColsFromList(list[idx]);
+
+        if (cols.length() < labels.length())
+        {
+            // skip bad rows
+            continue;
+        }
+
+        QString value = cols[labels.indexOf(keyName)];
+        if (keyValue.compare(value, Qt::CaseInsensitive) == 0)
+        {
+            return idx;
+        }
+    }
+
+    return iIndex;
+
+}
 int myList::printListToFile(QString fn, QStringList list)
 {
     int iRetval = 0;

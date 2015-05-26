@@ -433,13 +433,39 @@ int myCourseXml::writeSessionAttributes(QXmlStreamWriter* xmlWriter, const QStri
     }
 }
 
-int myCourseXml::writeAggregatesForStudent(QXmlStreamWriter* xmlWriter, const QString sid, const QStringList &list)
-{    
+int myCourseXml::writeAggregatesForStudent(QXmlStreamWriter* xmlWriter, const QStringList &sessionData, const QStringList &studentAggregates, int idxStudentAggregate)
+{
+    QString Partic = "-1";
+    QString part = "0"; // session participation value.
+    if (idxStudentAggregate > 0)
+    {
+        const QStringList labels = myList::helperGetColsFromList(studentAggregates[0]);
+        const QStringList cols = myList::helperGetColsFromList(studentAggregates[idxStudentAggregate]);
+        if (cols.length() < labels.length())
+        {
+            // skip bad rows
+        }
+        else
+        {
+            if (sessionData.length() > 0) {
+                const QStringList labelsSession = myList::helperGetColsFromList(sessionData[0]);
+                const QStringList colsSession   = myList::helperGetColsFromList(sessionData[1]);
+                if (colsSession.length() > 0 && colsSession.length() == labelsSession.length())
+                {
+                    part = colsSession[labelsSession.indexOf("part")];
+                }
+            }
+
+            Partic = cols[labels.indexOf("partic")];
+            Partic =  (Partic.toDouble() > 0) ? part : "0";
+        }
+    }
+
     xmlWriter->writeAttribute("ClassAveragePerformancePercentage", "0,00");
     xmlWriter->writeAttribute("ClassAveragePointsPerformance",       "15.64");
     xmlWriter->writeAttribute("ClassAveragePointsTotal",       "45.99");
     xmlWriter->writeAttribute("ClassAveragePointsTotalPercentage",       "15.64");
-    xmlWriter->writeAttribute("Partic",       "30.00");
+    xmlWriter->writeAttribute("Partic", Partic);
     xmlWriter->writeAttribute("Perform",       "4,707.00");
     xmlWriter->writeAttribute("PossiblePointsParticipation",       "0.00");
     xmlWriter->writeAttribute("PossiblePointsPerformance",       "9.00");
@@ -581,8 +607,11 @@ int myCourseXml::forEachStudent(QXmlStreamWriter* xmlWriter,  const myList& ssnD
 
         xmlWriter->writeAttribute("idx",  QString::number(studentCount++));
         {
-            QStringList studentAgregates;  // calc agregates
-            writeAggregatesForStudent(xmlWriter, rId, studentAgregates);
+            // Find aggregate for student = sid studentAggregates[].
+            int idxStudentAggregate = myList::helperFindIndexByKey(ssnData.m_aggregatesForStudents, "RemoteId", rId);
+
+            ssnData.m_aggregatesForStudents; //m_course.m_courseList.m_aggregatesForStudents;  // calc agregates
+            writeAggregatesForStudent(xmlWriter, ssnData.m_ssn, ssnData.m_aggregatesForStudents, idxStudentAggregate);
             //writeStudentAggregatesForStudent(sid); // BySession
             //writeSessionAggregatesForSession(thisSession);
         }
