@@ -177,10 +177,11 @@ QString myCourseXml::calculateScore(const QStringList &listPolls, const QString 
         }
     }
 
-    QString cans = cols[labels.indexOf("cans")];
+    QString anspt = cols[labels.indexOf("anspt")];
+    QString cans  = cols[labels.indexOf("cans")];
     if (!ans.isEmpty())
     {
-         score = (cans == ans) ? "1" : "0";
+         score = (cans == ans) ? anspt : "0";
 
     }
 //    if (!ans.isEmpty() && (cans == ans) )
