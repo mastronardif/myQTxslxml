@@ -161,6 +161,10 @@ double myCourseXml::calculatePossiblePointsForQuestion(const QStringList &listPo
 QString myCourseXml::calculateScore(const QStringList &listPolls, const QString qid, const QString ans)
 {
     QString score = "(NR)"; // default
+    if (ans.trimmed().isEmpty())
+    {
+        return score;
+    }
 
     const QStringList labels = myList::helperGetColsFromList(listPolls[0]);
     QStringList cols;
@@ -178,12 +182,29 @@ QString myCourseXml::calculateScore(const QStringList &listPolls, const QString 
     }
 
     QString anspt = cols[labels.indexOf("anspt")];
+    QString anypt = cols[labels.indexOf("anypt")];
     QString cans  = cols[labels.indexOf("cans")];
-    if (!ans.isEmpty())
-    {
-         score = (cans == ans) ? anspt : "0";
 
+    // Preformance.
+    // *Points for responding.
+    double dPointsForResponding      = (ans.trimmed().isEmpty()) ? 0 : anypt.toDouble();
+    double dPointsForCorrectResponse = 0;
+    double dScore;
+    if (!ans.trimmed().isEmpty())
+    {
+        //dScore +=  anspt.toDouble();
+
+        if (cans.trimmed() == ans.trimmed())
+        {
+            // *Points for correct response.
+            dPointsForCorrectResponse = anspt.toDouble();
+            //dScore += (cans == ans) ? strScore : "0";
+        }
     }
+    dScore = dPointsForResponding + dPointsForCorrectResponse;
+    score = QString::number(dScore);
+    //score = (cans == ans) ? strScore : "0";
+
 //    if (!ans.isEmpty() && (cans == ans) )
 //    {
 //        // calculate scrore
@@ -436,8 +457,12 @@ int myCourseXml::writeSessionAttributes(QXmlStreamWriter* xmlWriter, const QStri
 
 int myCourseXml::writeAggregatesForStudent(QXmlStreamWriter* xmlWriter, const QStringList &sessionData, const QStringList &studentAggregates, int idxStudentAggregate)
 {
-    QString Partic = "-1";
+    QString Partic = "0";   // Participaints will earn ____ value points when
+    // they responds to ________
     QString part = "0"; // session participation value.
+    //QString ruleMinPart_S;
+    QString minrep;
+
     if (idxStudentAggregate > 0)
     {
         const QStringList labels = myList::helperGetColsFromList(studentAggregates[0]);
@@ -454,11 +479,19 @@ int myCourseXml::writeAggregatesForStudent(QXmlStreamWriter* xmlWriter, const QS
                 if (colsSession.length() > 0 && colsSession.length() == labelsSession.length())
                 {
                     part = colsSession[labelsSession.indexOf("part")];
+                    //ruleMinPart_S = colsSession[labelsSession.indexOf("MinPart_S")];
+                    minrep = colsSession[labelsSession.indexOf("minrep")];
                 }
             }
 
             Partic = cols[labels.indexOf("partic")];
-            Partic =  (Partic.toDouble() > 0) ? part : "0";
+            // Apply rule.
+            //bPassMinimumPartic = isMinPartMet(numOfResponses, numOfQuestions, ruleMinPart_S);
+            int iMinrep    = minrep.toInt();
+            int iResponses = Partic.toInt();
+            bool bPassMinimumPartic = (iResponses > 0 && (iResponses >= iMinrep) ) ? true : false;
+            Partic =  bPassMinimumPartic ? part : "0";
+            //Partic =  (Partic.toDouble() > 0) ? part : "0";
         }
     }
 

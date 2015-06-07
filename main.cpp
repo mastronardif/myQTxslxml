@@ -40,8 +40,8 @@ int main(int argc, char *argv[])
     qDebug() << "theRoot= " << theRoot;
     //fnxsl = "/ssn/p[@idx='27']/.";
 
-//  QString srcPathFolder = "/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/0Large_PHIL 102";
-//  QString xmlFN = "L1501291001.xml";
+  QString srcPathFolder = "/Users/frank.mastronardi/workspace/iclicker741Sources/Debug/Classes/0Large_PHIL 102";
+  QString xmlFN = "L1501291001.xml";
 
 //  QString srcPathFolder = "/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/CH102-1 S2015";
 //  QString xmlFN = "L1502040749.xml";
@@ -57,8 +57,8 @@ int main(int argc, char *argv[])
 
 //  QString         xmlFN = "L1505221112.xml";
 //  QString srcPathFolder = "/Users/frank.mastronardi/workspace/iclicker741Sources/Debug/Classes/icl_2841big";
-  QString         xmlFN = "L1504150746.xml";
-  QString srcPathFolder = "/Users/frank.mastronardi/workspace/iclicker741Sources/Debug/Classes/CH102-1 S2015";
+//  QString         xmlFN = "L1504150746.xml";
+//  QString srcPathFolder = "/Users/frank.mastronardi/workspace/iclicker741Sources/Debug/Classes/CH102-1 S2015";
 ///Users/frank.mastronardi/workspace/iclicker741Sources/Debug/Classes/CH102-1 S2015/SessionData/L1504150746.xml
 
   //QString srcPathFolder = "/Users/frank.mastronardi/workspace/iclicker740Sources/Debug/Classes/iclicker-REEF integration Test 3";
