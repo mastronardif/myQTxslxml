@@ -487,11 +487,10 @@ int myCourseXml::writeAggregatesForStudent(QXmlStreamWriter* xmlWriter, const QS
             Partic = cols[labels.indexOf("partic")];
             // Apply rule.
             //bPassMinimumPartic = isMinPartMet(numOfResponses, numOfQuestions, ruleMinPart_S);
-            int iMinrep    = minrep.toInt();
-            int iResponses = Partic.toInt();
-            bool bPassMinimumPartic = (iResponses > 0 && (iResponses >= iMinrep) ) ? true : false;
-            Partic =  bPassMinimumPartic ? part : "0";
-            //Partic =  (Partic.toDouble() > 0) ? part : "0";
+//            int iMinrep    = minrep.toInt();
+//            int iResponses = Partic.toInt();
+            // bool bPassMinimumPartic = (iResponses > 0 && (iResponses >= iMinrep) ) ? true : false;
+            // done in the other place...Partic =  bPassMinimumPartic ? part : "0";
         }
     }
 

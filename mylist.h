@@ -48,7 +48,7 @@ public:
     static int printList(QStringList list);
     static int printListToFile(QString fn, QStringList list);
 
-    static int createAggregatedListForStudents(const QStringList& leftVotes, const QStringList& roster,  QStringList& aggregatesForStudents);
+    static int createAggregatedListForStudents(const QStringList& ssn, const QStringList& leftVotes, const QStringList& roster,  QStringList& aggregatesForStudents);
     static int createListForRemoteIds(const QString pathRemoteIds,    QStringList& destRemoteIds);
     static int createListForRemoteStudents(const QStringList& remoteIds, const QStringList& studentNames, QStringList& destRosterRemotesStudents);
 

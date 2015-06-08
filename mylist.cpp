@@ -275,7 +275,8 @@ int myList::makeList(S_CourseEntities courseEntities, QString src)
     printListToFile("./m_StudentVotes.csv", m_StudentVotes);
 
     // create aggregated lists
-    createAggregatedListForStudents(m_v, m_roster, m_aggregatesForStudents);
+    createAggregatedListForStudents(m_ssn, m_v, m_roster, m_aggregatesForStudents);
+    //createAggregatedListForStudents(m_v, m_roster, m_aggregatesForStudents);
     printListToFile("./m_aggregatesForStudents.csv",   m_aggregatesForStudents);
     //static int createAggregatedListForStudents(const QStringList list& m_v, const QStringList list& m_roster,  QStringList list m_aggregatesForStudents);
 
@@ -287,10 +288,29 @@ int myList::makeList(S_CourseEntities courseEntities, QString src)
 
 
 
-int myList::createAggregatedListForStudents(const QStringList& votes, const QStringList& roster,  QStringList &aggregatesForStudents)
+int myList::createAggregatedListForStudents(const QStringList& ssn, const QStringList& votes, const QStringList& roster,  QStringList &aggregatesForStudents)
 {
     // this is equivalent to a letf outer join.
-    //QRegExp rx("(\\,)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
+
+    QStringList labels;
+    QStringList cols;
+
+    // get session parameters
+    QString minrep; // minimumum response count.
+    int     iMinrep = minrep.toInt();
+    QString part;   // participation points.
+    if (ssn.length() > 1)
+    {
+        labels = helperGetColsFromList(ssn[0]);
+        cols   = helperGetColsFromList(ssn[1]);
+
+        //part = colsSession[labels.indexOf("part")];
+        //ruleMinPart_S = colsSession[labelsSession.indexOf("MinPart_S")];
+        minrep = cols[labels.indexOf("minrep")];
+        iMinrep = minrep.toInt();
+        part   = cols[labels.indexOf("part")];
+    }
+
     QStringList list  = votes; //this->m_courseList.m_v;
 
     struct S_StudentAggregatesHeader source;
@@ -302,12 +322,10 @@ int myList::createAggregatedListForStudents(const QStringList& votes, const QStr
     // sid, name, ...
     QString sId, remoteId, sname;
 
-    QStringList labels;
     if (votes.size() > 0)
     {
         labels = helperGetColsFromList(votes[0]);
     }
-    QStringList cols; // = list[1].split(rx);
 
     QString previousID = "";
     int iResponses = 0;
@@ -348,8 +366,12 @@ int myList::createAggregatedListForStudents(const QStringList& votes, const QStr
         if (fans.length() > 0)
         {
             iResponses++;
-            source.partic = QString::number(iResponses);
+            source.partic = QString::number(iResponses);            
         }
+        //
+        bool bPassMinimumPartic = (iResponses > 0 && (iResponses >= iMinrep) ) ? true : false;
+        source.partic =  bPassMinimumPartic ? part : "0";
+        //
 
 //        QString row = QString(kStudentAggregatesCols).arg(
 //                    source.StudentId, source.RemoteId,
